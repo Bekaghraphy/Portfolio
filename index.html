@@ -23,7 +23,7 @@
     /* HERO */
     .hero {
       position: relative;
-      height: 70vh;
+      height: 55vh;  /* أصغر شوية */
       background-size: cover;
       background-position: center;
       display: flex;
@@ -62,100 +62,75 @@
       opacity: 0.8;
     }
 
-    /* ABOUT ME INSIDE HERO - CENTER */
-    .hero-about {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%) translateY(-30px);
-      max-width: 500px;
-      z-index: 3;
+    /* REMOVE old About Me inside hero */
+    .hero-about { display: none; }
+
+    /* ABOUT ME new section */
+    .about-section {
       text-align: center;
-      opacity: 0;
-      animation: fadeSlideCenter 1.5s ease forwards 0.5s;
+      margin-top: -20px;
+      padding: 40px 20px;
     }
 
-    .hero-about h3 {
-      font-size: 36px;
+    .about-section h3 {
+      font-size: 42px;
       margin-bottom: 12px;
-      background: linear-gradient(45deg, #00d4ff, #7d2cff);
-      -webkit-background-clip: text;
+      background: linear-gradient(45deg,#00d4ff,#7d2cff);
+      -webkit-background-clip:text;
       -webkit-text-fill-color: transparent;
     }
 
-    .hero-about p {
-      font-size: 20px;
+    .about-section p {
+      font-size: 22px;
+      max-width: 700px;
+      margin: auto;
       opacity: 0.9;
-      line-height: 1.6;
+      line-height: 1.7;
     }
 
-    @keyframes fadeSlideCenter {
-      0% { opacity: 0; transform: translate(-50%, -50%) translateY(-30px); }
-      100% { opacity: 1; transform: translate(-50%, -50%) translateY(0); }
-    }
-
-    /* SLIDESHOW BACKGROUND */
-    .slideshow {
-      animation: slideShow 20s infinite;
-      background-size: cover;
-      background-position: center;
-    }
-
-    @keyframes slideShow {
-     20%   { background-image: url('img/slide1.jpg'); }
-      25%  { background-image: url('img/slide2.jpg'); }
-      50%  { background-image: url('img/slide3.jpg'); }
-      75%  { background-image: url('img/slide4.jpg'); }
-      100% { background-image: url('img/slide5.jpg'); }
-      25%  { background-image: url('img/slide6.jpg'); }
-      50%  { background-image: url('img/slide7.jpg'); }
-      75%  { background-image: url('img/slide2.jpg'); }
-      100% { background-image: url('img/slide5.jpg'); }
-    }
-
+    /* VIDEO SECTION */
     .section {
-      padding: 60px 20px;
-      max-width: 1100px;
+      padding: 40px 20px;
+      max-width: 1300px; /* أكبر */
       margin: auto;
     }
 
     .section h2 {
       font-size: 32px;
-      margin-bottom: 60px;
+      margin-bottom: 40px;
       text-align: center;
       background: linear-gradient(45deg, #00d4ff, #7d2cff);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
-    /* VIDEO CAROUSEL */
     .carousel-container {
       position: relative;
       width: 100%;
       overflow: hidden;
-      margin-top: 40px;
+      margin-top: 30px;
     }
 
     .carousel-track {
       display: flex;
-      gap: 20px;
+      gap: 40px;  /* مسافات أكبر */
       transition: transform 0.4s ease-in-out;
     }
 
     .video-box {
-      min-width: 380px;
+      min-width: 650px; /* العرض أكبر */
     }
 
     .video-box iframe {
       width: 100%;
-      height: 240px;
+      height: 420px; /* ارتفاع أكبر */
       border: none;
       border-radius: 12px;
     }
 
     .carousel-btn {
       position: absolute;
-      top: 45%;
+      top: 50%;
       transform: translateY(-50%);
       background: rgba(0, 0, 0, 0.6);
       border: none;
@@ -171,8 +146,13 @@
       background: rgba(255, 255, 255, 0.2);
     }
 
-    .carousel-btn.prev { left: 0; }
-    .carousel-btn.next { right: 0; }
+    .carousel-btn.prev { left: -10px; }
+    .carousel-btn.next { right: -10px; }
+
+    /* CONTACT */
+    #contact {
+      margin-top: -10px; /* مرتفع */
+    }
 
     footer {
       padding: 20px;
@@ -189,15 +169,15 @@
   <div class="hero slideshow">
     <h1>Hesham Abdelhamed</h1>
     <p>Filmmaker | Video Editor | One Man Crew</p>
+  </div>
 
-    <!-- Animated ABOUT ME - CENTER -->
-    <div class="hero-about">
-      <h3>About Me</h3>
-      <p>
-        Filmmaker and one-man crew creating cinematic visuals, documentaries,
-        and impactful stories with minimal gear and maximum emotion.
-      </p>
-    </div>
+  <!-- ABOUT ME (new position) -->
+  <div class="about-section">
+    <h3>About Me</h3>
+    <p>
+      Filmmaker and one-man crew creating cinematic visuals, documentaries,
+      and impactful stories with minimal gear and maximum emotion.
+    </p>
   </div>
 
   <!-- VIDEO SECTION -->
@@ -225,10 +205,16 @@
   <div class="section" id="contact">
     <h2>Contact</h2>
     <p style="text-align:center; opacity:0.8;">For collaborations or work inquiries:</p>
+
     <p style="text-align:center; font-size:40px; margin-top:10px;">
       <a href="mailto:per.hisham@gmail.com" style="color:#00d4ff; text-decoration:none;">
         per.hisham@gmail.com
       </a>
+    </p>
+
+    <!-- رقم التليفون هنا -->
+    <p style="text-align:center; font-size:28px; margin-top:10px; color:#7d2cff;">
+      +966 5XXXXXXXX
     </p>
   </div>
 
@@ -243,7 +229,7 @@
     let index = 0;
 
     function updateCarousel() {
-      const width = document.querySelector(".video-box").offsetWidth + 20;
+      const width = document.querySelector(".video-box").offsetWidth + 40;
       track.style.transform = `translateX(${-index * width}px)`;
     }
 
