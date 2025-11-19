@@ -10,9 +10,7 @@
   <!-- MONTSERRAT FONT -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
 
   <style>
     * {
@@ -78,7 +76,7 @@
       }
 
       60% {
-        background-image: url('img/slide5.jpg');
+       	background-image: url('img/slide5.jpg');
       }
 
       75% {
@@ -92,6 +90,7 @@
 
     .hero h1 {
       font-size: 80px;
+      letter-spacing: 2px;
       background: linear-gradient(45deg, #00d4ff, #7d2cff);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -126,6 +125,7 @@
       opacity: 0.9;
     }
 
+    /* SECTION */
     .section {
       padding: 50px 20px;
       max-width: 1300px;
@@ -150,8 +150,8 @@
 
     .carousel-track {
       display: flex;
-      transition: transform 0.4s ease-in-out;
       gap: 40px;
+      transition: transform 0.4s ease-in-out;
     }
 
     .video-box {
@@ -163,39 +163,39 @@
       width: 100%;
       height: 420px;
       border-radius: 12px;
-      border: none;
     }
 
+    /* ARROWS - beside the frame */
     .carousel-btn {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      background: rgba(255, 255, 255, 0.15);
+      background: rgba(255, 255, 255, 0.18);
       color: white;
       border: none;
       padding: 14px;
-      font-size: 28px;
+      font-size: 30px;
       cursor: pointer;
       border-radius: 50%;
-      z-index: 20;
+      z-index: 30;
     }
 
     .carousel-btn.prev {
-      left: -45px;
+      left: -20px;
     }
 
     .carousel-btn.next {
-      right: -45px;
+      right: -20px;
     }
 
-    /* CONTACT SECTION */
+    /* CONTACT */
     #contact {
       text-align: center;
     }
 
     /* SOCIAL ICONS */
     .social-icons {
-      margin-top: 15px;
+      margin-top: 18px;
       display: flex;
       gap: 20px;
       justify-content: center;
@@ -203,7 +203,6 @@
 
     .social-icons img {
       width: 38px;
-      height: 38px;
       opacity: 0.8;
       transition: 0.3s;
       cursor: pointer;
@@ -218,10 +217,9 @@
       text-align: center;
       opacity: 0.6;
       padding: 20px;
-      font-size: 14px;
     }
 
-    /* FULL RESPONSIVE */
+    /* RESPONSIVE */
     @media (max-width: 992px) {
       .video-box {
         min-width: 500px;
@@ -241,14 +239,6 @@
         font-size: 45px;
       }
 
-      .hero p {
-        font-size: 14px;
-      }
-
-      .about-section p {
-        max-width: 90%;
-      }
-
       .video-box {
         min-width: 320px;
       }
@@ -257,12 +247,13 @@
         height: 200px;
       }
 
+      /* arrows closer for mobile */
       .carousel-btn.prev {
-        left: -25px;
+        left: -10px;
       }
 
       .carousel-btn.next {
-        right: -25px;
+        right: -10px;
       }
     }
 
@@ -277,11 +268,6 @@
 
       .video-box iframe {
         height: 170px;
-      }
-
-      .carousel-btn {
-        font-size: 20px;
-        padding: 10px;
       }
     }
   </style>
@@ -313,20 +299,21 @@
       <button class="carousel-btn prev">&#10094;</button>
 
       <div class="carousel-track">
-        <div class="video-box"><iframe src="https://player.vimeo.com/video/1081231929"
-            allowfullscreen></iframe></div>
-        <div class="video-box"><iframe src="https://player.vimeo.com/video/1093436208"
-            allowfullscreen></iframe></div>
-        <div class="video-box"><iframe src="https://player.vimeo.com/video/1012761186"
-            allowfullscreen></iframe></div>
-        <div class="video-box"><iframe src="https://player.vimeo.com/video/782962222"
-            allowfullscreen></iframe></div>
-        <div class="video-box"><iframe src="https://player.vimeo.com/video/1081226158"
-            allowfullscreen></iframe></div>
-        <div class="video-box"><iframe src="https://player.vimeo.com/video/1137725566"
-            allowfullscreen></iframe></div>
-        <div class="video-box"><iframe src="https://player.vimeo.com/video/1088303838"
-            allowfullscreen></iframe></div>
+
+        <div class="video-box"><iframe src="https://player.vimeo.com/video/1081231929" allowfullscreen></iframe></div>
+
+        <div class="video-box"><iframe src="https://player.vimeo.com/video/1093436208" allowfullscreen></iframe></div>
+
+        <div class="video-box"><iframe src="https://player.vimeo.com/video/1012761186" allowfullscreen></iframe></div>
+
+        <div class="video-box"><iframe src="https://player.vimeo.com/video/782962222" allowfullscreen></iframe></div>
+
+        <div class="video-box"><iframe src="https://player.vimeo.com/video/1081226158" allowfullscreen></iframe></div>
+
+        <div class="video-box"><iframe src="https://player.vimeo.com/video/1137725566" allowfullscreen></iframe></div>
+
+        <div class="video-box"><iframe src="https://player.vimeo.com/video/1088303838" allowfullscreen></iframe></div>
+
       </div>
 
       <button class="carousel-btn next">&#10095;</button>
@@ -339,7 +326,7 @@
 
     <p style="opacity:0.8;">For collaborations or work inquiries:</p>
 
-    <p style="font-size:20px; margin-top:10px;">
+    <p style="font-size:34px; margin-top:10px;">
       <a href="mailto:per.hisham@gmail.com" style="color:#00d4ff; text-decoration:none;">
         per.hisham@gmail.com
       </a>
@@ -348,7 +335,6 @@
     <p style="font-size:26px; margin-top:10px; color:#7d2cff;">
       +966 503064408
     </p>
-
     <!-- SOCIAL ICONS -->
     <div class="social-icons">
       <a href="https://www.instagram.com/hisham.abdlhamed" target="_blank">
@@ -372,7 +358,7 @@
     © 2025 Hesham Abdelhamed
   </footer>
 
-  <!-- JS with Buttons + Touch Swipe -->
+  <!-- JS + SWIPE -->
   <script>
     const track = document.querySelector(".carousel-track");
     const prev = document.querySelector(".carousel-btn.prev");
@@ -385,7 +371,6 @@
       track.style.transform = `translateX(${-index * width}px)`;
     }
 
-    // Button Controls
     next.addEventListener("click", () => {
       const items = document.querySelectorAll(".video-box").length;
       if (index < items - 1) index++;
@@ -399,9 +384,7 @@
 
     window.addEventListener("resize", updateCarousel);
 
-    /* ============================
-          TOUCH / SWIPE SUPPORT
-       ============================ */
+    /* SWIPE CONTROL */
     let startX = 0;
     let endX = 0;
 
@@ -419,20 +402,18 @@
 
       if (Math.abs(distance) > 50) {
         if (distance < 0) {
-          // Swipe left → next video
           const items = document.querySelectorAll(".video-box").length;
           if (index < items - 1) index++;
         } else {
-          // Swipe right → previous video
           if (index > 0) index--;
         }
         updateCarousel();
       }
     });
 
-    // Initialize position
     updateCarousel();
   </script>
 
 </body>
+
 </html>
