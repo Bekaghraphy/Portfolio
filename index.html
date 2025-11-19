@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Hesham Abdelhamed | Portfolio</title>
-  
   <link rel="icon" type="image/png" href="img/favicon.png">
 
   <style>
@@ -24,7 +23,7 @@
     /* HERO */
     .hero {
       position: relative;
-      height: 60vh;
+      height: 70vh;
       background-size: cover;
       background-position: center;
       display: flex;
@@ -32,7 +31,7 @@
       justify-content: flex-start;
       align-items: center;
       text-align: center;
-      padding: 70px 20px 20px 20px;
+      padding: 80px 20px 20px 20px;
     }
 
     .hero::after {
@@ -49,7 +48,7 @@
     .hero > * { position: relative; z-index: 2; }
 
     .hero h1 {
-      font-size: 75px;
+      font-size: 80px;
       letter-spacing: 2px;
       margin-bottom: 10px;
       background: linear-gradient(45deg, #00d4ff, #7d2cff);
@@ -58,12 +57,43 @@
     }
 
     .hero p {
-      font-size: 22px;
+      font-size: 20px;
       max-width: 600px;
       opacity: 0.8;
     }
 
-    /* SLIDESHOW */
+    /* ABOUT ME INSIDE HERO */
+    .hero-about {
+      position: absolute;
+      left: 40px;
+      bottom: 40px;
+      max-width: 350px;
+      z-index: 3;
+      opacity: 0;
+      transform: translateX(-30px);
+      animation: fadeSlide 1.3s ease forwards 0.4s;
+    }
+
+    .hero-about h3 {
+      font-size: 26px;
+      margin-bottom: 8px;
+      background: linear-gradient(45deg, #00d4ff, #7d2cff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-about p {
+      font-size: 17px;
+      opacity: 0.85;
+      line-height: 1.6;
+    }
+
+    @keyframes fadeSlide {
+      0% { opacity: 0; transform: translateX(-30px); }
+      100% { opacity: 1; transform: translateX(0); }
+    }
+
+    /* SLIDESHOW BACKGROUND */
     .slideshow {
       animation: slideShow 20s infinite;
       background-size: cover;
@@ -103,17 +133,17 @@
 
     .carousel-track {
       display: flex;
-      gap: 25px;
+      gap: 20px;
       transition: transform 0.4s ease-in-out;
     }
 
     .video-box {
-      min-width: 420px;   /* أكبر */
+      min-width: 380px;
     }
 
     .video-box iframe {
       width: 100%;
-      height: 260px;      /* أكبر */
+      height: 240px;
       border: none;
       border-radius: 12px;
     }
@@ -154,6 +184,15 @@
   <div class="hero slideshow">
     <h1>Hesham Abdelhamed</h1>
     <p>Filmmaker | Video Editor | One Man Crew</p>
+
+    <!-- Animated ABOUT ME -->
+    <div class="hero-about">
+      <h3>About Me</h3>
+      <p>
+        Filmmaker and one-man crew creating cinematic visuals, documentaries,
+        and impactful stories with minimal gear and maximum emotion.
+      </p>
+    </div>
   </div>
 
   <!-- VIDEO SECTION -->
@@ -165,39 +204,24 @@
 
       <div class="carousel-track">
 
-        <div class="video-box">
-          <iframe src="https://player.vimeo.com/video/1081231929" allowfullscreen></iframe>
-        </div>
+        <div class="video-box"><iframe src="https://player.vimeo.com/video/1081231929" allowfullscreen></iframe></div>
 
-        <div class="video-box">
-          <iframe src="https://player.vimeo.com/video/1093436208" allowfullscreen></iframe>
-        </div>
+        <div class="video-box"><iframe src="https://player.vimeo.com/video/1093436208" allowfullscreen></iframe></div>
 
-        <div class="video-box">
-          <iframe src="https://player.vimeo.com/video/1012761186" allowfullscreen></iframe>
-        </div>
+        <div class="video-box"><iframe src="https://player.vimeo.com/video/1012761186" allowfullscreen></iframe></div>
 
-        <div class="video-box">
-          <iframe src="https://player.vimeo.com/video/782962222" allowfullscreen></iframe>
-        </div>
+        <div class="video-box"><iframe src="https://player.vimeo.com/video/782962222" allowfullscreen></iframe></div>
 
-        <div class="video-box">
-          <iframe src="https://player.vimeo.com/video/1081226158" allowfullscreen></iframe>
-        </div>
+        <div class="video-box"><iframe src="https://player.vimeo.com/video/1081226158" allowfullscreen></iframe></div>
 
-        <div class="video-box">
-          <iframe src="https://player.vimeo.com/video/1137725566" allowfullscreen></iframe>
-        </div>
+        <div class="video-box"><iframe src="https://player.vimeo.com/video/1137725566" allowfullscreen></iframe></div>
 
-        <div class="video-box">
-          <iframe src="https://player.vimeo.com/video/1088303838" allowfullscreen></iframe>
-        </div>
+        <div class="video-box"><iframe src="https://player.vimeo.com/video/1088303838" allowfullscreen></iframe></div>
 
       </div>
 
       <button class="carousel-btn next">&#10095;</button>
     </div>
-
   </div>
 
   <!-- ABOUT -->
@@ -232,7 +256,7 @@
     let index = 0;
 
     function updateCarousel() {
-      const width = document.querySelector(".video-box").offsetWidth + 25;
+      const width = document.querySelector(".video-box").offsetWidth + 20;
       track.style.transform = `translateX(${-index * width}px)`;
     }
 
