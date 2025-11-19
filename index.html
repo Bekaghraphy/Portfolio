@@ -20,7 +20,7 @@
 
     .hero {
       position: relative;
-      height: 100vh;
+      height: 70vh;
       background-size: cover;
       background-position: center;
       display: flex;
@@ -70,6 +70,8 @@
     }
 
     .section {
+      padding: 40px 20px;
+      margin-top: -40px;
       padding: 60px 20px;
       max-width: 1000px;
       margin: auto;
@@ -92,7 +94,7 @@
 
     .video-box iframe {
       width: 100%;
-      height: 200px;
+      height: 260px;
       border-radius: 10px;
       border: none;
     }
@@ -103,12 +105,26 @@
       opacity: 0.6;
       font-size: 14px;
     }
+  /* Slideshow Background */
+    .slideshow {
+      position: relative;
+      animation: slideShow 20s infinite;
+      background-size: cover;
+      background-position: center;
+    }
+
+    @keyframes slideShow {
+      0% { background-image: url('img/slide1.jpg'); }
+      33% { background-image: url('img/slide2.jpg'); }
+      66% { background-image: url('img/slide3.jpg'); }
+      100% { background-image: url('img/slide1.jpg'); }
+    }
   </style>
 </head>
 <body>
 
   <!-- HERO SECTION (Add your background image here) -->
-  <div class="hero" style="background-image: url('img/your-background.jpg');">
+  <div class="hero slideshow">
     <h1>Hesham Abdelhamed</h1>
     <p>Filmmaker | Video Editor | One Man Crew</p>
   </div>
@@ -120,12 +136,12 @@
     <div class="videos">
       <!-- Example Vimeo Embed 1 -->
       <div class="video-box">
-        <iframe src="https://vimeo.com/348818970?share=copy" allowfullscreen></iframe>
+        <iframe src="https://player.vimeo.com/video/1081231929" allowfullscreen></iframe>
       </div>
 
       <!-- Example Vimeo Embed 2 -->
       <div class="video-box">
-        <iframe src="https://vimeo.com/1093436208?share=copy" allowfullscreen></iframe>
+        <iframe src="https://player.vimeo.com/video/1093436208" allowfullscreen></iframe>
       </div>
 
       <!-- Example Vimeo Embed 3 -->
@@ -152,7 +168,7 @@
     <h2>Contact</h2>
     <p style="text-align:center; opacity:0.8;">For collaborations or work inquiries:</p>
     <p style="text-align:center; font-size:20px; margin-top:10px;">
-      <a href="mailto:per.hisham@gmail.com" style="color:#00d4ff; text-decoration:none;">per.hisham@gmail.com</a>
+      <a href="mailto:contact@yourmail.com" style="color:#00d4ff; text-decoration:none;">contact@yourmail.com</a>
     </p>
   </div>
 
