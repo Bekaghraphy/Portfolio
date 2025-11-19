@@ -53,9 +53,9 @@
 
     .hero > * { position: relative; z-index: 2; }
 
-    /* FIXED SLIDESHOW IMAGES */
+    /* SLIDESHOW */
     @keyframes slideShow {
-      10%   { background-image: url('img/slide1.jpg'); }
+      0%   { background-image: url('img/slide1.jpg'); }
       15%  { background-image: url('img/slide2.jpg'); }
       30%  { background-image: url('img/slide3.jpg'); }
       45%  { background-image: url('img/slide4.jpg'); }
@@ -79,13 +79,10 @@
       opacity: 0.8;
     }
 
-    /* REMOVE old About Me inside hero */
-    .hero-about { display: none; }
-
-    /* ABOUT ME new section */
+    /* ABOUT SECTION */
     .about-section {
       text-align: center;
-      margin-top: -20px;
+      margin-top: -10px;
       padding: 40px 20px;
     }
 
@@ -98,14 +95,14 @@
     }
 
     .about-section p {
-      font-size: 12px;
-      max-width: 400px;
+      font-size: 16px;
+      max-width: 650px;
       margin: auto;
       opacity: 0.9;
-      line-height: 1.7;
+      line-height: 1.8;
     }
 
-    /* VIDEO SECTION */
+    /* SECTIONS */
     .section {
       padding: 40px 20px;
       max-width: 1300px;
@@ -121,6 +118,7 @@
       -webkit-text-fill-color: transparent;
     }
 
+    /* VIDEO CAROUSEL */
     .carousel-container {
       position: relative;
       width: 100%;
@@ -141,8 +139,8 @@
     .video-box iframe {
       width: 100%;
       height: 420px;
-      border: none;
       border-radius: 12px;
+      border: none;
     }
 
     .carousel-btn {
@@ -173,6 +171,113 @@
       opacity: 0.6;
       font-size: 14px;
     }
+
+    /* ============================
+       FULL RESPONSIVE SYSTEM
+       ============================ */
+
+    /* Tablets */
+    @media (max-width: 992px) {
+
+      .hero {
+        height: 45vh;
+        padding-top: 60px;
+      }
+
+      .hero h1 {
+        font-size: 55px;
+      }
+
+      .carousel-track {
+        gap: 25px;
+      }
+
+      .video-box {
+        min-width: 500px;
+      }
+
+      .video-box iframe {
+        height: 320px;
+      }
+    }
+
+    /* Large Mobiles */
+    @media (max-width: 768px) {
+
+      .hero {
+        height: 40vh;
+        padding-top: 55px;
+      }
+
+      .hero h1 {
+        font-size: 40px;
+      }
+
+      .hero p {
+        font-size: 14px;
+      }
+
+      .about-section h3 {
+        font-size: 28px;
+      }
+
+      .about-section p {
+        font-size: 14px;
+        max-width: 90%;
+      }
+
+      .video-box {
+        min-width: 320px !important;
+      }
+
+      .video-box iframe {
+        height: 200px !important;
+      }
+
+      .carousel-btn {
+        font-size: 18px;
+        padding: 8px;
+      }
+
+      .section h2 {
+        font-size: 25px;
+      }
+
+      #contact p {
+        font-size: 18px !important;
+      }
+    }
+
+    /* Small Mobiles (iPhone SE, Mini) */
+    @media (max-width: 460px) {
+
+      .hero {
+        height: 38vh;
+        padding-top: 45px;
+      }
+
+      .hero h1 {
+        font-size: 32px;
+      }
+
+      .about-section p {
+        font-size: 13px;
+      }
+
+      .video-box {
+        min-width: 280px !important;
+      }
+
+      .video-box iframe {
+        height: 180px !important;
+      }
+
+      .carousel-btn {
+        font-size: 16px;
+        padding: 6px;
+      }
+    }
+
   </style>
 </head>
 
@@ -184,16 +289,15 @@
     <p>Filmmaker | Video Editor | One Man Crew</p>
   </div>
 
-  <!-- ABOUT ME -->
+  <!-- ABOUT -->
   <div class="about-section">
     <h3>About Me</h3>
     <p>
-      Passionate filmmaker and video producer creating cinematic stories through directing, editing, and powerful visual storytelling.
-      I craft high-quality content that connects with audiences and brings meaningful ideas to life.
+      Passionate filmmaker and video producer creating cinematic visual stories with a strong focus on directing, editing, and storytelling. I craft high-quality content that connects with audiences and brings meaningful ideas to life.
     </p>
   </div>
 
-  <!-- VIDEO SECTION -->
+  <!-- VIDEOS -->
   <div class="section">
     <h2>My Work</h2>
 
@@ -230,8 +334,11 @@
     </p>
   </div>
 
-  <footer>© 2025 Hesham Abdelhamed</footer>
+  <footer>
+    © 2025 Hesham Abdelhamed
+  </footer>
 
+  <!-- JS -->
   <script>
     const track = document.querySelector(".carousel-track");
     const prev = document.querySelector(".carousel-btn.prev");
