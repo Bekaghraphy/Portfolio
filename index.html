@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hesham Abdelhamed | Portfolio</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #0e0e0e;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    .hero {
+      position: relative;
+      height: 100vh;
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.55);
+      backdrop-filter: blur(3px);
+    }
+
+    .hero > * { position: relative; z-index: 2; }
+      height: 100vh;
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .hero h1 {
+      font-size: 60px;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+      background: linear-gradient(45deg, #00d4ff, #7d2cff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      font-size: 20px;
+      max-width: 600px;
+      opacity: 0.8;
+    }
+
+    .section {
+      padding: 60px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .section h2 {
+      font-size: 32px;
+      margin-bottom: 20px;
+      text-align: center;
+      background: linear-gradient(45deg, #00d4ff, #7d2cff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .videos {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .video-box iframe {
+      width: 100%;
+      height: 200px;
+      border-radius: 10px;
+      border: none;
+    }
+
+    footer {
+      padding: 20px;
+      text-align: center;
+      opacity: 0.6;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO SECTION (Add your background image here) -->
+  <div class="hero" style="background-image: url('img/your-background.jpg');">
+    <h1>Hesham Abdelhamed</h1>
+    <p>Filmmaker | Video Editor | One Man Crew</p>
+  </div>
+
+  <!-- VIDEOS SECTION -->
+  <div class="section">
+    <h2>My Work</h2>
+
+    <div class="videos">
+      <!-- Example Vimeo Embed 1 -->
+      <div class="video-box">
+        <iframe src="https://vimeo.com/348818970?share=copy" allowfullscreen></iframe>
+      </div>
+
+      <!-- Example Vimeo Embed 2 -->
+      <div class="video-box">
+        <iframe src="https://vimeo.com/1093436208?share=copy" allowfullscreen></iframe>
+      </div>
+
+      <!-- Example Vimeo Embed 3 -->
+      <div class="video-box">
+        <iframe src="https://vimeo.com/1012761186?share=copy" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    © 2025 Hesham Abdelhamed
+  </footer>
+
+  <!-- ABOUT SECTION -->
+  <div class="section" id="about">
+    <h2>About Me</h2>
+    <p style="font-size:18px; line-height:1.8; opacity:0.85; text-align:center; max-width:800px; margin:auto;">
+      I’m Hesham Abdelhamed, a filmmaker and one‑man crew specializing in cinematic storytelling, documentary work, and fast, clean editing. I bring visuals to life with a minimal, emotional approach designed to keep the viewer immersed.
+    </p>
+  </div>
+
+  <!-- CONTACT SECTION -->
+  <div class="section" id="contact">
+    <h2>Contact</h2>
+    <p style="text-align:center; opacity:0.8;">For collaborations or work inquiries:</p>
+    <p style="text-align:center; font-size:20px; margin-top:10px;">
+      <a href="mailto:per.hisham@gmail.com" style="color:#00d4ff; text-decoration:none;">per.hisham@gmail.com</a>
+    </p>
+  </div>
+
+  
+
+</body>
+</html>
