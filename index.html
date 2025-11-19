@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Hesham Abdelhamed | Portfolio</title>
   <link rel="icon" type="image/png" href="img/favicon.png">
+
   <style>
     * {
       margin: 0;
@@ -19,19 +20,18 @@
       overflow-x: hidden;
     }
 
+    /* HERO */
     .hero {
-  position: relative;
-  height: 70vh;
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start; /* بدل center */
-  align-items: center;
-  text-align: center;
-  padding: 80px 20px 20px 20px; /* top padding أكبر */
-}
-
+      position: relative;
+      height: 70vh;
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      text-align: center;
+      padding: 80px 20px 20px 20px;
     }
 
     .hero::after {
@@ -46,16 +46,6 @@
     }
 
     .hero > * { position: relative; z-index: 2; }
-      height: 100vh;
-      background-size: cover;
-      background-position: center;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 20px;
-    }
 
     .hero h1 {
       font-size: 80px;
@@ -72,11 +62,24 @@
       opacity: 0.8;
     }
 
+    /* SLIDESHOW BACKGROUND */
+    .slideshow {
+      animation: slideShow 20s infinite;
+      background-size: cover;
+      background-position: center;
+    }
+
+    @keyframes slideShow {
+      0%   { background-image: url('img/slide1.jpg'); }
+      25%  { background-image: url('img/slide2.jpg'); }
+      50%  { background-image: url('img/slide3.jpg'); }
+      75%  { background-image: url('img/slide4.jpg'); }
+      100% { background-image: url('img/slide1.jpg'); }
+    }
+
     .section {
-      padding: 40px 20px;
-      margin-top: -40px;
       padding: 60px 20px;
-      max-width: 1000px;
+      max-width: 1100px;
       margin: auto;
     }
 
@@ -89,18 +92,51 @@
       -webkit-text-fill-color: transparent;
     }
 
-    .videos {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    /* VIDEO CAROUSEL */
+    .carousel-container {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      margin-top: 40px;
+    }
+
+    .carousel-track {
+      display: flex;
       gap: 20px;
+      transition: transform 0.4s ease-in-out;
+    }
+
+    .video-box {
+      min-width: 340px;
     }
 
     .video-box iframe {
       width: 100%;
-      height: 260px;
-      border-radius: 10px;
+      height: 220px;
       border: none;
+      border-radius: 12px;
     }
+
+    .carousel-btn {
+      position: absolute;
+      top: 45%;
+      transform: translateY(-50%);
+      background: rgba(0, 0, 0, 0.6);
+      border: none;
+      color: #fff;
+      padding: 12px;
+      font-size: 25px;
+      cursor: pointer;
+      border-radius: 50%;
+      z-index: 10;
+    }
+
+    .carousel-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .carousel-btn.prev { left: 0; }
+    .carousel-btn.next { right: 0; }
 
     footer {
       padding: 20px;
@@ -108,96 +144,110 @@
       opacity: 0.6;
       font-size: 14px;
     }
-  /* Slideshow Background */
-    .slideshow {
-      position: relative;
-      animation: slideShow 20s infinite;
-      background-size: cover;
-      background-position: center;
-    }
-
-    @keyframes slideShow {
-      10% { background-image: url('img/slide1.jpg'); }
-      33% { background-image: url('img/slide2.jpg'); }
-      66% { background-image: url('img/slide3.jpg'); }
-      100% { background-image: url('img/slide1.jpg'); }
-       10% { background-image: url('img/slide4.jpg'); }
-      33% { background-image: url('img/slide5.jpg'); }
-      66% { background-image: url('img/slide6.jpg'); }
-      100% { background-image: url('img/slide4.jpg'); }
-    }
   </style>
 </head>
+
 <body>
 
-  <!-- HERO SECTION (Add your background image here) -->
+  <!-- HERO -->
   <div class="hero slideshow">
     <h1>Hesham Abdelhamed</h1>
     <p>Filmmaker | Video Editor | One Man Crew</p>
   </div>
 
-  <!-- VIDEOS SECTION -->
+  <!-- VIDEO SECTION -->
   <div class="section">
     <h2>My Work</h2>
 
-    <div class="videos">
-      <!-- Example Vimeo Embed 1 -->
-      <div class="video-box">
-        <iframe src="https://player.vimeo.com/video/1081231929" allowfullscreen></iframe>
+    <div class="carousel-container">
+      <button class="carousel-btn prev">&#10094;</button>
+
+      <div class="carousel-track">
+
+        <div class="video-box">
+          <iframe src="https://player.vimeo.com/video/1081231929" allowfullscreen></iframe>
+        </div>
+
+        <div class="video-box">
+          <iframe src="https://player.vimeo.com/video/1093436208" allowfullscreen></iframe>
+        </div>
+
+        <div class="video-box">
+          <iframe src="https://player.vimeo.com/video/1012761186" allowfullscreen></iframe>
+        </div>
+
+        <div class="video-box">
+          <iframe src="https://player.vimeo.com/video/782962222" allowfullscreen></iframe>
+        </div>
+
+        <div class="video-box">
+          <iframe src="https://player.vimeo.com/video/1081226158" allowfullscreen></iframe>
+        </div>
+
+        <div class="video-box">
+          <iframe src="https://player.vimeo.com/video/1137725566" allowfullscreen></iframe>
+        </div>
+
+        <div class="video-box">
+          <iframe src="https://player.vimeo.com/video/1088303838" allowfullscreen></iframe>
+        </div>
+
       </div>
 
-      <!-- Example Vimeo Embed 2 -->
-      <div class="video-box">
-        <iframe src="https://player.vimeo.com/video/1093436208" allowfullscreen></iframe>
-      </div>
+      <button class="carousel-btn next">&#10095;</button>
+    </div>
 
-      <!-- Example Vimeo Embed 3 -->
-      <div class="video-box">
-        <iframe src="https://player.vimeo.com/video/1012761186" allowfullscreen></iframe>
-      </div>
-  
   </div>
-      <!-- Example Vimeo Embed 3 -->
-      <div class="video-box">
-        <iframe src="https://player.vimeo.com/video/782962222" allowfullscreen></iframe>
-      </div>
-   
-  </div>
-    <!-- Example Vimeo Embed 3 -->
-      <div class="video-box">
-        <iframe src="https://player.vimeo.com/video/1081226158" allowfullscreen></iframe>
-      </div>
-   </div>
-    <!-- Example Vimeo Embed 3 -->
-      <div class="video-box">
-        <iframe src="https://player.vimeo.com/video/1137725566" allowfullscreen></iframe>
-      </div>
-  <!-- Example Vimeo Embed 3 -->
-      <div class="video-box">
-        <iframe src="https://player.vimeo.com/video/1088303838" allowfullscreen></iframe>
-      </div>
-  <footer>
-    © 2025 Hesham Abdelhamed
-  </footer>
 
-  <!-- ABOUT SECTION -->
+  <!-- ABOUT -->
   <div class="section" id="about">
     <h2>About Me</h2>
     <p style="font-size:18px; line-height:1.8; opacity:0.85; text-align:center; max-width:800px; margin:auto;">
-      I’m Hesham Abdelhamed, a filmmaker and one‑man crew specializing in cinematic storytelling, documentary work, and fast, clean editing. I bring visuals to life with a minimal, emotional approach designed to keep the viewer immersed.
+      I’m Hesham Abdelhamed, a filmmaker and one-man crew specializing in cinematic storytelling,
+      documentary work, and fast, clean editing. I bring visuals to life with a minimal,
+      emotional approach designed to keep the viewer immersed.
     </p>
   </div>
 
-  <!-- CONTACT SECTION -->
+  <!-- CONTACT -->
   <div class="section" id="contact">
     <h2>Contact</h2>
     <p style="text-align:center; opacity:0.8;">For collaborations or work inquiries:</p>
     <p style="text-align:center; font-size:20px; margin-top:10px;">
-      <a href="mailto:contact@yourmail.com" style="color:#00d4ff; text-decoration:none;">per.hisham@gmail.com</a>
+      <a href="mailto:per.hisham@gmail.com" style="color:#00d4ff; text-decoration:none;">
+        per.hisham@gmail.com
+      </a>
     </p>
   </div>
 
-  
+  <footer>© 2025 Hesham Abdelhamed</footer>
+
+  <!-- JS -->
+  <script>
+    const track = document.querySelector(".carousel-track");
+    const prev = document.querySelector(".carousel-btn.prev");
+    const next = document.querySelector(".carousel-btn.next");
+
+    let index = 0;
+
+    function updateCarousel() {
+      const width = document.querySelector(".video-box").offsetWidth + 20;
+      track.style.transform = `translateX(${-index * width}px)`;
+    }
+
+    next.addEventListener("click", () => {
+      const items = document.querySelectorAll(".video-box").length;
+      if (index < items - 1) index++;
+      updateCarousel();
+    });
+
+    prev.addEventListener("click", () => {
+      if (index > 0) index--;
+      updateCarousel();
+    });
+
+    window.addEventListener("resize", updateCarousel);
+  </script>
 
 </body>
 </html>
