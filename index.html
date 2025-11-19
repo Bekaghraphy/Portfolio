@@ -62,35 +62,36 @@
       opacity: 0.8;
     }
 
-    /* ABOUT ME INSIDE HERO */
+    /* ABOUT ME INSIDE HERO - CENTER */
     .hero-about {
       position: absolute;
-      left: 40px;
-      bottom: 40px;
-      max-width: 350px;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%) translateY(-30px);
+      max-width: 500px;
       z-index: 3;
+      text-align: center;
       opacity: 0;
-      transform: translateX(-30px);
-      animation: fadeSlide 1.3s ease forwards 0.4s;
+      animation: fadeSlideCenter 1.5s ease forwards 0.5s;
     }
 
     .hero-about h3 {
-      font-size: 26px;
-      margin-bottom: 8px;
+      font-size: 36px;
+      margin-bottom: 12px;
       background: linear-gradient(45deg, #00d4ff, #7d2cff);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
     .hero-about p {
-      font-size: 17px;
-      opacity: 0.85;
+      font-size: 20px;
+      opacity: 0.9;
       line-height: 1.6;
     }
 
-    @keyframes fadeSlide {
-      0% { opacity: 0; transform: translateX(-30px); }
-      100% { opacity: 1; transform: translateX(0); }
+    @keyframes fadeSlideCenter {
+      0% { opacity: 0; transform: translate(-50%, -50%) translateY(-30px); }
+      100% { opacity: 1; transform: translate(-50%, -50%) translateY(0); }
     }
 
     /* SLIDESHOW BACKGROUND */
@@ -185,7 +186,7 @@
     <h1>Hesham Abdelhamed</h1>
     <p>Filmmaker | Video Editor | One Man Crew</p>
 
-    <!-- Animated ABOUT ME -->
+    <!-- Animated ABOUT ME - CENTER -->
     <div class="hero-about">
       <h3>About Me</h3>
       <p>
@@ -203,21 +204,13 @@
       <button class="carousel-btn prev">&#10094;</button>
 
       <div class="carousel-track">
-
         <div class="video-box"><iframe src="https://player.vimeo.com/video/1081231929" allowfullscreen></iframe></div>
-
         <div class="video-box"><iframe src="https://player.vimeo.com/video/1093436208" allowfullscreen></iframe></div>
-
         <div class="video-box"><iframe src="https://player.vimeo.com/video/1012761186" allowfullscreen></iframe></div>
-
         <div class="video-box"><iframe src="https://player.vimeo.com/video/782962222" allowfullscreen></iframe></div>
-
         <div class="video-box"><iframe src="https://player.vimeo.com/video/1081226158" allowfullscreen></iframe></div>
-
         <div class="video-box"><iframe src="https://player.vimeo.com/video/1137725566" allowfullscreen></iframe></div>
-
         <div class="video-box"><iframe src="https://player.vimeo.com/video/1088303838" allowfullscreen></iframe></div>
-
       </div>
 
       <button class="carousel-btn next">&#10095;</button>
