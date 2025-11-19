@@ -19,16 +19,18 @@
     }
 
     .hero {
-      position: relative;
-      height: 70vh;
-      background-size: cover;
-      background-position: center;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 20px;
+  position: relative;
+  height: 70vh;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* بدل center */
+  align-items: center;
+  text-align: center;
+  padding: 80px 20px 20px 20px; /* top padding أكبر */
+}
+
     }
 
     .hero::after {
@@ -55,7 +57,7 @@
     }
 
     .hero h1 {
-      font-size: 60px;
+      font-size: 80px;
       letter-spacing: 2px;
       margin-bottom: 10px;
       background: linear-gradient(45deg, #00d4ff, #7d2cff);
@@ -172,7 +174,7 @@
     <h2>Contact</h2>
     <p style="text-align:center; opacity:0.8;">For collaborations or work inquiries:</p>
     <p style="text-align:center; font-size:20px; margin-top:10px;">
-      <a href="mailto:contact@yourmail.com" style="color:#00d4ff; text-decoration:none;">contact@yourmail.com</a>
+      <a href="mailto:contact@yourmail.com" style="color:#00d4ff; text-decoration:none;">per.hisham@gmail.com</a>
     </p>
   </div>
 
