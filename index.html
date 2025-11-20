@@ -9,359 +9,17 @@
   <!-- Montserrat -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap"
-    rel="stylesheet"
-  />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet" />
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: "Montserrat", sans-serif;
-    }
+  <link rel="stylesheet" href="style.css" />
 
-    body {
-      background: #111;
-      color: #f5f5f5;
-      min-height: 100vh;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    /* -------- NAVBAR -------- */
-    .nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      padding: 18px 60px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 20;
-      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent);
-    }
-
-    .nav-logo {
-      letter-spacing: 3px;
-      font-weight: 600;
-      font-size: 14px;
-      text-transform: uppercase;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 30px;
-      font-size: 13px;
-      text-transform: uppercase;
-      opacity: 0.85;
-    }
-
-    .nav-links a {
-      position: relative;
-    }
-
-    .nav-links a::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: -4px;
-      width: 0;
-      height: 1px;
-      background: #f5f5f5;
-      transition: width 0.25s ease;
-    }
-
-    .nav-links a:hover::after {
-      width: 100%;
-    }
-
-    /* -------- HERO -------- */
-    .hero {
-      position: relative;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 80px 70px 120px;
-      background-image: url("img/home-hero.jpg"); /* حط الصورة هنا */
-      background-size: cover;
-      background-position: center;
-      overflow: hidden;
-    }
-
-    /* طبقة تعتيم خفيفة */
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(
-          circle at 20% 40%,
-          rgba(0, 0, 0, 0.25),
-          transparent 55%
-        ),
-        linear-gradient(to right, rgba(0, 0, 0, 0.8), transparent 55%),
-        linear-gradient(to top, rgba(0, 0, 0, 0.75), transparent 60%);
-      z-index: 0;
-    }
-
-    /* دائرة تركيز (زي الشكل في المثال) */
-    .hero-rings {
-      position: absolute;
-      left: 26%;
-      top: 48%;
-      width: 420px;
-      height: 420px;
-      border-radius: 50%;
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      transform: translate(-50%, -50%);
-      z-index: 1;
-    }
-
-    .hero-rings::before,
-    .hero-rings::after {
-      content: "";
-      position: absolute;
-      inset: 70px;
-      border-radius: 50%;
-      border: 1px solid rgba(255, 255, 255, 0.04);
-    }
-
-    .hero-rings::after {
-      inset: 130px;
-    }
-
-    .hero-content {
-      position: relative;
-      display: flex;
-      width: 100%;
-      max-width: 1200px;
-      z-index: 2;
-    }
-
-    .hero-left {
-      flex: 0 0 55%;
-      padding-right: 40px;
-    }
-
-    .hero-heading {
-      font-size: 42px;
-      line-height: 1.05;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      margin-bottom: 20px;
-    }
-
-    .hero-sub {
-      font-size: 13px;
-      max-width: 380px;
-      line-height: 1.7;
-      opacity: 0.85;
-      margin-bottom: 26px;
-    }
-
-    .hero-tag {
-      font-size: 11px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      opacity: 0.7;
-    }
-
-    .hero-right {
-      flex: 1;
-      display: flex;
-      justify-content: flex-end;
-      align-items: flex-start;
-      padding-top: 50px;
-      font-size: 12px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      opacity: 0.8;
-    }
-
-    /* -------- BOTTOM STRIP -------- */
-    .bottom-strip {
-      position: absolute;
-      left: 50%;
-      bottom: 40px;
-      transform: translateX(-50%);
-      width: 86%;
-      max-width: 1200px;
-      display: grid;
-      grid-template-columns: 1.4fr 1.1fr 1.1fr 0.7fr;
-      gap: 24px;
-      align-items: center;
-      padding: 18px 26px;
-      background: rgba(10, 10, 10, 0.86);
-      border-radius: 10px;
-      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(8px);
-      z-index: 3;
-    }
-
-    .bottom-thumb {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-
-    .bottom-thumb-img {
-      width: 70px;
-      height: 45px;
-      border-radius: 6px;
-      overflow: hidden;
-      background-size: cover;
-      background-position: center;
-      background-image: url("img/home-hero.jpg"); /* صورة مصغرة */
-    }
-
-    .bottom-thumb-text {
-      font-size: 11px;
-      opacity: 0.85;
-    }
-
-    .bottom-label {
-      font-size: 10px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      opacity: 0.6;
-      margin-bottom: 4px;
-    }
-
-    .bottom-title {
-      font-size: 12px;
-      font-weight: 500;
-    }
-
-    .bottom-col {
-      font-size: 11px;
-      opacity: 0.85;
-      line-height: 1.6;
-    }
-
-    .bottom-date {
-      text-align: right;
-    }
-
-    /* -------- SOCIAL CENTER BOTTOM -------- */
-    .social-center {
-      position: absolute;
-      left: 50%;
-      bottom: 12px;
-      transform: translateX(-50%);
-      display: flex;
-      align-items: center;
-      gap: 22px;
-      font-size: 13px;
-      z-index: 4;
-    }
-
-    .social-center span {
-      font-size: 11px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      opacity: 0.55;
-    }
-
-    .social-icons {
-      display: flex;
-      gap: 16px;
-      align-items: center;
-    }
-
-    .social-icon {
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      border: 1px solid rgba(255, 255, 255, 0.4);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 11px;
-      opacity: 0.8;
-      transition: all 0.25s ease;
-    }
-
-    .social-icon:hover {
-      opacity: 1;
-      transform: translateY(-2px);
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
-    }
-
-    /* -------- RESPONSIVE -------- */
-    @media (max-width: 960px) {
-      .hero {
-        padding: 90px 26px 130px;
-      }
-
-      .hero-content {
-        flex-direction: column;
-      }
-
-      .hero-left {
-        padding-right: 0;
-        margin-bottom: 26px;
-      }
-
-      .hero-heading {
-        font-size: 32px;
-      }
-
-      .hero-rings {
-        width: 320px;
-        height: 320px;
-        left: 50%;
-        opacity: 0.25;
-      }
-
-      .bottom-strip {
-        grid-template-columns: 1fr;
-        row-gap: 12px;
-      }
-
-      .bottom-date {
-        text-align: left;
-      }
-    }
-
-    @media (max-width: 600px) {
-      .nav {
-        padding: 14px 20px;
-      }
-      .nav-links {
-        gap: 16px;
-        font-size: 11px;
-      }
-
-      .hero-heading {
-        font-size: 26px;
-      }
-
-      .bottom-strip {
-        padding: 14px 16px;
-        width: 92%;
-      }
-
-      .social-center {
-        flex-direction: column;
-        gap: 8px;
-        bottom: 10px;
-      }
-    }
-  </style>
 </head>
 
 <body>
-  <!-- NAV -->
+
+  <!-- NAVBAR -->
   <header class="nav">
-    <div class="nav-logo">HESHAM ABDELHAMED</div>
-    <nav class="nav-links">
+    <nav class="nav-center">
       <a href="index.html">Home</a>
       <a href="my-work.html">My Work</a>
       <a href="contact.html">Contact</a>
@@ -369,77 +27,48 @@
   </header>
 
   <!-- HERO -->
-  <section class="hero">
-    <div class="hero-rings"></div>
+  <section class="hero" id="hero">
+    <div class="hero-overlay"></div>
 
     <div class="hero-content">
-      <!-- LEFT (ABOUT ME TEXT) -->
-      <div class="hero-left">
-        <div class="hero-heading">
-          CINEMATIC<br />
-          VISUAL STORIES
-        </div>
-        <div class="hero-sub">
-          I am a filmmaker and video editor crafting cinematic narratives, mixing
-          documentary sensitivity with strong visual composition. From concept
-          to final cut, I focus on emotion, rhythm, and details that stay with
-          the viewer.
-          <!-- غيّر الكلام ده وحط الـ ABOUT ME اللي انت عايزه -->
-        </div>
-        <div class="hero-tag">FILMMAKER · VIDEO EDITOR · STORYTELLER</div>
+
+      <h1 class="hero-name animate-fade-up">HESHAM ABDELHAMED</h1>
+
+      <div class="hero-heading animate-slide-up">
+        CINEMATIC<br />
+        VISUAL STORIES
       </div>
 
-      <!-- RIGHT SMALL LINE -->
-      <div class="hero-right">
-        <div>
-          SELECTED FRAMES<br />
-          FROM REAL STORIES
-        </div>
+      <div class="hero-sub animate-delay">
+        I am a filmmaker and video editor crafting cinematic narratives,
+        mixing documentary sensitivity with strong visual composition.
+        From concept to final cut, I focus on emotion, rhythm, and details.
       </div>
+
+      <div class="social-row">
+        <a href="https://www.instagram.com/hisham.abdlhamed" target="_blank" class="social-icon big">IG</a>
+        <a href="https://www.tiktok.com/@hisham.abdelhamed" target="_blank" class="social-icon big">TT</a>
+        <a href="https://www.facebook.com/hishamabdelhamedd" target="_blank" class="social-icon big">FB</a>
+        <a href="https://www.youtube.com" target="_blank" class="social-icon big">YT</a>
+        <a href="https://www.linkedin.com/in/heshamabdelhamed" target="_blank" class="social-icon big">IN</a>
+        <a href="mailto:per.hisham@gmail.com" class="social-icon big">@</a>
+        <a href="tel:+966503064408" class="social-icon big">☎</a>
+      </div>
+
     </div>
 
-    <!-- BOTTOM STRIP -->
-    <div class="bottom-strip">
-      <div class="bottom-thumb">
-        <div class="bottom-thumb-img"></div>
-        <div class="bottom-thumb-text">
-          <div class="bottom-label">Featured Frame</div>
-          <div class="bottom-title">Desert Light · Experimental Scene</div>
-        </div>
-      </div>
-
-      <div class="bottom-col">
-        <div class="bottom-label">Genetically Gifted</div>
-        A journey into human resilience, texture, and identity — translated
-        into moving images.
-      </div>
-
-      <div class="bottom-col">
-        <div class="bottom-label">Creative Connections</div>
-        From brands to people, I build visual bridges that carry meaning and
-        feeling.
-      </div>
-
-      <div class="bottom-date">
-        <div class="bottom-label">LATEST UPDATE</div>
-        2025 · Riyadh
-      </div>
-    </div>
-
-    <!-- SOCIAL CENTER BOTTOM -->
-    <div class="social-center">
-      <span>FOLLOW & CONTACT</span>
-      <div class="social-icons">
-        <!-- حط لينكات السوشيال الفعلية هنا -->
-        <a href="https://www.instagram.com/hisham.abdlhamed" target="_blank" class="social-icon">IG</a>
-        <a href="https://www.tiktok.com/@hisham.abdelhamed" target="_blank" class="social-icon">TT</a>
-        <a href="https://www.facebook.com/hishamabdelhamedd" target="_blank" class="social-icon">FB</a>
-        <a href="https://www.linkedin.com/in/heshamabdelhamed" target="_blank" class="social-icon">IN</a>
-        <!-- أيقونة إيميل وتليفون -->
-        <a href="mailto:per.hisham@gmail.com" class="social-icon">@</a>
-        <a href="tel:+966503064408" class="social-icon">☎</a>
-      </div>
-    </div>
   </section>
+
+  <script>
+    /* PARALLAX HERO */
+    window.addEventListener("scroll", () => {
+      const hero = document.getElementById("hero");
+      hero.style.backgroundPositionY = -window.scrollY * 0.25 + "px";
+    });
+
+    /* PAGE FADE-IN */
+    document.body.classList.add("page-loaded");
+  </script>
+
 </body>
 </html>
