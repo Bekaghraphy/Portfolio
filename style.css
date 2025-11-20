@@ -1,6 +1,4 @@
-/* -----------------------------------
-   GLOBAL SETTINGS
-------------------------------------*/
+/* RESET */
 * {
   margin: 0;
   padding: 0;
@@ -12,177 +10,122 @@ body {
   background: #000;
   color: #fff;
   overflow-x: hidden;
-  opacity: 0;
-  transition: opacity .6s ease;
 }
 
-body.page-loaded {
-  opacity: 1;
-}
-
-/* GOLD TEXT */
-.gold {
-  color: #d4a64f;
-}
-
-/* -----------------------------------
-   NAVIGATION
-------------------------------------*/
+/* NAV */
 .nav {
   width: 100%;
-  padding: 25px 0;
+  padding: 22px 0;
+  text-align: center;
   position: fixed;
   top: 0;
+  left: 0;
   z-index: 50;
-  background: rgba(0,0,0,0.45);
+  background: rgba(0, 0, 0, 0.45);
   backdrop-filter: blur(8px);
 }
 
-.nav-center {
-  display: flex;
-  justify-content: center;
-  gap: 45px;
-}
-
 .nav-center a {
+  color: #fff;
   text-decoration: none;
-  color: #d4a64f;
-  font-size: 17px;
+  margin: 0 25px;
+  font-size: 18px;
   font-weight: 600;
   transition: 0.3s;
-  letter-spacing: 1px;
 }
 
-.nav-center a.active,
+.nav-center .active,
 .nav-center a:hover {
-  color: #fff;
+  color: #d4af37;
 }
 
-/* -----------------------------------
-   HERO SECTION
-------------------------------------*/
+/* HERO - index */
 .hero {
   height: 100vh;
-  background-size: cover;
-  background-position: center;
-  position: relative;
+  width: 100%;
+  background: url("img/home-hero.jpg") center/cover no-repeat;
   display: flex;
   align-items: center;
-  padding-left: 8%;
-  padding-right: 8%;
-}
-
-.hero-overlay {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.45);
-  backdrop-filter: blur(3px);
+  justify-content: flex-start;
+  padding-left: 7%;
+  position: relative;
 }
 
 .hero-content {
-  position: relative;
-  z-index: 2;
-  max-width: 650px;
+  max-width: 550px;
 }
 
 .hero-name {
-  font-size: 46px;
+  font-size: 58px;
   font-weight: 700;
-  color: #d4a64f;
-  text-shadow: 0 0 18px rgba(212,166,79,0.4);
-  margin-bottom: 20px;
+  color: #d4af37;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
 }
 
 .hero-heading {
-  font-size: 70px;
-  font-weight: 700;
-  line-height: 1.1;
-  margin-bottom: 20px;
-  color: #fff;
+  font-size: 38px;
+  line-height: 44px;
+  font-weight: 600;
+  margin-bottom: 18px;
 }
 
 .hero-sub {
-  font-size: 17px;
-  opacity: 0.85;
+  font-size: 15px;
   line-height: 1.7;
-  margin-bottom: 28px;
+  opacity: 0.85;
 }
 
-/* -----------------------------------
-   SOCIAL ICONS
-------------------------------------*/
+/* SOCIAL */
 .social-row {
+  margin-top: 25px;
   display: flex;
-  gap: 18px;
+  gap: 15px;
 }
 
 .social-icon {
   color: #fff;
-  border: 1px solid #d4a64f;
-  padding: 8px 12px;
-  border-radius: 6px;
-  font-size: 15px;
+  font-size: 20px;
   text-decoration: none;
+  font-weight: 700;
   transition: 0.3s;
 }
 
-.social-icon.small {
-  font-size: 13px;
-  padding: 6px 10px;
-}
-
 .social-icon:hover {
-  background: #d4a64f;
-  color: #000;
+  color: #d4af37;
 }
 
-/* -----------------------------------
-   SIDE TITLE (My Work – Contact)
-------------------------------------*/
-.side-title {
-  position: fixed;
-  top: 50%;
-  left: 10px;
-  transform: translateY(-50%) rotate(-90deg);
-  font-size: 18px;
-  font-weight: 700;
-  color: #d4a64f;
-  opacity: 0.8;
-  letter-spacing: 2px;
-  z-index: 40;
+/* MY WORK PAGE */
+.work-bg {
+  background: url("img/myworkbg.jpg") center/cover no-repeat;
+  filter: blur(3px);
+  position: absolute;
+  inset: 0;
+  z-index: -1;
 }
 
-/* -----------------------------------
-   MY WORK PAGE
-------------------------------------*/
 .work-wrapper {
   min-height: 100vh;
-  padding-top: 130px;
-  padding-bottom: 60px;
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  backdrop-filter: blur(5px);
+  padding-top: 140px;
+  text-align: center;
 }
 
 .work-title {
-  text-align: center;
-  font-size: 48px;
-  margin-bottom: 10px;
-  color: #d4a64f;
+  font-size: 55px;
+  font-weight: 700;
+  color: #d4af37;
 }
 
 .work-sub {
-  text-align: center;
-  opacity: 0.8;
-  margin-bottom: 40px;
+  font-size: 16px;
+  opacity: 0.85;
+  margin: 10px auto 40px;
+  max-width: 500px;
 }
 
 /* GRID */
 .videos-grid {
   width: 90%;
-  max-width: 1200px;
   margin: auto;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -190,86 +133,98 @@ body.page-loaded {
 }
 
 .video-card {
-  background: rgba(0,0,0,0.6);
-  padding: 8px;
+  background: #111;
   border-radius: 10px;
-  animation: fadeInCard .8s ease forwards;
-  opacity: 0;
+  overflow: hidden;
+  transition: 0.3s;
 }
 
-@keyframes fadeInCard {
-  to {opacity: 1; transform: translateY(0);}
+.video-card:hover {
+  transform: scale(1.03);
 }
 
 .video-frame iframe {
   width: 100%;
-  height: 190px;
-  border-radius: 10px;
+  height: 170px;
 }
 
 /* PAGINATION */
 .pager {
-  margin-top: 35px;
-  text-align: center;
+  margin: 35px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 22px;
 }
 
 .pager button {
-  padding: 8px 16px;
-  margin: 0 12px;
-  background: #d4a64f;
-  border: none;
-  font-size: 16px;
-  cursor: pointer;
+  padding: 10px 18px;
+  background: #d4af37;
   color: #000;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
   border-radius: 5px;
 }
 
-.more-work {
-  margin-top: 35px;
-  text-align: center;
-  color: #d4a64f;
-  font-size: 17px;
-  opacity: 0.9;
+/* CONTACT */
+.contact-bg {
+  position: absolute;
+  inset: 0;
+  background: url("img/contactsora.jpg") center/cover no-repeat;
+  filter: blur(3px);
+  z-index: -1;
 }
 
-/* -----------------------------------
-   CONTACT PAGE
-------------------------------------*/
 .contact-wrapper {
   min-height: 100vh;
-  padding-top: 140px;
-  padding-bottom: 60px;
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  backdrop-filter: blur(5px);
+  padding-top: 150px;
+  text-align: center;
 }
 
 .contact-title {
-  text-align: center;
-  font-size: 48px;
-  margin-bottom: 20px;
-  color: #d4a64f;
+  font-size: 55px;
+  color: #d4af37;
+  font-weight: 700;
 }
 
 .contact-box {
-  width: 90%;
-  max-width: 450px;
-  margin: auto;
-  text-align: center;
-  background: rgba(0,0,0,0.65);
-  padding: 30px;
-  border-radius: 12px;
+  width: 420px;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(5px);
+  padding: 35px;
+  margin: 40px auto 0;
+  border-radius: 10px;
 }
 
-.contact-icons {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  margin-top: 18px;
+.contact-box a {
+  display: block;
+  color: #fff;
+  margin: 12px 0;
+  font-size: 18px;
+  text-decoration: none;
 }
 
-.contact-text {
-  opacity: 0.8;
-  margin-bottom: 15px;
+.contact-box a:hover {
+  color: #d4af37;
+}
+
+/* MOBILE */
+@media(max-width: 768px) {
+
+  .videos-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .social-row {
+    justify-content: center;
+  }
+
+  .hero-name {
+    font-size: 42px;
+  }
+
+  .contact-box {
+    width: 85%;
+  }
 }
