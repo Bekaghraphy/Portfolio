@@ -1,378 +1,445 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hesham Abdelhamed | Portfolio</title>
-  <link rel="icon" type="image/png" href="img/favicon.png">
+  <title>Hesham Abdelhamed | Home</title>
+  <link rel="icon" type="image/png" href="img/favicon.png" />
 
-  <!-- MONTSERRAT FONT -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <!-- Montserrat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap"
+    rel="stylesheet"
+  />
 
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Montserrat', sans-serif;
+      font-family: "Montserrat", sans-serif;
     }
 
     body {
-      background: #0e0e0e;
-      color: #fff;
-      overflow-x: hidden;
+      background: #111;
+      color: #f5f5f5;
+      min-height: 100vh;
     }
 
-    /* ----------------------------------------
-       SPOTLIGHT EFFECT (HERO ONLY)
-       ----------------------------------------*/
-    .hero {
-      position: relative;
-      overflow: hidden;
+    a {
+      color: inherit;
+      text-decoration: none;
     }
 
-    .hero::before {
-      content: "";
-      position: absolute;
+    /* -------- NAVBAR -------- */
+    .nav {
+      position: fixed;
       top: 0;
       left: 0;
       width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.70); /* darker */
-      z-index: 1;
+      padding: 18px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 20;
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent);
     }
 
-    .spotlight {
-      position: absolute;
-      width: 320px;
-      height: 320px;
-      border-radius: 50%;
-      pointer-events: none;
-      background: radial-gradient(circle,
-        rgba(255, 255, 255, 0.9) 0%,
-        rgba(255, 255, 255, 0.6) 35%,
-        rgba(255, 255, 255, 0.12) 70%,
-        rgba(255, 255, 255, 0.0) 100%
-      );
-      mix-blend-mode: screen;
-      filter: blur(25px);
-      transform: translate(-50%, -50%);
-      z-index: 3;
+    .nav-logo {
+      letter-spacing: 3px;
+      font-weight: 600;
+      font-size: 14px;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+      font-size: 13px;
+      text-transform: uppercase;
       opacity: 0.85;
     }
 
-    @media (max-width: 768px) {
-      .spotlight {
-        width: 220px;
-        height: 220px;
-        filter: blur(18px);
-      }
+    .nav-links a {
+      position: relative;
     }
 
-    /* HERO SLIDESHOW */
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0;
+      height: 1px;
+      background: #f5f5f5;
+      transition: width 0.25s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* -------- HERO -------- */
     .hero {
-      height: 55vh;
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 70px 120px;
+      background-image: url("img/home-hero.jpg"); /* حط الصورة هنا */
       background-size: cover;
       background-position: center;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: center;
-      text-align: center;
-      padding: 80px 20px 20px 20px;
-      animation: slideShow 30s infinite;
-    }
-
-    @keyframes slideShow {
-      0% {
-        background-image: url('img/slide1.jpg');
-      }
-      15% {
-        background-image: url('img/slide2.jpg');
-      }
-      30% {
-        background-image: url('img/slide3.jpg');
-      }
-      45% {
-        background-image: url('img/slide4.jpg');
-      }
-      60% {
-        background-image: url('img/slide5.jpg');
-      }
-      75% {
-        background-image: url('img/slide6.jpg');
-      }
-      100% {
-        background-image: url('img/slide7.jpg');
-      }
-    }
-
-    .hero h1,
-    .hero p {
-      position: relative;
-      z-index: 4;
-    }
-
-    .hero h1 {
-      font-size: 60px;
-      letter-spacing: 2px;
-      background: linear-gradient(45deg, #00d4ff, #7d2cff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .hero p {
-      font-size: 20px;
-      max-width: 600px;
-      opacity: 0.8;
-    }
-
-    /* ABOUT */
-    .about-section {
-      text-align: center;
-      margin-top: 10px;
-      padding: 40px 20px;
-    }
-
-    .about-section h3 {
-      font-size: 40px;
-      background: linear-gradient(45deg, #00d4ff, #7d2cff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 12px;
-    }
-
-    .about-section p {
-      font-size: 16px;
-      max-width: 650px;
-      margin: auto;
-      line-height: 1.8;
-      opacity: 0.9;
-    }
-
-    /* SECTION */
-    .section {
-      padding: 50px 20px;
-      max-width: 1300px;
-      margin: auto;
-    }
-
-    .section h2 {
-      text-align: center;
-      font-size: 32px;
-      background: linear-gradient(45deg, #00d4ff, #7d2cff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 30px;
-    }
-
-    /* VIDEO CAROUSEL */
-    .carousel-container {
-      position: relative;
-      width: 100%;
       overflow: hidden;
     }
 
-    .carousel-track {
-      display: flex;
-      gap: 40px;
-      transition: transform 0.4s ease-in-out;
-    }
-
-    .video-box {
-      min-width: 650px;
-      flex-shrink: 0;
-    }
-
-    .video-box iframe {
-      width: 100%;
-      height: 420px;
-      border-radius: 12px;
-    }
-
-    .carousel-btn {
+    /* طبقة تعتيم خفيفة */
+    .hero::before {
+      content: "";
       position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(255, 255, 255, 0.18);
-      color: white;
-      border: none;
-      padding: 14px;
-      font-size: 30px;
-      cursor: pointer;
+      inset: 0;
+      background: radial-gradient(
+          circle at 20% 40%,
+          rgba(0, 0, 0, 0.25),
+          transparent 55%
+        ),
+        linear-gradient(to right, rgba(0, 0, 0, 0.8), transparent 55%),
+        linear-gradient(to top, rgba(0, 0, 0, 0.75), transparent 60%);
+      z-index: 0;
+    }
+
+    /* دائرة تركيز (زي الشكل في المثال) */
+    .hero-rings {
+      position: absolute;
+      left: 26%;
+      top: 48%;
+      width: 420px;
+      height: 420px;
       border-radius: 50%;
-      z-index: 30;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transform: translate(-50%, -50%);
+      z-index: 1;
     }
 
-    .carousel-btn.prev {
-      left: -20px;
+    .hero-rings::before,
+    .hero-rings::after {
+      content: "";
+      position: absolute;
+      inset: 70px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.04);
     }
 
-    .carousel-btn.next {
-      right: -20px;
+    .hero-rings::after {
+      inset: 130px;
     }
 
-    /* CONTACT */
-    #contact {
-      text-align: center;
+    .hero-content {
+      position: relative;
+      display: flex;
+      width: 100%;
+      max-width: 1200px;
+      z-index: 2;
+    }
+
+    .hero-left {
+      flex: 0 0 55%;
+      padding-right: 40px;
+    }
+
+    .hero-heading {
+      font-size: 42px;
+      line-height: 1.05;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .hero-sub {
+      font-size: 13px;
+      max-width: 380px;
+      line-height: 1.7;
+      opacity: 0.85;
+      margin-bottom: 26px;
+    }
+
+    .hero-tag {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      opacity: 0.7;
+    }
+
+    .hero-right {
+      flex: 1;
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-start;
+      padding-top: 50px;
+      font-size: 12px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      opacity: 0.8;
+    }
+
+    /* -------- BOTTOM STRIP -------- */
+    .bottom-strip {
+      position: absolute;
+      left: 50%;
+      bottom: 40px;
+      transform: translateX(-50%);
+      width: 86%;
+      max-width: 1200px;
+      display: grid;
+      grid-template-columns: 1.4fr 1.1fr 1.1fr 0.7fr;
+      gap: 24px;
+      align-items: center;
+      padding: 18px 26px;
+      background: rgba(10, 10, 10, 0.86);
+      border-radius: 10px;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(8px);
+      z-index: 3;
+    }
+
+    .bottom-thumb {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .bottom-thumb-img {
+      width: 70px;
+      height: 45px;
+      border-radius: 6px;
+      overflow: hidden;
+      background-size: cover;
+      background-position: center;
+      background-image: url("img/home-hero.jpg"); /* صورة مصغرة */
+    }
+
+    .bottom-thumb-text {
+      font-size: 11px;
+      opacity: 0.85;
+    }
+
+    .bottom-label {
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.6;
+      margin-bottom: 4px;
+    }
+
+    .bottom-title {
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .bottom-col {
+      font-size: 11px;
+      opacity: 0.85;
+      line-height: 1.6;
+    }
+
+    .bottom-date {
+      text-align: right;
+    }
+
+    /* -------- SOCIAL CENTER BOTTOM -------- */
+    .social-center {
+      position: absolute;
+      left: 50%;
+      bottom: 12px;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      font-size: 13px;
+      z-index: 4;
+    }
+
+    .social-center span {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      opacity: 0.55;
     }
 
     .social-icons {
-      margin-top: 18px;
       display: flex;
-      gap: 20px;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .social-icon {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      display: flex;
+      align-items: center;
       justify-content: center;
-    }
-
-    .social-icons img {
-      width: 38px;
+      font-size: 11px;
       opacity: 0.8;
-      transition: 0.3s;
-      cursor: pointer;
+      transition: all 0.25s ease;
     }
 
-    .social-icons img:hover {
+    .social-icon:hover {
       opacity: 1;
-      transform: scale(1.1);
+      transform: translateY(-2px);
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
     }
 
-    footer {
-      text-align: center;
-      opacity: 0.6;
-      padding: 20px;
+    /* -------- RESPONSIVE -------- */
+    @media (max-width: 960px) {
+      .hero {
+        padding: 90px 26px 130px;
+      }
+
+      .hero-content {
+        flex-direction: column;
+      }
+
+      .hero-left {
+        padding-right: 0;
+        margin-bottom: 26px;
+      }
+
+      .hero-heading {
+        font-size: 32px;
+      }
+
+      .hero-rings {
+        width: 320px;
+        height: 320px;
+        left: 50%;
+        opacity: 0.25;
+      }
+
+      .bottom-strip {
+        grid-template-columns: 1fr;
+        row-gap: 12px;
+      }
+
+      .bottom-date {
+        text-align: left;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .nav {
+        padding: 14px 20px;
+      }
+      .nav-links {
+        gap: 16px;
+        font-size: 11px;
+      }
+
+      .hero-heading {
+        font-size: 26px;
+      }
+
+      .bottom-strip {
+        padding: 14px 16px;
+        width: 92%;
+      }
+
+      .social-center {
+        flex-direction: column;
+        gap: 8px;
+        bottom: 10px;
+      }
     }
   </style>
 </head>
 
 <body>
+  <!-- NAV -->
+  <header class="nav">
+    <div class="nav-logo">HESHAM ABDELHAMED</div>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="my-work.html">My Work</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
 
   <!-- HERO -->
-  <div class="hero">
+  <section class="hero">
+    <div class="hero-rings"></div>
 
-    <!-- SPOTLIGHT -->
-    <div class="spotlight"></div>
-
-    <h1>Hesham Abdelhamed</h1>
-    <p>Filmmaker | Video Editor | One Man Crew</p>
-  </div>
-
-  <!-- ABOUT -->
-  <div class="about-section">
-    <h3>About Me</h3>
-    <p>
-      Passionate filmmaker and video producer creating cinematic visual stories with a strong focus on directing,
-      editing, and storytelling.
-    </p>
-  </div>
-
-  <!-- WORK -->
-  <div class="section">
-    <h2>My Work</h2>
-
-    <div class="carousel-container">
-      <button class="carousel-btn prev">&#10094;</button>
-
-      <div class="carousel-track">
-
-        <div class="video-box"><iframe src="https://player.vimeo.com/video/1081231929" allowfullscreen></iframe></div>
-        <div class="video-box"><iframe src="https://player.vimeo.com/video/1093436208" allowfullscreen></iframe></div>
-        <div class="video-box"><iframe src="https://player.vimeo.com/video/1012761186" allowfullscreen></iframe></div>
-        <div class="video-box"><iframe src="https://player.vimeo.com/video/782962222" allowfullscreen></iframe></div>
-        <div class="video-box"><iframe src="https://player.vimeo.com/video/1081226158" allowfullscreen></iframe></div>
-
+    <div class="hero-content">
+      <!-- LEFT (ABOUT ME TEXT) -->
+      <div class="hero-left">
+        <div class="hero-heading">
+          CINEMATIC<br />
+          VISUAL STORIES
+        </div>
+        <div class="hero-sub">
+          I am a filmmaker and video editor crafting cinematic narratives, mixing
+          documentary sensitivity with strong visual composition. From concept
+          to final cut, I focus on emotion, rhythm, and details that stay with
+          the viewer.
+          <!-- غيّر الكلام ده وحط الـ ABOUT ME اللي انت عايزه -->
+        </div>
+        <div class="hero-tag">FILMMAKER · VIDEO EDITOR · STORYTELLER</div>
       </div>
 
-      <button class="carousel-btn next">&#10095;</button>
-    </div>
-  </div>
-
-  <!-- CONTACT -->
-  <div class="section" id="contact">
-    <h2>Contact</h2>
-
-    <p style="opacity:0.8;">For collaborations or work inquiries:</p>
-
-    <p style="font-size:20px; margin-top:10px;">
-      <a href="mailto:per.hisham@gmail.com" style="color:#00d4ff; text-decoration:none;">
-        per.hisham@gmail.com
-      </a>
-    </p>
-
-    <p style="font-size:26px; margin-top:10px; color:#7d2cff;">
-      +966 503064408
-    </p>
-
-    <div class="social-icons">
-      <a href="https://www.instagram.com/hisham.abdlhamed" target="_blank">
-        <img src="img/instagram.png">
-      </a>
-      <a href="https://www.tiktok.com/@hisham.abdelhamed" target="_blank">
-        <img src="img/tiktok.png">
-      </a>
-      <a href="https://www.facebook.com/hishamabdelhamedd/" target="_blank">
-        <img src="img/facebook.png">
-      </a>
-      <a href="https://www.linkedin.com/in/heshamabdelhamed/" target="_blank">
-        <img src="img/linkdin.png">
-      </a>
+      <!-- RIGHT SMALL LINE -->
+      <div class="hero-right">
+        <div>
+          SELECTED FRAMES<br />
+          FROM REAL STORIES
+        </div>
+      </div>
     </div>
 
-  </div>
+    <!-- BOTTOM STRIP -->
+    <div class="bottom-strip">
+      <div class="bottom-thumb">
+        <div class="bottom-thumb-img"></div>
+        <div class="bottom-thumb-text">
+          <div class="bottom-label">Featured Frame</div>
+          <div class="bottom-title">Desert Light · Experimental Scene</div>
+        </div>
+      </div>
 
-  <footer>© 2025 Hesham Abdelhamed</footer>
+      <div class="bottom-col">
+        <div class="bottom-label">Genetically Gifted</div>
+        A journey into human resilience, texture, and identity — translated
+        into moving images.
+      </div>
 
-  <!-- JS -->
-  <script>
+      <div class="bottom-col">
+        <div class="bottom-label">Creative Connections</div>
+        From brands to people, I build visual bridges that carry meaning and
+        feeling.
+      </div>
 
-    /* VIDEO CAROUSEL */
-    const track = document.querySelector(".carousel-track");
-    const prev = document.querySelector(".carousel-btn.prev");
-    const next = document.querySelector(".carousel-btn.next");
+      <div class="bottom-date">
+        <div class="bottom-label">LATEST UPDATE</div>
+        2025 · Riyadh
+      </div>
+    </div>
 
-    let index = 0;
-
-    function updateCarousel() {
-      const width = document.querySelector(".video-box").offsetWidth + 40;
-      track.style.transform = `translateX(${-index * width}px)`;
-    }
-
-    next.addEventListener("click", () => {
-      const items = document.querySelectorAll(".video-box").length;
-      if (index < items - 1) index++;
-      updateCarousel();
-    });
-
-    prev.addEventListener("click", () => {
-      if (index > 0) index--;
-      updateCarousel();
-    });
-
-    /* SPOTLIGHT */
-    const hero = document.querySelector(".hero");
-    const spot = document.querySelector(".spotlight");
-
-    hero.addEventListener("mousemove", (e) => {
-      const rect = hero.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      spot.style.left = x + "px";
-      spot.style.top = y + "px";
-    });
-
-    hero.addEventListener("touchmove", (e) => {
-      const t = e.touches[0];
-      const rect = hero.getBoundingClientRect();
-      const x = t.clientX - rect.left;
-      const y = t.clientY - rect.top;
-      spot.style.left = x + "px";
-      spot.style.top = y + "px";
-    });
-
-  </script>
-
+    <!-- SOCIAL CENTER BOTTOM -->
+    <div class="social-center">
+      <span>FOLLOW & CONTACT</span>
+      <div class="social-icons">
+        <!-- حط لينكات السوشيال الفعلية هنا -->
+        <a href="https://www.instagram.com/hisham.abdlhamed" target="_blank" class="social-icon">IG</a>
+        <a href="https://www.tiktok.com/@hisham.abdelhamed" target="_blank" class="social-icon">TT</a>
+        <a href="https://www.facebook.com/hishamabdelhamedd" target="_blank" class="social-icon">FB</a>
+        <a href="https://www.linkedin.com/in/heshamabdelhamed" target="_blank" class="social-icon">IN</a>
+        <!-- أيقونة إيميل وتليفون -->
+        <a href="mailto:per.hisham@gmail.com" class="social-icon">@</a>
+        <a href="tel:+966503064408" class="social-icon">☎</a>
+      </div>
+    </div>
+  </section>
 </body>
-
 </html>
