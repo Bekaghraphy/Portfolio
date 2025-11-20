@@ -5,80 +5,119 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>My Work | Hesham Abdelhamed</title>
+
+  <link rel="icon" type="image/png" href="img/favicon.png" />
+
+  <!-- Montserrat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap"
+    rel="stylesheet"
+  />
+
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
 
-  <!-- NAV -->
-  <nav class="nav">
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="My Work.html" class="active">My Work</a></li>
-      <li><a href="Contact.html">Contact</a></li>
-    </ul>
-  </nav>
+  <!-- نفس الـ NAV بتاع الـ Home -->
+  <header class="nav">
+    <nav class="nav-center">
+      <a href="index.html">Home</a>
+      <a href="my-work.html" class="active">My Work</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
 
-  <!-- WORK WRAPPER WITH BACKGROUND -->
-  <div class="work-wrapper">
+  <!-- MY WORK WRAPPER -->
+  <main class="work-wrapper">
+    <div class="work-inner">
+      <h1 class="work-title">My Work</h1>
+      <p class="work-sub">
+        A selection of films, commercials, and visual pieces crafted with a cinematic approach.
+      </p>
 
-    <h1 class="work-title">My Work</h1>
+      <!-- GRID -->
+      <div class="videos-grid" id="videoGrid"></div>
 
-    <div class="videos-grid">
-
-      <!-- 9 videos -->
-      <div class="video-item">
-        <iframe src="https://player.vimeo.com/video/1081231929" allowfullscreen></iframe>
+      <!-- PAGINATION -->
+      <div class="pager">
+        <button id="prevPage">&#9650;</button>
+        <span id="pageInfo">Page 1</span>
+        <button id="nextPage">&#9660;</button>
       </div>
-
-      <div class="video-item">
-        <iframe src="https://player.vimeo.com/video/1093436208" allowfullscreen></iframe>
-      </div>
-
-      <div class="video-item">
-        <iframe src="https://player.vimeo.com/video/1012761186" allowfullscreen></iframe>
-      </div>
-
-      <div class="video-item">
-        <iframe src="https://player.vimeo.com/video/782962222" allowfullscreen></iframe>
-      </div>
-
-      <div class="video-item">
-        <iframe src="https://player.vimeo.com/video/1081226158" allowfullscreen></iframe>
-      </div>
-
-      <div class="video-item">
-        <iframe src="https://player.vimeo.com/video/1137725566" allowfullscreen></iframe>
-      </div>
-
-      <div class="video-item">
-        <iframe src="https://player.vimeo.com/video/1088303838" allowfullscreen></iframe>
-      </div>
-
-      <div class="video-item">
-        <iframe src="https://player.vimeo.com/video/697540206" allowfullscreen></iframe>
-      </div>
-
-      <div class="video-item">
-        <iframe src="https://player.vimeo.com/video/348850766" allowfullscreen></iframe>
-      </div>
-
     </div>
-
-    <!-- ARROWS FOR NEXT / PREV PAGES -->
-    <div class="scroll-arrows">
-      <button id="scrollUp">▲</button>
-      <button id="scrollDown">▼</button>
-    </div>
-
-  </div>
+  </main>
 
   <script>
-    // Simple scroll
-    document.getElementById("scrollUp").onclick = () => window.scrollTo({ top: 0, behavior: "smooth" });
-    document.getElementById("scrollDown").onclick = () => window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+    // مصفوفة الفيديوهات – عدّل الروابط براحتك
+    const videos = [
+      "https://player.vimeo.com/video/1081231929",
+      "https://player.vimeo.com/video/1093436208",
+      "https://player.vimeo.com/video/1012761186",
+      "https://player.vimeo.com/video/782962222",
+      "https://player.vimeo.com/video/1081226158",
+      "https://player.vimeo.com/video/1137725566",
+      "https://player.vimeo.com/video/1088303838",
+      "https://player.vimeo.com/video/697540206",
+      "https://player.vimeo.com/video/348850766",
+      "https://player.vimeo.com/video/1127837184",
+      "https://player.vimeo.com/video/348850143",
+      "https://www.youtube.com/embed/n4gmpMHBUK4"
+      // زوّد زي ما تحب
+    ];
+
+    const perPage = 9;
+    let currentPage = 1;
+
+    const grid = document.getElementById("videoGrid");
+    const pageInfo = document.getElementById("pageInfo");
+    const prevBtn = document.getElementById("prevPage");
+    const nextBtn = document.getElementById("nextPage");
+
+    function renderPage(page) {
+      grid.innerHTML = "";
+      const start = (page - 1) * perPage;
+      const end = Math.min(start + perPage, videos.length);
+      for (let i = start; i < end; i++) {
+        const card = document.createElement("div");
+        card.className = "video-card";
+        card.innerHTML = `
+          <div class="video-frame">
+            <iframe src="${videos[i]}" allowfullscreen></iframe>
+          </div>
+          <div class="video-meta">Video #${i + 1}</div>
+        `;
+        grid.appendChild(card);
+      }
+      const totalPages = Math.ceil(videos.length / perPage);
+      pageInfo.textContent = `Page ${page} / ${totalPages}`;
+      prevBtn.disabled = page === 1;
+      nextBtn.disabled = page === totalPages;
+      prevBtn.style.opacity = prevBtn.disabled ? 0.3 : 1;
+      nextBtn.style.opacity = nextBtn.disabled ? 0.3 : 1;
+    }
+
+    prevBtn.addEventListener("click", () => {
+      if (currentPage > 1) {
+        currentPage--;
+        renderPage(currentPage);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    });
+
+    nextBtn.addEventListener("click", () => {
+      const totalPages = Math.ceil(videos.length / perPage);
+      if (currentPage < totalPages) {
+        currentPage++;
+        renderPage(currentPage);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    });
+
+    renderPage(currentPage);
   </script>
 
 </body>
-
 </html>
