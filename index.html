@@ -20,7 +20,7 @@
   <!-- NAVBAR -->
   <header class="nav">
     <nav class="nav-center">
-      <a href="index.html" class="active">Home</a>
+      <a href="index.html">Home</a>
       <a href="my-work.html">My Work</a>
       <a href="contact.html">Contact</a>
     </nav>
@@ -49,6 +49,7 @@
         <a href="https://www.instagram.com/hisham.abdlhamed" target="_blank" class="social-icon big">IG</a>
         <a href="https://www.tiktok.com/@hisham.abdelhamed" target="_blank" class="social-icon big">TT</a>
         <a href="https://www.facebook.com/hishamabdelhamedd" target="_blank" class="social-icon big">FB</a>
+        <a href="https://www.youtube.com" target="_blank" class="social-icon big">YT</a>
         <a href="https://www.linkedin.com/in/heshamabdelhamed" target="_blank" class="social-icon big">IN</a>
         <a href="mailto:per.hisham@gmail.com" class="social-icon big">@</a>
         <a href="tel:+966503064408" class="social-icon big">☎</a>
@@ -57,14 +58,6 @@
     </div>
 
   </section>
-
-
-  <!-- ========================================= -->
-  <!-- CURSOR + LIGHT EFFECT -->
-  <!-- ========================================= -->
-
-  <div class="cursor-light" id="cursorLight"></div>
-  <div class="cursor-dot" id="cursorDot"></div>
 
   <script>
     /* PARALLAX HERO */
@@ -75,19 +68,6 @@
 
     /* PAGE FADE-IN */
     document.body.classList.add("page-loaded");
-
-    /* CURSOR FOLLOW */
-    const dot = document.getElementById("cursorDot");
-    const light = document.getElementById("cursorLight");
-
-    document.addEventListener("mousemove", e => {
-      dot.style.left = e.clientX + "px";
-      dot.style.top = e.clientY + "px";
-
-      light.style.left = e.clientX + "px";
-      light.style.top = e.clientY + "px";
-    });
-
   </script>
 
 </body>
