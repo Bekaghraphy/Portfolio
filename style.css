@@ -1,49 +1,39 @@
-/* ----------------------------------
-   GLOBAL STYLE — CINEMATIC THEME
----------------------------------- */
+/* -----------------------------------
+   GLOBAL SETTINGS
+------------------------------------*/
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 body {
   background: #000;
   color: #fff;
   overflow-x: hidden;
-  cursor: none; /* hide default cursor */
+  opacity: 0;
+  transition: opacity .6s ease;
 }
 
-/* Custom Cinematic Cursor Light */
-.cursor-light {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 140px;
-  height: 140px;
-  border-radius: 50%;
-  pointer-events: none;
-  background: radial-gradient(circle, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0.0) 70%);
-  mix-blend-mode: screen;
-  z-index: 9999;
-  transform: translate(-50%, -50%);
-  transition: width .15s, height .15s, opacity .25s;
-}
-
-/* Fade-in for page load */
 body.page-loaded {
-  animation: fadeInPage .9s ease forwards;
+  opacity: 1;
 }
-@keyframes fadeInPage { from {opacity: 0;} to {opacity:1;} }
 
-/* NAVBAR */
+/* GOLD TEXT */
+.gold {
+  color: #d4a64f;
+}
+
+/* -----------------------------------
+   NAVIGATION
+------------------------------------*/
 .nav {
   width: 100%;
-  padding: 22px 0;
+  padding: 25px 0;
   position: fixed;
   top: 0;
-  z-index: 100;
+  z-index: 50;
   background: rgba(0,0,0,0.45);
   backdrop-filter: blur(8px);
 }
@@ -51,43 +41,43 @@ body.page-loaded {
 .nav-center {
   display: flex;
   justify-content: center;
-  gap: 40px;
+  gap: 45px;
 }
 
 .nav-center a {
-  color: #fff;
-  font-size: 22px;
   text-decoration: none;
+  color: #d4a64f;
+  font-size: 17px;
   font-weight: 600;
-  transition: .3s;
+  transition: 0.3s;
+  letter-spacing: 1px;
 }
 
-.nav-center a:hover,
-.nav-center a.active {
-  color: #e7b86f;
-  text-shadow: 0 0 12px #e7b86f;
+.nav-center a.active,
+.nav-center a:hover {
+  color: #fff;
 }
 
-/* ----------------------------------
-           HERO SECTION
----------------------------------- */
+/* -----------------------------------
+   HERO SECTION
+------------------------------------*/
 .hero {
-  height: 85vh;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: left;
-  padding: 90px 50px;
+  height: 100vh;
   background-size: cover;
   background-position: center;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding-left: 8%;
+  padding-right: 8%;
 }
 
-.hero .hero-overlay {
+.hero-overlay {
   position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.55);
-  backdrop-filter: blur(4px);
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.45);
+  backdrop-filter: blur(3px);
 }
 
 .hero-content {
@@ -97,201 +87,189 @@ body.page-loaded {
 }
 
 .hero-name {
-  font-size: 50px;
+  font-size: 46px;
   font-weight: 700;
-  margin-bottom: 12px;
-  color: #e7b86f;
-  text-shadow: 0 0 18px rgba(255, 222, 145, 0.8);
-  animation: glow 3s infinite linear;
-}
-@keyframes glow {
-  0% { text-shadow: 0 0 10px #e7b86f; }
-  50% { text-shadow: 0 0 25px #ffdd99; }
- 100% { text-shadow: 0 0 10px #e7b86f; }
-}
-
-.hero-heading {
-  font-size: 65px;
-  font-weight: 700;
-  line-height: 1.1;
+  color: #d4a64f;
+  text-shadow: 0 0 18px rgba(212,166,79,0.4);
   margin-bottom: 20px;
 }
 
-.hero-sub {
-  max-width: 550px;
-  opacity: .85;
-  line-height: 1.7;
+.hero-heading {
+  font-size: 70px;
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 20px;
+  color: #fff;
 }
 
-/* Social Icons */
+.hero-sub {
+  font-size: 17px;
+  opacity: 0.85;
+  line-height: 1.7;
+  margin-bottom: 28px;
+}
+
+/* -----------------------------------
+   SOCIAL ICONS
+------------------------------------*/
 .social-row {
-  margin-top: 30px;
   display: flex;
-  gap: 20px;
+  gap: 18px;
 }
 
 .social-icon {
-  font-size: 25px;
-  font-weight: 700;
   color: #fff;
-  border: 2px solid #fff;
-  padding: 8px 15px;
+  border: 1px solid #d4a64f;
+  padding: 8px 12px;
   border-radius: 6px;
+  font-size: 15px;
   text-decoration: none;
-  transition: .25s;
+  transition: 0.3s;
+}
+
+.social-icon.small {
+  font-size: 13px;
+  padding: 6px 10px;
 }
 
 .social-icon:hover {
-  background: #fff;
+  background: #d4a64f;
   color: #000;
 }
 
-/* Responsive Hero */
-@media (max-width: 768px) {
-  .hero {
-    height: 75vh;
-    padding: 60px 25px;
-  }
-  .hero-heading { font-size: 38px; }
-  .hero-name { font-size: 36px; }
+/* -----------------------------------
+   SIDE TITLE (My Work – Contact)
+------------------------------------*/
+.side-title {
+  position: fixed;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%) rotate(-90deg);
+  font-size: 18px;
+  font-weight: 700;
+  color: #d4a64f;
+  opacity: 0.8;
+  letter-spacing: 2px;
+  z-index: 40;
 }
 
-/* ----------------------------------
-           MY WORK PAGE
----------------------------------- */
+/* -----------------------------------
+   MY WORK PAGE
+------------------------------------*/
 .work-wrapper {
   min-height: 100vh;
-  padding: 130px 40px;
-  background-image: url("img/myworkbg.jpg");
+  padding-top: 130px;
+  padding-bottom: 60px;
   background-size: cover;
   background-position: center;
-  backdrop-filter: blur(10px);
+  background-attachment: fixed;
+  backdrop-filter: blur(5px);
 }
 
 .work-title {
-  font-size: 55px;
-  font-weight: 700;
   text-align: center;
-  margin-bottom: 5px;
+  font-size: 48px;
+  margin-bottom: 10px;
+  color: #d4a64f;
 }
 
 .work-sub {
   text-align: center;
-  opacity: .85;
+  opacity: 0.8;
   margin-bottom: 40px;
-}
-
-/* Fixed Side Title */
-.side-title {
-  position: fixed;
-  right: -80px;
-  top: 50%;
-  transform: rotate(90deg);
-  font-size: 75px;
-  opacity: 0.12;
-  font-weight: 700;
-  letter-spacing: 10px;
 }
 
 /* GRID */
 .videos-grid {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 25px;
-  margin-bottom: 60px;
 }
 
 .video-card {
-  background: rgba(255,255,255,0.06);
+  background: rgba(0,0,0,0.6);
+  padding: 8px;
   border-radius: 10px;
-  overflow: hidden;
-  padding-bottom: 10px;
-  backdrop-filter: blur(5px);
-  animation: fadeCard .6s ease;
+  animation: fadeInCard .8s ease forwards;
+  opacity: 0;
 }
-@keyframes fadeCard { from {opacity:0; transform:translateY(20px);} to {opacity:1;transform:translateY(0);} }
+
+@keyframes fadeInCard {
+  to {opacity: 1; transform: translateY(0);}
+}
 
 .video-frame iframe {
   width: 100%;
-  height: 180px;
+  height: 190px;
+  border-radius: 10px;
 }
 
-.video-meta {
-  text-align: center;
-  padding: 10px;
-  opacity: .75;
-  font-size: 14px;
-}
-
-/* Pagination */
+/* PAGINATION */
 .pager {
+  margin-top: 35px;
   text-align: center;
-  margin-top: 10px;
 }
 
 .pager button {
-  background: none;
-  border: 2px solid #fff;
-  color: #fff;
-  padding: 8px 15px;
-  font-size: 20px;
-  margin: 0 10px;
+  padding: 8px 16px;
+  margin: 0 12px;
+  background: #d4a64f;
+  border: none;
+  font-size: 16px;
   cursor: pointer;
-  transition: .25s;
-}
-.pager button:hover {
-  background: #fff;
   color: #000;
+  border-radius: 5px;
 }
 
-/* Bottom message */
 .more-work {
+  margin-top: 35px;
   text-align: center;
-  margin-top: 40px;
-  opacity: .7;
-  font-size: 18px;
+  color: #d4a64f;
+  font-size: 17px;
+  opacity: 0.9;
 }
 
-/* ----------------------------------
-           CONTACT PAGE
----------------------------------- */
+/* -----------------------------------
+   CONTACT PAGE
+------------------------------------*/
 .contact-wrapper {
   min-height: 100vh;
-  padding: 130px 40px;
-  background-image: url("img/contactsora.jpg");
+  padding-top: 140px;
+  padding-bottom: 60px;
   background-size: cover;
   background-position: center;
-  backdrop-filter: blur(10px);
+  background-attachment: fixed;
+  backdrop-filter: blur(5px);
 }
 
 .contact-title {
-  font-size: 55px;
-  font-weight: 700;
   text-align: center;
+  font-size: 48px;
   margin-bottom: 20px;
+  color: #d4a64f;
 }
 
 .contact-box {
-  width: 420px;
+  width: 90%;
+  max-width: 450px;
   margin: auto;
-  background: rgba(255,255,255,0.08);
-  padding: 40px;
-  border-radius: 12px;
   text-align: center;
-  backdrop-filter: blur(8px);
+  background: rgba(0,0,0,0.65);
+  padding: 30px;
+  border-radius: 12px;
 }
 
-.contact-box .social-icon {
-  width: 55px;
-  height: 55px;
-  display: inline-flex;
+.contact-icons {
+  display: flex;
   justify-content: center;
-  align-items: center;
-  margin: 12px;
-  font-size: 26px;
+  gap: 15px;
+  margin-top: 18px;
 }
 
-@media (max-width: 768px) {
-  .videos-grid { grid-template-columns: repeat(2, 1fr); }
-  .contact-box { width: 90%; }
+.contact-text {
+  opacity: 0.8;
+  margin-bottom: 15px;
 }
