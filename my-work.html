@@ -30,18 +30,18 @@
     </nav>
   </header>
 
-  <!-- WORK WRAPPER -->
+  <!-- MY WORK WRAPPER -->
   <main class="work-wrapper">
     <div class="work-inner">
       <h1 class="work-title">My Work</h1>
       <p class="work-sub">
-        A selection of films, commercials, and visual pieces crafted with a cinematic touch.
+        A selection of films, commercials, and visual pieces crafted with a cinematic approach.
       </p>
 
       <!-- GRID -->
       <div class="videos-grid" id="videoGrid"></div>
 
-      <!-- PAGER -->
+      <!-- PAGINATION -->
       <div class="pager">
         <button id="prevPage">&#9650;</button>
         <span id="pageInfo">Page 1</span>
@@ -49,11 +49,6 @@
       </div>
     </div>
   </main>
-
-  <!-- PAGE LOADER -->
-  <div id="loader">
-    <div class="spinner"></div>
-  </div>
 
   <script>
     const videos = [
@@ -98,29 +93,35 @@
 
       const totalPages = Math.ceil(videos.length / perPage);
       pageInfo.textContent = `Page ${page} / ${totalPages}`;
-
       prevBtn.disabled = page === 1;
       nextBtn.disabled = page === totalPages;
     }
 
-    prevBtn.onclick = () => {
+    prevBtn.addEventListener("click", () => {
       if (currentPage > 1) {
         currentPage--;
         renderPage(currentPage);
         window.scrollTo({ top: 0, behavior: "smooth" });
       }
-    };
+    });
 
-    nextBtn.onclick = () => {
+    nextBtn.addEventListener("click", () => {
       const totalPages = Math.ceil(videos.length / perPage);
       if (currentPage < totalPages) {
         currentPage++;
         renderPage(currentPage);
         window.scrollTo({ top: 0, behavior: "smooth" });
       }
-    };
+    });
 
     renderPage(currentPage);
+  </script>
+
+  <!-- FIX FOR EMPTY PAGE -->
+  <script>
+    window.addEventListener("load", () => {
+      document.body.classList.add("page-loaded");
+    });
   </script>
 
 </body>
