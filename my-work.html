@@ -21,7 +21,7 @@
 
 <body>
 
-  <!-- نفس الـ NAV بتاع الـ Home -->
+  <!-- NAV -->
   <header class="nav">
     <nav class="nav-center">
       <a href="index.html">Home</a>
@@ -30,18 +30,18 @@
     </nav>
   </header>
 
-  <!-- MY WORK WRAPPER -->
+  <!-- WORK WRAPPER -->
   <main class="work-wrapper">
     <div class="work-inner">
       <h1 class="work-title">My Work</h1>
       <p class="work-sub">
-        A selection of films, commercials, and visual pieces crafted with a cinematic approach.
+        A selection of films, commercials, and visual pieces crafted with a cinematic touch.
       </p>
 
       <!-- GRID -->
       <div class="videos-grid" id="videoGrid"></div>
 
-      <!-- PAGINATION -->
+      <!-- PAGER -->
       <div class="pager">
         <button id="prevPage">&#9650;</button>
         <span id="pageInfo">Page 1</span>
@@ -50,8 +50,12 @@
     </div>
   </main>
 
+  <!-- PAGE LOADER -->
+  <div id="loader">
+    <div class="spinner"></div>
+  </div>
+
   <script>
-    // مصفوفة الفيديوهات – عدّل الروابط براحتك
     const videos = [
       "https://player.vimeo.com/video/1081231929",
       "https://player.vimeo.com/video/1093436208",
@@ -65,7 +69,6 @@
       "https://player.vimeo.com/video/1127837184",
       "https://player.vimeo.com/video/348850143",
       "https://www.youtube.com/embed/n4gmpMHBUK4"
-      // زوّد زي ما تحب
     ];
 
     const perPage = 9;
@@ -80,6 +83,7 @@
       grid.innerHTML = "";
       const start = (page - 1) * perPage;
       const end = Math.min(start + perPage, videos.length);
+
       for (let i = start; i < end; i++) {
         const card = document.createElement("div");
         card.className = "video-card";
@@ -91,30 +95,30 @@
         `;
         grid.appendChild(card);
       }
+
       const totalPages = Math.ceil(videos.length / perPage);
       pageInfo.textContent = `Page ${page} / ${totalPages}`;
+
       prevBtn.disabled = page === 1;
       nextBtn.disabled = page === totalPages;
-      prevBtn.style.opacity = prevBtn.disabled ? 0.3 : 1;
-      nextBtn.style.opacity = nextBtn.disabled ? 0.3 : 1;
     }
 
-    prevBtn.addEventListener("click", () => {
+    prevBtn.onclick = () => {
       if (currentPage > 1) {
         currentPage--;
         renderPage(currentPage);
         window.scrollTo({ top: 0, behavior: "smooth" });
       }
-    });
+    };
 
-    nextBtn.addEventListener("click", () => {
+    nextBtn.onclick = () => {
       const totalPages = Math.ceil(videos.length / perPage);
       if (currentPage < totalPages) {
         currentPage++;
         renderPage(currentPage);
         window.scrollTo({ top: 0, behavior: "smooth" });
       }
-    });
+    };
 
     renderPage(currentPage);
   </script>
