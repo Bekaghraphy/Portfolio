@@ -20,7 +20,6 @@
     <nav class="nav-center">
       <a href="index.html">Home</a>
       <a href="my-work.html" class="active">My Work</a>
-      <a href="contact.html">Contact</a>
     </nav>
   </header>
 
@@ -34,9 +33,7 @@
   <main class="page page-work">
     <div class="page-inner">
       <h1 class="page-title">My Work</h1>
-      <p class="page-sub">
-        A curated selection of films, commercials and visual stories crafted with a cinematic eye.
-      </p>
+      <p class="page-sub">A curated selection of cinematic visuals.</p>
 
       <div class="videos-grid" id="videoGrid"></div>
 
@@ -75,17 +72,15 @@
       grid.innerHTML = "";
 
       const start = (currentPage - 1) * perPage;
-      const end = start + perPage;
-      const slice = videos.slice(start, end);
+      const slice = videos.slice(start, start + perPage);
 
-      slice.forEach((src, idx) => {
+      slice.forEach(src => {
         const card = document.createElement("div");
         card.className = "video-card";
         card.innerHTML = `
           <div class="video-frame">
             <iframe src="${src}" allowfullscreen></iframe>
-          </div>
-        `;
+          </div>`;
         grid.appendChild(card);
       });
 
@@ -108,7 +103,7 @@
       }
     });
 
-    window.addEventListener("load", function () {
+    window.addEventListener("load", () => {
       document.body.classList.add("page-loaded");
       renderVideos();
     });
