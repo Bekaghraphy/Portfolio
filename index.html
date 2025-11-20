@@ -24,33 +24,59 @@
       background: #0e0e0e;
       color: #fff;
       overflow-x: hidden;
+      position: relative;
     }
 
-    /* =======================
-       GOLD SPOTLIGHT EFFECT
-       ======================= */
-    .gold-leak {
+    /* ---------------------------
+       SPOTLIGHT (HERO ONLY)
+       ---------------------------*/
+    .hero {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero .gold-spot {
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      background: radial-gradient(circle,
+          rgba(255, 255, 255, 0.85) 0%,
+          rgba(255, 255, 255, 0.45) 40%,
+          rgba(255, 255, 255, 0.00) 75%);
+      filter: blur(30px);
+      mix-blend-mode: screen;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      z-index: 4;
+    }
+
+    /* Darken HERO only */
+    .hero::before {
+      content: "";
       position: absolute;
       top: 0;
       left: 0;
-      width: 240px;
-      height: 240px;
-      border-radius: 50%;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.55);
+      z-index: 1;
       pointer-events: none;
-      background: radial-gradient(circle,
-          rgba(255, 220, 120, 0.60) 0%,
-          rgba(255, 200, 80, 0.35) 35%,
-          rgba(255, 180, 60, 0.00) 70%);
-      filter: blur(25px);
-      mix-blend-mode: screen;
-      opacity: 0.75;
-      transform: translate(-50%, -50%);
-      z-index: 3;
     }
 
-    /* HERO */
+    @media (max-width: 768px) {
+      .hero .gold-spot {
+        width: 180px;
+        height: 180px;
+        filter: blur(20px);
+      }
+    }
+
+
+    /* ---------------------------
+       HERO SLIDESHOW
+       ---------------------------*/
     .hero {
-      position: relative;
       height: 55vh;
       background-size: cover;
       background-position: center;
@@ -61,27 +87,8 @@
       text-align: center;
       padding: 80px 20px 20px 20px;
       animation: slideShow 30s infinite;
-      overflow: hidden;
     }
 
-    .hero::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.55);
-      backdrop-filter: blur(3px);
-      z-index: 1;
-    }
-
-    .hero>* {
-      position: relative;
-      z-index: 2;
-    }
-
-    /* SLIDESHOW */
     @keyframes slideShow {
       0% {
         background-image: url('img/slide1.jpg');
@@ -100,7 +107,7 @@
       }
 
       60% {
-       	background-image: url('img/slide5.jpg');
+        background-image: url('img/slide5.jpg');
       }
 
       75% {
@@ -118,12 +125,14 @@
       background: linear-gradient(45deg, #00d4ff, #7d2cff);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      z-index: 3;
     }
 
     .hero p {
       font-size: 20px;
       max-width: 600px;
       opacity: 0.8;
+      z-index: 3;
     }
 
     /* ABOUT */
@@ -165,7 +174,7 @@
       margin-bottom: 30px;
     }
 
-    /* VIDEO CAROUSEL */
+    /* WORK CAROUSEL */
     .carousel-container {
       position: relative;
       width: 100%;
@@ -211,12 +220,7 @@
       right: -20px;
     }
 
-    /* CONTACT */
-    #contact {
-      text-align: center;
-    }
-
-    /* SOCIAL ICONS */
+    /* SOCIAL */
     .social-icons {
       margin-top: 18px;
       display: flex;
@@ -242,7 +246,6 @@
       padding: 20px;
     }
 
-    /* RESPONSIVE */
     @media (max-width: 992px) {
       .video-box {
         min-width: 500px;
@@ -278,20 +281,6 @@
         right: -10px;
       }
     }
-
-    @media (max-width: 460px) {
-      .hero h1 {
-        font-size: 32px;
-      }
-
-      .video-box {
-        min-width: 280px;
-      }
-
-      .video-box iframe {
-        height: 170px;
-      }
-    }
   </style>
 </head>
 
@@ -299,7 +288,7 @@
 
   <!-- HERO -->
   <div class="hero">
-    <div class="gold-leak"></div>
+    <div class="gold-spot"></div>
 
     <h1>Hesham Abdelhamed</h1>
     <p>Filmmaker | Video Editor | One Man Crew</p>
@@ -310,8 +299,7 @@
     <h3>About Me</h3>
     <p>
       Passionate filmmaker and video producer creating cinematic visual stories with a strong focus on directing,
-      editing, and storytelling. I craft high-quality content that connects with audiences and brings meaningful ideas
-      to life.
+      editing, and storytelling.
     </p>
   </div>
 
@@ -328,14 +316,6 @@
         <div class="video-box"><iframe src="https://player.vimeo.com/video/1093436208"></iframe></div>
         <div class="video-box"><iframe src="https://player.vimeo.com/video/1012761186"></iframe></div>
         <div class="video-box"><iframe src="https://player.vimeo.com/video/782962222"></iframe></div>
-        <div class="video-box"><iframe src="https://player.vimeo.com/video/1081226158"></iframe></div>
-        <div class="video-box"><iframe src="https://player.vimeo.com/video/1137725566"></iframe></div>
-        <div class="video-box"><iframe src="https://player.vimeo.com/video/1088303838"></iframe></div>
-        <div class="video-box"><iframe src="https://player.vimeo.com/video/697540206"></iframe></div>
-        <div class="video-box"><iframe src="https://player.vimeo.com/video/348850766"></iframe></div>
-        <div class="video-box"><iframe src="https://player.vimeo.com/video/1127837184"></iframe></div>
-        <div class="video-box"><iframe src="https://player.vimeo.com/video/348850143"></iframe></div>
-        <div class="video-box"><iframe src="https://www.youtube.com/embed/n4gmpMHBUK4"></iframe></div>
 
       </div>
 
@@ -358,29 +338,14 @@
     <p style="font-size:26px; margin-top:10px; color:#7d2cff;">
       +966 503064408
     </p>
-
-    <div class="social-icons">
-      <a href="https://www.instagram.com/hisham.abdlhamed" target="_blank">
-        <img src="img/instagram.png">
-      </a>
-      <a href="https://www.tiktok.com/@hisham.abdelhamed" target="_blank">
-        <img src="img/tiktok.png">
-      </a>
-      <a href="https://www.facebook.com/hishamabdelhamedd/" target="_blank">
-        <img src="img/facebook.png">
-      </a>
-      <a href="https://www.linkedin.com/in/heshamabdelhamed/" target="_blank">
-        <img src="img/linkdin.png">
-      </a>
-    </div>
   </div>
 
   <footer>
     © 2025 Hesham Abdelhamed
   </footer>
 
-  <!-- JS -->
   <script>
+    /* WORK CAROUSEL */
     const track = document.querySelector(".carousel-track");
     const prev = document.querySelector(".carousel-btn.prev");
     const next = document.querySelector(".carousel-btn.next");
@@ -403,20 +368,31 @@
       updateCarousel();
     });
 
-    window.addEventListener("resize", updateCarousel);
+    /* SPOTLIGHT ON HERO */
+    const hero = document.querySelector(".hero");
+    const spot = document.querySelector(".gold-spot");
 
-    /* SPOTLIGHT MOVES WITH MOUSE */
-    document.addEventListener("mousemove", (e) => {
-      const leak = document.querySelector(".gold-leak");
-      if (leak) {
-        leak.style.left = e.clientX + "px";
-        leak.style.top = e.clientY + "px";
-      }
+    /* Desktop */
+    hero.addEventListener("mousemove", (e) => {
+      const rect = hero.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      spot.style.left = x + "px";
+      spot.style.top = y + "px";
     });
 
-    updateCarousel();
+    /* Mobile */
+    hero.addEventListener("touchmove", (e) => {
+      const touch = e.touches[0];
+      const rect = hero.getBoundingClientRect();
+      const x = touch.clientX - rect.left;
+      const y = touch.clientY - rect.top;
+
+      spot.style.left = x + "px";
+      spot.style.top = y + "px";
+    });
   </script>
 
 </body>
-
 </html>
