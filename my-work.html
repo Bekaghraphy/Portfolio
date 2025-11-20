@@ -1,106 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Work | Hesham Abdelhamed</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Work</title>
 
-  <link rel="icon" type="image/png" href="img/favicon.png">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
 
-  <!-- NAV -->
-  <header class="nav">
-    <nav class="nav-center">
-      <a href="index.html">Home</a>
-      <a href="my-work.html" class="active">My Work</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </header>
+<div class="work-bg"></div>
 
-  <!-- SIDE TITLE -->
-  <div class="side-title">MY WORK</div>
+<header class="nav">
+  <nav class="nav-center">
+    <a href="index.html">Home</a>
+    <a href="my-work.html" class="active">My Work</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
 
-  <!-- PAGE -->
-  <main class="work-wrapper" style="background-image:url('img/myworkbg.jpg');">
+<main class="work-wrapper">
 
-    <h1 class="work-title">My Work</h1>
+  <h1 class="work-title">MY WORK</h1>
+  <p class="work-sub">A curated cinematic selection of my visual productions.</p>
 
-    <p class="work-sub">Selected cinematic productions crafted with emotion, detail, and storytelling.</p>
+  <div class="videos-grid" id="videoGrid"></div>
 
-    <div class="videos-grid" id="videoGrid"></div>
+  <div class="pager">
+    <button id="prevPage">Prev</button>
+    <span id="pageInfo"></span>
+    <button id="nextPage">Next</button>
+  </div>
 
-    <div class="pager">
-      <button id="prevPage">&#9650;</button>
-      <span id="pageInfo">Page 1</span>
-      <button id="nextPage">&#9660;</button>
-    </div>
+</main>
 
-    <div class="more-work">And there is still much more to come…</div>
-  </main>
+<script>
+  const videos = [
+    "https://player.vimeo.com/video/1081231929",
+    "https://player.vimeo.com/video/1093436208",
+    "https://player.vimeo.com/video/1012761186",
+    "https://player.vimeo.com/video/782962222",
+    "https://player.vimeo.com/video/1081226158",
+    "https://player.vimeo.com/video/1137725566",
+    "https://player.vimeo.com/video/1088303838",
+    "https://player.vimeo.com/video/697540206",
+    "https://player.vimeo.com/video/348850766",
+    "https://player.vimeo.com/video/1127837184",
+    "https://player.vimeo.com/video/348850143",
+    "https://www.youtube.com/embed/n4gmpMHBUK4"
+  ];
 
-  <script>
-    const videos = [
-      "https://player.vimeo.com/video/1081231929",
-      "https://player.vimeo.com/video/1093436208",
-      "https://player.vimeo.com/video/1012761186",
-      "https://player.vimeo.com/video/782962222",
-      "https://player.vimeo.com/video/1081226158",
-      "https://player.vimeo.com/video/1137725566",
-      "https://player.vimeo.com/video/1088303838",
-      "https://player.vimeo.com/video/697540206",
-      "https://player.vimeo.com/video/348850766",
-      "https://player.vimeo.com/video/1127837184",
-      "https://player.vimeo.com/video/348850143",
-      "https://www.youtube.com/embed/n4gmpMHBUK4"
-    ];
+  const perPage = 12;
+  let currentPage = 1;
 
-    const perPage = 12;
-    let currentPage = 1;
+  function render() {
+    const grid = document.querySelector("#videoGrid");
+    const pageInfo = document.querySelector("#pageInfo");
 
-    function renderPage() {
-      const grid = document.getElementById('videoGrid');
-      grid.innerHTML = "";
+    grid.innerHTML = "";
+    let start = (currentPage - 1) * perPage;
+    let end = start + perPage;
 
-      const start = (currentPage - 1) * perPage;
-      const end = start + perPage;
+    videos.slice(start, end).forEach(v => {
+      grid.innerHTML += `
+        <div class="video-card">
+          <div class="video-frame"><iframe src="${v}" allowfullscreen></iframe></div>
+        </div>`;
+    });
 
-      videos.slice(start, end).forEach((src, i) => {
-        const card = document.createElement("div");
-        card.className = "video-card fade-in";
-        card.innerHTML = `
-          <div class="video-frame">
-            <iframe src="${src}" allowfullscreen></iframe>
-          </div>
-        `;
-        grid.appendChild(card);
-      });
+    const totalPages = Math.ceil(videos.length / perPage);
+    pageInfo.textContent = `Page ${currentPage} / ${totalPages}`;
+  }
 
-      const totalPages = Math.ceil(videos.length / perPage);
-      document.getElementById("pageInfo").textContent =
-        "Page " + currentPage + " / " + totalPages;
-    }
-
-    document.getElementById("nextPage").onclick = () => {
-      const totalPages = Math.ceil(videos.length / perPage);
-      if (currentPage < totalPages) {
-        currentPage++;
-        renderPage();
-      }
-    };
-
-    document.getElementById("prevPage").onclick = () => {
-      if (currentPage > 1) {
-        currentPage--;
-        renderPage();
-      }
-    };
-
-    renderPage();
-  </script>
-
-</body>
-</html>
+  document.querySel
