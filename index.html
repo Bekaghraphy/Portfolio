@@ -24,34 +24,16 @@
       background: #0e0e0e;
       color: #fff;
       overflow-x: hidden;
-      position: relative;
     }
 
-    /* ---------------------------
-       SPOTLIGHT (HERO ONLY)
-       ---------------------------*/
+    /* ----------------------------------------
+       SPOTLIGHT EFFECT (HERO ONLY)
+       ----------------------------------------*/
     .hero {
       position: relative;
       overflow: hidden;
     }
 
-    .hero .gold-spot {
-      position: absolute;
-      width: 260px;
-      height: 260px;
-      border-radius: 50%;
-      background: radial-gradient(circle,
-          rgba(255, 255, 255, 0.85) 0%,
-          rgba(255, 255, 255, 0.45) 40%,
-          rgba(255, 255, 255, 0.00) 75%);
-      filter: blur(30px);
-      mix-blend-mode: screen;
-      pointer-events: none;
-      transform: translate(-50%, -50%);
-      z-index: 4;
-    }
-
-    /* Darken HERO only */
     .hero::before {
       content: "";
       position: absolute;
@@ -59,23 +41,38 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.55);
+      background: rgba(0, 0, 0, 0.70); /* darker */
       z-index: 1;
+    }
+
+    .spotlight {
+      position: absolute;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
       pointer-events: none;
+      background: radial-gradient(circle,
+        rgba(255, 255, 255, 0.9) 0%,
+        rgba(255, 255, 255, 0.6) 35%,
+        rgba(255, 255, 255, 0.12) 70%,
+        rgba(255, 255, 255, 0.0) 100%
+      );
+      mix-blend-mode: screen;
+      filter: blur(25px);
+      transform: translate(-50%, -50%);
+      z-index: 3;
+      opacity: 0.85;
     }
 
     @media (max-width: 768px) {
-      .hero .gold-spot {
-        width: 180px;
-        height: 180px;
-        filter: blur(20px);
+      .spotlight {
+        width: 220px;
+        height: 220px;
+        filter: blur(18px);
       }
     }
 
-
-    /* ---------------------------
-       HERO SLIDESHOW
-       ---------------------------*/
+    /* HERO SLIDESHOW */
     .hero {
       height: 55vh;
       background-size: cover;
@@ -93,30 +90,30 @@
       0% {
         background-image: url('img/slide1.jpg');
       }
-
       15% {
         background-image: url('img/slide2.jpg');
       }
-
       30% {
         background-image: url('img/slide3.jpg');
       }
-
       45% {
         background-image: url('img/slide4.jpg');
       }
-
       60% {
         background-image: url('img/slide5.jpg');
       }
-
       75% {
         background-image: url('img/slide6.jpg');
       }
-
       100% {
         background-image: url('img/slide7.jpg');
       }
+    }
+
+    .hero h1,
+    .hero p {
+      position: relative;
+      z-index: 4;
     }
 
     .hero h1 {
@@ -125,14 +122,12 @@
       background: linear-gradient(45deg, #00d4ff, #7d2cff);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      z-index: 3;
     }
 
     .hero p {
       font-size: 20px;
       max-width: 600px;
       opacity: 0.8;
-      z-index: 3;
     }
 
     /* ABOUT */
@@ -174,7 +169,7 @@
       margin-bottom: 30px;
     }
 
-    /* WORK CAROUSEL */
+    /* VIDEO CAROUSEL */
     .carousel-container {
       position: relative;
       width: 100%;
@@ -220,7 +215,11 @@
       right: -20px;
     }
 
-    /* SOCIAL */
+    /* CONTACT */
+    #contact {
+      text-align: center;
+    }
+
     .social-icons {
       margin-top: 18px;
       display: flex;
@@ -245,42 +244,6 @@
       opacity: 0.6;
       padding: 20px;
     }
-
-    @media (max-width: 992px) {
-      .video-box {
-        min-width: 500px;
-      }
-
-      .video-box iframe {
-        height: 320px;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .hero {
-        height: 45vh;
-      }
-
-      .hero h1 {
-        font-size: 45px;
-      }
-
-      .video-box {
-        min-width: 320px;
-      }
-
-      .video-box iframe {
-        height: 200px;
-      }
-
-      .carousel-btn.prev {
-        left: -10px;
-      }
-
-      .carousel-btn.next {
-        right: -10px;
-      }
-    }
   </style>
 </head>
 
@@ -288,7 +251,9 @@
 
   <!-- HERO -->
   <div class="hero">
-    <div class="gold-spot"></div>
+
+    <!-- SPOTLIGHT -->
+    <div class="spotlight"></div>
 
     <h1>Hesham Abdelhamed</h1>
     <p>Filmmaker | Video Editor | One Man Crew</p>
@@ -312,10 +277,11 @@
 
       <div class="carousel-track">
 
-        <div class="video-box"><iframe src="https://player.vimeo.com/video/1081231929"></iframe></div>
-        <div class="video-box"><iframe src="https://player.vimeo.com/video/1093436208"></iframe></div>
-        <div class="video-box"><iframe src="https://player.vimeo.com/video/1012761186"></iframe></div>
-        <div class="video-box"><iframe src="https://player.vimeo.com/video/782962222"></iframe></div>
+        <div class="video-box"><iframe src="https://player.vimeo.com/video/1081231929" allowfullscreen></iframe></div>
+        <div class="video-box"><iframe src="https://player.vimeo.com/video/1093436208" allowfullscreen></iframe></div>
+        <div class="video-box"><iframe src="https://player.vimeo.com/video/1012761186" allowfullscreen></iframe></div>
+        <div class="video-box"><iframe src="https://player.vimeo.com/video/782962222" allowfullscreen></iframe></div>
+        <div class="video-box"><iframe src="https://player.vimeo.com/video/1081226158" allowfullscreen></iframe></div>
 
       </div>
 
@@ -338,14 +304,30 @@
     <p style="font-size:26px; margin-top:10px; color:#7d2cff;">
       +966 503064408
     </p>
+
+    <div class="social-icons">
+      <a href="https://www.instagram.com/hisham.abdlhamed" target="_blank">
+        <img src="img/instagram.png">
+      </a>
+      <a href="https://www.tiktok.com/@hisham.abdelhamed" target="_blank">
+        <img src="img/tiktok.png">
+      </a>
+      <a href="https://www.facebook.com/hishamabdelhamedd/" target="_blank">
+        <img src="img/facebook.png">
+      </a>
+      <a href="https://www.linkedin.com/in/heshamabdelhamed/" target="_blank">
+        <img src="img/linkdin.png">
+      </a>
+    </div>
+
   </div>
 
-  <footer>
-    © 2025 Hesham Abdelhamed
-  </footer>
+  <footer>© 2025 Hesham Abdelhamed</footer>
 
+  <!-- JS -->
   <script>
-    /* WORK CAROUSEL */
+
+    /* VIDEO CAROUSEL */
     const track = document.querySelector(".carousel-track");
     const prev = document.querySelector(".carousel-btn.prev");
     const next = document.querySelector(".carousel-btn.next");
@@ -368,31 +350,29 @@
       updateCarousel();
     });
 
-    /* SPOTLIGHT ON HERO */
+    /* SPOTLIGHT */
     const hero = document.querySelector(".hero");
-    const spot = document.querySelector(".gold-spot");
+    const spot = document.querySelector(".spotlight");
 
-    /* Desktop */
     hero.addEventListener("mousemove", (e) => {
       const rect = hero.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
-
       spot.style.left = x + "px";
       spot.style.top = y + "px";
     });
 
-    /* Mobile */
     hero.addEventListener("touchmove", (e) => {
-      const touch = e.touches[0];
+      const t = e.touches[0];
       const rect = hero.getBoundingClientRect();
-      const x = touch.clientX - rect.left;
-      const y = touch.clientY - rect.top;
-
+      const x = t.clientX - rect.left;
+      const y = t.clientY - rect.top;
       spot.style.left = x + "px";
       spot.style.top = y + "px";
     });
+
   </script>
 
 </body>
+
 </html>
