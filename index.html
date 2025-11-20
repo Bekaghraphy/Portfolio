@@ -6,68 +6,80 @@
   <title>Hesham Abdelhamed | Home</title>
   <link rel="icon" type="image/png" href="img/favicon.png" />
 
-  <!-- Montserrat -->
+  <!-- FONT -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet" />
 
+  <!-- MAIN STYLE -->
   <link rel="stylesheet" href="style.css" />
-
 </head>
 
 <body>
+  <!-- Cursor Light -->
+  <div class="cursor-light"></div>
 
-  <!-- NAVBAR -->
+  <!-- NAV -->
   <header class="nav">
     <nav class="nav-center">
-      <a href="index.html">Home</a>
+      <a href="index.html" class="active">Home</a>
       <a href="my-work.html">My Work</a>
       <a href="contact.html">Contact</a>
     </nav>
   </header>
 
   <!-- HERO -->
-  <section class="hero" id="hero">
+  <section class="hero" id="hero" style="background-image:url('img/hero.jpg');">
     <div class="hero-overlay"></div>
 
     <div class="hero-content">
 
-      <h1 class="hero-name animate-fade-up">HESHAM ABDELHAMED</h1>
+      <h1 class="hero-name">HESHAM ABDELHAMED</h1>
 
-      <div class="hero-heading animate-slide-up">
-        CINEMATIC<br />
+      <div class="hero-heading">
+        CINEMATIC<br>
         VISUAL STORIES
       </div>
 
-      <div class="hero-sub animate-delay">
+      <div class="hero-sub">
         I am a filmmaker and video editor crafting cinematic narratives,
-        mixing documentary sensitivity with strong visual composition.
-        From concept to final cut, I focus on emotion, rhythm, and details.
+        blending documentary emotion with precise visual composition.
+        From concept to final cut, I focus on rhythm, storytelling, and immersive details.
       </div>
 
       <div class="social-row">
-        <a href="https://www.instagram.com/hisham.abdlhamed" target="_blank" class="social-icon big">IG</a>
-        <a href="https://www.tiktok.com/@hisham.abdelhamed" target="_blank" class="social-icon big">TT</a>
-        <a href="https://www.facebook.com/hishamabdelhamedd" target="_blank" class="social-icon big">FB</a>
-        <a href="https://www.youtube.com" target="_blank" class="social-icon big">YT</a>
-        <a href="https://www.linkedin.com/in/heshamabdelhamed" target="_blank" class="social-icon big">IN</a>
-        <a href="mailto:per.hisham@gmail.com" class="social-icon big">@</a>
-        <a href="tel:+966503064408" class="social-icon big">☎</a>
+        <a href="https://www.instagram.com/hisham.abdlhamed" target="_blank" class="social-icon">IG</a>
+        <a href="https://www.tiktok.com/@hisham.abdelhamed" target="_blank" class="social-icon">TT</a>
+        <a href="https://www.facebook.com/hishamabdelhamedd" target="_blank" class="social-icon">FB</a>
+        <a href="https://www.linkedin.com/in/heshamabdelhamed" target="_blank" class="social-icon">IN</a>
+        <a href="mailto:per.hisham@gmail.com" class="social-icon">@</a>
+        <a href="tel:+966503064408" class="social-icon">☎</a>
       </div>
 
     </div>
-
   </section>
 
+
   <script>
-    /* PARALLAX HERO */
-    window.addEventListener("scroll", () => {
-      const hero = document.getElementById("hero");
-      hero.style.backgroundPositionY = -window.scrollY * 0.25 + "px";
+    /* Custom Cursor Light */
+    const cursor = document.querySelector(".cursor-light");
+
+    document.addEventListener("mousemove", (e) => {
+      cursor.style.left = e.clientX + "px";
+      cursor.style.top = e.clientY + "px";
+      cursor.style.opacity = 1;
     });
 
-    /* PAGE FADE-IN */
-    document.body.classList.add("page-loaded");
+    /* Parallax */
+    window.addEventListener("scroll", () => {
+      document.getElementById("hero").style.backgroundPositionY =
+        -window.scrollY * 0.25 + "px";
+    });
+
+    /* Fade-in page */
+    window.addEventListener("load", () => {
+      document.body.classList.add("page-loaded");
+    });
   </script>
 
 </body>
