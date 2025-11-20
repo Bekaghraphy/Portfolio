@@ -117,9 +117,9 @@ body.page-loaded {
   font-size: 14px;
 }
 
-.social-icon:hover {
-  opacity: 1;
-  transform: translateY(-2px);
+.social-icons img:hover {
+    filter: brightness(0) invert(1) drop-shadow(0 0 4px #fff);
+    transform: scale(1.1);
 }
 
 /* ANIMATIONS */
