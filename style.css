@@ -152,21 +152,19 @@ body.page-loaded {
   .hero-name { font-size: 17px; }
   .nav-center { gap: 25px; font-size: 15px; }
 }
+
 /* ===========================
-   MY WORK PAGE
-   =========================== */
+   MY WORK PAGE – BASE
+=========================== */
 
 .work-wrapper {
   position: relative;
   min-height: 100vh;
-  padding: 120px 20px 60px; /* عشان الـ nav ثابت */
+  padding: 120px 20px 60px;
   background-image: url("img/myworkbg.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
 }
 
 .work-wrapper::before {
@@ -185,7 +183,7 @@ body.page-loaded {
   width: 100%;
 }
 
-/* عنوان My Work */
+/* TITLE */
 .work-title {
   text-align: center;
   font-size: 40px;
@@ -207,31 +205,73 @@ body.page-loaded {
 .videos-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 24px;
+  gap: 26px;
 }
 
+/* ===========================
+   CINEMATIC VIDEO CARDS
+=========================== */
 .video-card {
-  background: rgba(10,10,10,0.85);
-  border-radius: 12px;
+  background: rgba(0,0,0,0.45);
+  border-radius: 14px;
   overflow: hidden;
-  border: 1px solid rgba(255,255,255,0.06);
-  box-shadow: 0 16px 30px rgba(0,0,0,0.6);
+  position: relative;
+  border: 1px solid rgba(255,255,255,0.1);
+  transition: 0.35s ease;
+  transform: translateY(0);
+  box-shadow: 0 18px 32px rgba(0,0,0,0.55);
 }
 
+/* Hover cinematic pop */
+.video-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  border-color: rgba(255,255,255,0.35);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.75);
+}
+
+/* Light sweep */
+.video-card::after {
+  content: "";
+  position: absolute;
+  top: -120%;
+  left: -20%;
+  width: 60%;
+  height: 300%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.18), transparent);
+  transform: rotate(25deg);
+  opacity: 0;
+  transition: 0.4s ease;
+}
+.video-card:hover::after {
+  opacity: 1;
+  left: 120%;
+}
+
+/* Fade in on load */
 .video-frame iframe {
   width: 100%;
   aspect-ratio: 16/9;
   border: none;
   display: block;
+  opacity: 0;
+  animation: fadeIn 0.8s ease forwards;
 }
 
+@keyframes fadeIn {
+  0% { opacity: 0; transform: scale(1.05); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+/* Meta */
 .video-meta {
-  padding: 8px 12px 10px;
-  font-size: 11px;
+  padding: 10px 12px;
+  font-size: 12px;
   opacity: 0.8;
 }
 
-/* PAGINATION */
+/* ===========================
+   PAGINATION
+=========================== */
 .pager {
   margin-top: 28px;
   display: flex;
@@ -240,23 +280,19 @@ body.page-loaded {
   align-items: center;
   font-size: 12px;
   letter-spacing: 0.18em;
-  text-transform: uppercase;
   opacity: 0.85;
 }
 
 .pager button {
-  width: 34px;
-  height: 34px;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
   border: 1px solid rgba(255,255,255,0.6);
   background: rgba(0,0,0,0.4);
   color: #fff;
   cursor: pointer;
-  font-size: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.25s ease;
+  font-size: 20px;
+  transition: 0.3s;
 }
 
 .pager button:hover:not(:disabled) {
@@ -265,19 +301,16 @@ body.page-loaded {
 }
 
 .pager button:disabled {
+  opacity: 0.3;
   cursor: default;
 }
 
-/* Active link في الـ nav */
-.nav-center a.active {
-  opacity: 1;
-  border-bottom: 1px solid #fff;
-}
-
-/* RESPONSIVE GRID */
+/* ===========================
+   RESPONSIVE
+=========================== */
 @media (max-width: 1024px) {
   .videos-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -287,10 +320,39 @@ body.page-loaded {
   }
 
   .work-wrapper {
-    padding: 110px 12px 50px;
+    padding: 110px 12px 60px;
   }
 
   .work-title {
     font-size: 32px;
   }
+}
+
+/* ===========================
+   PAGE LOADER
+=========================== */
+#loader {
+  position: fixed;
+  inset: 0;
+  background: #0e0e0e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5000;
+  animation: fadeOutLoader 0.5s ease forwards 1.2s;
+}
+
+.spinner {
+  width: 38px;
+  height: 38px;
+  border: 4px solid rgba(255,255,255,0.15);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+@keyframes fadeOutLoader {
+  to { opacity: 0; visibility: hidden; }
 }
