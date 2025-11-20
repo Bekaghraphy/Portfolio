@@ -5,13 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Hesham Abdelhamed | Home</title>
 
-  <link rel="stylesheet" href="style.css" />
   <link rel="icon" type="image/png" href="img/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet" />
 
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
 
+  <!-- NAV -->
   <header class="nav">
     <nav class="nav-center">
       <a href="index.html" class="active">Home</a>
@@ -20,7 +24,8 @@
     </nav>
   </header>
 
-  <section class="hero">
+  <!-- HERO -->
+  <section class="hero" style="background-image:url('img/home-hero.jpg');">
     <div class="hero-content">
       <h1 class="hero-name">HESHAM ABDELHAMED</h1>
 
@@ -30,7 +35,8 @@
 
       <div class="hero-sub">
         I am a filmmaker and video editor crafting cinematic narratives,
-        mixing documentary sensitivity with strong visual composition.
+        blending documentary emotion with refined visual composition.
+        From concept to final cut, I focus on rhythm, storytelling, and detail.
       </div>
 
       <div class="social-row">
@@ -41,9 +47,14 @@
         <a class="social-icon" href="mailto:per.hisham@gmail.com">@</a>
         <a class="social-icon" href="tel:+966503064408">☎</a>
       </div>
-
     </div>
   </section>
+
+  <script>
+    window.addEventListener("load", function () {
+      document.body.classList.add("page-loaded");
+    });
+  </script>
 
 </body>
 </html>
