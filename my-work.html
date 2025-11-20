@@ -73,4 +73,17 @@
     pageInfo.textContent = `Page ${currentPage} / ${totalPages}`;
   }
 
-  document.querySel
+  document.querySelector("#prevPage").onclick = () => {
+    if (currentPage > 1) { currentPage--; render(); }
+  };
+
+  document.querySelector("#nextPage").onclick = () => {
+    const totalPages = Math.ceil(videos.length / perPage);
+    if (currentPage < totalPages) { currentPage++; render(); }
+  };
+
+  render();
+</script>
+
+</body>
+</html>
