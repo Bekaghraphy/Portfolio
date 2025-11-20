@@ -20,7 +20,7 @@
   <!-- NAVBAR -->
   <header class="nav">
     <nav class="nav-center">
-      <a href="index.html">Home</a>
+      <a href="index.html" class="active">Home</a>
       <a href="my-work.html">My Work</a>
       <a href="contact.html">Contact</a>
     </nav>
@@ -58,6 +58,14 @@
 
   </section>
 
+
+  <!-- ========================================= -->
+  <!-- CURSOR + LIGHT EFFECT -->
+  <!-- ========================================= -->
+
+  <div class="cursor-light" id="cursorLight"></div>
+  <div class="cursor-dot" id="cursorDot"></div>
+
   <script>
     /* PARALLAX HERO */
     window.addEventListener("scroll", () => {
@@ -67,6 +75,19 @@
 
     /* PAGE FADE-IN */
     document.body.classList.add("page-loaded");
+
+    /* CURSOR FOLLOW */
+    const dot = document.getElementById("cursorDot");
+    const light = document.getElementById("cursorLight");
+
+    document.addEventListener("mousemove", e => {
+      dot.style.left = e.clientX + "px";
+      dot.style.top = e.clientY + "px";
+
+      light.style.left = e.clientX + "px";
+      light.style.top = e.clientY + "px";
+    });
+
   </script>
 
 </body>
