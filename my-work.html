@@ -1,18 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My Work | Hesham Abdelhamed</title>
 
-  <link rel="icon" type="image/png" href="img/favicon.png" />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/png" href="img/favicon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-  <!-- Cursor Light -->
-  <div class="cursor-light"></div>
 
   <!-- NAV -->
   <header class="nav">
@@ -23,13 +21,15 @@
     </nav>
   </header>
 
-  <!-- Side Title -->
+  <!-- SIDE TITLE -->
   <div class="side-title">MY WORK</div>
 
-  <!-- WORK SECTION -->
-  <main class="work-wrapper">
+  <!-- PAGE -->
+  <main class="work-wrapper" style="background-image:url('img/myworkbg.jpg');">
+
     <h1 class="work-title">My Work</h1>
-    <p class="work-sub">A curated selection of my cinematic productions.</p>
+
+    <p class="work-sub">Selected cinematic productions crafted with emotion, detail, and storytelling.</p>
 
     <div class="videos-grid" id="videoGrid"></div>
 
@@ -39,9 +39,7 @@
       <button id="nextPage">&#9660;</button>
     </div>
 
-    <div class="more-work">
-      And I still have much more to create…
-    </div>
+    <div class="more-work">And there is still much more to come…</div>
   </main>
 
   <script>
@@ -63,42 +61,45 @@
     const perPage = 12;
     let currentPage = 1;
 
-    const grid = document.getElementById("videoGrid");
-    const pageInfo = document.getElementById("pageInfo");
-
-    function renderPage(page) {
+    function renderPage() {
+      const grid = document.getElementById('videoGrid');
       grid.innerHTML = "";
-      const start = (page - 1) * perPage;
-      const end = Math.min(start + perPage, videos.length);
 
-      for (let i = start; i < end; i++) {
+      const start = (currentPage - 1) * perPage;
+      const end = start + perPage;
+
+      videos.slice(start, end).forEach((src, i) => {
         const card = document.createElement("div");
-        card.classList.add("video-card");
-
+        card.className = "video-card fade-in";
         card.innerHTML = `
           <div class="video-frame">
-            <iframe src="${videos[i]}" allowfullscreen></iframe>
+            <iframe src="${src}" allowfullscreen></iframe>
           </div>
-          <div class="video-meta">Video #${i + 1}</div>
         `;
         grid.appendChild(card);
-      }
+      });
 
       const totalPages = Math.ceil(videos.length / perPage);
-      pageInfo.textContent = `Page ${page} / ${totalPages}`;
+      document.getElementById("pageInfo").textContent =
+        "Page " + currentPage + " / " + totalPages;
     }
 
-    document.getElementById("prevPage").onclick = () => {
-      if (currentPage > 1) currentPage--;
-      renderPage(currentPage);
-    };
     document.getElementById("nextPage").onclick = () => {
       const totalPages = Math.ceil(videos.length / perPage);
-      if (currentPage < totalPages) currentPage++;
-      renderPage(currentPage);
+      if (currentPage < totalPages) {
+        currentPage++;
+        renderPage();
+      }
     };
 
-    renderPage(currentPage);
+    document.getElementById("prevPage").onclick = () => {
+      if (currentPage > 1) {
+        currentPage--;
+        renderPage();
+      }
+    };
+
+    renderPage();
   </script>
 
 </body>
