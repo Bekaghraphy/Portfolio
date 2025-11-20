@@ -1,304 +1,154 @@
-/* ------------------------------------------------------------------------------------
-   RESET + GLOBAL
------------------------------------------------------------------------------------- */
-* {
+/* PAGE TRANSITION */
+body {
+  background: #111;
+  color: #fff;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-}
-
-html, body {
-  width: 100%;
-  height: 100%;
-  font-family: 'Montserrat', sans-serif;
-  background: #000;
-  color: #fff;
-  scroll-behavior: smooth;
-}
-
-/* GOLD PALETTE */
-:root {
-  --gold: #d4a24c;
-  --gold-soft: rgba(212,162,76,0.5);
-  --fade-speed: 0.6s;
-}
-
-/* GLOBAL PAGE FADE */
-body {
   opacity: 0;
-  transition: opacity var(--fade-speed) ease-in-out;
+  transition: opacity 0.8s ease;
+  font-family: 'Montserrat', sans-serif;
 }
-
 body.page-loaded {
   opacity: 1;
 }
 
-/* ------------------------------------------------------------------------------------
-   CURSOR CINEMATIC
------------------------------------------------------------------------------------- */
-body {
-  cursor: none;
-}
-
-.cursor-dot {
-  width: 10px;
-  height: 10px;
-  background: var(--gold);
-  position: fixed;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 2000;
-  transform: translate(-50%, -50%);
-}
-
-.cursor-light {
-  width: 180px;
-  height: 180px;
-  background: radial-gradient(circle, rgba(255,255,255,0.15), transparent 70%);
-  position: fixed;
-  border-radius: 50%;
-  pointer-events: none;
-  mix-blend-mode: screen;
-  z-index: 1999;
-  transform: translate(-50%, -50%);
-}
-
-/* ------------------------------------------------------------------------------------
-   NAV
------------------------------------------------------------------------------------- */
+/* NAVBAR */
 .nav {
-  width: 100%;
-  padding: 25px 0;
   position: fixed;
   top: 0;
-  left: 0;
-  z-index: 100;
-  background: rgba(0,0,0,0.4);
+  left: 0; 
+  width: 100%;
+  padding: 25px 0;
+  z-index: 20;
   backdrop-filter: blur(8px);
 }
 
 .nav-center {
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  font-size: 17px;
+  text-transform: uppercase;
 }
-
 .nav-center a {
-  margin: 0 25px;
-  font-size: 22px;
-  text-decoration: none;
   color: #fff;
-  font-weight: 600;
-  transition: 0.3s;
+  text-decoration: none;
+  letter-spacing: 0.18em;
+  transition: opacity .3s;
+}
+.nav-center a:hover {
+  opacity: 0.6;
 }
 
-.nav-center a:hover,
-.nav-center a.active {
-  color: var(--gold);
-  text-shadow: 0 0 10px var(--gold-soft);
-}
-
-/* ------------------------------------------------------------------------------------
-   HERO WITH PARALLAX + LIGHT SPOT
------------------------------------------------------------------------------------- */
+/* HERO */
 .hero {
-  height: 100vh;
   position: relative;
+  height: 100vh;
+  background-image: url("img/home-hero.jpg");
   background-size: cover;
   background-position: center;
   overflow: hidden;
-  transform-style: preserve-3d;
 }
 
-.hero h1 {
-  font-size: 70px;
-  color: var(--gold);
-  text-shadow: 0 0 25px rgba(0,0,0,0.8);
-  animation: fadeUp 1.2s ease-out forwards;
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(0,0,0,0.8), transparent 60%),
+              linear-gradient(to top, rgba(0,0,0,0.8), transparent 60%);
+  z-index: 1;
+}
+
+.hero-content {
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  transform: translateY(-50%);
+  z-index: 5;
+  max-width: 500px;
+}
+
+.hero-name {
+  font-size: 22px;
+  letter-spacing: 0.35em;
+  margin-bottom: 25px;
+  opacity: 0.85;
+}
+
+/* HERO MAIN TEXT */
+.hero-heading {
+  font-size: 50px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  line-height: 1.05;
+  margin-bottom: 20px;
+}
+
+.hero-sub {
+  font-size: 15px;
+  line-height: 1.8;
+  opacity: 0.9;
+  max-width: 380px;
+}
+
+/* SOCIAL ICONS */
+.social-row {
+  margin-top: 35px;
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.social-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  opacity: 0.85;
+  transition: all 0.25s ease;
+}
+
+.social-icon.big {
+  width: 42px;
+  height: 42px;
+  font-size: 14px;
+}
+
+.social-icon:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+}
+
+/* ANIMATIONS */
+.animate-fade-up {
+  animation: fadeUp 1s ease forwards;
   opacity: 0;
 }
-
-.hero p {
-  font-size: 22px;
-  margin-top: 12px;
-  opacity: 0.7;
-  animation: fadeUp 1.6s ease-out forwards;
+.animate-slide-up {
+  animation: slideUp .9s ease .2s forwards;
+  opacity: 0;
+}
+.animate-delay {
+  animation: fadeUp .9s ease .45s forwards;
   opacity: 0;
 }
 
 @keyframes fadeUp {
-  0% {opacity: 0; transform: translateY(20px);}
-  100% {opacity: 1; transform: translateY(0);}
+  from { opacity: 0; transform: translateY(25px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.55);
-  z-index: 1;
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-/* ------------------------------------------------------------------------------------
-   ABOUT SECTION
------------------------------------------------------------------------------------- */
-.about-section {
-  padding: 100px 25px;
-  text-align: center;
-}
-
-.about-section h3 {
-  color: var(--gold);
-  font-size: 42px;
-  margin-bottom: 10px;
-}
-
-.about-section p {
-  opacity: 0.9;
-  max-width: 650px;
-  margin: auto;
-  font-size: 18px;
-  line-height: 1.8;
-  animation: fadeUp 1s ease forwards;
-}
-
-/* ------------------------------------------------------------------------------------
-   SOCIAL ICONS
------------------------------------------------------------------------------------- */
-.social-icons {
-  margin-top: 20px;
-  display: flex;
-  gap: 30px;
-  justify-content: center;
-}
-
-.social-icons img {
-  width: 42px;
-  filter: invert(1) brightness(1.5);
-  transition: 0.3s;
-}
-
-.social-icons img:hover {
-  transform: scale(1.2);
-  filter: drop-shadow(0 0 10px var(--gold));
-}
-
-/* ------------------------------------------------------------------------------------
-   MY WORK PAGE
------------------------------------------------------------------------------------- */
-.work-body {
-  background: url("img/myworkbg.jpg") center/cover fixed no-repeat;
-}
-
-.work-wrapper {
-  padding-top: 150px;
-  padding-bottom: 80px;
-  background: rgba(0,0,0,0.55);
-}
-
-.work-header {
-  text-align: center;
-  margin-bottom: 35px;
-}
-
-.work-header h1 {
-  color: var(--gold);
-  font-size: 52px;
-}
-
-.work-header p {
-  opacity: 0.8;
-  font-size: 18px;
-}
-
-/* GRID */
-.videos-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 28px;
-  padding: 0 25px;
-  animation: fadeInGrid 0.6s ease;
-}
-
-@keyframes fadeInGrid {
-  0% {opacity: 0;}
-  100% {opacity: 1;}
-}
-
-.video-card {
-  background: rgba(255,255,255,0.05);
-  border-radius: 12px;
-  padding: 8px;
-  transition: 0.25s;
-}
-
-.video-card:hover {
-  transform: scale(1.03);
-  box-shadow: 0 0 15px rgba(212,162,76,0.3);
-}
-
-.video-frame iframe {
-  width: 100%;
-  height: 230px;
-  border-radius: 10px;
-  border: none;
-}
-
-/* PAGINATION */
-.pager {
-  margin-top: 40px;
-  display: flex;
-  justify-content: center;
-  gap: 25px;
-}
-
-.pager button {
-  background: var(--gold);
-  padding: 12px 20px;
-  border: none;
-  font-size: 22px;
-  font-weight: bold;
-  color: #000;
-  border-radius: 8px;
-  transition: 0.3s;
-}
-
-.pager button:hover {
-  background: #fff;
-  color: #000;
-}
-
-#pageInfo {
-  font-size: 20px;
-  color: var(--gold);
-}
-
-/* ------------------------------------------------------------------------------------
-   CONTACT PAGE
------------------------------------------------------------------------------------- */
-.contact-wrapper {
-  padding-top: 150px;
-  padding-bottom: 100px;
-  text-align: center;
-}
-
-.contact-wrapper h1 {
-  font-size: 48px;
-  color: var(--gold);
-}
-
-.contact-info {
-  margin-top: 25px;
-  font-size: 26px;
-}
-
-.contact-info a {
-  color: var(--gold);
-  text-decoration: none;
-}
-
-/* ------------------------------------------------------------------------------------
-   RESPONSIVE
------------------------------------------------------------------------------------- */
-@media (max-width: 600px) {
-  .hero h1 {font-size: 40px;}
-  .video-frame iframe {height: 180px;}
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .hero-heading { font-size: 34px; }
+  .hero-name { font-size: 17px; }
+  .nav-center { gap: 25px; font-size: 15px; }
 }
