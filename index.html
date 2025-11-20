@@ -26,6 +26,28 @@
       overflow-x: hidden;
     }
 
+    /* =======================
+       GOLD SPOTLIGHT EFFECT
+       ======================= */
+    .gold-leak {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      pointer-events: none;
+      background: radial-gradient(circle,
+          rgba(255, 220, 120, 0.60) 0%,
+          rgba(255, 200, 80, 0.35) 35%,
+          rgba(255, 180, 60, 0.00) 70%);
+      filter: blur(25px);
+      mix-blend-mode: screen;
+      opacity: 0.75;
+      transform: translate(-50%, -50%);
+      z-index: 3;
+    }
+
     /* HERO */
     .hero {
       position: relative;
@@ -39,6 +61,7 @@
       text-align: center;
       padding: 80px 20px 20px 20px;
       animation: slideShow 30s infinite;
+      overflow: hidden;
     }
 
     .hero::after {
@@ -50,6 +73,7 @@
       height: 100%;
       background: rgba(0, 0, 0, 0.55);
       backdrop-filter: blur(3px);
+      z-index: 1;
     }
 
     .hero>* {
@@ -165,7 +189,6 @@
       border-radius: 12px;
     }
 
-    /* ARROWS - beside the frame */
     .carousel-btn {
       position: absolute;
       top: 50%;
@@ -247,7 +270,6 @@
         height: 200px;
       }
 
-      /* arrows closer for mobile */
       .carousel-btn.prev {
         left: -10px;
       }
@@ -277,6 +299,8 @@
 
   <!-- HERO -->
   <div class="hero">
+    <div class="gold-leak"></div>
+
     <h1>Hesham Abdelhamed</h1>
     <p>Filmmaker | Video Editor | One Man Crew</p>
   </div>
@@ -300,31 +324,19 @@
 
       <div class="carousel-track">
 
-        <div class="video-box"><iframe src="https://player.vimeo.com/video/1081231929" allowfullscreen></iframe></div>
+        <div class="video-box"><iframe src="https://player.vimeo.com/video/1081231929"></iframe></div>
+        <div class="video-box"><iframe src="https://player.vimeo.com/video/1093436208"></iframe></div>
+        <div class="video-box"><iframe src="https://player.vimeo.com/video/1012761186"></iframe></div>
+        <div class="video-box"><iframe src="https://player.vimeo.com/video/782962222"></iframe></div>
+        <div class="video-box"><iframe src="https://player.vimeo.com/video/1081226158"></iframe></div>
+        <div class="video-box"><iframe src="https://player.vimeo.com/video/1137725566"></iframe></div>
+        <div class="video-box"><iframe src="https://player.vimeo.com/video/1088303838"></iframe></div>
+        <div class="video-box"><iframe src="https://player.vimeo.com/video/697540206"></iframe></div>
+        <div class="video-box"><iframe src="https://player.vimeo.com/video/348850766"></iframe></div>
+        <div class="video-box"><iframe src="https://player.vimeo.com/video/1127837184"></iframe></div>
+        <div class="video-box"><iframe src="https://player.vimeo.com/video/348850143"></iframe></div>
+        <div class="video-box"><iframe src="https://www.youtube.com/embed/n4gmpMHBUK4"></iframe></div>
 
-        <div class="video-box"><iframe src="https://player.vimeo.com/video/1093436208" allowfullscreen></iframe></div>
-
-        <div class="video-box"><iframe src="https://player.vimeo.com/video/1012761186" allowfullscreen></iframe></div>
-
-        <div class="video-box"><iframe src="https://player.vimeo.com/video/782962222" allowfullscreen></iframe></div>
-
-        <div class="video-box"><iframe src="https://player.vimeo.com/video/1081226158" allowfullscreen></iframe></div>
-
-        <div class="video-box"><iframe src="https://player.vimeo.com/video/1137725566" allowfullscreen></iframe></div>
-
-        <div class="video-box"><iframe src="https://player.vimeo.com/video/1088303838" allowfullscreen></iframe></div>
-
-        <div class="video-box"><iframe src="https://player.vimeo.com/video/697540206" allowfullscreen></iframe></div>
-
-        <div class="video-box"><iframe src="https://player.vimeo.com/video/348850766" allowfullscreen></iframe></div>
-
-        <div class="video-box"><iframe src="https://player.vimeo.com/video/1127837184" allowfullscreen></iframe></div>
-
-        <div class="video-box"><iframe src="https://player.vimeo.com/video/348850143" allowfullscreen></iframe></div>
-
-        <div class="video-box"><iframe src="https://www.youtube.com/embed/n4gmpMHBUK4?list=PLBPmhDfEfvB-RSouZSFYu155gX2WCgseA"></iframe></div>
-
-      
       </div>
 
       <button class="carousel-btn next">&#10095;</button>
@@ -346,21 +358,19 @@
     <p style="font-size:26px; margin-top:10px; color:#7d2cff;">
       +966 503064408
     </p>
-    <!-- SOCIAL ICONS -->
+
     <div class="social-icons">
       <a href="https://www.instagram.com/hisham.abdlhamed" target="_blank">
-        <img src="img/instagram.png" alt="Instagram">
+        <img src="img/instagram.png">
       </a>
-
       <a href="https://www.tiktok.com/@hisham.abdelhamed" target="_blank">
-        <img src="img/tiktok.png" alt="TikTok">
+        <img src="img/tiktok.png">
       </a>
-
       <a href="https://www.facebook.com/hishamabdelhamedd/" target="_blank">
-        <img src="img/facebook.png" alt="Facebook">
+        <img src="img/facebook.png">
       </a>
       <a href="https://www.linkedin.com/in/heshamabdelhamed/" target="_blank">
-        <img src="img/linkdin.png" alt="Facebook">
+        <img src="img/linkdin.png">
       </a>
     </div>
   </div>
@@ -369,7 +379,7 @@
     © 2025 Hesham Abdelhamed
   </footer>
 
-  <!-- JS + SWIPE -->
+  <!-- JS -->
   <script>
     const track = document.querySelector(".carousel-track");
     const prev = document.querySelector(".carousel-btn.prev");
@@ -395,30 +405,12 @@
 
     window.addEventListener("resize", updateCarousel);
 
-    /* SWIPE CONTROL */
-    let startX = 0;
-    let endX = 0;
-
-    track.addEventListener("touchstart", (e) => {
-      startX = e.touches[0].clientX;
-      endX = startX;
-    });
-
-    track.addEventListener("touchmove", (e) => {
-      endX = e.touches[0].clientX;
-    });
-
-    track.addEventListener("touchend", () => {
-      const distance = endX - startX;
-
-      if (Math.abs(distance) > 50) {
-        if (distance < 0) {
-          const items = document.querySelectorAll(".video-box").length;
-          if (index < items - 1) index++;
-        } else {
-          if (index > 0) index--;
-        }
-        updateCarousel();
+    /* SPOTLIGHT MOVES WITH MOUSE */
+    document.addEventListener("mousemove", (e) => {
+      const leak = document.querySelector(".gold-leak");
+      if (leak) {
+        leak.style.left = e.clientX + "px";
+        leak.style.top = e.clientY + "px";
       }
     });
 
