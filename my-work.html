@@ -11,15 +11,12 @@
   <!-- Montserrat -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap"
-    rel="stylesheet"
-  />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="style.css" />
 </head>
 
-<body>
+<body class="work-body">
 
   <!-- NAV -->
   <header class="nav">
@@ -32,24 +29,25 @@
 
   <!-- MY WORK WRAPPER -->
   <main class="work-wrapper">
-    <div class="work-inner">
-      <h1 class="work-title">My Work</h1>
-      <p class="work-sub">
-        A selection of films, commercials, and visual pieces crafted with a cinematic approach.
-      </p>
 
-      <!-- GRID -->
-      <div class="videos-grid" id="videoGrid"></div>
-
-      <!-- PAGINATION -->
-      <div class="pager">
-        <button id="prevPage">&#9650;</button>
-        <span id="pageInfo">Page 1</span>
-        <button id="nextPage">&#9660;</button>
-      </div>
+    <div class="work-header">
+      <h1>My Work</h1>
+      <p>A selection of films, commercials, and visual pieces crafted with a cinematic touch.</p>
     </div>
+
+    <!-- GRID -->
+    <div class="videos-grid" id="videoGrid"></div>
+
+    <!-- PAGINATION -->
+    <div class="pager">
+      <button id="prevPage">&#9650;</button>
+      <span id="pageInfo">Page 1</span>
+      <button id="nextPage">&#9660;</button>
+    </div>
+
   </main>
 
+  <!-- SCRIPT -->
   <script>
     const videos = [
       "https://player.vimeo.com/video/1081231929",
@@ -86,7 +84,6 @@
           <div class="video-frame">
             <iframe src="${videos[i]}" allowfullscreen></iframe>
           </div>
-          <div class="video-meta">Video #${i + 1}</div>
         `;
         grid.appendChild(card);
       }
@@ -117,12 +114,6 @@
     renderPage(currentPage);
   </script>
 
-  <!-- FIX FOR EMPTY PAGE -->
-  <script>
-    window.addEventListener("load", () => {
-      document.body.classList.add("page-loaded");
-    });
-  </script>
-
 </body>
+
 </html>
