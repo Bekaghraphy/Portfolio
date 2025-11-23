@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Hesham Abdelhamed | CV</title>
 
+  <!-- ربط ستايل الموقع الأساسي -->
+  <link rel="stylesheet" href="style.css" />
+
   <style>
     :root {
       --bg: #05050a;
@@ -25,7 +28,6 @@
     }
 
     body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background: radial-gradient(circle at top, #181828 0, #05050a 55%, #020206 100%);
       color: var(--text);
       line-height: 1.7;
@@ -43,7 +45,7 @@
       flex-direction: column;
     }
 
-    /* NAV */
+    /* NAV (مخصص للـ CV لكن منسجم مع ألوان الموقع) */
     .nav {
       position: sticky;
       top: 0;
@@ -426,7 +428,7 @@
     .rtl {
       direction: rtl;
       text-align: right;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family: inherit;
     }
 
     .rtl .cv-list li {
@@ -441,6 +443,24 @@
 
     .rtl .badge-row {
       justify-content: flex-start;
+    }
+
+    /* JOB TITLE HIGHLIGHT */
+    .job-title {
+      font-size: 15px;
+      font-weight: 700;
+      padding: 10px 14px;
+      margin: 12px 0;
+      border-left: 3px solid var(--accent);
+      background: rgba(245,193,74,0.06);
+      color: var(--text);
+      border-radius: 8px;
+      line-height: 1.6;
+    }
+
+    .rtl .job-title {
+      border-left: none;
+      border-right: 3px solid var(--accent);
     }
 
     /* FOOTER CTA */
@@ -508,7 +528,6 @@
           </div>
         </div>
         <nav class="nav-links">
-          <!-- عدّل المسارات حسب هيكل الموقع الحالي -->
           <a href="/" class="nav-link">Home</a>
           <a href="/#work" class="nav-link">Work</a>
           <span class="lang-pill">EN · AR</span>
@@ -519,7 +538,7 @@
 
     <!-- HERO -->
     <main>
-      <section class="hero">
+      <section class="hero fade-up">
         <!-- LEFT: EN HERO -->
         <div>
           <div class="hero-tag">CV · PORTFOLIO</div>
@@ -551,7 +570,7 @@
         </div>
 
         <!-- RIGHT: CONTACT CARD -->
-        <aside class="hero-card">
+        <aside class="hero-card fade-up">
           <h2>Contact & Links</h2>
           <ul class="contact-list">
             <li><span>Location:</span> Riyadh, Saudi Arabia</li>
@@ -579,7 +598,7 @@
       <section class="section-wrapper">
         <div class="section-inner">
           <!-- LEFT COLUMN: ENGLISH -->
-          <article class="card">
+          <article class="card fade-up">
             <header class="card-header">
               <div class="card-tag">Profile</div>
               <h2 class="card-title">Professional Summary</h2>
@@ -611,8 +630,10 @@
 
             <div class="cv-group">
               <div class="cv-label">Current Role</div>
+              <div class="job-title">
+                FLOW Medical Solutions (HMG) – Multimedia Producer
+              </div>
               <p class="cv-text">
-                <strong>FLOW Medical Solutions (HMG) – Multimedia Producer</strong><br />
                 January 2024 – Present · Riyadh, Saudi Arabia
               </p>
               <ul class="cv-list">
@@ -626,8 +647,10 @@
             <div class="cv-group">
               <div class="cv-label">Recent Experience</div>
 
+              <div class="job-title">
+                Freelance Filmmaker
+              </div>
               <p class="cv-text">
-                <strong>Freelance Filmmaker</strong><br />
                 January 2023 – January 2024 · Cairo, Lebanon, Morocco
               </p>
               <ul class="cv-list">
@@ -635,8 +658,10 @@
                 <li>Collaborated with international institutions such as BBC, DW, and French Television.</li>
               </ul>
 
-              <p class="cv-text" style="margin-top:8px;">
-                <strong>Baheya Foundation – Manager of Multimedia</strong><br />
+              <div class="job-title">
+                Baheya Foundation – Manager of Multimedia
+              </div>
+              <p class="cv-text">
                 September 2022 – December 2022 · Cairo, Egypt
               </p>
               <ul class="cv-list">
@@ -644,8 +669,10 @@
                 <li>Handled sensitive storytelling with respect, impact, and authenticity.</li>
               </ul>
 
-              <p class="cv-text" style="margin-top:8px;">
-                <strong>Media Vision Company International – Filmmaker</strong><br />
+              <div class="job-title">
+                Media Vision Company International – Filmmaker
+              </div>
+              <p class="cv-text">
                 August 2018 – December 2022 · Cairo, Lebanon, Morocco, Jordan, Tunisia
               </p>
               <ul class="cv-list">
@@ -653,8 +680,10 @@
                 <li>Documented social, cultural, and human stories in changing environments.</li>
               </ul>
 
-              <p class="cv-text" style="margin-top:8px;">
-                <strong>Al-Manassa – Multimedia Reporter</strong><br />
+              <div class="job-title">
+                Al-Manassa – Multimedia Reporter
+              </div>
+              <p class="cv-text">
                 November 2020 – April 2022 · Cairo, Egypt
               </p>
               <ul class="cv-list">
@@ -662,8 +691,10 @@
                 <li>Handled filming, editing, and design for multiple multimedia stories.</li>
               </ul>
 
-              <p class="cv-text" style="margin-top:8px;">
-                <strong>WAYA Media – Videography & Video Editor</strong><br />
+              <div class="job-title">
+                WAYA Media – Videography & Video Editor
+              </div>
+              <p class="cv-text">
                 December 2019 – October 2020 · Cairo, Egypt
               </p>
               <ul class="cv-list">
@@ -673,8 +704,11 @@
 
             <div class="cv-group">
               <div class="cv-label">Earlier Career</div>
+
+              <div class="job-title">
+                Gammarapho Francias Agency – Multimedia Reporter
+              </div>
               <p class="cv-text">
-                <strong>Gammarapho Francias Agency – Multimedia Reporter</strong><br />
                 September 2016 – April 2020 · France
               </p>
               <ul class="cv-list">
@@ -682,16 +716,20 @@
                 <li>Produced content used by Al Arabiya, BBC, DW, Reuters, AP, and AFP.</li>
               </ul>
 
-              <p class="cv-text" style="margin-top:8px;">
-                <strong>Alaraby Television Network – Multimedia Reporter</strong><br />
+              <div class="job-title">
+                Alaraby Television Network – Multimedia Reporter
+              </div>
+              <p class="cv-text">
                 April 2014 – April 2016 · London, United Kingdom
               </p>
               <ul class="cv-list">
                 <li>Produced reports, investigations, and documentary pieces.</li>
               </ul>
 
-              <p class="cv-text" style="margin-top:8px;">
-                <strong>Freelance Multimedia Reporter</strong><br />
+              <div class="job-title">
+                Freelance Multimedia Reporter
+              </div>
+              <p class="cv-text">
                 January 2011 – April 2014 · London, United Kingdom
               </p>
               <ul class="cv-list">
@@ -716,7 +754,7 @@
           </article>
 
           <!-- RIGHT COLUMN: ARABIC -->
-          <article class="card rtl">
+          <article class="card rtl fade-up">
             <header class="card-header">
               <div class="card-tag">الملف المهني</div>
               <h2 class="card-title">نبذة تعريفية</h2>
@@ -747,8 +785,10 @@
 
             <div class="cv-group">
               <div class="cv-label">العمل الحالي</div>
+              <div class="job-title rtl">
+                شركة فلو للخدمات الطبية (HMG) – منتج وسائط متعددة
+              </div>
               <p class="cv-text">
-                <strong>شركة فلو للخدمات الطبية (HMG) – منتج وسائط متعددة</strong><br />
                 يناير 2024 – حتى الآن · الرياض، السعودية
               </p>
               <ul class="cv-list">
@@ -762,8 +802,10 @@
             <div class="cv-group">
               <div class="cv-label">خبرات حديثة</div>
 
+              <div class="job-title rtl">
+                مخرج أفلام حر
+              </div>
               <p class="cv-text">
-                <strong>مخرج أفلام حر</strong><br />
                 يناير 2023 – يناير 2024 · القاهرة، لبنان، المغرب
               </p>
               <ul class="cv-list">
@@ -771,8 +813,10 @@
                 <li>التعاون مع مؤسسات دولية مثل BBC وDW وتلفزيونات فرنسية.</li>
               </ul>
 
-              <p class="cv-text" style="margin-top:8px;">
-                <strong>مؤسسة بهية – مدير قسم الوسائط المتعددة</strong><br />
+              <div class="job-title rtl">
+                مؤسسة بهية – مدير قسم الوسائط المتعددة
+              </div>
+              <p class="cv-text">
                 سبتمبر 2022 – ديسمبر 2022 · القاهرة، مصر
               </p>
               <ul class="cv-list">
@@ -780,8 +824,10 @@
                 <li>تقديم القصص بشكل إنساني يحفظ خصوصيتهن ويعبر عن رحلتهن مع العلاج.</li>
               </ul>
 
-              <p class="cv-text" style="margin-top:8px;">
-                <strong>شركة ميديا فيجن إنترناشونال – مخرج أفلام</strong><br />
+              <div class="job-title rtl">
+                شركة ميديا فيجن إنترناشونال – مخرج أفلام
+              </div>
+              <p class="cv-text">
                 أغسطس 2018 – ديسمبر 2022 · القاهرة، لبنان، المغرب، الأردن، تونس
               </p>
               <ul class="cv-list">
@@ -789,16 +835,20 @@
                 <li>توثيق تجارب إنسانية وثقافية في سياقات متغيرة.</li>
               </ul>
 
-              <p class="cv-text" style="margin-top:8px;">
-                <strong>المنصة – مراسل وسائط متعددة</strong><br />
+              <div class="job-title rtl">
+                المنصة – مراسل وسائط متعددة
+              </div>
+              <p class="cv-text">
                 نوفمبر 2020 – أبريل 2022 · القاهرة، مصر
               </p>
               <ul class="cv-list">
                 <li>إنتاج قصص وتقارير مرئية لمنصة رقمية رائدة في السرد البصري.</li>
               </ul>
 
-              <p class="cv-text" style="margin-top:8px;">
-                <strong>واية ميديا – مصور فيديو ومونتير</strong><br />
+              <div class="job-title rtl">
+                واية ميديا – مصور فيديو ومونتير
+              </div>
+              <p class="cv-text">
                 ديسمبر 2019 – أكتوبر 2020 · القاهرة، مصر
               </p>
               <ul class="cv-list">
@@ -809,8 +859,10 @@
             <div class="cv-group">
               <div class="cv-label">بدايات وتجارب دولية</div>
 
+              <div class="job-title rtl">
+                وكالة Gamma الفرنسية – مراسل وسائط متعددة
+              </div>
               <p class="cv-text">
-                <strong>وكالة Gamma الفرنسية – مراسل وسائط متعددة</strong><br />
                 سبتمبر 2016 – أبريل 2020 · فرنسا
               </p>
               <ul class="cv-list">
@@ -818,16 +870,20 @@
                 <li>إنتاج مواد لقنوات كبرى مثل العربية وBBC وDW ورويترز ووكالات أنباء عالمية.</li>
               </ul>
 
-              <p class="cv-text" style="margin-top:8px;">
-                <strong>شبكة التلفزيون العربي – مراسل وسائط متعددة</strong><br />
+              <div class="job-title rtl">
+                شبكة التلفزيون العربي – مراسل وسائط متعددة
+              </div>
+              <p class="cv-text">
                 أبريل 2014 – أبريل 2016 · لندن، المملكة المتحدة
               </p>
               <ul class="cv-list">
                 <li>إعداد تقارير وتحقيقات وأفلام وثائقية قصيرة.</li>
               </ul>
 
-              <p class="cv-text" style="margin-top:8px;">
-                <strong>مراسل حر – وسائط متعددة</strong><br />
+              <div class="job-title rtl">
+                مراسل حر – وسائط متعددة
+              </div>
+              <p class="cv-text">
                 يناير 2011 – أبريل 2014 · لندن، المملكة المتحدة
               </p>
               <ul class="cv-list">
@@ -863,7 +919,7 @@
       </section>
 
       <!-- FOOTER CTA -->
-      <section class="footer-cta">
+      <section class="footer-cta fade-up">
         <div class="footer-card">
           <div class="footer-title">Ready to explore a new collaboration?</div>
           <div class="footer-text">
@@ -887,5 +943,18 @@
       </section>
     </main>
   </div>
+
+  <!-- ANIMATION SCRIPT -->
+  <script>
+    const animated = document.querySelectorAll('.fade-up');
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('show');
+      });
+    }, { threshold: 0.15 });
+
+    animated.forEach(el => observer.observe(el));
+  </script>
 </body>
 </html>
