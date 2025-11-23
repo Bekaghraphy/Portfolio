@@ -11,64 +11,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="style.css" />
-
-  <style>
-    /* ================= NEW EPIC INTRO ================= */
-    #intro-screen {
-      position: fixed;
-      inset: 0;
-      background: #000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 10000;
-      opacity: 1;
-      transition: opacity 1s ease;
-    }
-
-    #intro-screen.fade-out {
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    .intro-name {
-      font-size: 48px;
-      font-weight: 700;
-      color: #d4af37;
-      letter-spacing: 0.18em;
-      opacity: 0;
-      transform: scale(0.92);
-      animation: introFade 2.8s ease forwards;
-      text-shadow: 0 0 22px rgba(212,175,55,0.45);
-    }
-
-    @keyframes introFade {
-      0% {
-        opacity: 0;
-        transform: scale(0.92);
-      }
-      40% {
-        opacity: 1;
-        transform: scale(1);
-      }
-      80% {
-        opacity: 1;
-        transform: scale(1.04);
-      }
-      100% {
-        opacity: 0;
-        transform: scale(1.08);
-      }
-    }
-  </style>
 </head>
 
 <body>
-
-  <!-- ================= NEW EPIC INTRO ================= -->
-  <div id="intro-screen">
-    <div class="intro-name">H E S H A M &nbsp; A B D E L H A M E D</div>
-  </div>
 
   <!-- NAV -->
   <header class="nav">
@@ -106,11 +51,8 @@
   </section>
 
   <script>
-    /* Handle intro timing */
     window.addEventListener("load", function () {
-      setTimeout(function () {
-        document.getElementById("intro-screen").classList.add("fade-out");
-      }, 2600); // مدة الأنيميشن
+      document.body.classList.add("page-loaded");
     });
   </script>
 
