@@ -32,6 +32,8 @@
       color: var(--text);
       line-height: 1.7;
       -webkit-font-smoothing: antialiased;
+      opacity: 1;              /* مهم: عشان الصفحة ما تبقاش شفافة */
+      transition: none;
     }
 
     a {
@@ -513,6 +515,18 @@
         padding-inline: 14px;
       }
     }
+
+    /* FADE-UP ANIMATION */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.8s ease;
+    }
+
+    .fade-up.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
   </style>
 </head>
 <body>
@@ -821,7 +835,7 @@
               </p>
               <ul class="cv-list">
                 <li>إدارة قسم التصوير والمونتاج لحكايات نساء بطلات يحاربن السرطان.</li>
-                <li>تقديم القصص بشكل إنساني يحفظ خصوصيتهن ويعبر عن رحلتهن مع العلاج.</li>
+                <li>تقديم القصص بشكل إنساني يحفظ خصوصيتهن ويعبر عن رحلتهم مع العلاج.</li>
               </ul>
 
               <div class="job-title rtl">
