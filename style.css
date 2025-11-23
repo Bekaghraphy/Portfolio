@@ -194,14 +194,4 @@ body.page-loaded { opacity: 1; }
   .hero-heading { font-size: 28px; }
 }
 
-/* FADE-UP ANIMATION (للاستخدام في CV وغيره) */
-.fade-up {
-  opacity: 0;
-  transform: translateY(25px);
-  transition: all 0.9s ease;
-}
 
-.fade-up.show {
-  opacity: 1;
-  transform: translateY(0);
-}
