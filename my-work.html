@@ -347,12 +347,23 @@
       overflow: hidden;
     }
 
-    .video-modal-frame iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-      display: block;
-    }
+    .video-modal-frame {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.video-modal-frame iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+  object-fit: cover;
+}
+}
 
     .video-modal-close {
       position: absolute;
