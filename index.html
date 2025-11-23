@@ -11,9 +11,96 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="style.css" />
+
+  <style>
+    /* ================= PRELOADER ================= */
+    #preloader {
+      position: fixed;
+      inset: 0;
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.6s ease, visibility 0.6s ease;
+    }
+
+    body.page-loaded #preloader {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .preloader-inner {
+      text-align: center;
+      font-family: 'Montserrat', sans-serif;
+      color: #fff;
+    }
+
+    .preloader-label {
+      font-size: 13px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #777;
+      margin-bottom: 12px;
+    }
+
+    .preloader-name {
+      font-size: 30px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 2px solid #fff;
+      margin-bottom: 18px;
+      animation: typing 2.2s steps(22, end), blink 0.7s step-end infinite;
+    }
+
+    .preloader-bar {
+      width: 240px;
+      height: 4px;
+      background: #222;
+      border-radius: 99px;
+      overflow: hidden;
+      margin: 0 auto;
+    }
+
+    .preloader-bar-fill {
+      width: 0;
+      height: 100%;
+      background: linear-gradient(90deg, #00d4ff, #00ffa6);
+      animation: loadbar 2.4s ease-out forwards;
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      to   { width: 22ch; }
+    }
+
+    @keyframes blink {
+      from, to { border-color: transparent; }
+      50%      { border-color: #fff; }
+    }
+
+    @keyframes loadbar {
+      from { width: 0; }
+      to   { width: 100%; }
+    }
+  </style>
 </head>
 
 <body>
+
+  <!-- ================= PRELOADER ================= -->
+  <div id="preloader">
+    <div class="preloader-inner">
+      <div class="preloader-label">Loading portfolio...</div>
+      <div class="preloader-name">Hesham Abdelhamed</div>
+      <div class="preloader-bar">
+        <div class="preloader-bar-fill"></div>
+      </div>
+    </div>
+  </div>
 
   <!-- NAV -->
   <header class="nav">
@@ -40,10 +127,10 @@
       </div>
 
       <div class="social-row">
+        <a class="social-icon" href="https://www.linkedin.com/in/heshamabdelhamed" target="_blank">IN</a>
         <a class="social-icon" href="https://www.instagram.com/hisham.abdlhamed" target="_blank">IG</a>
         <a class="social-icon" href="https://www.tiktok.com/@hisham.abdelhamed" target="_blank">TT</a>
         <a class="social-icon" href="https://www.facebook.com/hishamabdelhamedd" target="_blank">FB</a>
-        <a class="social-icon" href="https://www.linkedin.com/in/heshamabdelhamed" target="_blank">IN</a>
         <a class="social-icon" href="mailto:per.hisham@gmail.com">@</a>
         <a class="social-icon" href="tel:+966503064408">☎</a>
       </div>
@@ -52,7 +139,9 @@
 
   <script>
     window.addEventListener("load", function () {
-      document.body.classList.add("page-loaded");
+      setTimeout(function () {
+        document.body.classList.add("page-loaded");
+      }, 2400);
     });
   </script>
 
