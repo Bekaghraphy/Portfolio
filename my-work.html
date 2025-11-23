@@ -10,11 +10,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet" />
 
+  <!-- ستايل الموقع الأساسي -->
   <link rel="stylesheet" href="style.css" />
 
   <!-- SEO -->
   <meta name="description" content="A curated selection of cinematic work by filmmaker and video editor Hesham Abdelhamed – documentary films, commercial projects, and digital stories from the Middle East and beyond." />
-  <meta name="keywords" content="Hesham Abdelhamed, filmmaker, director, video editor, documentary, commercial films, Riyadh, Cairo, Middle East, cinematic portfolio" />
+  <meta name="keywords" content="Hesham Abdelhamed, filmmaker, director, video editor, documentary films, commercial, Riyadh, Cairo, Middle East, cinematic portfolio" />
   <meta name="robots" content="index,follow" />
   <link rel="canonical" href="https://www.hisham.digital/my-work.html" />
 
@@ -23,6 +24,7 @@
   <meta property="og:description" content="Cinematic portfolio of documentary, commercial, and digital work by filmmaker and editor Hesham Abdelhamed." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://www.hisham.digital/my-work.html" />
+  <!-- غيّر الصورة دي لما ترفع OG حقيقية -->
   <meta property="og:image" content="https://www.hisham.digital/img/og-cover.jpg" />
 
   <!-- Twitter Card -->
@@ -74,11 +76,11 @@
       font-size: 40px;
       font-weight: 700;
       margin-bottom: 12px;
-      color: #fff;
+      color: #ffffff;
     }
 
     .work-hero-title span {
-      color: #d4af37;
+      color: #f5c14a;
     }
 
     .work-hero-text p {
@@ -86,6 +88,7 @@
       line-height: 1.8;
       opacity: 0.9;
       margin-bottom: 14px;
+      color: #f3f3f6;
     }
 
     .work-tags {
@@ -100,26 +103,28 @@
       padding: 5px 10px;
       border-radius: 999px;
       border: 1px solid rgba(255,255,255,0.18);
-      opacity: 0.8;
+      opacity: 0.85;
+      color: #f3f3f6;
+      background: rgba(10,10,16,0.7);
     }
 
     .work-hero-feature {
       position: relative;
       border-radius: 14px;
       overflow: hidden;
-      background: radial-gradient(circle at top left, #d4af37 0, #000 55%);
-      min-height: 220px;
+      background: radial-gradient(circle at top left, #f5c14a 0, #000 55%);
+      min-height: 230px;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 18px 40px rgba(0,0,0,0.7);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.75);
       cursor: pointer;
     }
 
     .feature-overlay {
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at center, rgba(0,0,0,0.1) 0, rgba(0,0,0,0.85) 68%);
+      background: radial-gradient(circle at center, rgba(0,0,0,0.15) 0, rgba(0,0,0,0.88) 70%);
     }
 
     .feature-content {
@@ -134,12 +139,14 @@
       text-transform: uppercase;
       opacity: 0.8;
       margin-bottom: 10px;
+      color: #f3f3f6;
     }
 
     .feature-text {
       font-size: 16px;
       font-weight: 600;
       margin-bottom: 14px;
+      color: #ffffff;
     }
 
     .feature-cta {
@@ -149,17 +156,18 @@
       font-size: 13px;
       padding: 8px 14px;
       border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.6);
-      background: rgba(0,0,0,0.4);
+      border: 1px solid rgba(255,255,255,0.7);
+      background: rgba(0,0,0,0.5);
       cursor: pointer;
       transition: 0.2s ease;
+      color: #f3f3f6;
     }
 
     .feature-cta span.play-icon {
       width: 22px;
       height: 22px;
       border-radius: 50%;
-      border: 1px solid rgba(255,255,255,0.8);
+      border: 1px solid rgba(255,255,255,0.9);
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -167,9 +175,10 @@
     }
 
     .feature-cta:hover {
-      border-color: #d4af37;
-      background: rgba(0,0,0,0.75);
+      border-color: #f5c14a;
+      background: rgba(0,0,0,0.8);
       transform: translateY(-1px);
+      color: #ffffff;
     }
 
     .videos-grid {
@@ -200,25 +209,39 @@
     .video-card {
       position: relative;
       border-radius: 12px;
-      background: radial-gradient(circle at top, #2b2b2b 0, #050505 55%);
+      background: #05050a;
       overflow: hidden;
       cursor: pointer;
       transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
-      border: 1px solid rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
       min-height: 170px;
     }
 
     .video-card:hover {
       transform: translateY(-4px);
-      box-shadow: 0 18px 32px rgba(0,0,0,0.85);
-      border-color: rgba(212,175,55,0.7);
+      box-shadow: 0 18px 32px rgba(0,0,0,0.9);
+      border-color: rgba(245,193,74,0.8);
     }
 
     .video-thumb {
       position: relative;
       width: 100%;
       padding-top: 56.25%;
-      background: radial-gradient(circle at top left, #d4af37 0, #000 50%, #111 100%);
+      overflow: hidden;
+    }
+
+    .video-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.02);
+      transition: transform 0.35s ease;
+    }
+
+    .video-card:hover .video-img {
+      transform: scale(1.07);
     }
 
     .video-thumb-overlay {
@@ -228,14 +251,15 @@
       flex-direction: column;
       justify-content: space-between;
       padding: 10px 12px;
-      background: radial-gradient(circle at center, rgba(0,0,0,0.1) 0, rgba(0,0,0,0.85) 70%);
+      background: linear-gradient(to top, rgba(0,0,0,0.8) 0, rgba(0,0,0,0.05) 55%);
     }
 
     .video-index {
       font-size: 11px;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      opacity: 0.8;
+      opacity: 0.85;
+      color: #f5c14a;
     }
 
     .video-bottom-row {
@@ -247,28 +271,33 @@
 
     .video-label {
       font-size: 13px;
-      opacity: 0.9;
+      opacity: 0.95;
+      color: #ffffff;
     }
 
     .video-type {
       font-size: 11px;
-      opacity: 0.7;
+      opacity: 0.75;
+      color: #f3f3f6;
     }
 
     .video-play-icon {
       width: 32px;
       height: 32px;
       border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.85);
+      border: 1px solid rgba(255,255,255,0.9);
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 14px;
+      color: #ffffff;
+      background: rgba(0,0,0,0.6);
+      transition: 0.25s ease;
     }
 
     .video-card:hover .video-play-icon {
-      background: #d4af37;
-      border-color: #d4af37;
+      background: #f5c14a;
+      border-color: #f5c14a;
       color: #000;
     }
 
@@ -283,24 +312,25 @@
     .work-section-header h2 {
       font-size: 18px;
       font-weight: 600;
-      color: #fff;
+      color: #ffffff;
     }
 
     .work-section-header p {
       font-size: 13px;
       opacity: 0.8;
+      color: #f3f3f6;
     }
 
     /* Modal */
     .video-modal {
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.85);
+      background: rgba(0,0,0,0.9);
       display: none;
       align-items: center;
       justify-content: center;
       z-index: 80;
-      padding: 18px;
+      padding: 16px;
     }
 
     .video-modal.open {
@@ -308,13 +338,12 @@
     }
 
     .video-modal-content {
-      width: min(960px, 100%);
-      max-width: 100%;
+      width: min(90vw, 1200px);
       aspect-ratio: 16 / 9;
       background: #000;
-      border-radius: 12px;
+      border-radius: 16px;
       position: relative;
-      box-shadow: 0 22px 45px rgba(0,0,0,0.9);
+      box-shadow: 0 26px 50px rgba(0,0,0,0.95);
       overflow: hidden;
     }
 
@@ -329,8 +358,8 @@
       position: absolute;
       top: 10px;
       right: 12px;
-      width: 30px;
-      height: 30px;
+      width: 32px;
+      height: 32px;
       border-radius: 999px;
       border: none;
       background: rgba(0,0,0,0.7);
@@ -346,7 +375,7 @@
     }
 
     .video-modal-close:hover {
-      background: rgba(212,175,55,0.9);
+      background: rgba(245,193,74,0.95);
       transform: translateY(-1px);
       color: #000;
     }
@@ -354,14 +383,17 @@
     .more-text {
       margin-top: 30px;
       text-align: center;
-      color: #d4af37;
+      color: #f5c14a;
       font-size: 14px;
       opacity: 0.9;
     }
+
+    /* بس تأكد إن الصفحة واخدة كلاس page-work من style.css */
   </style>
 </head>
 
 <body>
+  <!-- نفس النافبار الأساسي -->
   <header class="nav">
     <nav class="nav-center">
       <a href="index.html">Home</a>
@@ -369,7 +401,7 @@
     </nav>
   </header>
 
-  <!-- SIDE TITLE -->
+  <!-- SIDE TITLE من ستايل الموقع -->
   <div class="side-title">MY WORK</div>
 
   <!-- CONTENT -->
@@ -381,8 +413,8 @@
             A curated reel of <span>cinematic stories</span>.
           </h1>
           <p>
-            Documentary films, commercial pieces, human stories, and medical narratives produced across Egypt, Saudi Arabia, and the wider region.
-            Each project balances storytelling, image, and emotion.
+            Documentary films, commercial pieces, human stories, and medical narratives produced across Egypt, Saudi Arabia,
+            and the wider region. Each project balances storytelling, image, and emotion.
           </p>
           <p>
             اختر أي عمل لعرضه في شاشة سينمائية كاملة، أو ابدأ بالمقطع المميز في الأعلى.
@@ -395,12 +427,13 @@
           </div>
         </div>
 
+        <!-- Featured Reel (أول فيديو في الليست) -->
         <div class="work-hero-feature" data-video-index="0">
           <div class="feature-overlay"></div>
           <div class="feature-content">
             <div class="feature-label">Featured Reel</div>
             <div class="feature-text">
-              Start with the latest highlight from recent projects.
+              Start with a highlighted piece from recent projects across the region.
             </div>
             <button class="feature-cta" type="button">
               <span class="play-icon">▶</span>
@@ -436,6 +469,7 @@
       document.body.classList.add('page-loaded');
     });
 
+    // نفس الروابط اللي كنت مستخدمها قبل كده
     const videos = [
       "https://player.vimeo.com/video/1081231929",
       "https://player.vimeo.com/video/1093436208",
@@ -459,14 +493,55 @@
     const featureButton = document.querySelector('.feature-cta');
 
     function getTypeLabel(src) {
-      if (src.includes('youtube.com')) return 'YouTube';
+      if (src.includes('youtube.com') || src.includes('youtu.be')) return 'YouTube';
       if (src.includes('vimeo.com')) return 'Vimeo';
       return 'Video';
     }
 
-    function buildGrid() {
+    async function fetchThumbnail(src) {
+      try {
+        // Vimeo
+        if (src.includes('vimeo.com')) {
+          const match = src.match(/vimeo\.com\/video\/(\d+)/);
+          const id = match ? match[1] : null;
+          if (!id) throw new Error('No Vimeo ID');
+          const apiUrl = `https://vimeo.com/api/v2/video/${id}.json`;
+          const response = await fetch(apiUrl);
+          if (!response.ok) throw new Error('Vimeo API error');
+          const data = await response.json();
+          if (data && data[0]) {
+            return data[0].thumbnail_large || data[0].thumbnail_medium || data[0].thumbnail_small;
+          }
+        }
+
+        // YouTube
+        if (src.includes('youtube.com') || src.includes('youtu.be')) {
+          let videoId = '';
+          if (src.includes('embed/')) {
+            const m = src.match(/embed\/([^?&]+)/);
+            videoId = m ? m[1] : '';
+          } else if (src.includes('youtu.be/')) {
+            const m = src.match(/youtu\.be\/([^?&]+)/);
+            videoId = m ? m[1] : '';
+          } else {
+            const u = new URL(src);
+            videoId = u.searchParams.get('v') || '';
+          }
+          if (!videoId) throw new Error('No YouTube ID');
+          return `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+        }
+      } catch (e) {
+        console.warn('Thumbnail error:', e);
+      }
+
+      // صورة بديلة لو حصل أي مشكلة – تأكد إن الملف ده موجود أو غيّر اسمه
+      return 'img/work-fallback.jpg';
+    }
+
+    async function buildGrid() {
       grid.innerHTML = '';
-      videos.forEach((src, index) => {
+      for (let index = 0; index < videos.length; index++) {
+        const src = videos[index];
         const card = document.createElement('div');
         card.className = 'video-card';
         card.dataset.index = index;
@@ -476,6 +551,7 @@
 
         card.innerHTML = `
           <div class="video-thumb">
+            <img class="video-img" src="" alt="Cinematic piece #${index + 1}">
             <div class="video-thumb-overlay">
               <div class="video-index">FILM ${labelIndex}</div>
               <div class="video-bottom-row">
@@ -489,7 +565,11 @@
           </div>
         `;
         grid.appendChild(card);
-      });
+
+        const imgEl = card.querySelector('.video-img');
+        const thumb = await fetchThumbnail(src);
+        imgEl.src = thumb;
+      }
     }
 
     function openVideo(index) {
