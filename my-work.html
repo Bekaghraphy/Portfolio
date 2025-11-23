@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Work | Hesham Abdelhamed</title>
+
+  <link rel="icon" type="image/png" href="img/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet" />
+
+  <!-- ستايل الموقع الأساسي -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- SEO -->
+  <meta name="description" content="A curated selection of cinematic work by filmmaker and video editor Hesham Abdelhamed – documentary films, commercial projects, and digital stories from the Middle East and beyond." />
+  <meta name="keywords" content="Hesham Abdelhamed, filmmaker, director, video editor, documentary films, commercial, Riyadh, Cairo, Middle East, cinematic portfolio" />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://www.hisham.digital/my-work.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="My Work | Hesham Abdelhamed" />
+  <meta property="og:description" content="Cinematic portfolio of documentary, commercial, and digital work by filmmaker and editor Hesham Abdelhamed." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.hisham.digital/my-work.html" />
+  <!-- غيّر الصورة دي لما ترفع OG حقيقية -->
+  <meta property="og:image" content="https://www.hisham.digital/img/og-cover.jpg" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="My Work | Hesham Abdelhamed" />
+  <meta name="twitter:description" content="A curated selection of cinematic work by filmmaker and video editor Hesham Abdelhamed." />
+  <meta name="twitter:image" content="https://www.hisham.digital/img/og-cover.jpg" />
+
+  <!-- Structured Data: Person -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Hesham Abdelhamed",
+    "jobTitle": "Filmmaker & Video Editor",
+    "url": "https://www.hisham.digital",
+    "sameAs": [
+      "https://www.linkedin.com/in/heshamabdelhamed",
+      "https://vimeo.com/hishamabdelhamed"
+    ]
+  }
+  </script>
+
+  <style>
+    body.page-loaded {
+      opacity: 1;
+    }
+
+    .page-work .page-inner {
+      padding-top: 120px;
+      padding-bottom: 60px;
+    }
+
+    .work-hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.4fr);
+      gap: 32px;
+      margin-bottom: 40px;
+      align-items: center;
+    }
+
+    @media (max-width: 900px) {
+      .work-hero {
+        grid-template-columns: minmax(0,1fr);
+      }
+    }
+
+    .work-hero-title {
+      font-size: 40px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: #ffffff;
+    }
+
+    .work-hero-title span {
+      color: #f5c14a;
+    }
+
+    .work-hero-text p {
+      font-size: 15px;
+      line-height: 1.8;
+      opacity: 0.9;
+      margin-bottom: 14px;
+      color: #f3f3f6;
+    }
+
+    .work-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .work-tag {
+      font-size: 11px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.18);
+      opacity: 0.85;
+      color: #f3f3f6;
+      background: rgba(10,10,16,0.7);
+    }
+
+    .work-hero-feature {
+      position: relative;
+      border-radius: 14px;
+      overflow: hidden;
+      background: radial-gradient(circle at top left, #f5c14a 0, #000 55%);
+      min-height: 230px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.75);
+      cursor: pointer;
+    }
+
+    .feature-overlay {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, rgba(0,0,0,0.15) 0, rgba(0,0,0,0.88) 70%);
+    }
+
+    .feature-content {
+      position: relative;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .feature-label {
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      opacity: 0.8;
+      margin-bottom: 10px;
+      color: #f3f3f6;
+    }
+
+    .feature-text {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 14px;
+      color: #ffffff;
+    }
+
+    .feature-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.7);
+      background: rgba(0,0,0,0.5);
+      cursor: pointer;
+      transition: 0.2s ease;
+      color: #f3f3f6;
+    }
+
+    .feature-cta span.play-icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.9);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+    }
+
+    .feature-cta:hover {
+      border-color: #f5c14a;
+      background: rgba(0,0,0,0.8);
+      transform: translateY(-1px);
+      color: #ffffff;
+    }
+
+    .videos-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0,1fr));
+      gap: 22px;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 1100px) {
+      .videos-grid {
+        grid-template-columns: repeat(3, minmax(0,1fr));
+      }
+    }
+
+    @media (max-width: 800px) {
+      .videos-grid {
+        grid-template-columns: repeat(2, minmax(0,1fr));
+      }
+    }
+
+    @media (max-width: 540px) {
+      .videos-grid {
+        grid-template-columns: minmax(0,1fr);
+      }
+    }
+
+    .video-card {
+      position: relative;
+      border-radius: 12px;
+      background: #05050a;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+      border: 1px solid rgba(255,255,255,0.08);
+      min-height: 170px;
+    }
+
+    .video-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 32px rgba(0,0,0,0.9);
+      border-color: rgba(245,193,74,0.8);
+    }
+
+    .video-thumb {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%;
+      overflow: hidden;
+    }
+
+    .video-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.02);
+      transition: transform 0.35s ease;
+    }
+
+    .video-card:hover .video-img {
+      transform: scale(1.07);
+    }
+
+    .video-thumb-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 10px 12px;
+      background: linear-gradient(to top, rgba(0,0,0,0.8) 0, rgba(0,0,0,0.05) 55%);
+    }
+
+    .video-index {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      opacity: 0.85;
+      color: #f5c14a;
+    }
+
+    .video-bottom-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .video-label {
+      font-size: 13px;
+      opacity: 0.95;
+      color: #ffffff;
+    }
+
+    .video-type {
+      font-size: 11px;
+      opacity: 0.75;
+      color: #f3f3f6;
+    }
+
+    .video-play-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      color: #ffffff;
+      background: rgba(0,0,0,0.6);
+      transition: 0.25s ease;
+    }
+
+    .video-card:hover .video-play-icon {
+      background: #f5c14a;
+      border-color: #f5c14a;
+      color: #000;
+    }
+
+    .work-section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+
+    .work-section-header h2 {
+      font-size: 18px;
+      font-weight: 600;
+      color: #ffffff;
+    }
+
+    .work-section-header p {
+      font-size: 13px;
+      opacity: 0.8;
+      color: #f3f3f6;
+    }
+
+    /* Modal */
+    .video-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.9);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 80;
+      padding: 16px;
+    }
+
+    .video-modal.open {
+      display: flex;
+    }
+
+    .video-modal-content {
+      width: min(90vw, 1200px);
+      aspect-ratio: 16 / 9;
+      background: #000;
+      border-radius: 16px;
+      position: relative;
+      box-shadow: 0 26px 50px rgba(0,0,0,0.95);
+      overflow: hidden;
+    }
+
+    .video-modal-frame {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.video-modal-frame iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+  object-fit: cover;
+}
+}
+
+    .video-modal-close {
+      position: absolute;
+      top: 10px;
+      right: 12px;
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      border: none;
+      background: rgba(0,0,0,0.7);
+      color: #fff;
+      cursor: pointer;
+      font-size: 18px;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .video-modal-close:hover {
+      background: rgba(245,193,74,0.95);
+      transform: translateY(-1px);
+      color: #000;
+    }
+
+    .more-text {
+      margin-top: 30px;
+      text-align: center;
+      color: #f5c14a;
+      font-size: 14px;
+      opacity: 0.9;
+    }
+
+    /* بس تأكد إن الصفحة واخدة كلاس page-work من style.css */
+  </style>
+</head>
+
+<body>
+  <!-- نفس النافبار الأساسي -->
+  <header class="nav">
+    <nav class="nav-center">
+      <a href="index.html">Home</a>
+      <a href="my-work.html" class="active">My Work</a>
+    </nav>
+  </header>
+
+  <!-- SIDE TITLE من ستايل الموقع -->
+  <div class="side-title">MY WORK</div>
+
+  <!-- CONTENT -->
+  <main class="page page-work">
+    <div class="page-inner">
+      <section class="work-hero">
+        <div class="work-hero-text">
+          <h1 class="work-hero-title">
+            A curated reel of <span>cinematic stories</span>.
+          </h1>
+          <p>
+            Documentary films, commercial pieces, human stories, and medical narratives produced across Egypt, Saudi Arabia,
+            and the wider region. Each project balances storytelling, image, and emotion.
+          </p>
+          <p>
+            اختر أي عمل لعرضه في شاشة سينمائية كاملة، أو ابدأ بالمقطع المميز في الأعلى.
+          </p>
+          <div class="work-tags">
+            <span class="work-tag">Documentary</span>
+            <span class="work-tag">Commercial</span>
+            <span class="work-tag">Human Stories</span>
+            <span class="work-tag">Healthcare Content</span>
+          </div>
+        </div>
+
+        <!-- Featured Reel (أول فيديو في الليست) -->
+        <div class="work-hero-feature" data-video-index="0">
+          <div class="feature-overlay"></div>
+          <div class="feature-content">
+            <div class="feature-label">Featured Reel</div>
+            <div class="feature-text">
+              Start with a highlighted piece from recent projects across the region.
+            </div>
+            <button class="feature-cta" type="button">
+              <span class="play-icon">▶</span>
+              <span>Play Featured Work</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section class="work-section">
+        <div class="work-section-header">
+          <h2>Selected Films & Projects</h2>
+          <p>Click any tile to watch it in a focused, cinema-style player.</p>
+        </div>
+
+        <div class="videos-grid" id="videoGrid"></div>
+      </section>
+
+      <p class="more-text">And there is still much more to come…</p>
+    </div>
+  </main>
+
+  <!-- MODAL -->
+  <div class="video-modal" id="videoModal" aria-hidden="true">
+    <div class="video-modal-content">
+      <button class="video-modal-close" id="modalClose" aria-label="Close video">×</button>
+      <div class="video-modal-frame" id="modalFrame"></div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      document.body.classList.add('page-loaded');
+    });
+
+    // نفس الروابط اللي كنت مستخدمها قبل كده
+    const videos = [
+      "https://player.vimeo.com/video/1081231929",
+      "https://player.vimeo.com/video/1093436208",
+      "https://player.vimeo.com/video/1012761186",
+      "https://player.vimeo.com/video/782962222",
+      "https://player.vimeo.com/video/1081226158",
+      "https://player.vimeo.com/video/1137725566",
+      "https://player.vimeo.com/video/1088303838",
+      "https://player.vimeo.com/video/697540206",
+      "https://player.vimeo.com/video/348850766",
+      "https://player.vimeo.com/video/1127837184",
+      "https://player.vimeo.com/video/348850143",
+      "https://www.youtube.com/embed/n4gmpMHBUK4"
+    ];
+
+    const grid = document.getElementById('videoGrid');
+    const modal = document.getElementById('videoModal');
+    const modalFrame = document.getElementById('modalFrame');
+    const modalClose = document.getElementById('modalClose');
+    const feature = document.querySelector('.work-hero-feature');
+    const featureButton = document.querySelector('.feature-cta');
+
+    function getTypeLabel(src) {
+      if (src.includes('youtube.com') || src.includes('youtu.be')) return 'YouTube';
+      if (src.includes('vimeo.com')) return 'Vimeo';
+      return 'Video';
+    }
+
+    async function fetchThumbnail(src) {
+      try {
+        // Vimeo
+        if (src.includes('vimeo.com')) {
+          const match = src.match(/vimeo\.com\/video\/(\d+)/);
+          const id = match ? match[1] : null;
+          if (!id) throw new Error('No Vimeo ID');
+          const apiUrl = `https://vimeo.com/api/v2/video/${id}.json`;
+          const response = await fetch(apiUrl);
+          if (!response.ok) throw new Error('Vimeo API error');
+          const data = await response.json();
+          if (data && data[0]) {
+            return data[0].thumbnail_large || data[0].thumbnail_medium || data[0].thumbnail_small;
+          }
+        }
+
+        // YouTube
+        if (src.includes('youtube.com') || src.includes('youtu.be')) {
+          let videoId = '';
+          if (src.includes('embed/')) {
+            const m = src.match(/embed\/([^?&]+)/);
+            videoId = m ? m[1] : '';
+          } else if (src.includes('youtu.be/')) {
+            const m = src.match(/youtu\.be\/([^?&]+)/);
+            videoId = m ? m[1] : '';
+          } else {
+            const u = new URL(src);
+            videoId = u.searchParams.get('v') || '';
+          }
+          if (!videoId) throw new Error('No YouTube ID');
+          return `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+        }
+      } catch (e) {
+        console.warn('Thumbnail error:', e);
+      }
+
+      // صورة بديلة لو حصل أي مشكلة – تأكد إن الملف ده موجود أو غيّر اسمه
+      return 'img/work-fallback.jpg';
+    }
+
+    async function buildGrid() {
+      grid.innerHTML = '';
+      for (let index = 0; index < videos.length; index++) {
+        const src = videos[index];
+        const card = document.createElement('div');
+        card.className = 'video-card';
+        card.dataset.index = index;
+
+        const labelIndex = String(index + 1).padStart(2, '0');
+        const typeLabel = getTypeLabel(src);
+
+        card.innerHTML = `
+          <div class="video-thumb">
+            <img class="video-img" src="" alt="Cinematic piece #${index + 1}">
+            <div class="video-thumb-overlay">
+              <div class="video-index">FILM ${labelIndex}</div>
+              <div class="video-bottom-row">
+                <div>
+                  <div class="video-label">Cinematic piece #${index + 1}</div>
+                  <div class="video-type">${typeLabel}</div>
+                </div>
+                <div class="video-play-icon">▶</div>
+              </div>
+            </div>
+          </div>
+        `;
+        grid.appendChild(card);
+
+        const imgEl = card.querySelector('.video-img');
+        const thumb = await fetchThumbnail(src);
+        imgEl.src = thumb;
+      }
+    }
+
+    function openVideo(index) {
+      const src = videos[index];
+      if (!src) return;
+
+      let url = src;
+      const joinChar = src.includes('?') ? '&' : '?';
+      if (!src.includes('autoplay=')) {
+        url = src + joinChar + 'autoplay=1';
+      }
+
+      modalFrame.innerHTML = '<iframe src="' + url + '" allow="autoplay; fullscreen" allowfullscreen loading="lazy"></iframe>';
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeVideo() {
+      modal.classList.remove('open');
+      modal.setAttribute('aria-hidden', 'true');
+      modalFrame.innerHTML = '';
+      document.body.style.overflow = '';
+    }
+
+    grid.addEventListener('click', function (e) {
+      const card = e.target.closest('.video-card');
+      if (!card) return;
+      const index = parseInt(card.dataset.index, 10);
+      openVideo(index);
+    });
+
+    if (feature) {
+      feature.addEventListener('click', function () {
+        const index = parseInt(feature.dataset.videoIndex || '0', 10);
+        openVideo(index);
+      });
+    }
+
+    if (featureButton) {
+      featureButton.addEventListener('click', function (e) {
+        e.stopPropagation();
+        const index = parseInt(feature.dataset.videoIndex || '0', 10);
+        openVideo(index);
+      });
+    }
+
+    modalClose.addEventListener('click', closeVideo);
+    modal.addEventListener('click', function (e) {
+      if (e.target === modal) {
+        closeVideo();
+      }
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && modal.classList.contains('open')) {
+        closeVideo();
+      }
+    });
+
+    buildGrid();
+  </script>
+</body>
+</html>
