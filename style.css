@@ -59,12 +59,12 @@ body.page-loaded { opacity: 1; }
   position: relative;
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: center top;
+  background-position: center 28%;
   height: 100vh;
   width: 100%;
   display: flex;
   align-items: flex-start;
-  padding: 240px 7% 0;   /* الجديد — ينزل النص تحت */
+  padding: 260px 7% 0;
   animation: heroZoom 18s ease-in-out infinite;
 }
 
@@ -232,6 +232,7 @@ body.page-loaded { opacity: 1; }
 @media(max-width:650px){
   .hero {
     padding: 130px 7% 0;
+    background-position: center top;
   }
 
   .hero-name { font-size: 34px; }
