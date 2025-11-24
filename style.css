@@ -16,7 +16,7 @@ body {
 
 body.page-loaded { opacity: 1; }
 
-/* NAV – Sticky + Blur Animation */
+/* NAV (Sticky + Blur Animation) */
 .nav {
   width: 100%;
   padding: 22px 0;
@@ -24,14 +24,14 @@ body.page-loaded { opacity: 1; }
   top: 0;
   text-align: center;
   background: rgba(0,0,0,0.25);
-  backdrop-filter: blur(3px);
-  transition: background 0.35s ease, padding 0.3s ease, backdrop-filter 0.35s ease;
+  backdrop-filter: blur(4px);
+  transition: background 0.3s ease, padding 0.3s ease, backdrop-filter 0.3s ease;
   z-index: 100;
 }
 
 .nav.scrolled {
-  background: rgba(0,0,0,0.70);
-  backdrop-filter: blur(12px);
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(10px);
   padding: 14px 0;
 }
 
@@ -39,8 +39,8 @@ body.page-loaded { opacity: 1; }
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 35px;
-  flex-wrap: nowrap; /* Prevent breaking on mobile */
+  gap: 30px;
+  flex-wrap: nowrap;  /* يمنع نزول CV تحت */
 }
 
 .nav-center a {
@@ -54,15 +54,6 @@ body.page-loaded { opacity: 1; }
 .nav-center a.active,
 .nav-center a:hover { color: #d4af37; }
 
-/* Scroll Event */
-body.page-loaded::after {}
-
-window.addEventListener("scroll", () => {
-  const nav = document.querySelector(".nav");
-  if (window.scrollY > 10) nav.classList.add("scrolled");
-  else nav.classList.remove("scrolled");
-});
-
 /* HERO */
 .hero {
   background-repeat: no-repeat;
@@ -73,6 +64,8 @@ window.addEventListener("scroll", () => {
   display: flex;
   align-items: center;
   padding: 0 7%;
+
+  /* ZOOM ANIMATION */
   animation: heroZoom 20s ease-in-out infinite;
 }
 
@@ -116,17 +109,17 @@ window.addEventListener("scroll", () => {
   line-height: 1.8;
 }
 
-/* SOCIAL ROW — Force inline on mobile */
+/* SOCIAL */
 .social-row {
   margin-top: 22px;
   display: flex;
   gap: 12px;
-  flex-wrap: nowrap;     /* Prevent line break */
-  overflow-x: auto;      /* Scroll if needed */
+  flex-wrap: nowrap;       /* يمنع النزول لسطر جديد */
+  overflow-x: auto;        /* يتسحب يمين/شمال لو المساحة ضيقة */
   padding-bottom: 6px;
 }
 
-/* ICON CIRCLE — Your Final Style (colored icons) */
+/* ICON CIRCLE */
 .icon-circle {
   width: 42px;
   height: 42px;
