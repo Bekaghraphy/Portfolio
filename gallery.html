@@ -133,14 +133,18 @@
     }
 
     .film-grain {
+      .film-grain {
       pointer-events: none;
       position: fixed;
       inset: 0;
-      background-image: url('https://i.imgur.com/8kmjO6N.png');
-      opacity: 0.06;
-      mix-blend-mode: screen;
-      animation: grain 0.6s steps(2) infinite;
+      background-image: url('img/bg.jpg'); /* ضع هنا اسم الصورة */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      opacity: 0.25; /* قلل أو زوّد حسب اللون */
       z-index: -1;
+}
+
     }
 
     @keyframes grain {
