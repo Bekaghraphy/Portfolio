@@ -26,11 +26,11 @@ body.page-loaded { opacity: 1; }
   background: rgba(0,0,0,0.25);
   backdrop-filter: blur(4px);
   transition: background 0.3s ease, padding 0.3s ease, backdrop-filter 0.3s ease;
-  z-index: 100;
+  z-index: 1000;
 }
 
 .nav.scrolled {
-  background: rgba(0,0,0,0.7);
+  background: rgba(0,0,0,0.75);
   backdrop-filter: blur(10px);
   padding: 14px 0;
 }
@@ -40,7 +40,7 @@ body.page-loaded { opacity: 1; }
   justify-content: center;
   align-items: center;
   gap: 30px;
-  flex-wrap: nowrap;  /* يمنع نزول CV تحت */
+  flex-wrap: nowrap;
 }
 
 .nav-center a {
@@ -56,17 +56,16 @@ body.page-loaded { opacity: 1; }
 
 /* HERO */
 .hero {
+  position: relative;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center top;
   height: 100vh;
   width: 100%;
   display: flex;
-  align-items: center;
-  padding: 0 7%;
-
-  /* ZOOM ANIMATION */
-  animation: heroZoom 20s ease-in-out infinite;
+  align-items: flex-start;
+  padding: 140px 7% 0;     /* يرجّع مكان النص مضبوط */
+  animation: heroZoom 18s ease-in-out infinite;
 }
 
 @keyframes heroZoom {
@@ -79,62 +78,61 @@ body.page-loaded { opacity: 1; }
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.8));
+  background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.85));
   z-index: 1;
 }
 
+/* HERO CONTENT */
 .hero-content {
   position: relative;
   z-index: 2;
   max-width: 550px;
+  animation: fadeInLeft 1.4s ease forwards;
+  opacity: 0;
+}
+
+@keyframes fadeInLeft {
+  0% { opacity: 0; transform: translateX(-30px); }
+  100% { opacity: 1; transform: translateX(0); }
 }
 
 .hero-name {
-  font-size: 35px;
+  font-size: 40px;
   color: #d4af37;
   font-weight: 700;
   text-shadow: 0 0 16px rgba(212,175,55,0.4);
 }
 
 .hero-heading {
-  font-size: 38px;
+  font-size: 40px;
   line-height: 1.2;
   font-weight: 600;
-  margin: 16px 0;
+  margin: 20px 0;
 }
 
 .hero-sub {
   opacity: 0.85;
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.8;
 }
 
-/* SOCIAL */
+/* SOCIAL ICONS ROW */
 .social-row {
-  margin-top: 22px;
+  margin-top: 26px;
   display: flex;
-  gap: 12px;
-  flex-wrap: nowrap;       /* يمنع النزول لسطر جديد */
-  overflow-x: auto;        /* يتسحب يمين/شمال لو المساحة ضيقة */
+  gap: 14px;
+  flex-wrap: nowrap;
+  overflow-x: auto;
   padding-bottom: 6px;
 }
 
-/* ICON CIRCLE */
 .icon-circle {
   width: 42px;
   height: 42px;
-  border: none;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0;
-  background: none;
-  transition: 0.25s;
-}
-
-.icon-circle:hover {
-  transform: scale(1.08);
 }
 
 .icon-circle img {
@@ -142,7 +140,6 @@ body.page-loaded { opacity: 1; }
   height: 42px;
   border-radius: 50%;
   object-fit: cover;
-  filter: none !important;
 }
 
 /* SIDE TITLE */
@@ -181,7 +178,7 @@ body.page-loaded { opacity: 1; }
   margin: 10px 0 40px;
 }
 
-/* GRID */
+/* VIDEOS GRID */
 .videos-grid {
   display: grid;
   grid-template-columns: repeat(4,1fr);
@@ -232,9 +229,12 @@ body.page-loaded { opacity: 1; }
 }
 
 /* RESPONSIVE */
-@media(max-width:600px){
-  .videos-grid { grid-template-columns: 1fr; }
-  .hero-name { font-size: 36px; }
+@media(max-width:650px){
+  .hero {
+    padding: 130px 7% 0;
+  }
+
+  .hero-name { font-size: 34px; }
   .hero-heading { font-size: 28px; }
 
   .hero-sub {
@@ -242,4 +242,6 @@ body.page-loaded { opacity: 1; }
     padding: 12px;
     border-radius: 6px;
   }
+
+  .videos-grid { grid-template-columns: 1fr; }
 }
