@@ -64,7 +64,7 @@ body.page-loaded { opacity: 1; }
   width: 100%;
   display: flex;
   align-items: flex-start;
-  padding: 140px 7% 0;     /* يرجّع مكان النص مضبوط */
+  padding: 240px 7% 0;   /* الجديد — ينزل النص تحت */
   animation: heroZoom 18s ease-in-out infinite;
 }
 
