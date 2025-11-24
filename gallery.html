@@ -3,131 +3,32 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cinematic Gallery | Hesham Abdelhamed</title>
+  <title>Gallery | Hesham Abdelhamed</title>
 
   <style>
+
     :root {
-      --accent: #00c4ff;
-      --bg: #050509;
+      --gold-main: #d8b97a;
+      --gold-light: #e7c995;
+      --gold-dark: #b99754;
       --text: #ffffff;
+      --bg: #050505;
     }
 
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
     }
 
     body {
-      font-family: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-      background: radial-gradient(circle at top, #111122 0%, #050509 45%, #000000 100%);
+      background: radial-gradient(circle at top, #0c0c0c 0%, #000000 60%);
       color: var(--text);
+      font-family: "Montserrat", sans-serif;
       overflow-x: hidden;
-      min-height: 100vh;
     }
 
-    /* ========= BACKGROUND ANIMATED ELEMENTS ========= */
-
-    .bg-orbit {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      width: 120vmin;
-      height: 120vmin;
-      border-radius: 50%;
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      transform: translate(-50%, -50%);
-      pointer-events: none;
-      animation: orbit-rotate 60s linear infinite;
-      z-index: -2;
-    }
-
-    .bg-orbit::before,
-    .bg-orbit::after {
-      content: "";
-      position: absolute;
-      border-radius: 50%;
-      inset: 10%;
-      border: 1px dashed rgba(255, 255, 255, 0.05);
-    }
-
-    .bg-orbit::after {
-      inset: 22%;
-      border-style: solid;
-      border-color: rgba(0, 196, 255, 0.10);
-    }
-
-    .bg-frame {
-      position: fixed;
-      inset: 10vh 6vw;
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      border-radius: 18px;
-      pointer-events: none;
-      z-index: -2;
-      box-shadow: 0 0 25px rgba(0, 0, 0, 0.7);
-    }
-
-    .bg-frame::before,
-    .bg-frame::after {
-      content: "";
-      position: absolute;
-      width: 60px;
-      height: 60px;
-      border: 2px solid rgba(255, 255, 255, 0.25);
-      border-radius: 12px;
-    }
-
-    .bg-frame::before {
-      top: -1px;
-      left: -1px;
-      border-right: none;
-      border-bottom: none;
-    }
-
-    .bg-frame::after {
-      bottom: -1px;
-      right: -1px;
-      border-left: none;
-      border-top: none;
-    }
-
-    .bg-focus-ring {
-      position: fixed;
-      top: 18vh;
-      right: 10vw;
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      border: 1px dashed rgba(255, 255, 255, 0.18);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      pointer-events: none;
-      z-index: -2;
-      animation: focus-pulse 4.5s ease-in-out infinite;
-    }
-
-    .bg-focus-ring::before {
-      content: "";
-      width: 55%;
-      height: 55%;
-      border-radius: 50%;
-      border: 2px solid rgba(0, 196, 255, 0.7);
-      box-shadow: 0 0 18px rgba(0, 196, 255, 0.4);
-    }
-
-    @keyframes orbit-rotate {
-      from { transform: translate(-50%, -50%) rotate(0deg); }
-      to   { transform: translate(-50%, -50%) rotate(360deg); }
-    }
-
-    @keyframes focus-pulse {
-      0%, 100% { transform: scale(1); opacity: 0.7; }
-      50%      { transform: scale(1.08); opacity: 1; }
-    }
-
-    /* ========= NAV BAR ========= */
-
+    /* ========== NAVBAR GOLD ========== */
     nav {
       width: 100%;
       position: fixed;
@@ -137,46 +38,43 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: radial-gradient(circle at top left, rgba(0, 196, 255, 0.25), transparent 55%);
-      background-color: rgba(2, 2, 10, 0.88);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      z-index: 50;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-    }
-
-    .nav-left {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 14px;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      opacity: 0.9;
-    }
-
-    .nav-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--accent);
-      box-shadow: 0 0 10px rgba(0, 196, 255, 0.7);
+      background: rgba(10, 10, 10, 0.85);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      z-index: 100;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
 
     .nav-links {
       display: flex;
-      gap: 26px;
+      gap: 30px;
     }
 
     .nav-links a {
       color: var(--text);
       text-decoration: none;
-      font-size: 15px;
+      font-size: 16px;
       font-weight: 500;
-      opacity: 0.85;
+      letter-spacing: .6px;
       position: relative;
       padding-bottom: 4px;
-      transition: color 0.2s ease, opacity 0.2s ease;
+      transition: 0.3s ease;
+      opacity: 0.8;
+    }
+
+    .nav-links a:hover {
+      opacity: 1;
+      color: var(--gold-main);
+    }
+
+    .nav-links a.active {
+      color: var(--gold-main);
+      opacity: 1;
+    }
+
+    .nav-links a.active::after,
+    .nav-links a:hover::after {
+      width: 100%;
     }
 
     .nav-links a::after {
@@ -184,53 +82,92 @@
       position: absolute;
       left: 0;
       bottom: 0;
-      width: 0;
       height: 2px;
-      background: var(--accent);
-      border-radius: 999px;
-      transition: width 0.25s ease;
+      width: 0;
+      background: var(--gold-main);
+      transition: 0.3s ease;
     }
 
-    .nav-links a:hover {
-      color: var(--accent);
-      opacity: 1;
+    /* ===== BACKGROUND GOLD CINEMATIC ===== */
+
+    .bg-grid {
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+      background-size: 50px 50px;
+      animation: gridMove 18s linear infinite;
+      z-index: -3;
     }
 
-    .nav-links a:hover::after {
-      width: 100%;
+    @keyframes gridMove {
+      from { transform: translateY(0); }
+      to   { transform: translateY(-200px); }
     }
 
-    .nav-links a.active {
-      color: var(--accent);
-      opacity: 1;
+    .gold-rings {
+      position: fixed;
+      width: 150vmin;
+      height: 150vmin;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      border: 2px solid rgba(216, 185, 122, 0.15);
+      animation: rotateSlow 45s linear infinite;
+      z-index: -2;
     }
 
-    .nav-links a.active::after {
-      width: 100%;
+    .gold-rings::before {
+      content: "";
+      position: absolute;
+      inset: 15%;
+      border-radius: 50%;
+      border: 2px dashed rgba(231, 201, 149, 0.20);
     }
 
-    /* ========= PAGE WRAPPER ========= */
+    @keyframes rotateSlow {
+      from { transform: translate(-50%, -50%) rotate(0deg); }
+      to   { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+
+    .film-grain {
+      pointer-events: none;
+      position: fixed;
+      inset: 0;
+      background-image: url('https://i.imgur.com/8kmjO6N.png');
+      opacity: 0.06;
+      mix-blend-mode: screen;
+      animation: grain 0.6s steps(2) infinite;
+      z-index: -1;
+    }
+
+    @keyframes grain {
+      0%, 100% { transform: translate(0); }
+      50% { transform: translate(1px, -1px); }
+    }
+
+    /* ============= PAGE HEADER ============= */
 
     .page-wrapper {
-      padding-top: 90px;
-      padding-bottom: 40px;
+      padding-top: 110px;
     }
 
     .page-header {
       width: 80%;
-      max-width: 1150px;
-      margin: 30px auto 15px auto;
+      max-width: 1200px;
+      margin: 20px auto 15px auto;
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
-      gap: 20px;
     }
 
     .page-title {
-      font-size: 26px;
+      font-size: 28px;
+      color: var(--gold-main);
       letter-spacing: 1px;
       text-transform: uppercase;
-      opacity: 0.9;
     }
 
     .page-subtitle {
@@ -238,41 +175,41 @@
       opacity: 0.7;
     }
 
-    /* ========= SLIDESHOW CINEMATIC ========= */
+    /* ============= SLIDESHOW CONTAINER ============= */
 
     .slideshow-container {
       position: relative;
       width: 80%;
-      max-width: 1150px;
+      max-width: 1200px;
       height: 70vh;
-      min-height: 430px;
-      margin: 10px auto 0 auto;
+      min-height: 420px;
+      margin: 25px auto 0 auto;
       border-radius: 18px;
       overflow: hidden;
-      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.85);
-      background: radial-gradient(circle at top left, #161628 0%, #050509 60%, #000 100%);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 15px 60px rgba(0,0,0,0.85);
+      background: #000;
     }
 
     .slide {
       position: absolute;
       inset: 0;
       opacity: 0;
-      filter: blur(8px);
-      transform: scale(1.03);
+      transform: scale(1.04);
+      filter: brightness(0.75) blur(6px);
       transition:
-        opacity 1.2s ease-in-out,
-        filter 1.2s ease-in-out,
-        transform 1.2s ease-in-out;
+        opacity 1.3s ease,
+        transform 1.2s ease,
+        filter 1.2s ease;
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
     }
 
     .slide.show {
       opacity: 1;
-      filter: blur(0);
       transform: scale(1);
+      filter: brightness(1) blur(0);
       z-index: 2;
     }
 
@@ -280,143 +217,121 @@
       width: 115%;
       height: 115%;
       object-fit: cover;
-      object-position: center;
-      border-radius: 18px;
-      animation: kenburns 18s ease-in-out infinite;
-      transform-origin: center;
+      animation: kenburns 17s ease-in-out infinite;
       cursor: zoom-in;
+      border-radius: 18px;
     }
 
     @keyframes kenburns {
-      0%   { transform: scale(1) translate3d(0, 0, 0); }
-      50%  { transform: scale(1.08) translate3d(0, 0, 0); }
-      100% { transform: scale(1) translate3d(0, 0, 0); }
+      0%   { transform: scale(1); }
+      50%  { transform: scale(1.08); }
+      100% { transform: scale(1); }
     }
 
     .overlay {
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at top, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.70) 60%);
-      mix-blend-mode: multiply;
-      pointer-events: none;
+      background: radial-gradient(circle at top, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.70) 70%);
       z-index: 3;
     }
 
-    /* ========= CAPTION ========= */
+    /* ============= CAPTION ============= */
 
     .caption {
       position: absolute;
+      bottom: 30px;
       left: 30px;
-      bottom: 26px;
-      z-index: 5;
+      z-index: 10;
       max-width: 60%;
-      padding: 10px 16px 10px 0;
-      pointer-events: none;
     }
 
     .caption-title {
-      font-size: 20px;
+      font-size: 22px;
       font-weight: 600;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      margin-bottom: 4px;
+      color: var(--gold-light);
+      margin-bottom: 8px;
       opacity: 0;
-      transform: translateY(16px);
-      animation: caption-fade 1s ease forwards;
-      animation-delay: 0.25s;
+      transform: translateY(20px);
+      animation: captionFade 1.2s forwards;
+      animation-delay: .3s;
     }
 
     .caption-text {
-      font-size: 13px;
+      font-size: 14px;
       opacity: 0;
-      transform: translateY(16px);
-      animation: caption-fade 1s ease forwards;
-      animation-delay: 0.45s;
+      transform: translateY(20px);
+      animation: captionFade 1.2s forwards;
+      animation-delay: .55s;
     }
 
-    @keyframes caption-fade {
+    @keyframes captionFade {
       to {
-        opacity: 0.92;
+        opacity: 0.95;
         transform: translateY(0);
       }
     }
 
-    /* ========= ARROWS ========= */
+    /* ============= ARROWS GOLD ============= */
 
     .nav-arrow {
-      cursor: pointer;
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      padding: 14px 16px;
-      color: #ffffff;
-      font-weight: bold;
-      font-size: 30px;
-      user-select: none;
-      z-index: 10;
-      background: radial-gradient(circle at top, rgba(0, 0, 0, 0.7), rgba(5, 5, 10, 0.15));
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.75);
-      transition:
-        background 0.25s ease,
-        transform 0.25s ease,
-        box-shadow 0.25s ease,
-        border-color 0.25s ease;
+      font-size: 32px;
+      color: var(--gold-main);
+      padding: 14px 18px;
+      border-radius: 50%;
+      border: 1px solid var(--gold-dark);
+      box-shadow: 0 0 22px rgba(216,185,122,0.45);
+      background: rgba(10,10,10,0.55);
+      cursor: pointer;
+      z-index: 20;
+      transition: 0.25s ease;
     }
 
     .nav-arrow:hover {
-      background: radial-gradient(circle at top, rgba(0, 196, 255, 0.28), rgba(5, 5, 10, 0.2));
-      border-color: rgba(0, 196, 255, 0.8);
-      box-shadow: 0 0 25px rgba(0, 196, 255, 0.7);
-      transform: translateY(-50%) scale(1.06);
+      background: rgba(216,185,122,0.18);
+      transform: translateY(-50%) scale(1.1);
+      box-shadow: 0 0 32px rgba(216,185,122,0.8);
     }
 
-    .nav-arrow.prev {
-      left: 18px;
-    }
+    .prev { left: 15px; }
+    .next { right: 15px; }
 
-    .nav-arrow.next {
-      right: 18px;
-    }
-
-    /* ========= DOTS ========= */
+    /* ============= DOTS (Indicators) ============= */
 
     .dots {
+      margin-top: 22px;
       text-align: center;
-      margin-top: 18px;
     }
 
     .dot {
-      cursor: pointer;
-      height: 10px;
-      width: 10px;
-      margin: 0 5px;
-      background-color: rgba(255, 255, 255, 0.25);
-      border-radius: 50%;
+      height: 12px;
+      width: 12px;
+      background: rgba(255,255,255,0.25);
       display: inline-block;
-      transition:
-        background-color 0.3s ease,
-        transform 0.3s ease,
-        box-shadow 0.3s ease;
+      border-radius: 50%;
+      margin: 0 6px;
+      transition: .25s ease;
+      cursor: pointer;
     }
 
     .dot.active {
-      background-color: var(--accent);
+      background: var(--gold-main);
       transform: scale(1.25);
-      box-shadow: 0 0 12px rgba(0, 196, 255, 0.9);
+      box-shadow: 0 0 12px rgba(216,185,122,0.9);
     }
-
-    /* ========= LIGHTBOX ========= */
+    /* ============= LIGHTBOX ============= */
 
     .lightbox {
       position: fixed;
       inset: 0;
-      background: radial-gradient(circle at center, rgba(10, 10, 20, 0.96), rgba(0, 0, 0, 0.98));
+      background: rgba(0,0,0,0.92);
       display: none;
-      align-items: center;
       justify-content: center;
+      align-items: center;
       flex-direction: column;
+      backdrop-filter: blur(6px);
       z-index: 999;
       padding: 30px 20px;
     }
@@ -426,136 +341,52 @@
     }
 
     .lightbox-img-wrapper {
-      max-width: 95vw;
+      max-width: 90vw;
       max-height: 80vh;
       overflow: hidden;
-      border-radius: 18px;
-      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.95);
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      margin-bottom: 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(216,185,122,0.28);
+      box-shadow: 0 0 40px rgba(216,185,122,0.25);
     }
 
     .lightbox-img-wrapper img {
       width: 100%;
       height: 100%;
       object-fit: contain;
-      display: block;
     }
 
     .lightbox-caption {
+      margin-top: 14px;
       font-size: 15px;
-      opacity: 0.85;
+      color: var(--gold-light);
       text-align: center;
-      max-width: 720px;
+      max-width: 750px;
+      opacity: 0.92;
+      line-height: 1.6;
     }
 
     .lightbox-close {
       position: absolute;
-      top: 16px;
-      right: 26px;
-      font-size: 30px;
+      top: 20px;
+      right: 30px;
+      font-size: 36px;
       cursor: pointer;
-      color: #ffffff;
-      text-shadow: 0 0 18px rgba(0, 0, 0, 0.9);
-      transition: transform 0.25s ease, color 0.25s ease;
+      color: var(--gold-main);
+      transition: .25s ease;
     }
 
     .lightbox-close:hover {
-      color: var(--accent);
-      transform: scale(1.1);
+      transform: scale(1.12);
+      color: var(--gold-light);
     }
 
-    /* ========= RESPONSIVE ========= */
-
-    @media (max-width: 900px) {
-      nav {
-        padding: 14px 18px;
-      }
-
-      .nav-links {
-        gap: 16px;
-      }
-
-      .nav-links a {
-        font-size: 13px;
-      }
-
-      .page-header,
-      .slideshow-container {
-        width: 90%;
-      }
-
-      .slideshow-container {
-        height: 60vh;
-        min-height: 360px;
-      }
-
-      .caption {
-        left: 18px;
-        bottom: 18px;
-        max-width: 75%;
-      }
-
-      .caption-title {
-        font-size: 17px;
-      }
-
-      .caption-text {
-        font-size: 12px;
-      }
-
-      .nav-arrow {
-        font-size: 26px;
-        padding: 10px 12px;
-      }
-    }
-
-    @media (max-width: 600px) {
-      .page-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 8px;
-      }
-
-      .page-title {
-        font-size: 18px;
-      }
-
-      .page-subtitle {
-        font-size: 12px;
-      }
-
-      .slideshow-container {
-        height: 56vh;
-        min-height: 320px;
-      }
-
-      .slide img {
-        width: 130%;
-        height: 130%;
-      }
-
-      .caption {
-        left: 14px;
-        bottom: 16px;
-        max-width: 85%;
-      }
-
-      .caption-title {
-        font-size: 16px;
-      }
-
-      .caption-text {
-        font-size: 11px;
-      }
-
-      .bg-focus-ring {
-        display: none;
-      }
-
-      .bg-frame {
-        inset: 9vh 4vw;
-      }
+    /* ============= RESPONSIVE ============= */
+    @media (max-width: 768px) {
+      .page-title { font-size: 22px; }
+      .caption-title { font-size: 18px; }
+      .caption-text { font-size: 12px; }
+      .nav-arrow { font-size: 26px; padding: 10px; }
+      .dot { height: 10px; width: 10px; }
     }
 
   </style>
@@ -563,72 +394,67 @@
 
 <body>
 
-  <!-- BACKGROUND ELEMENTS -->
-  <div class="bg-orbit"></div>
-  <div class="bg-frame"></div>
-  <div class="bg-focus-ring"></div>
+  <!-- GOLD BACKGROUND ELEMENTS -->
+  <div class="bg-grid"></div>
+  <div class="gold-rings"></div>
+  <div class="film-grain"></div>
 
-  <!-- NAV -->
+  <!-- NAVBAR -->
   <nav>
-    <div class="nav-left">
-      <div class="nav-dot"></div>
-      <span>Hesham Abdelhamed</span>
-    </div>
+    <div style="font-size:18px;color:var(--gold-light);letter-spacing:2px;">Hesham</div>
     <div class="nav-links">
       <a href="index.html">Home</a>
-      <a href="gallery.html" class="active">My Work</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
+      <a href="my-work.html">My Work</a>
+      <a href="gallery.html" class="active">Gallery</a>
+      <a href="cv.html">CV</a>
     </div>
   </nav>
 
   <div class="page-wrapper">
     <div class="page-header">
       <div>
-        <div class="page-title">Cinematic Work Gallery</div>
-        <div class="page-subtitle">Selected frames from commercial, documentary & brand storytelling projects.</div>
-      </div>
-      <div class="page-subtitle">
-        Click any frame to view in full size.
+        <div class="page-title">Gallery</div>
+        <div class="page-subtitle">Selected cinematic frames from various photography & commercial work.</div>
       </div>
     </div>
 
     <!-- SLIDESHOW -->
-    <div class="slideshow-container" id="slideshow">
+    <div class="slideshow-container">
 
       <!-- SLIDE 1 -->
-      <div class="slide show" data-title="OR Cinematic Shot" data-desc="Operating room scene – clean lighting, controlled framing, and strong contrast for a premium medical brand.">
-        <img loading="lazy" src="img/work1.jpg" alt="Project 1">
+      <div class="slide show" data-title="Cinematic Frame" data-desc="Stylized photography frame with dynamic lighting and mood.">
+        <img loading="lazy" src="img/work1.jpg" alt="photo1">
         <div class="overlay"></div>
         <div class="caption">
-          <div class="caption-title">OR Cinematic Shot</div>
-          <div class="caption-text">Operating room storytelling frame – detail, precision, and layered lighting for Flow Medical narratives.</div>
+          <div class="caption-title">Cinematic Frame</div>
+          <div class="caption-text">A storytelling moment captured with mood, tone & depth.</div>
         </div>
       </div>
 
       <!-- SLIDE 2 -->
-      <div class="slide" data-title="Corporate Portrait" data-desc="Stylized corporate portrait with depth, bokeh, and subtle brand color grading.">
-        <img loading="lazy" src="img/work2.jpg" alt="Project 2">
+      <div class="slide" data-title="Portrait Shot" data-desc="A dramatic portrait using controlled shadows & highlights.">
+        <img loading="lazy" src="img/work2.jpg" alt="photo2">
         <div class="overlay"></div>
         <div class="caption">
-          <div class="caption-title">Corporate Portrait</div>
-          <div class="caption-text">Executive portrait with cinematic tones, controlled highlights, and storytelling through posture and frame.</div>
+          <div class="caption-title">Portrait Shot</div>
+          <div class="caption-text">High contrast tone with controlled styling for a modern portrait.</div>
         </div>
       </div>
 
       <!-- SLIDE 3 -->
-      <div class="slide" data-title="Event & Activation" data-desc="Live event coverage blurring the line between documentation and cinematic storytelling.">
-        <img loading="lazy" src="img/work3.jpg" alt="Project 3">
+      <div class="slide" data-title="Brand Scene" data-desc="A commercial visual emphasizing product mood & brand energy.">
+        <img loading="lazy" src="img/work3.jpg" alt="photo3">
         <div class="overlay"></div>
         <div class="caption">
-          <div class="caption-title">Event & Activation</div>
-          <div class="caption-text">High-energy event visual – scale, crowd, and brand presence in one frame.</div>
+          <div class="caption-title">Brand Scene</div>
+          <div class="caption-text">A branded moment captured with strong composition.</div>
         </div>
       </div>
 
       <!-- ARROWS -->
       <div class="nav-arrow prev" id="prevBtn">&#10094;</div>
       <div class="nav-arrow next" id="nextBtn">&#10095;</div>
+
     </div>
 
     <!-- DOTS -->
@@ -637,50 +463,50 @@
       <span class="dot" data-index="1"></span>
       <span class="dot" data-index="2"></span>
     </div>
+
   </div>
 
   <!-- LIGHTBOX -->
   <div class="lightbox" id="lightbox">
     <span class="lightbox-close" id="lightboxClose">&times;</span>
     <div class="lightbox-img-wrapper">
-      <img id="lightboxImg" src="" alt="Full view">
+      <img id="lightboxImg" src="">
     </div>
     <div class="lightbox-caption" id="lightboxCaption"></div>
   </div>
 
+  <!-- ============= SCRIPT / SLIDESHOW LOGIC ============= -->
+
   <script>
-    // ========= SLIDESHOW LOGIC =========
     const slides = document.querySelectorAll('.slide');
     const dots   = document.querySelectorAll('.dot');
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
+
     let slideIndex = 0;
     let autoTimer;
 
     function setActiveSlide(index) {
-      if (index < 0) index = slides.length - 1;
-      if (index >= slides.length) index = 0;
+      if(index < 0) index = slides.length - 1;
+      if(index >= slides.length) index = 0;
       slideIndex = index;
 
       slides.forEach((slide, i) => {
         slide.classList.toggle('show', i === slideIndex);
 
-        // إعادة تشغيل أنيميشن الكابشن
+        // Reset caption animation
         const title = slide.querySelector('.caption-title');
         const text  = slide.querySelector('.caption-text');
         if (i === slideIndex) {
-          if (title) {
-            title.style.animation = 'none';
-            void title.offsetWidth;
-            title.style.animation = 'caption-fade 1s ease forwards';
-            title.style.animationDelay = '0.25s';
-          }
-          if (text) {
-            text.style.animation = 'none';
-            void text.offsetWidth;
-            text.style.animation = 'caption-fade 1s ease forwards';
-            text.style.animationDelay = '0.45s';
-          }
+          title.style.animation = 'none';
+          void title.offsetWidth;
+          title.style.animation = 'captionFade 1.2s forwards';
+          title.style.animationDelay = '.3s';
+
+          text.style.animation = 'none';
+          void text.offsetWidth;
+          text.style.animation = 'captionFade 1.2s forwards';
+          text.style.animationDelay = '.55s';
         }
       });
 
@@ -693,32 +519,30 @@
       setActiveSlide(slideIndex + step);
     }
 
-    function startAutoPlay() {
+    function startAuto() {
       clearInterval(autoTimer);
-      autoTimer = setInterval(() => {
-        nextSlide(1);
-      }, 8000);
+      autoTimer = setInterval(() => nextSlide(1), 9000);
     }
 
     prevBtn.addEventListener('click', () => {
       nextSlide(-1);
-      startAutoPlay();
+      startAuto();
     });
 
     nextBtn.addEventListener('click', () => {
       nextSlide(1);
-      startAutoPlay();
+      startAuto();
     });
 
     dots.forEach(dot => {
       dot.addEventListener('click', () => {
-        const index = parseInt(dot.getAttribute('data-index'), 10);
-        setActiveSlide(index);
-        startAutoPlay();
+        const i = parseInt(dot.dataset.index);
+        setActiveSlide(i);
+        startAuto();
       });
     });
 
-    // ========= LIGHTBOX =========
+    // LIGHTBOX
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightboxImg');
     const lightboxCaption = document.getElementById('lightboxCaption');
@@ -728,12 +552,11 @@
       const img = slide.querySelector('img');
       img.addEventListener('click', () => {
         const src = img.getAttribute('src');
-        const title = slide.dataset.title || '';
-        const desc  = slide.dataset.desc || '';
+        const title = slide.dataset.title;
+        const desc  = slide.dataset.desc;
+
         lightboxImg.src = src;
-        lightboxCaption.textContent = title
-          ? title + (desc ? ' — ' + desc : '')
-          : desc;
+        lightboxCaption.innerHTML = `<b>${title}</b><br>${desc}`;
         lightbox.classList.add('show');
       });
     });
@@ -742,36 +565,17 @@
       lightbox.classList.remove('show');
     });
 
-    lightbox.addEventListener('click', (e) => {
-      if (e.target === lightbox) {
-        lightbox.classList.remove('show');
-      }
+    lightbox.addEventListener('click', e => {
+      if(e.target === lightbox) lightbox.classList.remove('show');
     });
 
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        lightbox.classList.remove('show');
-      }
+    document.addEventListener('keydown', e => {
+      if(e.key === 'Escape') lightbox.classList.remove('show');
     });
 
-    // ========= PARALLAX BACKGROUND =========
-    const bgOrbit = document.querySelector('.bg-orbit');
-    const bgFrame = document.querySelector('.bg-frame');
-
-    window.addEventListener('scroll', () => {
-      const offset = window.pageYOffset || document.documentElement.scrollTop || 0;
-      if (bgOrbit) {
-        bgOrbit.style.transform =
-          `translate(-50%, -50%) translateY(${offset * 0.1}px) rotate(${offset * 0.03}deg)`;
-      }
-      if (bgFrame) {
-        bgFrame.style.transform = `translateY(${offset * 0.08}px)`;
-      }
-    });
-
-    // Start autoplay on load
+    // AUTO PLAY
     setActiveSlide(0);
-    startAutoPlay();
+    startAuto();
   </script>
 
 </body>
