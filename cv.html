@@ -440,6 +440,64 @@
   transform: translateY(-2px);
   box-shadow: 0 0 26px rgba(216,185,122,0.6);
 }
+/* FIX 1 — Align Arabic & English columns */
+.cv-grid {
+  align-items: start;
+}
+.cv-grid > div {
+  margin-top: 0 !important;
+}
+
+/* FIX 2 — Hide top contact tags (email/phone/linkedin/vimeo) */
+.hero-links {
+  display: none !important;
+}
+
+/* FIX 3 — Gold flash when clicking sections */
+.section-title,
+.box {
+  transition: box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.section-title:active,
+.box:active {
+  box-shadow: 0 0 20px rgba(216,185,122,0.55);
+  border-color: var(--gold);
+}
+
+/* FIX 4 — Make background pure black like My Work */
+body {
+  background: #000 !important;
+}
+.bg-anim {
+  display: none !important;
+}
+
+/* FIX 5 — Move Download CV under the photo */
+.hero-photo {
+  margin-bottom: 14px !important;
+}
+.download-btn {
+  display: block !important;
+  margin-top: 8px !important;
+}
+
+/* FIX 6 — Global gold click flash */
+*:active {
+  outline: none !important;
+  box-shadow: 0 0 12px rgba(216,185,122,0.45) !important;
+}
+
+/* MOBILE FIX — navbar overlapping */
+@media (max-width: 650px) {
+  nav {
+    position: fixed !important;
+    height: auto !important;
+  }
+  .nav-inner {
+    flex-direction: column;
+    gap: 8px !important;
+  }
+}    
 </style>
 </head>
 <body>
