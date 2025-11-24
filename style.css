@@ -48,9 +48,30 @@ body.page-loaded { opacity: 1; }
   display: flex;
   align-items: center;
   padding: 0 7%;
+
+  /* ZOOM ANIMATION */
+  animation: heroZoom 20s ease-in-out infinite;
 }
 
-.hero-content { max-width: 550px; }
+@keyframes heroZoom {
+  0% { background-size: 100%; }
+  50% { background-size: 110%; }
+  100% { background-size: 100%; }
+}
+
+/* OVERLAY (ADDED) */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.8));
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 550px;
+}
 
 .hero-name {
   font-size: 35px;
@@ -72,7 +93,7 @@ body.page-loaded { opacity: 1; }
   line-height: 1.8;
 }
 
-/* SOCIAL */
+/* SOCIAL — ORIGINAL SHAPE BUT USING IMAGES */
 .social-row {
   margin-top: 22px;
   display: flex;
@@ -80,21 +101,32 @@ body.page-loaded { opacity: 1; }
   flex-wrap: wrap;
 }
 
-.social-icon {
-  font-size: 14px;
-  padding: 6px 10px;
+/* CIRCLE STYLE AS BEFORE */
+.icon-circle {
+  width: 42px;
+  height: 42px;
   border: 1px solid #fff;
-  border-radius: 4px;
-  color: #fff;
-  font-weight: 700;
-  text-decoration: none;
+  border-radius: 4px;      /* ← الاحتفاظ بالزاوية القديمة */
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: 0.25s;
 }
 
-.social-icon:hover {
+.icon-circle:hover {
   background: #d4af37;
-  color: #000;
   border-color: #d4af37;
+  transform: scale(1.05);
+}
+
+.icon-circle img {
+  width: 20px;
+  height: 20px;
+  filter: brightness(0) invert(1);
+}
+
+.icon-circle:hover img {
+  filter: brightness(0);
 }
 
 /* SIDE TITLE */
@@ -183,13 +215,16 @@ body.page-loaded { opacity: 1; }
   color: #d4af37;
 }
 
-/* RESPONSIVE */
-@media(max-width:900px){
-  .videos-grid { grid-template-columns: repeat(2,1fr); }
-}
-
+/* RESPONSIVE FIX — KEEP ORIGINAL LAYOUT + TEXT VISIBILITY */
 @media(max-width:600px){
   .videos-grid { grid-template-columns: 1fr; }
   .hero-name { font-size: 36px; }
   .hero-heading { font-size: 28px; }
+
+  /* MAKE TEXT READABLE OVER BRIGHT AREAS */
+  .hero-sub {
+    background: rgba(0,0,0,0.55);
+    padding: 12px;
+    border-radius: 6px;
+  }
 }
