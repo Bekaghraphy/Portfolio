@@ -1,1 +1,613 @@
-CV HTML GENERATED
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CV | Hesham Abdelhamed</title>
+
+  <style>
+    :root {
+      --gold: #d8b97a;
+      --gold-soft: #e6c894;
+      --text: #ffffff;
+      --bg-dark: #050505;
+      --card-bg: rgba(255, 255, 255, 0.03);
+      --border-subtle: rgba(255, 255, 255, 0.06);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      background: radial-gradient(circle at top, #191919 0%, #000 70%);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* NAVBAR – centered like main site */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 18px 40px;
+      background: rgba(0, 0, 0, 0.55);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      z-index: 100;
+    }
+
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center; /* nav in the middle */
+      gap: 35px;
+    }
+
+    .nav-brand {
+      position: absolute;
+      left: 40px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 15px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      opacity: 0.9;
+    }
+
+    .nav-avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: 2px solid var(--gold);
+      object-fit: cover;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+    }
+
+    .nav-links a {
+      color: var(--text);
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 500;
+      opacity: 0.8;
+      position: relative;
+      padding-bottom: 3px;
+      transition: color 0.25s ease, opacity 0.25s ease;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background: var(--gold);
+      transition: width 0.25s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--gold-soft);
+      opacity: 1;
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    /* WRAPPER */
+    .wrapper {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 140px 24px 80px;
+    }
+
+    /* HERO */
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+      margin-bottom: 60px;
+      animation: fadeUp 0.9s ease-out;
+    }
+
+    .hero-main {
+      flex: 1;
+    }
+
+    .hero-name {
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--gold-soft);
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+
+    .hero-role {
+      font-size: 18px;
+      opacity: 0.85;
+      margin-bottom: 18px;
+    }
+
+    .hero-meta {
+      font-size: 14px;
+      opacity: 0.75;
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+
+    .hero-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 16px;
+      font-size: 14px;
+    }
+
+    .tag-pill {
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.03);
+      font-size: 11px;
+      opacity: 0.8;
+    }
+
+    .hero-photo {
+      width: 160px;
+      height: 160px;
+      border-radius: 18px;
+      object-fit: cover;
+      border: 3px solid var(--gold);
+      box-shadow: 0 0 26px rgba(216, 185, 122, 0.6);
+    }
+
+    /* GRID TWO COLUMNS EN/AR */
+    .cv-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+
+    .section {
+      margin-bottom: 40px;
+      animation: fadeUp 0.9s ease;
+    }
+
+    .section-title {
+      font-size: 20px;
+      color: var(--gold-soft);
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
+    }
+
+    .box {
+      background: var(--card-bg);
+      border-radius: 12px;
+      border: 1px solid var(--border-subtle);
+      padding: 18px 18px;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .muted {
+      opacity: 0.8;
+    }
+
+    /* Skills grid */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .skill-pill {
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 8px 12px;
+      font-size: 13px;
+      text-align: center;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+    }
+
+    .skill-pill:hover {
+      border-color: var(--gold);
+      box-shadow: 0 0 18px rgba(216, 185, 122, 0.35);
+      transform: translateY(-2px);
+    }
+
+    /* Experience items */
+    .exp-item {
+      position: relative;
+      padding-left: 18px;
+      margin-bottom: 18px;
+      border-left: 2px solid rgba(216, 185, 122, 0.7);
+    }
+
+    .exp-item::before {
+      content: "";
+      position: absolute;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--gold);
+      left: -5px;
+      top: 6px;
+    }
+
+    .exp-role {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .exp-meta {
+      font-size: 12px;
+      opacity: 0.8;
+      margin-bottom: 4px;
+    }
+
+    .exp-desc {
+      font-size: 13px;
+      opacity: 0.85;
+    }
+
+    /* Arabic side */
+    .rtl {
+      direction: rtl;
+      text-align: right;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .rtl .exp-item {
+      padding-left: 0;
+      padding-right: 18px;
+      border-left: none;
+      border-right: 2px solid rgba(216, 185, 122, 0.7);
+    }
+
+    .rtl .exp-item::before {
+      left: auto;
+      right: -5px;
+    }
+
+    /* Footer / Contact */
+    .contact-section {
+      margin-top: 40px;
+      text-align: center;
+      font-size: 14px;
+      opacity: 0.85;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: center;
+      margin-top: 12px;
+    }
+
+    .contact-link {
+      color: var(--gold-soft);
+      text-decoration: none;
+      font-size: 14px;
+      border-bottom: 1px dashed rgba(216, 185, 122, 0.6);
+      padding-bottom: 2px;
+    }
+
+    .contact-link:hover {
+      opacity: 1;
+      border-bottom-style: solid;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+      }
+      .hero-photo {
+        width: 130px;
+        height: 130px;
+      }
+      .cv-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      nav {
+        padding: 14px 18px;
+      }
+      .nav-brand {
+        left: 18px;
+      }
+      .wrapper {
+        padding-top: 120px;
+        padding-inline: 18px;
+      }
+      .hero-name {
+        font-size: 28px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <div class="nav-inner">
+      <div class="nav-brand">
+        <img src="img/heshampersonal.jpg" alt="Hesham" class="nav-avatar" />
+        <span>Hesham</span>
+      </div>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="my-work.html">My Work</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="cv.html" class="active">CV</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="wrapper">
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-main">
+        <div class="hero-name">Hesham Abdelhamed</div>
+        <div class="hero-role">Filmmaker · Video Editor · Director · Video Producer</div>
+        <div class="hero-meta">
+          Riyadh · Bachelor of Fine Arts (Faculty of Fine Art) · 10+ years in film, TV and digital storytelling.
+        </div>
+        <div class="hero-links">
+          <span class="tag-pill">Email: Per.hisham@gmail.com</span>
+          <span class="tag-pill">Phone: +966 50 306 4408</span>
+          <span class="tag-pill">LinkedIn: heshamabdelhamed</span>
+          <span class="tag-pill">Vimeo: vimeo.com/hishamabdelhamed</span>
+        </div>
+      </div>
+      <img src="img/heshampersonal.jpg" alt="Hesham" class="hero-photo" />
+    </section>
+
+    <!-- GRID EN / AR -->
+    <section class="cv-grid">
+
+      <!-- LEFT: ENGLISH -->
+      <div>
+
+        <!-- SUMMARY -->
+        <div class="section">
+          <div class="section-title">Summary</div>
+          <div class="box">
+            I’m a passionate video editor and media creator with over a decade of experience in crafting
+            compelling visual stories. From commercial ads and documentaries to engaging YouTube shorts,
+            I bring a unique blend of technical expertise and creative vision to every project.
+            <br /><br />
+            My journey spans local and international channels, production companies, and digital platforms.
+            I specialize in editing, directing, cinematography, motion graphics, and storytelling—always
+            with a focus on connecting with the audience.
+            <br /><br />
+            Now based in Saudi Arabia, I continue to explore impactful ways to merge education, humor, and
+            inspiration through short-form video content. Whether working behind the scenes or bringing stories
+            to life on camera, my mission is to inform, entertain, and inspire.
+          </div>
+        </div>
+
+        <!-- SKILLS -->
+        <div class="section">
+          <div class="section-title">Skills</div>
+          <div class="box">
+            <div class="skills-grid">
+              <span class="skill-pill">Video Production</span>
+              <span class="skill-pill">Filmmaking</span>
+              <span class="skill-pill">Video Editing</span>
+              <span class="skill-pill">Storytelling</span>
+              <span class="skill-pill">Collage Art</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- TOOLS -->
+        <div class="section">
+          <div class="section-title">Tools</div>
+          <div class="box">
+            <div class="skills-grid">
+              <span class="skill-pill">Camera Operation</span>
+              <span class="skill-pill">Lighting</span>
+              <span class="skill-pill">Adobe Premiere Pro</span>
+              <span class="skill-pill">Adobe After Effects</span>
+              <span class="skill-pill">Adobe Photoshop</span>
+              <span class="skill-pill">Adobe Illustrator</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- EXPERIENCE (ENGLISH) -->
+        <div class="section">
+          <div class="section-title">Experience</div>
+          <div class="box">
+
+            <div class="exp-item">
+              <div class="exp-role">Multimedia Producer – FLOW Medical Solutions (HMG)</div>
+              <div class="exp-meta">Jan 2024 – Present · Riyadh, Saudi Arabia</div>
+              <div class="exp-desc">
+                Working within the marketing department, capturing inspiring stories that reflect FLOW's values and
+                documenting project outcomes through video production, editing and visual design—ensuring every piece
+                of content aligns with the brand and creates meaningful impact.
+              </div>
+            </div>
+
+            <div class="exp-item">
+              <div class="exp-role">Freelance Filmmaker</div>
+              <div class="exp-meta">Jan 2023 – Jan 2024 · Cairo, Lebanon, Morocco</div>
+              <div class="exp-desc">
+                Worked on specialized projects across film production, advertising, sports, medical content and
+                documentary storytelling. Collaborated with institutions such as BBC, DW and French Television on
+                high-quality productions.
+              </div>
+            </div>
+
+            <div class="exp-item">
+              <div class="exp-role">Manager of Multimedia – Baheya Foundation</div>
+              <div class="exp-meta">Sep 2022 – Dec 2022 · Cairo, Egypt</div>
+              <div class="exp-desc">
+                Led filming and editing, crafting inspiring stories of women fighting breast cancer and presenting
+                their journeys with empathy and respect.
+              </div>
+            </div>
+
+            <div class="exp-item">
+              <div class="exp-role">Filmmaker – Media Vision Company International</div>
+              <div class="exp-meta">Aug 2018 – Dec 2022 · Cairo, Lebanon, Morocco, Jordan, Tunisia</div>
+              <div class="exp-desc">
+                Produced 40+ documentary films across several countries, exploring diverse cultures and human
+                experiences as part of long-form documentary series.
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- RIGHT: ARABIC -->
+      <div class="rtl">
+
+        <!-- SUMMARY AR -->
+        <div class="section">
+          <div class="section-title">الملخص</div>
+          <div class="box">
+            أنا صانع أفلام ومونتير فيديو شغوف، أمتلك أكثر من عشر سنوات من الخبرة في صناعة القصص البصرية
+            المؤثرة. من الإعلانات التلفزيونية والأفلام الوثائقية، إلى فيديوهات يوتيوب القصيرة، أدمج بين
+            الدقّة التقنية والرؤية الإبداعية في كل مشروع أعمل عليه.
+            <br /><br />
+            امتدت رحلتي عبر قنوات محلية ودولية، وشركات إنتاج ومنصات رقمية مختلفة. أعمل في مجالات المونتاج
+            والإخراج، والتصوير السينمائي، والموشن جرافيك، وصناعة الحكاية – مع تركيز دائم على التواصل
+            الحقيقي مع الجمهور.
+            <br /><br />
+            أعيش حالياً في المملكة العربية السعودية، وأبحث دائماً عن طرق مؤثرة لمزج التعليم مع المتعة
+            والإلهام من خلال المحتوى القصير. سواء كنت خلف الكاميرا أو أمامها، فهدفي أن أُعلِّم وأُلهِم
+            وأُسلي الآخرين عبر الصورة.
+          </div>
+        </div>
+
+        <!-- SKILLS AR -->
+        <div class="section">
+          <div class="section-title">المهارات</div>
+          <div class="box">
+            <div class="skills-grid">
+              <span class="skill-pill">إنتاج الفيديو</span>
+              <span class="skill-pill">صناعة الأفلام</span>
+              <span class="skill-pill">مونتاج الفيديو</span>
+              <span class="skill-pill">كتابة الحكاية البصرية</span>
+              <span class="skill-pill">الكولاج والـ Art</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- TOOLS AR -->
+        <div class="section">
+          <div class="section-title">الأدوات والبرامج</div>
+          <div class="box">
+            <div class="skills-grid">
+              <span class="skill-pill">تشغيل الكاميرا</span>
+              <span class="skill-pill">الإضاءة</span>
+              <span class="skill-pill">Adobe Premiere Pro</span>
+              <span class="skill-pill">Adobe After Effects</span>
+              <span class="skill-pill">Adobe Photoshop</span>
+              <span class="skill-pill">Adobe Illustrator</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- EXPERIENCE AR -->
+        <div class="section">
+          <div class="section-title">الخبرات العملية</div>
+          <div class="box">
+
+            <div class="exp-item">
+              <div class="exp-role">منتج وسائط متعددة – FLOW Medical Solutions (مجموعة الحمادي)</div>
+              <div class="exp-meta">يناير 2024 – حتى الآن · الرياض، السعودية</div>
+              <div class="exp-desc">
+                أعمل ضمن قسم التسويق، وأتولى توثيق وتصوير القصص الملهمة المرتبطة بمشاريع الشركة، بالإضافة
+                إلى المونتاج وتصميم المواد البصرية بما يحقق هوية العلامة ويصنع أثراً حقيقياً لدى الجمهور.
+              </div>
+            </div>
+
+            <div class="exp-item">
+              <div class="exp-role">صانع أفلام مستقل</div>
+              <div class="exp-meta">يناير 2023 – يناير 2024 · القاهرة، لبنان، المغرب</div>
+              <div class="exp-desc">
+                عملت على مشروعات متخصصة في مجالات الأفلام، والإعلانات، والرياضة، والمحتوى الطبي،
+                والأفلام الوثائقية، بالتعاون مع مؤسسات دولية مثل BBC وDW والتلفزيون الفرنسي.
+              </div>
+            </div>
+
+            <div class="exp-item">
+              <div class="exp-role">مدير قسم الوسائط المتعددة – مؤسسة بهية</div>
+              <div class="exp-meta">سبتمبر 2022 – ديسمبر 2022 · القاهرة، مصر</div>
+              <div class="exp-desc">
+                مسؤول عن التصوير والمونتاج لقصص السيدات المحاربات، وتقديم هذه الرحلات الإنسانية
+                بشكل محترم، مؤثر، ويحفظ خصوصيتهن.
+              </div>
+            </div>
+
+            <div class="exp-item">
+              <div class="exp-role">صانع أفلام – Media Vision Company International</div>
+              <div class="exp-meta">أغسطس 2018 – ديسمبر 2022 · لبنان، المغرب، الأردن، تونس</div>
+              <div class="exp-desc">
+                إنتاج أكثر من 40 فيلماً وثائقياً من دول مختلفة، تسلط الضوء على حكايات إنسانية وتجارب
+                اجتماعية وثقافية متنوعة ضمن سلاسل برامج وثائقية.
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CONTACT / LINKS -->
+    <section class="contact-section">
+      <div>Thank you for taking the time to explore my work and journey.</div>
+      <div class="contact-links">
+        <a class="contact-link" href="mailto:Per.hisham@gmail.com">Per.hisham@gmail.com</a>
+        <a class="contact-link" href="https://www.linkedin.com/in/heshamabdelhamed" target="_blank" rel="noopener">
+          LinkedIn: heshamabdelhamed
+        </a>
+        <a class="contact-link" href="https://vimeo.com/hishamabdelhamed" target="_blank" rel="noopener">
+          Vimeo Portfolio
+        </a>
+      </div>
+    </section>
+
+  </div>
+
+</body>
+</html>
