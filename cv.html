@@ -109,11 +109,44 @@
       width: 100%;
     }
 
+    /* BG ANIMATION (outlines) */
+    .bg-anim {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .shape {
+      position: absolute;
+      border: 1px solid rgba(216, 185, 122, 0.28);
+      border-radius: 14px;
+      width: 140px;
+      height: 90px;
+      animation: float 16s infinite ease-in-out;
+      opacity: 0.25;
+    }
+
+    .shape.s1 { top: 12%; left: 5%; animation-duration: 18s; animation-delay: 0s; }
+    .shape.s2 { top: 70%; left: 12%; animation-duration: 20s; animation-delay: -4s; }
+    .shape.s3 { top: 20%; right: 8%; animation-duration: 22s; animation-delay: -6s; }
+    .shape.s4 { bottom: 10%; right: 18%; animation-duration: 19s; animation-delay: -2s; }
+    .shape.s5 { top: 45%; left: 40%; width: 180px; height: 110px; animation-duration: 24s; animation-delay: -8s; }
+
+    @keyframes float {
+      0%   { transform: translateY(0) translateX(0) rotate(0deg);   opacity: 0.18; }
+      50%  { transform: translateY(-25px) translateX(12px) rotate(3deg); opacity: 0.42; }
+      100% { transform: translateY(0) translateX(0) rotate(0deg);   opacity: 0.18; }
+    }
+
     /* WRAPPER */
     .wrapper {
       max-width: 1240px;
       margin: 0 auto;
       padding: 140px 24px 80px;
+      position: relative;
+      z-index: 1;
     }
 
     /* HERO */
@@ -128,6 +161,7 @@
 
     .hero-main {
       flex: 1;
+      animation: fadeUp 0.9s ease-out;
     }
 
     .hero-name {
@@ -156,6 +190,7 @@
       flex-wrap: wrap;
       gap: 10px 16px;
       font-size: 14px;
+      animation: fadeUp 1s ease-out;
     }
 
     .tag-pill {
@@ -174,6 +209,7 @@
       object-fit: cover;
       border: 3px solid var(--gold);
       box-shadow: 0 0 26px rgba(216, 185, 122, 0.6);
+      animation: fadeUp 1s ease-out;
     }
 
     /* GRID TWO COLUMNS EN/AR */
@@ -231,12 +267,13 @@
       transform: translateY(-2px);
     }
 
-    /* Experience items */
+    /* Experience timeline */
     .exp-item {
       position: relative;
       padding-left: 18px;
       margin-bottom: 18px;
       border-left: 2px solid rgba(216, 185, 122, 0.7);
+      animation: jobFade 0.8s ease-out both;
     }
 
     .exp-item::before {
@@ -266,6 +303,24 @@
       font-size: 13px;
       opacity: 0.85;
     }
+
+    .exp-separator {
+      height: 1px;
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: 999px;
+      margin: 18px 0;
+    }
+
+    /* staggered animation for jobs */
+    .box .exp-item:nth-child(1)  { animation-delay: 0.05s; }
+    .box .exp-item:nth-child(2)  { animation-delay: 0.10s; }
+    .box .exp-item:nth-child(3)  { animation-delay: 0.15s; }
+    .box .exp-item:nth-child(4)  { animation-delay: 0.20s; }
+    .box .exp-item:nth-child(5)  { animation-delay: 0.25s; }
+    .box .exp-item:nth-child(6)  { animation-delay: 0.30s; }
+    .box .exp-item:nth-child(7)  { animation-delay: 0.35s; }
+    .box .exp-item:nth-child(8)  { animation-delay: 0.40s; }
+    .box .exp-item:nth-child(9)  { animation-delay: 0.45s; }
 
     /* Arabic side */
     .rtl {
@@ -326,6 +381,17 @@
       }
     }
 
+    @keyframes jobFade {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
     @media (max-width: 900px) {
       .hero {
         flex-direction: column-reverse;
@@ -358,6 +424,15 @@
   </style>
 </head>
 <body>
+
+  <!-- BG ANIMATION -->
+  <div class="bg-anim">
+    <div class="shape s1"></div>
+    <div class="shape s2"></div>
+    <div class="shape s3"></div>
+    <div class="shape s4"></div>
+    <div class="shape s5"></div>
+  </div>
 
   <!-- NAVBAR -->
   <nav>
@@ -491,6 +566,53 @@
               </div>
             </div>
 
+            <div class="exp-separator"></div>
+
+            <div class="exp-item">
+              <div class="exp-role">Multimedia Reporter – Al-Manassa Newsroom</div>
+              <div class="exp-meta">2020 – 2022 · Cairo, Egypt</div>
+              <div class="exp-desc">
+                Covered social, cultural and political stories using multimedia production, producing engaging visual
+                news content for digital platforms.
+              </div>
+            </div>
+
+            <div class="exp-item">
+              <div class="exp-role">Videographer / Video Editor – WAYA Media</div>
+              <div class="exp-meta">2019 – 2020 · Cairo, Egypt</div>
+              <div class="exp-desc">
+                Filmed and edited business and startup-focused stories, delivering modern, high-impact visuals tailored
+                for social media growth.
+              </div>
+            </div>
+
+            <div class="exp-item">
+              <div class="exp-role">Multimedia Producer – Gamma Agency for Media Production</div>
+              <div class="exp-meta">2016 – 2020 · Egypt</div>
+              <div class="exp-desc">
+                Produced content for major international networks including Al Arabiya, BBC, DW, Reuters and AFP
+                across news, features and documentary work.
+              </div>
+            </div>
+
+            <div class="exp-item">
+              <div class="exp-role">Camera Operator / Video Editor – AlAraby TV</div>
+              <div class="exp-meta">2014 – 2016 · Cairo, Egypt</div>
+              <div class="exp-desc">
+                Worked on news features and TV reports as part of the core multimedia team, ensuring high-quality
+                visual storytelling.
+              </div>
+            </div>
+
+            <div class="exp-item">
+              <div class="exp-role">Freelance Multimedia Reporter</div>
+              <div class="exp-meta">2011 – 2014 · Egypt</div>
+              <div class="exp-desc">
+                Covered human-interest stories, social issues and field reporting projects for regional channels and
+                online publications.
+              </div>
+            </div>
+
           </div>
         </div>
 
@@ -584,6 +706,52 @@
               <div class="exp-desc">
                 إنتاج أكثر من 40 فيلماً وثائقياً من دول مختلفة، تسلط الضوء على حكايات إنسانية وتجارب
                 اجتماعية وثقافية متنوعة ضمن سلاسل برامج وثائقية.
+              </div>
+            </div>
+
+            <div class="exp-separator"></div>
+
+            <div class="exp-item">
+              <div class="exp-role">مراسل وسائط متعددة – غرفة أخبار المنصة</div>
+              <div class="exp-meta">2020 – 2022 · القاهرة، مصر</div>
+              <div class="exp-desc">
+                تغطية قصص اجتماعية وثقافية وسياسية بتقنيات الوسائط المتعددة، وإنتاج مواد بصرية تفاعلية
+                لمنصات الأخبار الرقمية.
+              </div>
+            </div>
+
+            <div class="exp-item">
+              <div class="exp-role">مصور فيديو / مونتير – WAYA Media</div>
+              <div class="exp-meta">2019 – 2020 · القاهرة، مصر</div>
+              <div class="exp-desc">
+                تصوير ومونتاج قصص عن الشركات الناشئة وريادة الأعمال، وتقديم محتوى بصري معاصر موجه
+                لمنصات التواصل.
+              </div>
+            </div>
+
+            <div class="exp-item">
+              <div class="exp-role">منتج وسائط متعددة – وكالة Gamma للإنتاج الإعلامي</div>
+              <div class="exp-meta">2016 – 2020 · مصر</div>
+              <div class="exp-desc">
+                إنتاج تقارير ومواد بصرية لقنوات دولية مثل العربية، BBC، DW، رويترز ووكالة الأنباء
+                الفرنسية AFP في مجالات الأخبار والبرامج الوثائقية.
+              </div>
+            </div>
+
+            <div class="exp-item">
+              <div class="exp-role">مصور كاميرا / مونتير – قناة العربي</div>
+              <div class="exp-meta">2014 – 2016 · القاهرة، مصر</div>
+              <div class="exp-desc">
+                العمل على التقارير التلفزيونية والقصص الإنسانية ضمن فريق الإنتاج متعدد الوسائط بالقناة.
+              </div>
+            </div>
+
+            <div class="exp-item">
+              <div class="exp-role">مراسل وسائط متعددة مستقل</div>
+              <div class="exp-meta">2011 – 2014 · مصر</div>
+              <div class="exp-desc">
+                تغطية قصص إنسانية واجتماعية وإنتاج محتوى ميداني لعدد من القنوات والمنصات الإخبارية
+                في المنطقة.
               </div>
             </div>
 
