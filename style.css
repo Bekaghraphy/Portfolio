@@ -246,3 +246,7 @@ body.page-loaded { opacity: 1; }
 
   .videos-grid { grid-template-columns: 1fr; }
 }
+body {
+  background: #000 !important;
+}
+
