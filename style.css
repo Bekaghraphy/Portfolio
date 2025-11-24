@@ -59,7 +59,7 @@ body.page-loaded { opacity: 1; }
   100% { background-size: 100%; }
 }
 
-/* OVERLAY (ADDED) */
+/* OVERLAY */
 .hero-overlay {
   position: absolute;
   inset: 0;
@@ -93,7 +93,7 @@ body.page-loaded { opacity: 1; }
   line-height: 1.8;
 }
 
-/* SOCIAL — ORIGINAL SHAPE BUT USING IMAGES */
+/* SOCIAL */
 .social-row {
   margin-top: 22px;
   display: flex;
@@ -101,15 +101,16 @@ body.page-loaded { opacity: 1; }
   flex-wrap: wrap;
 }
 
-/* CIRCLE STYLE AS BEFORE */
+/* دائرة أصلية بدون أي تغيير في الشكل */
 .icon-circle {
   width: 42px;
   height: 42px;
   border: 1px solid #fff;
-  border-radius: 4px;      /* ← الاحتفاظ بالزاوية القديمة */
+  border-radius: 4px;
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
   transition: 0.25s;
 }
 
@@ -215,13 +216,13 @@ body.page-loaded { opacity: 1; }
   color: #d4af37;
 }
 
-/* RESPONSIVE FIX — KEEP ORIGINAL LAYOUT + TEXT VISIBILITY */
+/* RESPONSIVE */
 @media(max-width:600px){
   .videos-grid { grid-template-columns: 1fr; }
   .hero-name { font-size: 36px; }
   .hero-heading { font-size: 28px; }
 
-  /* MAKE TEXT READABLE OVER BRIGHT AREAS */
+  /* نص واضح فوق الخلفية */
   .hero-sub {
     background: rgba(0,0,0,0.55);
     padding: 12px;
