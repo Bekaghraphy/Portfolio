@@ -16,21 +16,36 @@ body {
 
 body.page-loaded { opacity: 1; }
 
-/* NAV */
+/* NAV – Sticky + Blur Animation */
 .nav {
   width: 100%;
   padding: 22px 0;
   position: fixed;
   top: 0;
   text-align: center;
-  background: rgba(0,0,0,0.45);
-  backdrop-filter: blur(8px);
-  z-index: 50;
+  background: rgba(0,0,0,0.25);
+  backdrop-filter: blur(3px);
+  transition: background 0.35s ease, padding 0.3s ease, backdrop-filter 0.35s ease;
+  z-index: 100;
+}
+
+.nav.scrolled {
+  background: rgba(0,0,0,0.70);
+  backdrop-filter: blur(12px);
+  padding: 14px 0;
+}
+
+.nav-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 35px;
+  flex-wrap: nowrap; /* Prevent breaking on mobile */
 }
 
 .nav-center a {
   text-decoration: none;
-  margin: 0 25px;
+  margin: 0;
   font-size: 18px;
   font-weight: 600;
   color: #fff;
@@ -39,6 +54,15 @@ body.page-loaded { opacity: 1; }
 .nav-center a.active,
 .nav-center a:hover { color: #d4af37; }
 
+/* Scroll Event */
+body.page-loaded::after {}
+
+window.addEventListener("scroll", () => {
+  const nav = document.querySelector(".nav");
+  if (window.scrollY > 10) nav.classList.add("scrolled");
+  else nav.classList.remove("scrolled");
+});
+
 /* HERO */
 .hero {
   background-repeat: no-repeat;
@@ -46,13 +70,9 @@ body.page-loaded { opacity: 1; }
   background-position: center top;
   height: 100vh;
   width: 100%;
-  background-size: cover;
-  background-position: center;
   display: flex;
   align-items: center;
   padding: 0 7%;
-
-  /* ZOOM ANIMATION */
   animation: heroZoom 20s ease-in-out infinite;
 }
 
@@ -96,45 +116,40 @@ body.page-loaded { opacity: 1; }
   line-height: 1.8;
 }
 
-/* SOCIAL */
+/* SOCIAL ROW — Force inline on mobile */
 .social-row {
   margin-top: 22px;
   display: flex;
   gap: 12px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;     /* Prevent line break */
+  overflow-x: auto;      /* Scroll if needed */
+  padding-bottom: 6px;
 }
 
-/* دائرة أصلية بدون أي تغيير في الشكل */
+/* ICON CIRCLE — Your Final Style (colored icons) */
 .icon-circle {
   width: 42px;
   height: 42px;
-  border: none;               /* إزالة البوردر الأبيض */
-  border-radius: 50%;         /* يضمن بقاء الشكل دائري */
+  border: none;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0;
-  background: none;           /* إلغاء الخلفية القديمة */
+  background: none;
   transition: 0.25s;
 }
 
 .icon-circle:hover {
-  background: #d4af37;
-  border-color: #d4af37;
-  transform: scale(1.05);
+  transform: scale(1.08);
 }
 
 .icon-circle img {
   width: 42px;
   height: 42px;
   border-radius: 50%;
-  object-fit: cover;          /* علشان الصورة تبقى كاملة */
-  filter: none !important;    /* إلغاء أي تأثير كان بيخفي الأيقونة */
-}
-
-
-.icon-circle:hover img {
-  filter: brightness(0);
+  object-fit: cover;
+  filter: none !important;
 }
 
 /* SIDE TITLE */
@@ -229,7 +244,6 @@ body.page-loaded { opacity: 1; }
   .hero-name { font-size: 36px; }
   .hero-heading { font-size: 28px; }
 
-  /* نص واضح فوق الخلفية */
   .hero-sub {
     background: rgba(0,0,0,0.55);
     padding: 12px;
