@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Gallery | Hesham Abdelhamed</title>
 
   <style>
     body {
       margin: 0;
-      font-family: 'Montserrat', sans-serif;
+      font-family: "Montserrat", sans-serif;
       background: #000;
-      overflow: hidden;
+      color: #fff;
+      overflow-x: hidden;
     }
 
     /* NAV BAR */
@@ -21,11 +22,10 @@
       left: 0;
       padding: 20px 40px;
       display: flex;
-      justify-content: flex-start;
       gap: 30px;
-      background: rgba(0,0,0,0.5);
+      background: rgba(0, 0, 0, 0.5);
       backdrop-filter: blur(6px);
-      z-index: 10;
+      z-index: 50;
     }
 
     nav a {
@@ -43,9 +43,12 @@
     /* SLIDESHOW */
     .slideshow-container {
       position: relative;
-      width: 100%;
-      height: 100vh;
-      margin-top: 80px;
+      width: 80%; /* مساحة يمين وشمال */
+      height: 80vh; /* أصغر من الشاشة */
+      margin: 120px auto 0 auto; /* يحطه في النص */
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
     }
 
     .mySlides {
@@ -58,6 +61,8 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      object-position: center;
+      border-radius: 12px;
     }
 
     /* ARROWS */
@@ -65,14 +70,12 @@
       cursor: pointer;
       position: absolute;
       top: 50%;
-      width: auto;
       padding: 16px;
-      margin-top: -22px;
       color: #fff;
       font-weight: bold;
-      font-size: 28px;
-      transition: 0.3s;
+      font-size: 30px;
       user-select: none;
+      transition: 0.3s;
       z-index: 10;
     }
 
@@ -90,20 +93,48 @@
 
     /* CAPTION */
     .text {
-      color: #f2f2f2;
-      font-size: 30px;
-      padding: 16px;
+      color: #fff;
+      font-size: 22px;
+      padding: 12px;
       position: absolute;
-      bottom: 30px;
+      bottom: 10px;
       width: 100%;
       text-align: center;
-      background: rgba(0,0,0,0.4);
+      background: rgba(0,0,0,0.3);
+    }
+
+    /* -------- RESPONSIVE FOR MOBILE -------- */
+    @media (max-width: 768px) {
+      .slideshow-container {
+        width: 95%;
+        height: 60vh;
+        margin-top: 110px;
+      }
+
+      .prev, .next {
+        font-size: 26px;
+        padding: 10px;
+      }
+
+      nav {
+        padding: 15px 20px;
+        gap: 15px;
+      }
+
+      nav a {
+        font-size: 16px;
+      }
+
+      .text {
+        font-size: 18px;
+      }
     }
   </style>
 </head>
+
 <body>
 
-  <!-- NAV BAR -->
+  <!-- NAV -->
   <nav>
     <a href="index.html">Home</a>
     <a href="gallery.html">My Work</a>
@@ -114,35 +145,31 @@
   <!-- SLIDESHOW -->
   <div class="slideshow-container">
 
-    <div class="mySlides fade">
-      <img src="img/work1.jpg" alt="Slide 1">
+    <div class="mySlides">
+      <img src="img/work1.jpg" alt="slide 1">
     </div>
 
-    <div class="mySlides fade">
-      <img src="img/work2.jpg" alt="Slide 2">
+    <div class="mySlides">
+      <img src="img/work2.jpg" alt="slide 2">
     </div>
 
-    <div class="mySlides fade">
-      <img src="img/work3.jpg" alt="Slide 3">
+    <div class="mySlides">
+      <img src="img/work3.jpg" alt="slide 3">
     </div>
 
-    <!-- ARROWS -->
     <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
     <a class="next" onclick="plusSlides(1)">&#10095;</a>
 
   </div>
 
-  <!-- SCRIPT -->
   <script>
     let slideIndex = 1;
     showSlides(slideIndex);
 
-    // NEXT / PREVIOUS CONTROLS
     function plusSlides(n) {
       showSlides(slideIndex += n);
     }
 
-    // SHOW SLIDE
     function showSlides(n) {
       let i;
       let slides = document.getElementsByClassName("mySlides");
@@ -157,7 +184,7 @@
       slides[slideIndex - 1].style.display = "block";
     }
 
-    // AUTO SLIDESHOW
+    // Auto slide every 6 seconds
     setInterval(() => {
       plusSlides(1);
     }, 6000);
