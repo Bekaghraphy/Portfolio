@@ -6,155 +6,555 @@
   <title>Cinematic Gallery | Hesham Abdelhamed</title>
 
   <style>
-    body {
-      margin: 0;
-      font-family: "Montserrat", sans-serif;
-      background: #000;
-      color: #fff;
-      overflow-x: hidden;
+    :root {
+      --accent: #00c4ff;
+      --bg: #050509;
+      --text: #ffffff;
     }
 
-    /* NAV BAR */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: radial-gradient(circle at top, #111122 0%, #050509 45%, #000000 100%);
+      color: var(--text);
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    /* ========= BACKGROUND ANIMATED ELEMENTS ========= */
+
+    .bg-orbit {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      width: 120vmin;
+      height: 120vmin;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      animation: orbit-rotate 60s linear infinite;
+      z-index: -2;
+    }
+
+    .bg-orbit::before,
+    .bg-orbit::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      inset: 10%;
+      border: 1px dashed rgba(255, 255, 255, 0.05);
+    }
+
+    .bg-orbit::after {
+      inset: 22%;
+      border-style: solid;
+      border-color: rgba(0, 196, 255, 0.10);
+    }
+
+    .bg-frame {
+      position: fixed;
+      inset: 10vh 6vw;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 18px;
+      pointer-events: none;
+      z-index: -2;
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.7);
+    }
+
+    .bg-frame::before,
+    .bg-frame::after {
+      content: "";
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      border: 2px solid rgba(255, 255, 255, 0.25);
+      border-radius: 12px;
+    }
+
+    .bg-frame::before {
+      top: -1px;
+      left: -1px;
+      border-right: none;
+      border-bottom: none;
+    }
+
+    .bg-frame::after {
+      bottom: -1px;
+      right: -1px;
+      border-left: none;
+      border-top: none;
+    }
+
+    .bg-focus-ring {
+      position: fixed;
+      top: 18vh;
+      right: 10vw;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 1px dashed rgba(255, 255, 255, 0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      z-index: -2;
+      animation: focus-pulse 4.5s ease-in-out infinite;
+    }
+
+    .bg-focus-ring::before {
+      content: "";
+      width: 55%;
+      height: 55%;
+      border-radius: 50%;
+      border: 2px solid rgba(0, 196, 255, 0.7);
+      box-shadow: 0 0 18px rgba(0, 196, 255, 0.4);
+    }
+
+    @keyframes orbit-rotate {
+      from { transform: translate(-50%, -50%) rotate(0deg); }
+      to   { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+
+    @keyframes focus-pulse {
+      0%, 100% { transform: scale(1); opacity: 0.7; }
+      50%      { transform: scale(1.08); opacity: 1; }
+    }
+
+    /* ========= NAV BAR ========= */
+
     nav {
       width: 100%;
       position: fixed;
       top: 0;
       left: 0;
-      padding: 20px 40px;
+      padding: 18px 50px;
       display: flex;
-      gap: 30px;
-      background: rgba(0, 0, 0, 0.4);
-      backdrop-filter: blur(6px);
+      align-items: center;
+      justify-content: space-between;
+      background: radial-gradient(circle at top left, rgba(0, 196, 255, 0.25), transparent 55%);
+      background-color: rgba(2, 2, 10, 0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       z-index: 50;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     }
 
-    nav a {
-      color: #fff;
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      opacity: 0.9;
+    }
+
+    .nav-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 10px rgba(0, 196, 255, 0.7);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 26px;
+    }
+
+    .nav-links a {
+      color: var(--text);
       text-decoration: none;
-      font-size: 18px;
-      font-weight: 600;
-      transition: 0.3s;
+      font-size: 15px;
+      font-weight: 500;
+      opacity: 0.85;
+      position: relative;
+      padding-bottom: 4px;
+      transition: color 0.2s ease, opacity 0.2s ease;
     }
 
-    nav a:hover {
-      color: #00c4ff;
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      border-radius: 999px;
+      transition: width 0.25s ease;
     }
 
-    /* CINEMATIC CONTAINER */
+    .nav-links a:hover {
+      color: var(--accent);
+      opacity: 1;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-links a.active {
+      color: var(--accent);
+      opacity: 1;
+    }
+
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    /* ========= PAGE WRAPPER ========= */
+
+    .page-wrapper {
+      padding-top: 90px;
+      padding-bottom: 40px;
+    }
+
+    .page-header {
+      width: 80%;
+      max-width: 1150px;
+      margin: 30px auto 15px auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 20px;
+    }
+
+    .page-title {
+      font-size: 26px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      opacity: 0.9;
+    }
+
+    .page-subtitle {
+      font-size: 14px;
+      opacity: 0.7;
+    }
+
+    /* ========= SLIDESHOW CINEMATIC ========= */
+
     .slideshow-container {
       position: relative;
       width: 80%;
-      height: 80vh;
-      margin: 120px auto 0 auto;
-      border-radius: 12px;
+      max-width: 1150px;
+      height: 70vh;
+      min-height: 430px;
+      margin: 10px auto 0 auto;
+      border-radius: 18px;
       overflow: hidden;
-      box-shadow: 0 0 25px rgba(0,0,0,0.7);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.85);
+      background: radial-gradient(circle at top left, #161628 0%, #050509 60%, #000 100%);
+      border: 1px solid rgba(255, 255, 255, 0.08);
     }
 
-    /* SLIDES */
     .slide {
       position: absolute;
-      width: 100%;
-      height: 100%;
+      inset: 0;
       opacity: 0;
-      transition: opacity 1.5s ease-in-out;
+      filter: blur(8px);
+      transform: scale(1.03);
+      transition:
+        opacity 1.2s ease-in-out,
+        filter 1.2s ease-in-out,
+        transform 1.2s ease-in-out;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .slide.show {
       opacity: 1;
+      filter: blur(0);
+      transform: scale(1);
+      z-index: 2;
     }
 
-    /* KEN BURNS EFFECT */
     .slide img {
       width: 115%;
       height: 115%;
       object-fit: cover;
       object-position: center;
-      position: absolute;
-      top: -7%;
-      left: -7%;
-      animation: kenburns 12s ease-in-out infinite;
-      border-radius: 12px;
+      border-radius: 18px;
+      animation: kenburns 18s ease-in-out infinite;
+      transform-origin: center;
+      cursor: zoom-in;
     }
 
     @keyframes kenburns {
-      0%   { transform: scale(1.0); }
-      50%  { transform: scale(1.10); }
-      100% { transform: scale(1.0); }
+      0%   { transform: scale(1) translate3d(0, 0, 0); }
+      50%  { transform: scale(1.08) translate3d(0, 0, 0); }
+      100% { transform: scale(1) translate3d(0, 0, 0); }
     }
 
-    /* OVERLAY CINEMATIC DARK */
     .overlay {
       position: absolute;
       inset: 0;
-      background: rgba(0,0,0,0.25);
-      z-index: 5;
+      background: radial-gradient(circle at top, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.70) 60%);
+      mix-blend-mode: multiply;
+      pointer-events: none;
+      z-index: 3;
     }
 
-    /* ARROWS */
-    .prev, .next {
+    /* ========= CAPTION ========= */
+
+    .caption {
+      position: absolute;
+      left: 30px;
+      bottom: 26px;
+      z-index: 5;
+      max-width: 60%;
+      padding: 10px 16px 10px 0;
+      pointer-events: none;
+    }
+
+    .caption-title {
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+      opacity: 0;
+      transform: translateY(16px);
+      animation: caption-fade 1s ease forwards;
+      animation-delay: 0.25s;
+    }
+
+    .caption-text {
+      font-size: 13px;
+      opacity: 0;
+      transform: translateY(16px);
+      animation: caption-fade 1s ease forwards;
+      animation-delay: 0.45s;
+    }
+
+    @keyframes caption-fade {
+      to {
+        opacity: 0.92;
+        transform: translateY(0);
+      }
+    }
+
+    /* ========= ARROWS ========= */
+
+    .nav-arrow {
       cursor: pointer;
       position: absolute;
       top: 50%;
-      padding: 16px;
-      color: #fff;
+      transform: translateY(-50%);
+      padding: 14px 16px;
+      color: #ffffff;
       font-weight: bold;
-      font-size: 32px;
+      font-size: 30px;
       user-select: none;
-      transition: 0.3s;
-      z-index: 20;
+      z-index: 10;
+      background: radial-gradient(circle at top, rgba(0, 0, 0, 0.7), rgba(5, 5, 10, 0.15));
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.75);
+      transition:
+        background 0.25s ease,
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
     }
 
-    .prev:hover, .next:hover {
-      color: #00c4ff;
+    .nav-arrow:hover {
+      background: radial-gradient(circle at top, rgba(0, 196, 255, 0.28), rgba(5, 5, 10, 0.2));
+      border-color: rgba(0, 196, 255, 0.8);
+      box-shadow: 0 0 25px rgba(0, 196, 255, 0.7);
+      transform: translateY(-50%) scale(1.06);
     }
 
-    .prev { left: 20px; }
-    .next { right: 20px; }
+    .nav-arrow.prev {
+      left: 18px;
+    }
 
-    /* TEXT CAPTION */
-    .caption {
-      position: absolute;
-      bottom: 25px;
-      width: 100%;
+    .nav-arrow.next {
+      right: 18px;
+    }
+
+    /* ========= DOTS ========= */
+
+    .dots {
       text-align: center;
-      font-size: 26px;
-      letter-spacing: 1px;
-      z-index: 20;
-      opacity: 0;
-      animation: fadeCaption 1.5s forwards;
+      margin-top: 18px;
     }
 
-    @keyframes fadeCaption {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
+    .dot {
+      cursor: pointer;
+      height: 10px;
+      width: 10px;
+      margin: 0 5px;
+      background-color: rgba(255, 255, 255, 0.25);
+      border-radius: 50%;
+      display: inline-block;
+      transition:
+        background-color 0.3s ease,
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
     }
 
-    /* ------------ MOBILE RESPONSIVE ------------ */
-    @media (max-width: 768px) {
+    .dot.active {
+      background-color: var(--accent);
+      transform: scale(1.25);
+      box-shadow: 0 0 12px rgba(0, 196, 255, 0.9);
+    }
 
-      .slideshow-container {
-        width: 95%;
-        height: 60vh;
+    /* ========= LIGHTBOX ========= */
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at center, rgba(10, 10, 20, 0.96), rgba(0, 0, 0, 0.98));
+      display: none;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      z-index: 999;
+      padding: 30px 20px;
+    }
+
+    .lightbox.show {
+      display: flex;
+    }
+
+    .lightbox-img-wrapper {
+      max-width: 95vw;
+      max-height: 80vh;
+      overflow: hidden;
+      border-radius: 18px;
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.95);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      margin-bottom: 14px;
+    }
+
+    .lightbox-img-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .lightbox-caption {
+      font-size: 15px;
+      opacity: 0.85;
+      text-align: center;
+      max-width: 720px;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 16px;
+      right: 26px;
+      font-size: 30px;
+      cursor: pointer;
+      color: #ffffff;
+      text-shadow: 0 0 18px rgba(0, 0, 0, 0.9);
+      transition: transform 0.25s ease, color 0.25s ease;
+    }
+
+    .lightbox-close:hover {
+      color: var(--accent);
+      transform: scale(1.1);
+    }
+
+    /* ========= RESPONSIVE ========= */
+
+    @media (max-width: 900px) {
+      nav {
+        padding: 14px 18px;
       }
 
-      .prev, .next {
-        font-size: 28px;
-        padding: 10px;
+      .nav-links {
+        gap: 16px;
+      }
+
+      .nav-links a {
+        font-size: 13px;
+      }
+
+      .page-header,
+      .slideshow-container {
+        width: 90%;
+      }
+
+      .slideshow-container {
+        height: 60vh;
+        min-height: 360px;
       }
 
       .caption {
-        font-size: 20px;
-        padding: 10px;
+        left: 18px;
+        bottom: 18px;
+        max-width: 75%;
       }
 
-      nav {
-        padding: 15px 20px;
-        gap: 15px;
+      .caption-title {
+        font-size: 17px;
       }
 
-      nav a {
-        font-size: 15px;
+      .caption-text {
+        font-size: 12px;
+      }
+
+      .nav-arrow {
+        font-size: 26px;
+        padding: 10px 12px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .page-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+
+      .page-title {
+        font-size: 18px;
+      }
+
+      .page-subtitle {
+        font-size: 12px;
+      }
+
+      .slideshow-container {
+        height: 56vh;
+        min-height: 320px;
+      }
+
+      .slide img {
+        width: 130%;
+        height: 130%;
+      }
+
+      .caption {
+        left: 14px;
+        bottom: 16px;
+        max-width: 85%;
+      }
+
+      .caption-title {
+        font-size: 16px;
+      }
+
+      .caption-text {
+        font-size: 11px;
+      }
+
+      .bg-focus-ring {
+        display: none;
+      }
+
+      .bg-frame {
+        inset: 9vh 4vw;
       }
     }
 
@@ -163,58 +563,215 @@
 
 <body>
 
-  <!-- NAVIGATION -->
+  <!-- BACKGROUND ELEMENTS -->
+  <div class="bg-orbit"></div>
+  <div class="bg-frame"></div>
+  <div class="bg-focus-ring"></div>
+
+  <!-- NAV -->
   <nav>
-    <a href="index.html">Home</a>
-    <a href="gallery.html">My Work</a>
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
+    <div class="nav-left">
+      <div class="nav-dot"></div>
+      <span>Hesham Abdelhamed</span>
+    </div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="gallery.html" class="active">My Work</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
   </nav>
 
-  <div class="slideshow-container">
-
-    <div class="slide show">
-      <img src="img/work1.jpg" alt="Slide 1">
-      <div class="overlay"></div>
-      <div class="caption">Project One</div>
+  <div class="page-wrapper">
+    <div class="page-header">
+      <div>
+        <div class="page-title">Cinematic Work Gallery</div>
+        <div class="page-subtitle">Selected frames from commercial, documentary & brand storytelling projects.</div>
+      </div>
+      <div class="page-subtitle">
+        Click any frame to view in full size.
+      </div>
     </div>
 
-    <div class="slide">
-      <img src="img/work2.jpg" alt="Slide 2">
-      <div class="overlay"></div>
-      <div class="caption">Project Two</div>
+    <!-- SLIDESHOW -->
+    <div class="slideshow-container" id="slideshow">
+
+      <!-- SLIDE 1 -->
+      <div class="slide show" data-title="OR Cinematic Shot" data-desc="Operating room scene – clean lighting, controlled framing, and strong contrast for a premium medical brand.">
+        <img loading="lazy" src="img/work1.jpg" alt="Project 1">
+        <div class="overlay"></div>
+        <div class="caption">
+          <div class="caption-title">OR Cinematic Shot</div>
+          <div class="caption-text">Operating room storytelling frame – detail, precision, and layered lighting for Flow Medical narratives.</div>
+        </div>
+      </div>
+
+      <!-- SLIDE 2 -->
+      <div class="slide" data-title="Corporate Portrait" data-desc="Stylized corporate portrait with depth, bokeh, and subtle brand color grading.">
+        <img loading="lazy" src="img/work2.jpg" alt="Project 2">
+        <div class="overlay"></div>
+        <div class="caption">
+          <div class="caption-title">Corporate Portrait</div>
+          <div class="caption-text">Executive portrait with cinematic tones, controlled highlights, and storytelling through posture and frame.</div>
+        </div>
+      </div>
+
+      <!-- SLIDE 3 -->
+      <div class="slide" data-title="Event & Activation" data-desc="Live event coverage blurring the line between documentation and cinematic storytelling.">
+        <img loading="lazy" src="img/work3.jpg" alt="Project 3">
+        <div class="overlay"></div>
+        <div class="caption">
+          <div class="caption-title">Event & Activation</div>
+          <div class="caption-text">High-energy event visual – scale, crowd, and brand presence in one frame.</div>
+        </div>
+      </div>
+
+      <!-- ARROWS -->
+      <div class="nav-arrow prev" id="prevBtn">&#10094;</div>
+      <div class="nav-arrow next" id="nextBtn">&#10095;</div>
     </div>
 
-    <div class="slide">
-      <img src="img/work3.jpg" alt="Slide 3">
-      <div class="overlay"></div>
-      <div class="caption">Project Three</div>
+    <!-- DOTS -->
+    <div class="dots" id="dots">
+      <span class="dot active" data-index="0"></span>
+      <span class="dot" data-index="1"></span>
+      <span class="dot" data-index="2"></span>
     </div>
+  </div>
 
-    <!-- ARROWS -->
-    <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
-    <a class="next" onclick="changeSlide(1)">&#10095;</a>
-
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox">
+    <span class="lightbox-close" id="lightboxClose">&times;</span>
+    <div class="lightbox-img-wrapper">
+      <img id="lightboxImg" src="" alt="Full view">
+    </div>
+    <div class="lightbox-caption" id="lightboxCaption"></div>
   </div>
 
   <script>
-    let slideIndex = 0;
+    // ========= SLIDESHOW LOGIC =========
     const slides = document.querySelectorAll('.slide');
+    const dots   = document.querySelectorAll('.dot');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    let slideIndex = 0;
+    let autoTimer;
 
-    function showSlide(n) {
-      slides.forEach(slide => slide.classList.remove('show'));
-      slides[n].classList.add('show');
+    function setActiveSlide(index) {
+      if (index < 0) index = slides.length - 1;
+      if (index >= slides.length) index = 0;
+      slideIndex = index;
+
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('show', i === slideIndex);
+
+        // إعادة تشغيل أنيميشن الكابشن
+        const title = slide.querySelector('.caption-title');
+        const text  = slide.querySelector('.caption-text');
+        if (i === slideIndex) {
+          if (title) {
+            title.style.animation = 'none';
+            void title.offsetWidth;
+            title.style.animation = 'caption-fade 1s ease forwards';
+            title.style.animationDelay = '0.25s';
+          }
+          if (text) {
+            text.style.animation = 'none';
+            void text.offsetWidth;
+            text.style.animation = 'caption-fade 1s ease forwards';
+            text.style.animationDelay = '0.45s';
+          }
+        }
+      });
+
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === slideIndex);
+      });
     }
 
-    function changeSlide(n) {
-      slideIndex = (slideIndex + n + slides.length) % slides.length;
-      showSlide(slideIndex);
+    function nextSlide(step = 1) {
+      setActiveSlide(slideIndex + step);
     }
 
-    // Auto slideshow
-    setInterval(() => {
-      changeSlide(1);
-    }, 7000);
+    function startAutoPlay() {
+      clearInterval(autoTimer);
+      autoTimer = setInterval(() => {
+        nextSlide(1);
+      }, 8000);
+    }
+
+    prevBtn.addEventListener('click', () => {
+      nextSlide(-1);
+      startAutoPlay();
+    });
+
+    nextBtn.addEventListener('click', () => {
+      nextSlide(1);
+      startAutoPlay();
+    });
+
+    dots.forEach(dot => {
+      dot.addEventListener('click', () => {
+        const index = parseInt(dot.getAttribute('data-index'), 10);
+        setActiveSlide(index);
+        startAutoPlay();
+      });
+    });
+
+    // ========= LIGHTBOX =========
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxCaption = document.getElementById('lightboxCaption');
+    const lightboxClose = document.getElementById('lightboxClose');
+
+    slides.forEach(slide => {
+      const img = slide.querySelector('img');
+      img.addEventListener('click', () => {
+        const src = img.getAttribute('src');
+        const title = slide.dataset.title || '';
+        const desc  = slide.dataset.desc || '';
+        lightboxImg.src = src;
+        lightboxCaption.textContent = title
+          ? title + (desc ? ' — ' + desc : '')
+          : desc;
+        lightbox.classList.add('show');
+      });
+    });
+
+    lightboxClose.addEventListener('click', () => {
+      lightbox.classList.remove('show');
+    });
+
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) {
+        lightbox.classList.remove('show');
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        lightbox.classList.remove('show');
+      }
+    });
+
+    // ========= PARALLAX BACKGROUND =========
+    const bgOrbit = document.querySelector('.bg-orbit');
+    const bgFrame = document.querySelector('.bg-frame');
+
+    window.addEventListener('scroll', () => {
+      const offset = window.pageYOffset || document.documentElement.scrollTop || 0;
+      if (bgOrbit) {
+        bgOrbit.style.transform =
+          `translate(-50%, -50%) translateY(${offset * 0.1}px) rotate(${offset * 0.03}deg)`;
+      }
+      if (bgFrame) {
+        bgFrame.style.transform = `translateY(${offset * 0.08}px)`;
+      }
+    });
+
+    // Start autoplay on load
+    setActiveSlide(0);
+    startAutoPlay();
   </script>
 
 </body>
