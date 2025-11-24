@@ -10,7 +10,134 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Montserrat", sans-serif;
+      background: #000;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    .nav {
+      width: 100%;
+      padding: 20px 0;
+      position: fixed;
+      top: 0;
+      z-index: 10;
+      background: rgba(0,0,0,0.4);
+      backdrop-filter: blur(6px);
+    }
+    .nav-center {
+      display: flex;
+      justify-content: center;
+      gap: 35px;
+    }
+    .nav-center a {
+      text-decoration: none;
+      color: #fff;
+      font-weight: 500;
+      font-size: 15px;
+      letter-spacing: 1px;
+    }
+    .nav-center a.active {
+      color: #d8b97a;
+    }
+
+    /* HERO */
+    .hero {
+      position: relative;
+      height: 100vh;
+      background-image: url("img/home-hero.jpg");
+      background-size: cover;
+      background-position: center;
+      animation: heroZoom 18s ease-in-out infinite;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 20px;
+    }
+
+    @keyframes heroZoom {
+      0% { background-size: 100%; }
+      50% { background-size: 110%; }
+      100% { background-size: 100%; }
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.35), rgba(0,0,0,0.75));
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 750px;
+      margin-top: 80px;
+    }
+
+    .hero-name {
+      font-size: 45px;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+
+    .hero-heading {
+      font-size: 32px;
+      font-weight: 600;
+      line-height: 1.3;
+      margin-bottom: 18px;
+    }
+
+    .hero-sub {
+      font-size: 15px;
+      line-height: 1.7;
+      opacity: 0.9;
+      margin-bottom: 28px;
+    }
+
+    /* Social Icons */
+    .social-row {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .social-img img {
+      width: 32px;
+      height: 32px;
+      filter: brightness(0) invert(1);
+      transition: transform 0.25s ease;
+    }
+
+    .social-img img:hover {
+      transform: scale(1.15);
+    }
+
+    /* MOBILE FIXES */
+    @media (max-width: 600px) {
+      .hero {
+        background-position: top;
+      }
+      .hero-sub {
+        background: rgba(0,0,0,0.55);
+        padding: 12px;
+        border-radius: 8px;
+      }
+      .hero-name {
+        font-size: 32px;
+      }
+      .hero-heading {
+        font-size: 24px;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -26,7 +153,9 @@
   </header>
 
   <!-- HERO -->
-  <section class="hero" style="background-image:url('img/home-hero.jpg');">
+  <section class="hero">
+    <div class="hero-overlay"></div>
+
     <div class="hero-content">
       <h1 class="hero-name">HESHAM ABDELHAMED</h1>
 
@@ -41,21 +170,38 @@
       </div>
 
       <div class="social-row">
-        <a class="social-icon" href="https://www.linkedin.com/in/heshamabdelhamed" target="_blank">IN</a>
-        <a class="social-icon" href="https://www.instagram.com/hisham.abdlhamed" target="_blank">IG</a>
-        <a class="social-icon" href="https://www.tiktok.com/@hisham.abdelhamed" target="_blank">TT</a>
-        <a class="social-icon" href="https://www.facebook.com/hishamabdelhamedd" target="_blank">FB</a>
-        <a class="social-icon" href="mailto:per.hisham@gmail.com">@</a>
-        <a class="social-icon" href="tel:+966503064408">☎</a>
+
+        <a class="social-img" href="https://www.linkedin.com/in/heshamabdelhamed" target="_blank">
+          <img src="img/linkdin.png" alt="LinkedIn">
+        </a>
+
+        <a class="social-img" href="https://www.instagram.com/hisham.abdlhamed" target="_blank">
+          <img src="img/instagram.png" alt="Instagram">
+        </a>
+
+        <a class="social-img" href="https://www.tiktok.com/@hisham.abdelhamed" target="_blank">
+          <img src="img/tiktok.png" alt="TikTok">
+        </a>
+
+        <a class="social-img" href="https://www.facebook.com/hishamabdelhamedd" target="_blank">
+          <img src="img/facebook.png" alt="Facebook">
+        </a>
+
+        <a class="social-img" href="mailto:per.hisham@gmail.com">
+          <img src="img/email.png" alt="Email">
+        </a>
+
+        <a class="social-img" href="https://wa.me/966503064408" target="_blank">
+          <img src="img/whatsapp.png" alt="WhatsApp">
+        </a>
+
+        <a class="social-img" href="tel:+966503064408">
+          <img src="img/phone.png" alt="Phone">
+        </a>
+
       </div>
     </div>
   </section>
-
-  <script>
-    window.addEventListener("load", function () {
-      document.body.classList.add("page-loaded");
-    });
-  </script>
 
 </body>
 </html>
