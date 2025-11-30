@@ -1,241 +1,184 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="icon" type="image/png" href="img/favicon.png" />
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Gallery | Hesham Abdelhamed</title>
 
+<link rel="icon" type="image/png" href="img/favicon.png" />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+
 <style>
+
 :root {
- --gold: #d8b97a;
- --text: #ffffff;
+  --gold: #d8b97a;
+  --text: #ffffff;
 }
 
-/* GENERAL */
 body {
- margin: 0;
- padding: 0;
- font-family: 'Montserrat', Arial, sans-serif;
- color: var(--text);
- background: #000;
- overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  font-family: 'Montserrat', sans-serif;
+  background: #000;
+  color: var(--text);
 }
 
-/* NAVBAR CENTERED */
+/* NAVBAR */
 nav {
- position: fixed;
- top: 0;
- width: 100%;
- padding: 18px 40px;
- background: rgba(0,0,0,0.55);
- backdrop-filter: blur(10px);
- border-bottom: 1px solid rgba(255,255,255,0.06);
- display: flex;
- justify-content: center;
- z-index: 1000;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 18px 40px;
+  background: rgba(0,0,0,0.65);
+  backdrop-filter: blur(10px);
+  display: flex;
+  justify-content: center;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  z-index: 1000;
 }
 
 .nav-links {
- display: flex;
- gap: 30px;
+  display: flex;
+  gap: 30px;
 }
 
 .nav-links a {
- color: #fff;
- text-decoration: none;
- font-size: 15px;
- opacity: 0.8;
- transition: 0.3s;
+  color: #fff;
+  text-decoration: none;
+  font-size: 15px;
+  opacity: .7;
+  transition: .3s;
 }
 
 .nav-links a:hover,
 .nav-links .active {
- opacity: 1;
- color: var(--gold);
+  opacity: 1;
+  color: var(--gold);
 }
 
-/* GRID ZOOM SQUARES */
-.grid-overlay {
- position: fixed;
- inset: 0;
- display: grid;
- grid-template-columns: repeat(12, 1fr);
- grid-template-rows: repeat(8, 1fr);
- gap: 20px;
- padding: 40px;
- opacity: 0.18;
- z-index: -2;
+/* HEADER */
+.header {
+  text-align: center;
+  margin-top: 140px;
+  padding: 0 20px;
 }
 
-.grid-square {
- background: rgba(255,255,255,0.15);
- border-radius: 4px;
- animation: zoom 4s infinite ease-in-out;
+.header h1 {
+  font-size: 38px;
+  color: var(--gold);
+  margin-bottom: 10px;
 }
 
-@keyframes zoom {
- 0% { transform: scale(1); opacity: 0.12; }
- 50% { transform: scale(1.25); opacity: 0.22; }
- 100% { transform: scale(1); opacity: 0.12; }
+.header p {
+  max-width: 800px;
+  margin: auto;
+  opacity: .8;
+  font-size: 16px;
+  line-height: 1.7;
 }
 
-/* SLIDER WRAPPER */
-.wrapper {
- max-width: 1200px;
- margin: auto;
- padding: 160px 20px 80px;
- position: relative;
- z-index: 10;
+/* GALLERY GRID */
+.gallery {
+  margin: 70px auto;
+  padding: 0 20px 40px;
+  max-width: 1300px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 18px;
 }
 
-/* Slider container */
-.slider {
- position: relative;
- width: 100%;
- overflow: hidden;
- border-radius: 14px;
+.gallery img {
+  width: 100%;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: .25s;
+  object-fit: cover;
 }
 
-/* Slider images */
-.slides {
- display: flex;
- transition: transform 0.5s ease-in-out;
+.gallery img:hover {
+  transform: scale(1.03);
+  filter: brightness(1.05);
 }
 
-.slides img {
- width: 100%;
- border-radius: 14px;
- pointer-events: none;
- object-fit: cover;
+/* LIGHTBOX */
+#lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.9);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
 }
 
-/* Controls */
-.arrow {
- position: absolute;
- top: 50%;
- transform: translateY(-50%);
- background: rgba(0,0,0,0.5);
- color: white;
- padding: 12px;
- border-radius: 50%;
- cursor: pointer;
- font-size: 20px;
- z-index: 20;
- transition: 0.3s;
-}
-
-.arrow:hover {
- background: rgba(0,0,0,0.8);
-}
-
-.arrow.left { left: 20px; }
-.arrow.right { right: 20px; }
-
-/* DOTS */
-.dots {
- text-align: center;
- margin-top: 14px;
-}
-
-.dot {
- display: inline-block;
- width: 10px;
- height: 10px;
- margin: 4px;
- background: rgba(255,255,255,0.4);
- border-radius: 50%;
- cursor: pointer;
- transition: 0.3s;
-}
-
-.dot.active {
- background: var(--gold);
- width: 12px;
- height: 12px;
+#lightbox img {
+  max-width: 92%;
+  max-height: 90%;
+  border-radius: 12px;
 }
 
 </style>
+
 </head>
-
 <body>
-
-<!-- BACKGROUND -->
-<div class="bg-img"></div>
-
-<div class="grid-overlay">
-<script>
-for (let i = 0; i < 96; i++) {
-  document.write('<div class="grid-square"></div>');
-}
-</script>
-</div>
 
 <!-- NAVBAR -->
 <nav>
- <div class="nav-links">
-   <a href="index.html">Home</a>
-   <a href="my-work.html">My Work</a>
-   <a href="gallery.html" class="active">Gallery</a>
-   <a href="cv.html">CV</a>
- </div>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="my-work.html">My Work</a>
+    <a href="gallery.html" class="active">Gallery</a>
+    <a href="cv.html">CV</a>
+  </div>
 </nav>
 
-<!-- CONTENT -->
-<div class="wrapper">
+<!-- HEADER -->
+<div class="header">
+  <h1>Photography Gallery</h1>
+  <p>
+    A collection of visual moments captured throughout my journey as a former photojournalist.  
+    I documented global events, conflicts, and human stories across the world, focusing on authenticity,  
+    emotional depth, and the power of visual truth.
+  </p>
+</div>
 
- <div class="slider">
-   <div class="slides" id="slides">
-     <img src="img/work1.jpg">
-    <img src="img/slide7.jpg">
-     <img src="img/work2.jpg">
-    <img src="img/slide5.jpg">
-     <img src="img/work3.jpg">
-     <img src="img/slide1.jpg">
-    <img src="img/slide4.jpg">
-     <img src="img/slide3.jpg">
-     <img src="img/slide6.jpg">
-    
-   </div>
+<!-- GALLERY GRID -->
+<div class="gallery">
 
-   <div class="arrow left" onclick="prevSlide()">&#10094;</div>
-   <div class="arrow right" onclick="nextSlide()">&#10095;</div>
- </div>
-
- <div class="dots">
-   <span class="dot active" onclick="goToSlide(0)"></span>
-   <span class="dot" onclick="goToSlide(1)"></span>
-   <span class="dot" onclick="goToSlide(2)"></span>
- </div>
+  <img src="img/work1.jpg">
+  <img src="img/slide7.jpg">
+  <img src="img/work2.jpg">
+  <img src="img/slide5.jpg">
+  <img src="img/work3.jpg">
+  <img src="img/slide1.jpg">
+  <img src="img/slide4.jpg">
+  <img src="img/slide3.jpg">
+  <img src="img/slide6.jpg">
 
 </div>
 
+<!-- LIGHTBOX -->
+<div id="lightbox" onclick="closeLightbox()">
+  <img id="lightbox-img" src="">
+</div>
+
 <script>
-let index = 0;
-const slides = document.getElementById('slides');
-const dots = document.querySelectorAll('.dot');
-const total = dots.length;
+const galleryImages = document.querySelectorAll('.gallery img');
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
 
-function updateSlider(){
-  slides.style.transform = 'translateX(' + (-index * 100) + '%)';
-  dots.forEach(d => d.classList.remove('active'));
-  dots[index].classList.add('active');
-}
+galleryImages.forEach(img => {
+  img.addEventListener('click', () => {
+    lightboxImg.src = img.src;
+    lightbox.style.display = 'flex';
+  });
+});
 
-function nextSlide(){
-  index = (index + 1) % total;
-  updateSlider();
-}
-
-function prevSlide(){
-  index = (index - 1 + total) % total;
-  updateSlider();
-}
-
-function goToSlide(n){
-  index = n;
-  updateSlider();
+function closeLightbox() {
+  lightbox.style.display = 'none';
 }
 </script>
 
