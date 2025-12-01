@@ -3,101 +3,85 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Training | Hesham Abdelhamed</title>
+  <title>Courses | Hesham Abdelhamed</title>
 
   <link rel="icon" type="image/png" href="img/favicon.png" />
   <link rel="stylesheet" href="style.css" />
 
   <style>
-    .training-hero {
-      display: grid;
-      grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.4fr);
-      gap: 32px;
-      margin-bottom: 40px;
-      align-items: center;
+    .courses-hero {
+      text-align: center;
+      padding: 90px 20px 50px;
     }
 
-    @media (max-width: 900px) {
-      .training-hero {
-        grid-template-columns: minmax(0,1fr);
-      }
-    }
-
-    .training-title {
-      font-size: 40px;
+    .courses-hero h1 {
+      font-size: 48px;
       font-weight: 700;
-      margin-bottom: 12px;
       color: #ffffff;
+      margin-bottom: 12px;
     }
 
-    .training-title span {
+    .courses-hero h1 span {
       color: #f5c14a;
     }
 
-    .training-text p {
-      font-size: 15px;
-      line-height: 1.8;
-      opacity: 0.9;
-      margin-bottom: 14px;
-      color: #f3f3f6;
+    .courses-hero p {
+      max-width: 620px;
+      margin: auto;
+      font-size: 17px;
+      line-height: 1.7;
+      opacity: .9;
+      color: #eaeaea;
     }
 
     .courses-grid {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0,1fr));
-      gap: 22px;
-      margin-top: 10px;
-    }
-
-    @media (max-width: 900px) {
-      .courses-grid {
-        grid-template-columns: repeat(1, minmax(0,1fr));
-      }
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 26px;
+      padding: 40px 20px 90px;
+      max-width: 1150px;
+      margin: auto;
     }
 
     .course-card {
-      position: relative;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 14px;
       overflow: hidden;
-      border-radius: 12px;
-      background: #05050a;
-      border: 1px solid rgba(255,255,255,0.08);
       transition: .25s ease;
-      cursor: pointer;
-      min-height: 210px;
     }
 
     .course-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 18px 32px rgba(0,0,0,0.9);
-      border-color: rgba(245,193,74,0.8);
+      transform: translateY(-5px);
+      border-color: rgba(245,193,74,0.9);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.4);
     }
 
     .course-img {
       width: 100%;
-      height: 170px;
+      height: 200px;
       object-fit: cover;
-      opacity: 0.9;
+      opacity: .92;
     }
 
     .course-content {
-      padding: 18px;
+      padding: 22px;
       color: #fff;
     }
 
     .course-content h3 {
-      font-size: 18px;
+      font-size: 20px;
       margin-bottom: 10px;
-      color: #f5c14a;
       font-weight: 600;
+      color: #f5c14a;
     }
 
     .course-content p {
       font-size: 14px;
-      opacity: 0.85;
+      opacity: .85;
       line-height: 1.7;
     }
   </style>
-
 </head>
 
 <body>
@@ -108,87 +92,57 @@
       <a href="index.html">Home</a>
       <a href="my-work.html">My Work</a>
       <a href="gallery.html">Gallery</a>
-      <a href="training.html" class="active">Training</a>
+      <a href="courses.html" class="active">Courses</a>
       <a href="cv.html">CV</a>
     </nav>
   </header>
 
-  <!-- SIDE TITLE -->
-  <div class="side-title">TRAINING</div>
+  <!-- HERO -->
+  <section class="courses-hero">
+    <h1>Learn <span>Filmmaking</span> & Visual Storytelling</h1>
+    <p>
+      Practical hands-on training in filmmaking, editing, storytelling, content creation, 
+      and how to transform ideas into cinematic visuals.  
+      Designed for creators, marketers, and anyone who wants to master visual communication.
+    </p>
+  </section>
 
-  <!-- PAGE CONTENT -->
-  <main class="page page-work">
-    <div class="page-inner">
+  <!-- COURSES -->
+  <section class="courses-grid">
 
-      <!-- HERO -->
-      <section class="training-hero">
-        <div class="training-text">
-          <h1 class="training-title">
-            Master <span>Filmmaking</span> & Storytelling.
-          </h1>
-          <p>
-            Training programs designed for creators who want to level up their skills in filmmaking,
-            cinematography, editing, and visual storytelling.  
-          </p>
-          <p>
-            From beginner to pro — learn how to plan, shoot, edit, and build compelling stories that connect with your audience.
-          </p>
-        </div>
-
-        <div class="work-hero-feature">
-          <div class="feature-overlay"></div>
-          <div class="feature-content">
-            <div class="feature-label">Training Overview</div>
-            <div class="feature-text">See what you will learn inside the filmmaking program</div>
-            <button class="feature-cta">
-              <span class="play-icon">▶</span>
-              <span>Watch Intro</span>
-            </button>
-          </div>
-        </div>
-      </section>
-
-      <!-- COURSES GRID -->
-      <section class="work-section">
-        <div class="work-section-header">
-          <h2>Available Courses</h2>
-        </div>
-
-        <div class="courses-grid">
-          
-          <div class="course-card">
-            <img src="img/course1.jpg" class="course-img" alt="">
-            <div class="course-content">
-              <h3>أساسيات التصوير السينمائي</h3>
-              <p>تعلم أساسيات تكوين الصورة والإضاءة والعدسات وزوايا التصوير.</p>
-            </div>
-          </div>
-
-          <div class="course-card">
-            <img src="img/course2.jpg" class="course-img" alt="">
-            <div class="course-content">
-              <h3>المونتاج الاحترافي</h3>
-              <p>تعلم المونتاج من الصفر حتى مستوى متقدم باستخدام الأدوات السينمائية الحديثة.</p>
-            </div>
-          </div>
-
-          <div class="course-card">
-            <img src="img/course3.jpg" class="course-img" alt="">
-            <div class="course-content">
-              <h3>كيف تحكي قصة بالفيديو</h3>
-              <p>من الفكرة للسيناريو — كيف تبني قصة بصريّة مؤثرة وجذابة.</p>
-            </div>
-          </div>
-
-        </div>
-      </section>
-
-      <p class="more-text" style="text-align:center;color:#f5c14a;margin-top:30px;">
-        More training programs will be added soon.
-      </p>
-
+    <div class="course-card">
+      <img src="img/course1.jpg" class="course-img" alt="Filmmaking Basics">
+      <div class="course-content">
+        <h3>Basics of Filmmaking</h3>
+        <p>Learn framing, camera movement, lighting basics, and real production workflow to shoot professional videos.</p>
+      </div>
     </div>
-  </main>
+
+    <div class="course-card">
+      <img src="img/course2.jpg" class="course-img" alt="Editing Masterclass">
+      <div class="course-content">
+        <h3>Editing Masterclass</h3>
+        <p>Professional editing workflow using Premiere, Resolve, and After Effects. Build pacing, rhythm, and storytelling.</p>
+      </div>
+    </div>
+
+    <div class="course-card">
+      <img src="img/course3.jpg" class="course-img" alt="Storytelling">
+      <div class="course-content">
+        <h3>Storytelling for Creators</h3>
+        <p>How to build a story, design a hook, create emotional impact, and turn any topic into a compelling narrative.</p>
+      </div>
+    </div>
+
+    <div class="course-card">
+      <img src="img/course4.jpg" class="course-img" alt="YouTube Growth">
+      <div class="course-content">
+        <h3>YouTube Growth Lab</h3>
+        <p>Master content strategy, hooks, retention, thumbnails, analytics, and building your own scalable channel.</p>
+      </div>
+    </div>
+
+  </section>
 
 </body>
 </html>
