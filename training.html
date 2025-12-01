@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Training & Courses | Hesham Abdelhamed</title>
+
+  <link rel="icon" type="image/png" href="img/favicon.png" />
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    :root {
+      --gold: #d4af37;
+    }
+
+    .training-hero {
+      height: 90vh;
+      background: url('img/training-hero.jpg') center/cover no-repeat;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px;
+      text-align: center;
+    }
+
+    .training-hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(2px);
+    }
+
+    .training-hero-content {
+      position: relative;
+      z-index: 2;
+      color: #fff;
+      max-width: 750px;
+    }
+
+    .training-hero h1 {
+      font-size: 3.2rem;
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+
+    .training-hero p {
+      font-size: 1.3rem;
+      opacity: .9;
+      margin-bottom: 30px;
+    }
+
+    .courses-section {
+      padding: 80px 5%;
+      background: #000;
+    }
+
+    .courses-title {
+      text-align: center;
+      font-size: 2.3rem;
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: 50px;
+    }
+
+    .courses-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
+      gap: 25px;
+    }
+
+    .course-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 10px;
+      padding-bottom: 20px;
+      transition: 0.3s;
+    }
+
+    .course-card:hover {
+      transform: translateY(-7px);
+      border-color: var(--gold);
+    }
+
+    .course-img {
+      height: 200px;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .course-content {
+      padding: 20px;
+      color: #fff;
+    }
+
+    .course-content h3 {
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+      color: var(--gold);
+    }
+
+    .course-content p {
+      font-size: 0.95rem;
+      opacity: .85;
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+
+    .course-btn {
+      display: inline-block;
+      padding: 10px 20px;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      text-decoration: none;
+      border-radius: 5px;
+      transition: 0.3s;
+    }
+
+    .course-btn:hover {
+      background: var(--gold);
+      color: #000;
+    }
+
+    .cta-section {
+      padding: 80px 5%;
+      text-align: center;
+      background: #050505;
+      color: #fff;
+    }
+
+    .cta-section h2 {
+      font-size: 2.2rem;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      padding: 12px 28px;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      border-radius: 5px;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .cta-btn:hover {
+      background: var(--gold);
+      color: #000;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <header class="nav">
+    <nav class="nav-center">
+      <a href="index.html">Home</a>
+      <a href="my-work.html">My Work</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="training.html" class="active">Training</a>
+      <a href="cv.html">CV</a>
+    </nav>
+  </header>
+
+  <!-- SIDE TITLE -->
+  <div class="side-title">TRAINING</div>
+
+  <!-- HERO -->
+  <section class="training-hero">
+    <div class="training-hero-content">
+      <h1>Master Filmmaking & Storytelling</h1>
+      <p>تعلم التصوير والمونتاج وكيف تحكي قصة بشكل احترافي.</p>
+      <a href="#courses" class="cta-btn">ابدأ التدريب الآن</a>
+    </div>
+  </section>
+
+  <!-- COURSES -->
+  <section class="courses-section" id="courses">
+    <h2 class="courses-title">Available Courses</h2>
+
+    <div class="courses-grid">
+
+      <div class="course-card">
+        <div class="course-img" style="background-image:url('img/course1.jpg')"></div>
+        <div class="course-content">
+          <h3>أساسيات التصوير السينمائي</h3>
+          <p>تعلم استخدام الكاميرا والإضاءة واللقطات السينمائية بطريقة احترافية.</p>
+          <a class="course-btn">سجل الآن</a>
+        </div>
+      </div>
+
+      <div class="course-card">
+        <div class="course-img" style="background-image:url('img/course2.jpg')"></div>
+        <div class="course-content">
+          <h3>دورة المونتاج الاحترافي</h3>
+          <p>مونتاج احترافي خطوة بخطوة: من ترتيب اللقطات إلى الألوان والـ rhythm.</p>
+          <a class="course-btn">سجل الآن</a>
+        </div>
+      </div>
+
+      <div class="course-card">
+        <div class="course-img" style="background-image:url('img/course3.jpg')"></div>
+        <div class="course-content">
+          <h3>كيف تحكي قصة بالفيديو</h3>
+          <p>تقنيات صناعة قصة جذابة: سيناريو، إيقاع، بناء مشهد، Voice Over.</p>
+          <a class="course-btn">سجل الآن</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <h2>جاهز تبدأ رحلتك؟</h2>
+    <p>ابدأ أول خطوة في التدريب وتعلم صناعة الفيديو بطريقة احترافية.</p>
+    <a href="contact.html" class="cta-btn">تواصل معي</a>
+  </section>
+
+</body>
+</html>
