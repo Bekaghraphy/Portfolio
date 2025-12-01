@@ -10,7 +10,7 @@ body {
   background: #000;
   color: #fff;
   overflow-x: hidden;
-  opacity: 0;
+  opacity: 1;
   transition: opacity 0.4s ease;
 }
 
