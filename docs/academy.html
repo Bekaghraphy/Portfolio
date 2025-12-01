@@ -7,17 +7,16 @@
 
   <link rel="icon" type="image/png" href="img/favicon.png" />
   <link rel="stylesheet" href="style.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet" />
 
   <style>
-    /* Buttons for switching language */
+
+    /* === language buttons === */
     .lang-switch {
       display: flex;
       gap: 12px;
       margin-bottom: 24px;
     }
-
     .lang-btn {
       padding: 10px 20px;
       border-radius: 999px;
@@ -28,42 +27,99 @@
       font-size: 13px;
       font-weight: 600;
       text-transform: uppercase;
-      transition: 0.25s;
     }
-
     .lang-btn.active {
       background: #f5c14a;
       color: #000;
     }
 
-    /* Hide Arabic section by default */
     .arabic { display: none; }
 
-    /* Keep academy styles from previous version */
+    /* === academy styles (مقتبسة من النسخة السابقة) === */
     .academy-page { max-width: 1150px; margin: 120px auto 80px; padding: 0 24px 48px; }
     .academy-hero { display: grid; grid-template-columns: 1.6fr 1.4fr; gap: 40px; align-items: center; margin-bottom: 64px; }
     @media(max-width:900px){ .academy-hero { grid-template-columns: 1fr; } }
-    .academy-tag { display: inline-block; padding: 6px 14px; border: 1px solid #f5c14a; border-radius: 999px; color: #f5c14a; font-size: 11px; letter-spacing: 0.12em; margin-bottom: 12px; text-transform: uppercase; }
+    .academy-tag { display: inline-block; padding: 6px 14px; border: 1px solid #f5c14a; border-radius: 999px; color: #f5c14a; font-size: 11px; letter-spacing: .12em; margin-bottom: 12px; text-transform: uppercase; }
     .academy-title { font-size: 36px; font-weight: 700; line-height: 1.3; margin-bottom: 14px; }
-    .academy-title span { color: #f5c14a; }
-    .academy-sub { font-size: 15px; line-height: 1.8; color: #d6dae3; opacity: 0.9; margin-bottom: 18px; }
-    .academy-highlights { font-size: 14px; color: #f5c14a; margin-bottom: 22px; }
-    .academy-cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 10px; }
-    .academy-cta { padding: 11px 20px; border-radius: 999px; text-decoration: none; font-weight: 600; font-size: 13px; letter-spacing: 0.03em; text-transform: uppercase; cursor: pointer; border: 1px solid #f5c14a; background: #f5c14a; color: #000; box-shadow: 0 14px 32px rgba(0,0,0,0.75); }
-    .academy-secondary { background: transparent; color: #f5c14a; }
-    .academy-image-wrap { border-radius: 18px; overflow: hidden; background: rgba(245,193,74,0.12); border: 1px solid rgba(255,255,255,0.06); box-shadow: 0 22px 50px rgba(0,0,0,0.85); }
-    .academy-image { width: 100%; height: 100%; max-height: 420px; object-fit: cover; }
-    .academy-section-title { font-size: 20px; font-weight: 700; margin-bottom: 14px; color: #f5c14a; }
-    .academy-section-text { color: #d7d9e4; max-width: 760px; line-height: 1.8; font-size: 15px; margin-bottom: 24px; }
-    .academy-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 22px; margin: 40px 0; }
-    @media(max-width:900px){ .academy-grid { grid-template-columns: 1fr; } }
-    .academy-card { background: rgba(8,8,16,0.95); padding: 20px; border-radius: 14px; border: 1px solid rgba(255,255,255,0.08); transition: 0.25s; box-shadow: 0 18px 40px rgba(0,0,0,0.75); }
-    .academy-card:hover { transform: translateY(-4px); border-color: #f5c14a; }
-    .academy-card-label { font-size: 11px; color: #f5c14a; text-transform: uppercase; letter-spacing: 0.16em; margin-bottom: 6px; }
-    .academy-card-title { font-size: 17px; font-weight: 600; margin-bottom: 10px; }
-    .academy-card-text { font-size: 14px; line-height: 1.7; color: #d2d4df; }
-    .academy-pill { padding: 7px 14px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.14); font-size: 13px; color: #ebeef7; background: rgba(5,5,10,0.9); display: inline-block; margin-right: 6px; margin-bottom: 6px; }
-    .academy-note { border-left: 3px solid #f5c14a; padding-left: 12px; margin-top: 14px; font-size: 13px; color: #c6c9d8; }
+    .academy-title span { color:#f5c14a; }
+    .academy-sub { font-size:15px; line-height:1.8; color:#d6dae3; opacity:.9; margin-bottom:18px; }
+    .academy-highlights { font-size:14px; color:#f5c14a; margin-bottom:22px; }
+
+    .academy-cta-row { display:flex; flex-wrap:wrap; gap:12px; margin-top:10px; }
+    .academy-cta {
+      padding: 11px 20px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border: 1px solid #25d366;
+      background:#25d366;
+      color:#000;
+      box-shadow:0 14px 32px rgba(0,0,0,0.75);
+    }
+    .academy-secondary { background:transparent; color:#f5c14a; border:1px solid #f5c14a; }
+
+    /* IMAGE SLIDER WRAPPER */
+    .academy-image-wrap {
+      position: relative;
+      width:100%;
+      height:420px;
+      border-radius:18px;
+      overflow:hidden;
+      background:#111;
+      border:1px solid rgba(255,255,255,.1);
+      box-shadow:0 22px 50px rgba(0,0,0,.85);
+    }
+
+    /* SLIDER IMAGES */
+    .slider-img {
+      position:absolute;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      opacity:0;
+      transition:opacity 1.4s ease-in-out;
+    }
+    .slider-img.active { opacity:1; }
+
+    /* CARDS */
+    .academy-section-title { font-size:20px; font-weight:700; margin-bottom:14px; color:#f5c14a; }
+    .academy-section-text { color:#d7d9e4; max-width:760px; line-height:1.8; font-size:15px; margin-bottom:24px; }
+
+    .academy-grid { display:grid; grid-template-columns: repeat(3,1fr); gap:22px; margin:40px 0; }
+    @media(max-width:900px){ .academy-grid { grid-template-columns:1fr; } }
+
+    .academy-card {
+      background:rgba(8,8,16,.95);
+      padding:20px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.08);
+      transition:.25s;
+      box-shadow:0 18px 40px rgba(0,0,0,0.75);
+    }
+    .academy-card:hover { transform:translateY(-4px); border-color:#f5c14a; }
+
+    .academy-card-label { font-size:11px; color:#f5c14a; text-transform:uppercase; letter-spacing:.16em; margin-bottom:6px; }
+    .academy-card-title { font-size:17px; font-weight:600; margin-bottom:10px; }
+    .academy-card-text { font-size:14px; line-height:1.7; color:#d2d4df; }
+
+    .academy-pill { padding:7px 14px; border-radius:999px; border:1px solid rgba(255,255,255,.14); font-size:13px; color:#ebeef7; background:rgba(5,5,10,0.9); display:inline-block; margin:6px; }
+
+    /* MOTIVATION SECTION */
+    .motivation {
+      margin-top: 60px;
+      text-align: center;
+      padding: 40px 20px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .m-title { font-size: 38px; font-weight: 700; margin-bottom:16px; }
+    .m-title span { color:#f5c14a; }
+    .m-text { max-width:800px; margin:auto; font-size:17px; line-height:1.9; opacity:.9; margin-bottom:30px; }
+    .m-cta { padding:14px 26px; font-size:15px; background:#25d366; border-radius:999px; color:#000; font-weight:700; text-decoration:none; }
+
   </style>
 </head>
 
@@ -89,116 +145,161 @@
     </div>
 
 
+
     <!-- ========================= -->
-    <!-- ====== ENGLISH PART ===== -->
+    <!-- ====== ENGLISH VERSION === -->
     <!-- ========================= -->
 
     <div class="english">
 
+      <!-- HERO -->
       <section class="academy-hero">
         <div>
           <div class="academy-tag">ACADEMY</div>
+
           <h1 class="academy-title">Learn to <span>shoot, edit & tell</span> cinematic stories.</h1>
-          <p class="academy-sub">Practical filmmaking and editing training…</p>
+
+          <p class="academy-sub">
+            A practical, real-world filmmaking and editing academy focused on clarity, emotion and storycraft.
+          </p>
+
+          <p class="academy-highlights">
+            Workshops • Mentoring • Editing Labs • Corporate Training • Online Programs
+          </p>
+
           <div class="academy-cta-row">
-            <a class="academy-cta" href="mailto:per.hisham@gmail.com">Book Call</a>
+            <a class="academy-cta" href="https://wa.me/966503064408">WhatsApp Me</a>
           </div>
         </div>
 
+        <!-- IMAGE SLIDER -->
         <div class="academy-image-wrap">
-          <img src="img/home-hero.jpg" class="academy-image">
+          <img src="img/home-hero.jpg" class="slider-img active">
+          <img src="img/course1.jpg" class="slider-img">
+          <img src="img/course2.jpg" class="slider-img">
+          <img src="img/course3.jpg" class="slider-img">
         </div>
       </section>
 
+      <!-- PROGRAMS -->
       <section>
         <h2 class="academy-section-title">Training Programs</h2>
+
         <div class="academy-grid">
           <div class="academy-card">
-            <div class="academy-card-label">1:1</div>
-            <div class="academy-card-title">Mentoring</div>
-            <p class="academy-card-text">Personal guidance on your projects.</p>
+            <div class="academy-card-label">Mentoring</div>
+            <div class="academy-card-title">1:1 Personal Mentoring</div>
+            <p class="academy-card-text">Guidance on your real projects, scenes, edits and story.</p>
           </div>
 
           <div class="academy-card">
             <div class="academy-card-label">Workshops</div>
             <div class="academy-card-title">Corporate Training</div>
-            <p class="academy-card-text">Teach teams how to create better content.</p>
+            <p class="academy-card-text">Train your team to shoot, edit and tell powerful brand stories.</p>
           </div>
 
           <div class="academy-card">
-            <div class="academy-card-label">Online</div>
-            <div class="academy-card-title">Editing Labs</div>
-            <p class="academy-card-text">Break down and rebuild cinematic scenes.</p>
+            <div class="academy-card-label">Online Labs</div>
+            <div class="academy-card-title">Editing & Story Labs</div>
+            <p class="academy-card-text">Break down scenes and rebuild them into cinematic sequences.</p>
           </div>
         </div>
       </section>
+
+      <!-- MOTIVATION -->
+      <section class="motivation">
+        <h2 class="m-title">Your Story <span>Deserves</span> to Be Cinematic</h2>
+        <p class="m-text">
+          You already have the vision. What you need is a push—a mentor, a structured workflow, and clear steps
+          to bring your ideas to life.  
+          The Academy will help you grow as a storyteller, filmmaker and editor.
+        </p>
+        <a class="m-cta" href="https://wa.me/966503064408">Start Your Journey</a>
+      </section>
+
     </div>
 
 
 
+
+
     <!-- ========================= -->
-    <!-- ====== ARABIC PART ===== -->
+    <!-- ====== ARABIC VERSION ==== -->
     <!-- ========================= -->
 
     <div class="arabic" dir="rtl">
 
+      <!-- HERO -->
       <section class="academy-hero">
         <div>
           <div class="academy-tag">الأكاديمية</div>
 
           <h1 class="academy-title">
-            اتعلّم إزاي <span>تصوّر وتمنتج وتحكي</span> قصة سينمائية حقيقية.
+            اتعلّم إزاي <span>تصوّر، تمنتج وتحكي</span> قصة سينمائية قوية.
           </h1>
 
           <p class="academy-sub">
-            تدريب عملي مبني على الشغل الحقيقي… أفلام قصيرة، براند فيديو، دوكيومنتري…
+            تدريب عملي مبني على الخبرة الحقيقية… من الواقعية للسينمائية وللسرد اللي يوصل إحساس.
+          </p>
+
+          <p class="academy-highlights">
+            ورش • توجيه فردي • Labs مونتاج • تدريب شركات • تدريب أونلاين
           </p>
 
           <div class="academy-cta-row">
-            <a class="academy-cta" href="mailto:per.hisham@gmail.com">احجز مكالمة</a>
+            <a class="academy-cta" href="https://wa.me/966503064408">تواصل واتساب</a>
           </div>
         </div>
 
+        <!-- IMAGE SLIDER -->
         <div class="academy-image-wrap">
-          <img src="img/home-hero.jpg" class="academy-image">
+          <img src="img/course4.jpg" class="slider-img active">
+          <img src="img/course1.jpg" class="slider-img">
+          <img src="img/course2.jpg" class="slider-img">
+          <img src="img/course3.jpg" class="slider-img">
         </div>
       </section>
 
+      <!-- PROGRAMS -->
       <section>
         <h2 class="academy-section-title">برامج التدريب</h2>
 
         <div class="academy-grid">
-
           <div class="academy-card">
-            <div class="academy-card-label">توجيه فردي</div>
-            <div class="academy-card-title">Mentoring 1:1</div>
-            <p class="academy-card-text">
-              بنشتغل مع بعض على شغلك الحقيقي: يوتيوب، فيلم قصير، إعلان، دوكيومنتري.
-            </p>
+            <div class="academy-card-label">توجيه</div>
+            <div class="academy-card-title">Mentoring فردي</div>
+            <p class="academy-card-text">نشتغل سوا على شغلك الحقيقي: لقطة، مشهد، مشروع كامل.</p>
           </div>
 
           <div class="academy-card">
             <div class="academy-card-label">ورش عمل</div>
-            <div class="academy-card-title">Corporate Training</div>
-            <p class="academy-card-text">
-              تدريب عملي للفرق اللي عايزة تطلع محتوى داخلي قوي ومبني على قصة.
-            </p>
+            <div class="academy-card-title">Training للشركات</div>
+            <p class="academy-card-text">بنعلّم فريقك ازاي يصوّر ويمنتج ويطلع محتوى بجودة عالية.</p>
           </div>
 
           <div class="academy-card">
-            <div class="academy-card-label">أونلاين</div>
-            <div class="academy-card-title">Editing Labs</div>
-            <p class="academy-card-text">
-              تحليل وبناء مشاهد سينمائية… إيقاع، تركيب، صوت، إحساس القصة.
-            </p>
+            <div class="academy-card-label">Labs</div>
+            <div class="academy-card-title">مونتاج وسرد</div>
+            <p class="academy-card-text">تحليل وإعادة بناء مشاهد… إيقاع، إحساس، حركة، تكوين.</p>
           </div>
-
         </div>
+      </section>
+
+      <!-- MOTIVATION -->
+      <section class="motivation">
+        <h2 class="m-title">قصتك <span>تستحق</span> إنها تتقال بشكل سينمائي</h2>
+        <p class="m-text">
+          الفكرة عندك… اللي ناقص هو الاتجاه الصحيح.  
+          حدّ يساعدك ترتّب خطواتك، تفهم السرد، وتمشي طريقك بثقة.  
+          الأكاديمية هتفتح لك الطريق ده.
+        </p>
+        <a class="m-cta" href="https://wa.me/966503064408">ابدأ رحلتك</a>
       </section>
 
     </div>
 
   </main>
+
 
   <script>
     document.body.classList.add("page-loaded");
@@ -206,7 +307,6 @@
     function showEnglish(){
       document.querySelector(".english").style.display = "block";
       document.querySelector(".arabic").style.display = "none";
-
       document.querySelectorAll(".lang-btn")[0].classList.add("active");
       document.querySelectorAll(".lang-btn")[1].classList.remove("active");
     }
@@ -214,10 +314,23 @@
     function showArabic(){
       document.querySelector(".english").style.display = "none";
       document.querySelector(".arabic").style.display = "block";
-
       document.querySelectorAll(".lang-btn")[1].classList.add("active");
       document.querySelectorAll(".lang-btn")[0].classList.remove("active");
     }
+
+    /* === IMAGE SLIDER === */
+
+    let slideIndex = 0;
+    const slides = document.querySelectorAll(".slider-img");
+
+    function changeSlide(){
+      slides.forEach(s => s.classList.remove("active"));
+      slideIndex = (slideIndex + 1) % slides.length;
+      slides[slideIndex].classList.add("active");
+    }
+
+    setInterval(changeSlide, 3500);
+
   </script>
 
 </body>
