@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LAILA | Image to Prompt</title>
+
+  <link rel="icon" type="image/png" href="img/favicon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- LAILA only styles (Scoped – no conflict) -->
+  <style>
+    .laila-wrapper{
+      max-width: 900px;
+      margin: 140px auto 100px;
+      padding: 0 20px;
+      animation: fadeUp .7s ease forwards;
+    }
+
+    @keyframes fadeUp{
+      from{opacity:0; transform:translateY(30px)}
+      to{opacity:1; transform:translateY(0)}
+    }
+
+    .laila-wrapper h1{
+      font-size: 42px;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+    }
+
+    .laila-sub{
+      color: rgba(255,255,255,.65);
+      max-width: 650px;
+      margin-bottom: 40px;
+    }
+
+    .laila-card{
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(255,255,255,.06);
+      border-radius: 22px;
+      padding: 40px;
+    }
+
+    .laila-upload{
+      text-align:center;
+      border:1px dashed rgba(255,255,255,.25);
+      padding:40px;
+      border-radius:18px;
+    }
+
+    .laila-upload input{display:none}
+
+    .laila-upload label{
+      padding:14px 26px;
+      border-radius:14px;
+      background:rgba(255,255,255,.08);
+      cursor:pointer;
+      transition:.3s;
+    }
+
+    .laila-upload label:hover{
+      background:rgba(255,255,255,.15);
+    }
+
+    .laila-preview img{
+      margin-top:30px;
+      max-width:100%;
+      border-radius:18px;
+    }
+
+    .laila-controls select,
+    .laila-controls button,
+    .laila-output textarea{
+      width:100%;
+      margin-top:25px;
+      padding:16px;
+      border-radius:16px;
+      border:none;
+      font-size:15px;
+    }
+
+    .laila-controls select{
+      background:rgba(255,255,255,.08);
+      color:white;
+    }
+
+    .laila-controls button{
+      background:#d8b97a;
+      font-weight:600;
+      cursor:pointer;
+      transition:.3s;
+    }
+
+    .laila-controls button:hover{
+      background:#e6c894;
+    }
+
+    .laila-controls button:disabled{
+      opacity:.6;
+      cursor:not-allowed;
+    }
+
+    .laila-output{
+      display:none;
+      margin-top:40px;
+    }
+
+    .laila-output textarea{
+      background:rgba(255,255,255,.04);
+      color:white;
+      min-height:160px;
+      resize:none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ✅ NAVBAR (نفس اللي في الموقع) -->
+  <header class="nav">
+    <nav class="nav-center">
+      <a href="index.html">Home</a>
+      <a href="my-work.html">My Work</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="academy.html">Academy</a>
+      <a href="laila.html" class="active">LAILA</a>
+      <a href="cv.html">CV</a>
+    </nav>
+  </header>
+
+  <!-- ✅ LAILA CONTENT -->
+  <div class="laila-wrapper">
+    <h1>LAILA</h1>
+    <p class="laila-sub">
+      Upload an image and instantly generate a smart prompt
+      optimized for Midjourney, Whisk, and AI image tools.
+    </p>
+
+    <div class="laila-card">
+
+      <div class="laila-upload">
+        <label>
+          Upload Image
+          <input type="file" accept="image/*" id="imageInput">
+        </label>
+        <div class="laila-preview" id="preview"></div>
+      </div>
+
+      <div class="laila-controls">
+        <select id="styleSelect">
+          <option value="cinematic">Cinematic</option>
+          <option value="photo">Photorealistic</option>
+          <option value="illustration">Illustration</option>
+          <option value="3d">3D Render</option>
+          <option value="architecture">Architecture</option>
+          <option value="portrait">Portrait Studio</option>
+        </select>
+
+        <button id="generateBtn" disabled onclick="generatePrompt()">
+          Generate Prompt
+        </button>
+      </div>
+
+      <div class="laila-output" id="output">
+        <textarea id="promptOutput" readonly></textarea>
+        <button style="margin-top:15px" onclick="copyPrompt()">Copy Prompt</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ✅ Logic -->
+  <script>
+    const input = document.getElementById("imageInput");
+    const preview = document.getElementById("preview");
+    const btn = document.getElementById("generateBtn");
+    const output = document.getElementById("output");
+    const promptBox = document.getElementById("promptOutput");
+
+    input.addEventListener("change",()=>{
+      preview.innerHTML="";
+      const file=input.files[0];
+      if(!file) return;
+      const img=document.createElement("img");
+      img.src=URL.createObjectURL(file);
+      preview.appendChild(img);
+      btn.disabled=false;
+    });
+
+    function generatePrompt(){
+      const img=preview.querySelector("img");
+      if(!img) return;
+
+      const canvas=document.createElement("canvas");
+      const ctx=canvas.getContext("2d");
+      canvas.width=img.naturalWidth;
+      canvas.height=img.naturalHeight;
+      ctx.drawImage(img,0,0);
+
+      const data=ctx.getImageData(0,0,canvas.width,canvas.height).data;
+      let r=0,g=0,b=0;
+      for(let i=0;i<data.length;i+=4){
+        r+=data[i]; g+=data[i+1]; b+=data[i+2];
+      }
+      const px=data.length/4; r/=px; g/=px; b/=px;
+
+      const brightness=(r+g+b)/3;
+      const orientation=canvas.width>canvas.height?"wide composition":"portrait composition";
+      const lighting=brightness>140?"soft cinematic lighting":brightness>90?"balanced studio lighting":"low-key dramatic lighting";
+      const colors=r>g&&r>b?"warm color grading":b>r&&b>g?"cool color grading":"neutral tones";
+
+      const styleMap={
+        cinematic:"cinematic scene, film still, dramatic atmosphere",
+        photo:"ultra photorealistic, professional photography",
+        illustration:"high detail digital illustration",
+        "3d":"3d render, octane render, ultra detailed",
+        architecture:"architectural visualization, clean geometry",
+        portrait:"studio portrait, shallow depth of field"
+      };
+
+      const style=document.getElementById("styleSelect").value;
+
+      promptBox.value =
+`${styleMap[style]},
+${orientation},
+${lighting},
+${colors},
+sharp focus,
+high detail,
+realistic textures,
+depth of field,
+8k quality`;
+
+      output.style.display="block";
+    }
+
+    function copyPrompt(){
+      promptBox.select();
+      document.execCommand("copy");
+      alert("Prompt copied");
+    }
+  </script>
+
+  <!-- ✅ نفس سلوك الـ Navbar -->
+  <script>
+    window.addEventListener("scroll", () => {
+      const nav = document.querySelector(".nav");
+      if (window.scrollY > 10) nav.classList.add("scrolled");
+      else nav.classList.remove("scrolled");
+    });
+  </script>
+
+</body>
+</html>
