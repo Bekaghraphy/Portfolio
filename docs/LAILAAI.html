@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>LAILA - توليد صور بالذكاء الاصطناعي</title>
+  <style>
+    body { font-family: sans-serif; direction: rtl; padding: 20px; max-width: 600px; margin: auto; }
+    textarea, button { width: 100%; padding: 10px; margin: 10px 0; }
+    img { width: 100%; margin-top: 20px; border-radius: 10px; }
+  </style>
+</head>
+<body>
+  <h1>🌙 LAILA - صناعة الصور بالذكاء الاصطناعي</h1>
+  <p>اكتب وصف الصورة اللي تتخيلها وسيتم توليدها آليًا ✨</p>
+
+  <textarea id="prompt" rows="3" placeholder="مثال: قط يطير فوق السحاب"></textarea>
+  <button onclick="generateImage()">🎨 توليد</button>
+
+  <div id="output">💡 اكتب وصف ثم اضغط توليد</div>
+
+  <script>
+    async function generateImage() {
+      const prompt = document.getElementById("prompt").value;
+      document.getElementById("output").innerHTML = "⏳ جاري التوليد...";
+
+      const res = await fetch("generate-laila.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ prompt })
+      });
+
+      const data = await res.json();
+
+      if (data?.data?.[0]?.url) {
+        document.getElementById("output").innerHTML = `<img src="${data.data[0].url}" alt="صورة من LAILA">`;
+      } else {
+        document.getElementById("output").innerHTML = "❌ حصل خطأ أثناء التوليد.";
+        console.error(data);
+      }
+    }
+  </script>
+</body>
+</html>
