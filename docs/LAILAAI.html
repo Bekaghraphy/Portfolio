@@ -1,43 +1,205 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>LAILA - توليد صور بالذكاء الاصطناعي</title>
-  <style>
-    body { font-family: sans-serif; direction: rtl; padding: 20px; max-width: 600px; margin: auto; }
-    textarea, button { width: 100%; padding: 10px; margin: 10px 0; }
-    img { width: 100%; margin-top: 20px; border-radius: 10px; }
-  </style>
+<meta charset="UTF-8">
+<title>LAILA — AI Image Creation</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#050505;
+  --gold:#d8b97a;
+  --gold-soft:#e6c894;
+  --text:#ffffff;
+  --muted:rgba(255,255,255,.6);
+}
+
+*{box-sizing:border-box;margin:0;padding:0;font-family:Montserrat,sans-serif}
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.laila-wrapper{
+  width:100%;
+  max-width:720px;
+  padding:60px 30px;
+  animation:fadeUp .8s ease forwards;
+}
+
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(25px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+.lang-toggle{
+  position:absolute;
+  top:30px;
+  right:40px;
+  font-size:13px;
+  cursor:pointer;
+  opacity:.7;
+}
+.lang-toggle:hover{opacity:1;color:var(--gold)}
+
+h1{
+  font-size:42px;
+  font-weight:600;
+  letter-spacing:2px;
+}
+.subtitle{
+  margin-top:10px;
+  color:var(--muted);
+}
+
+textarea{
+  width:100%;
+  margin-top:40px;
+  padding:18px;
+  border-radius:14px;
+  background:rgba(255,255,255,.03);
+  border:1px solid rgba(255,255,255,.08);
+  color:var(--text);
+  resize:none;
+  font-size:15px;
+}
+textarea:focus{outline:none;border-color:var(--gold)}
+
+button{
+  margin-top:25px;
+  width:100%;
+  padding:15px;
+  border-radius:14px;
+  background:var(--gold);
+  border:none;
+  font-size:15px;
+  font-weight:600;
+  cursor:pointer;
+  transition:.3s;
+}
+button:hover{background:var(--gold-soft)}
+button:disabled{opacity:.6;cursor:not-allowed}
+
+.loader{
+  display:none;
+  margin-top:25px;
+  text-align:center;
+  color:var(--gold);
+}
+
+.result{
+  margin-top:40px;
+  display:none;
+}
+.result img{
+  width:100%;
+  border-radius:18px;
+  animation:fadeImg .8s ease forwards;
+}
+
+@keyframes fadeImg{
+  from{opacity:0;filter:blur(10px)}
+  to{opacity:1;filter:blur(0)}
+}
+
+.actions{
+  margin-top:15px;
+  display:flex;
+  gap:10px;
+}
+.actions a{
+  flex:1;
+  text-align:center;
+  padding:10px;
+  border-radius:12px;
+  background:rgba(255,255,255,.08);
+  color:white;
+  text-decoration:none;
+  font-size:13px;
+}
+.actions a:hover{background:rgba(255,255,255,.15)}
+</style>
 </head>
+
 <body>
-  <h1>🌙 LAILA - صناعة الصور بالذكاء الاصطناعي</h1>
-  <p>اكتب وصف الصورة اللي تتخيلها وسيتم توليدها آليًا ✨</p>
 
-  <textarea id="prompt" rows="3" placeholder="مثال: قط يطير فوق السحاب"></textarea>
-  <button onclick="generateImage()">🎨 توليد</button>
+<div class="lang-toggle" onclick="toggleLang()">AR</div>
 
-  <div id="output">💡 اكتب وصف ثم اضغط توليد</div>
+<div class="laila-wrapper">
+  <h1>LAILA</h1>
+  <p class="subtitle" id="subtitle">AI Image Creation</p>
 
-  <script>
-    async function generateImage() {
-      const prompt = document.getElementById("prompt").value;
-      document.getElementById("output").innerHTML = "⏳ جاري التوليد...";
+  <textarea id="prompt" rows="3"
+    placeholder="Describe the image you imagine..."></textarea>
 
-      const res = await fetch("generate-laila.php", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ prompt })
-      });
+  <button id="generateBtn" onclick="generateImage()">Generate Image</button>
 
-      const data = await res.json();
+  <div class="loader" id="loader">Creating image...</div>
 
-      if (data?.data?.[0]?.url) {
-        document.getElementById("output").innerHTML = `<img src="${data.data[0].url}" alt="صورة من LAILA">`;
-      } else {
-        document.getElementById("output").innerHTML = "❌ حصل خطأ أثناء التوليد.";
-        console.error(data);
-      }
-    }
-  </script>
+  <div class="result" id="result">
+    <img id="resultImg">
+    <div class="actions">
+      <a id="downloadBtn" download>Download</a>
+      <a href="#" onclick="resetUI()">Generate Again</a>
+    </div>
+  </div>
+</div>
+
+<script>
+let lang = "en";
+
+function toggleLang(){
+  lang = lang==="en"?"ar":"en";
+  document.querySelector(".lang-toggle").innerText = lang==="en"?"AR":"EN";
+
+  document.getElementById("subtitle").innerText =
+    lang==="en"?"AI Image Creation":"توليد صور بالذكاء الاصطناعي";
+
+  document.getElementById("prompt").placeholder =
+    lang==="en"?
+    "Describe the image you imagine...":
+    "اكتب وصف الصورة اللي تتخيلها";
+}
+
+async function generateImage(){
+  const prompt = document.getElementById("prompt").value.trim();
+  if(!prompt) return;
+
+  document.getElementById("generateBtn").disabled = true;
+  document.getElementById("loader").style.display="block";
+
+  const res = await fetch("generate-laila.php",{
+    method:"POST",
+    headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({prompt})
+  });
+
+  const data = await res.json();
+  document.getElementById("loader").style.display="none";
+
+  if(data?.data?.[0]?.url){
+    document.getElementById("resultImg").src = data.data[0].url;
+    document.getElementById("downloadBtn").href = data.data[0].url;
+    document.getElementById("result").style.display="block";
+  }else{
+    alert("Something went wrong. Please try again.");
+  }
+
+  document.getElementById("generateBtn").disabled = false;
+}
+
+function resetUI(){
+  document.getElementById("result").style.display="none";
+  document.getElementById("prompt").value="";
+}
+</script>
+
 </body>
 </html>
