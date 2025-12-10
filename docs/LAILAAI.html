@@ -169,30 +169,91 @@ function toggleLang(){
 }
 
 async function generateImage(){
-  const prompt = document.getElementById("prompt").value.trim();
-  if(!prompt) return;
+  const promptEl = document.getElementById("prompt");
+  const prompt = promptEl.value.trim();
+  const btn = document.getElementById("generateBtn");
+  const loader = document.getElementById("loader");
+  const resultEl = document.getElementById("result");
+  const imgEl = document.getElementById("resultImg");
+  const downloadBtn = document.getElementById("downloadBtn");
 
-  document.getElementById("generateBtn").disabled = true;
-  document.getElementById("loader").style.display="block";
-
-  const res = await fetch("generate-laila.php",{
-    method:"POST",
-    headers:{"Content-Type":"application/json"},
-    body:JSON.stringify({prompt})
-  });
-
-  const data = await res.json();
-  document.getElementById("loader").style.display="none";
-
-  if(data?.data?.[0]?.url){
-    document.getElementById("resultImg").src = data.data[0].url;
-    document.getElementById("downloadBtn").href = data.data[0].url;
-    document.getElementById("result").style.display="block";
-  }else{
-    alert("Something went wrong. Please try again.");
+  if(!prompt) {
+    alert(lang === "en" ? "Please write a prompt first." : "اكتب وصف الأول.");
+    return;
   }
 
-  document.getElementById("generateBtn").disabled = false;
+  // reset result
+  resultEl.style.display = "none";
+  imgEl.src = "";
+  downloadBtn.removeAttribute("href");
+
+  btn.disabled = true;
+  loader.style.display = "block";
+  loader.innerText = lang === "en" ? "Creating image..." : "جاري إنشاء الصورة...";
+
+  try {
+    // نضيف timeout عشان ما يفضلش معلق للأبد
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 45000); // 45 ثانية
+
+    const res = await fetch("generate-laila.php",{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({prompt}),
+      signal: controller.signal
+    });
+
+    clearTimeout(timeoutId);
+
+    let data;
+    const text = await res.text();
+    try {
+      data = JSON.parse(text);
+    } catch(e) {
+      console.error("Response is not valid JSON:", text);
+      throw new Error(lang === "en"
+        ? "Server response is not valid JSON."
+        : "الرد من السيرفر مش بصيغة JSON.");
+    }
+
+    loader.style.display="none";
+
+    if(!res.ok){
+      console.error("HTTP error:", res.status, data);
+      alert(
+        (lang === "en"
+          ? "Server error: "
+          : "مشكلة في السيرفر: ") +
+        (data.error || res.status)
+      );
+    } else if(data?.data?.[0]?.url){
+      imgEl.src = data.data[0].url;
+      downloadBtn.href = data.data[0].url;
+      resultEl.style.display = "block";
+    } else {
+      console.error("Unexpected data:", data);
+      alert(lang === "en"
+        ? "Unexpected response from server."
+        : "رد غير متوقع من السيرفر.");
+    }
+
+  } catch(err){
+    console.error("Fetch error:", err);
+    loader.style.display="none";
+    let msg;
+    if (err.name === "AbortError") {
+      msg = lang === "en"
+        ? "Request took too long. Hosting may be blocking the connection."
+        : "الطلب أخد وقت طويل جدًا. ممكن الاستضافة تكون مانعة الاتصال.";
+    } else {
+      msg = lang === "en"
+        ? "Network / server error. Check console."
+        : "في مشكلة في الاتصال أو السيرفر. راجع المسؤول عن الاستضافة.";
+    }
+    alert(msg);
+  } finally {
+    btn.disabled = false;
+  }
 }
 
 function resetUI(){
@@ -200,6 +261,3 @@ function resetUI(){
   document.getElementById("prompt").value="";
 }
 </script>
-
-</body>
-</html>
