@@ -2,26 +2,38 @@
 header('Content-Type: application/json');
 
 $input = json_decode(file_get_contents("php://input"), true);
-$prompt = $input["prompt"] ?? "صورة عشوائية";
+if (!isset($input['prompt'])) {
+  echo json_encode(["error" => "Prompt missing"]);
+  exit;
+}
 
-$apiKey = "key";
+$apiKey = "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";
 
 $data = [
-  "prompt" => $prompt,
-  "n" => 1,
-  "size" => "512x512"
+  "model" => "gpt-image-1",
+  "prompt" => trim($input['prompt']),
+  "size" => "1024x1024"
 ];
 
 $ch = curl_init("https://api.openai.com/v1/images/generations");
-curl_setopt($ch, CURLOPT_HTTPHEADER, [
-  "Authorization: Bearer $apiKey",
-  "Content-Type: application/json"
+curl_setopt_array($ch, [
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_POST => true,
+  CURLOPT_HTTPHEADER => [
+    "Content-Type: application/json",
+    "Authorization: Bearer $apiKey"
+  ],
+  CURLOPT_POSTFIELDS => json_encode($data),
+  CURLOPT_TIMEOUT => 60
 ]);
-curl_setopt($ch, CURLOPT_POST, true);
-curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
 $response = curl_exec($ch);
+$http = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 curl_close($ch);
+
+if ($http !== 200) {
+  echo json_encode(["error" => "OpenAI API Error"]);
+  exit;
+}
 
 echo $response;
