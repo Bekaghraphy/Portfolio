@@ -4,7 +4,7 @@ header('Content-Type: application/json');
 $input = json_decode(file_get_contents("php://input"), true);
 $prompt = $input["prompt"] ?? "صورة عشوائية";
 
-$apiKey = "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";
+$apiKey = "key";
 
 $data = [
   "prompt" => $prompt,
