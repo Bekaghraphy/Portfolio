@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>LAILA — AI Image Creation</title>
+<title>LAILA — Image to Prompt</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -16,248 +16,248 @@
   --muted:rgba(255,255,255,.6);
 }
 
-*{box-sizing:border-box;margin:0;padding:0;font-family:Montserrat,sans-serif}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Montserrat,sans-serif}
 
 body{
   background:var(--bg);
   color:var(--text);
   min-height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
 }
 
-.laila-wrapper{
-  width:100%;
-  max-width:720px;
-  padding:60px 30px;
+/* ================= NAVBAR ================= */
+.navbar{
+  position:fixed;
+  top:0;left:0;right:0;
+  height:70px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 40px;
+  background:rgba(5,5,5,.9);
+  border-bottom:1px solid rgba(255,255,255,.05);
+  z-index:100;
+}
+
+.nav-logo{
+  font-weight:700;
+  letter-spacing:2px;
+}
+
+.nav-links a{
+  margin-left:25px;
+  text-decoration:none;
+  font-size:14px;
+  color:var(--muted);
+  transition:.3s;
+}
+
+.nav-links a:hover{
+  color:var(--gold);
+}
+
+/* ================= MAIN ================= */
+.main{
+  padding:120px 20px 80px;
+  max-width:900px;
+  margin:auto;
   animation:fadeUp .8s ease forwards;
 }
 
 @keyframes fadeUp{
-  from{opacity:0;transform:translateY(25px)}
+  from{opacity:0;transform:translateY(30px)}
   to{opacity:1;transform:translateY(0)}
 }
-
-.lang-toggle{
-  position:absolute;
-  top:30px;
-  right:40px;
-  font-size:13px;
-  cursor:pointer;
-  opacity:.7;
-}
-.lang-toggle:hover{opacity:1;color:var(--gold)}
 
 h1{
   font-size:42px;
   font-weight:600;
   letter-spacing:2px;
 }
+
 .subtitle{
   margin-top:10px;
   color:var(--muted);
+  max-width:600px;
 }
 
-textarea{
-  width:100%;
-  margin-top:40px;
-  padding:18px;
-  border-radius:14px;
+/* ================= UPLOAD ================= */
+.upload-box{
+  margin-top:50px;
+  padding:40px;
+  border-radius:18px;
   background:rgba(255,255,255,.03);
-  border:1px solid rgba(255,255,255,.08);
-  color:var(--text);
-  resize:none;
-  font-size:15px;
+  border:1px dashed rgba(255,255,255,.15);
+  text-align:center;
 }
-textarea:focus{outline:none;border-color:var(--gold)}
 
-button{
-  margin-top:25px;
-  width:100%;
-  padding:15px;
+.upload-box input{
+  display:none;
+}
+
+.upload-label{
+  display:inline-block;
+  padding:14px 26px;
   border-radius:14px;
-  background:var(--gold);
+  background:rgba(255,255,255,.08);
+  cursor:pointer;
+  transition:.3s;
+}
+.upload-label:hover{
+  background:rgba(255,255,255,.15);
+}
+
+.preview{
+  margin-top:30px;
+}
+.preview img{
+  max-width:100%;
+  border-radius:16px;
+}
+
+/* ================= BUTTON ================= */
+button{
+  margin-top:30px;
+  padding:16px;
+  width:100%;
+  border-radius:16px;
   border:none;
   font-size:15px;
   font-weight:600;
+  background:var(--gold);
   cursor:pointer;
   transition:.3s;
 }
 button:hover{background:var(--gold-soft)}
 button:disabled{opacity:.6;cursor:not-allowed}
 
-.loader{
-  display:none;
-  margin-top:25px;
-  text-align:center;
-  color:var(--gold);
-}
-
-.result{
+/* ================= OUTPUT ================= */
+.output{
   margin-top:40px;
   display:none;
 }
-.result img{
+
+.output textarea{
   width:100%;
-  border-radius:18px;
-  animation:fadeImg .8s ease forwards;
+  min-height:140px;
+  border-radius:16px;
+  padding:18px;
+  background:rgba(255,255,255,.03);
+  border:1px solid rgba(255,255,255,.1);
+  color:var(--text);
+  resize:none;
 }
 
-@keyframes fadeImg{
-  from{opacity:0;filter:blur(10px)}
-  to{opacity:1;filter:blur(0)}
-}
-
-.actions{
+.copy-btn{
   margin-top:15px;
-  display:flex;
-  gap:10px;
-}
-.actions a{
-  flex:1;
-  text-align:center;
-  padding:10px;
-  border-radius:12px;
   background:rgba(255,255,255,.08);
-  color:white;
-  text-decoration:none;
-  font-size:13px;
 }
-.actions a:hover{background:rgba(255,255,255,.15)}
+.copy-btn:hover{background:rgba(255,255,255,.15)}
+
+.footer-note{
+  margin-top:30px;
+  font-size:13px;
+  color:var(--muted);
+  text-align:center;
+}
 </style>
 </head>
 
 <body>
 
-<div class="lang-toggle" onclick="toggleLang()">AR</div>
+<!-- ================= NAV ================= -->
+<div class="navbar">
+  <div class="nav-logo">HISHAM</div>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="my-work.html">My Work</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="LAILA.html" style="color:#d8b97a">LAILA</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</div>
 
-<div class="laila-wrapper">
+<!-- ================= CONTENT ================= -->
+<div class="main">
   <h1>LAILA</h1>
-  <p class="subtitle" id="subtitle">AI Image Creation</p>
+  <p class="subtitle">
+    Upload an image and get a clean, ready-to-use prompt for image generation.
+    No image creation. No cost. Just smart prompting.
+  </p>
 
-  <textarea id="prompt" rows="3"
-    placeholder="Describe the image you imagine..."></textarea>
+  <div class="upload-box">
+    <label class="upload-label">
+      Upload Image
+      <input type="file" accept="image/*" id="imageInput">
+    </label>
 
-  <button id="generateBtn" onclick="generateImage()">Generate Image</button>
+    <div class="preview" id="preview"></div>
 
-  <div class="loader" id="loader">Creating image...</div>
+    <button id="generateBtn" disabled onclick="generatePrompt()">
+      Generate Prompt
+    </button>
+  </div>
 
-  <div class="result" id="result">
-    <img id="resultImg">
-    <div class="actions">
-      <a id="downloadBtn" download>Download</a>
-      <a href="#" onclick="resetUI()">Generate Again</a>
-    </div>
+  <div class="output" id="output">
+    <textarea id="promptOutput" readonly></textarea>
+    <button class="copy-btn" onclick="copyPrompt()">Copy Prompt</button>
+  </div>
+
+  <div class="footer-note">
+    Free version — prompt quality depends on visual description logic.<br>
+    Upgrade to AI Vision later for advanced cinematic prompts.
   </div>
 </div>
 
 <script>
-let lang = "en";
+const input = document.getElementById("imageInput");
+const preview = document.getElementById("preview");
+const btn = document.getElementById("generateBtn");
+const output = document.getElementById("output");
+const promptBox = document.getElementById("promptOutput");
 
-function toggleLang(){
-  lang = lang==="en"?"ar":"en";
-  document.querySelector(".lang-toggle").innerText = lang==="en"?"AR":"EN";
+let imageLoaded = false;
 
-  document.getElementById("subtitle").innerText =
-    lang==="en"?"AI Image Creation":"توليد صور بالذكاء الاصطناعي";
+input.addEventListener("change", () => {
+  preview.innerHTML = "";
+  const file = input.files[0];
+  if(!file) return;
 
-  document.getElementById("prompt").placeholder =
-    lang==="en"?
-    "Describe the image you imagine...":
-    "اكتب وصف الصورة اللي تتخيلها";
+  const img = document.createElement("img");
+  img.src = URL.createObjectURL(file);
+  preview.appendChild(img);
+  imageLoaded = true;
+  btn.disabled = false;
+});
+
+function generatePrompt(){
+  if(!imageLoaded) return;
+
+  // Free mock logic (image analysis placeholder)
+  const baseDescription =
+    "A high-quality image with clear subject focus and balanced composition";
+
+  const prompt = `
+Highly detailed, cinematic style,
+professional lighting,
+ultra-realistic,
+${baseDescription},
+shallow depth of field,
+85mm lens,
+high resolution,
+dramatic contrast,
+dark background
+`.trim();
+
+  promptBox.value = prompt;
+  output.style.display = "block";
 }
 
-async function generateImage(){
-  const promptEl = document.getElementById("prompt");
-  const prompt = promptEl.value.trim();
-  const btn = document.getElementById("generateBtn");
-  const loader = document.getElementById("loader");
-  const resultEl = document.getElementById("result");
-  const imgEl = document.getElementById("resultImg");
-  const downloadBtn = document.getElementById("downloadBtn");
-
-  if(!prompt) {
-    alert(lang === "en" ? "Please write a prompt first." : "اكتب وصف الأول.");
-    return;
-  }
-
-  // reset result
-  resultEl.style.display = "none";
-  imgEl.src = "";
-  downloadBtn.removeAttribute("href");
-
-  btn.disabled = true;
-  loader.style.display = "block";
-  loader.innerText = lang === "en" ? "Creating image..." : "جاري إنشاء الصورة...";
-
-  try {
-    // نضيف timeout عشان ما يفضلش معلق للأبد
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 45000); // 45 ثانية
-
-    const res = await fetch("generate-laila.php",{
-      method:"POST",
-      headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({prompt}),
-      signal: controller.signal
-    });
-
-    clearTimeout(timeoutId);
-
-    let data;
-    const text = await res.text();
-    try {
-      data = JSON.parse(text);
-    } catch(e) {
-      console.error("Response is not valid JSON:", text);
-      throw new Error(lang === "en"
-        ? "Server response is not valid JSON."
-        : "الرد من السيرفر مش بصيغة JSON.");
-    }
-
-    loader.style.display="none";
-
-    if(!res.ok){
-      console.error("HTTP error:", res.status, data);
-      alert(
-        (lang === "en"
-          ? "Server error: "
-          : "مشكلة في السيرفر: ") +
-        (data.error || res.status)
-      );
-    } else if(data?.data?.[0]?.url){
-      imgEl.src = data.data[0].url;
-      downloadBtn.href = data.data[0].url;
-      resultEl.style.display = "block";
-    } else {
-      console.error("Unexpected data:", data);
-      alert(lang === "en"
-        ? "Unexpected response from server."
-        : "رد غير متوقع من السيرفر.");
-    }
-
-  } catch(err){
-    console.error("Fetch error:", err);
-    loader.style.display="none";
-    let msg;
-    if (err.name === "AbortError") {
-      msg = lang === "en"
-        ? "Request took too long. Hosting may be blocking the connection."
-        : "الطلب أخد وقت طويل جدًا. ممكن الاستضافة تكون مانعة الاتصال.";
-    } else {
-      msg = lang === "en"
-        ? "Network / server error. Check console."
-        : "في مشكلة في الاتصال أو السيرفر. راجع المسؤول عن الاستضافة.";
-    }
-    alert(msg);
-  } finally {
-    btn.disabled = false;
-  }
-}
-
-function resetUI(){
-  document.getElementById("result").style.display="none";
-  document.getElementById("prompt").value="";
+function copyPrompt(){
+  promptBox.select();
+  document.execCommand("copy");
+  alert("Prompt copied");
 }
 </script>
+
+</body>
+</html>
