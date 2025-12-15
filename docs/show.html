@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Hero Vimeo Section</title>
+<title>Show</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- Google Fonts -->
@@ -58,12 +58,13 @@ html, body {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 177.78vh;
-  height: 100vh;
+  width: 100vw;
+  height: 56.25vw; /* 16:9 */
+  min-height: 100vh;
+  min-width: 177.78vh;
   transform: translate(-50%, -50%);
-  min-width: 100%;
-  min-height: 100%;
 }
+
 
 /* MOBILE FALLBACK */
 .vimeo-bg {
@@ -90,14 +91,14 @@ html, body {
 }
 .center-block {
   vertical-align: middle;
-  padding-top: 120px;
+  padding-top: 140px;
 }
 
 /* TITLE */
 .hero-title {
   font-family: 'Montserrat', sans-serif;
   font-weight: 900;
-  font-size: clamp(48px, 8vw, 120px);
+  font-size: clamp(38px, 6vw, 90px);
   line-height: 0.9;
   letter-spacing: -0.08em;
   color: #fff;
