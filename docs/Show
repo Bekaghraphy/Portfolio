@@ -46,19 +46,19 @@
                                     <a href="#home">Home</a>
                                 </li>
                                 <li>
-                                    <a href="#about">About</a>
+                                    <a href="#about">My Work</a>
                                 </li>
                                 <li>
-                                    <a href="#works">Works</a>
+                                    <a href="#works">Gallery</a>
                                 </li>
                                 <li>
-                                    <a href="#news">News</a>
+                                    <a href="#news">Academy</a>
                                 </li>
                                 <li>
-                                    <a href="#contact">Contact</a>
+                                    <a href="#contact">CV</a>
                                 </li>
                                 <li class="credits">
-                                    <a href="#">&copy; All Rights Reserved</a>
+                                    <a href="#">&copy; All Rights Reserved l Hesham Abdelhamed @2025</a>
                                 </li>
                             </ul>
                         </nav>
@@ -1701,4 +1701,5 @@
         <script src="js/yex.js"></script>
         <!-- scripts end -->
     </body>
+
 </html>
