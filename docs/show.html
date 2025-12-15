@@ -5,6 +5,9 @@
 <title>Show</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="favicon.png">
+
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Raleway:wght@400;500&display=swap" rel="stylesheet">
 
@@ -21,6 +24,27 @@ html, body {
   background: #000;
   font-family: 'Raleway', sans-serif;
   overflow: hidden;
+}
+
+/* NAVIGATION */
+.main-nav {
+  position: fixed;
+  top: 40px;
+  right: 60px;
+  z-index: 20;
+}
+.main-nav a {
+  margin-left: 28px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  color: #fff;
+  text-decoration: none;
+  opacity: 0.75;
+  transition: opacity .3s ease;
+}
+.main-nav a:hover {
+  opacity: 1;
 }
 
 /* SECTION */
@@ -59,27 +83,10 @@ html, body {
   top: 50%;
   left: 50%;
   width: 100vw;
-  height: 56.25vw; /* 16:9 */
+  height: 56.25vw;
   min-height: 100vh;
   min-width: 177.78vh;
   transform: translate(-50%, -50%);
-}
-
-
-/* MOBILE FALLBACK */
-.vimeo-bg {
-  display: none;
-}
-@media (max-width: 1500px) {
-  #vimeo-videoContainment {
-    display: none;
-  }
-  .vimeo-bg {
-    display: block;
-    position: absolute;
-    inset: 0;
-    background: #000;
-  }
 }
 
 /* CENTER CONTENT */
@@ -103,7 +110,6 @@ html, body {
   letter-spacing: -0.08em;
   color: #fff;
   text-transform: uppercase;
-
   text-align: left;
   margin-left: 140px;
 }
@@ -114,6 +120,24 @@ html, body {
   height: 20px;
   background: #fff;
   margin: 30px auto 0;
+}
+
+/* NEXT VIDEO */
+.next-video {
+  position: absolute;
+  bottom: 40px;
+  right: 60px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.25em;
+  color: #fff;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity .3s ease;
+  z-index: 10;
+}
+.next-video:hover {
+  opacity: 1;
 }
 
 /* SCROLL */
@@ -138,7 +162,6 @@ html, body {
   background: #fff;
   animation: scrollDown 2s infinite;
 }
-
 @keyframes scrollDown {
   0% { height: 0; }
   50% { height: 100%; }
@@ -149,16 +172,26 @@ html, body {
 
 <body>
 
+<!-- NAV -->
+<nav class="main-nav">
+  <a href="index.html">Home</a>
+  <a href="work.html">My Work</a>
+  <a href="gallery.html">Gallery</a>
+  <a href="academy.html">Academy</a>
+  <a href="cv.html">CV</a>
+  <a href="show.html">Show</a>
+</nav>
+
 <div class="section">
 
   <div class="hero-fullscreen">
     <div id="vimeo-videoContainment">
       <iframe
+        id="vimeoFrame"
         src="https://player.vimeo.com/video/1093436208?autoplay=1&muted=1&background=1&loop=1"
         allow="autoplay; fullscreen">
       </iframe>
     </div>
-    <div class="vimeo-bg"></div>
   </div>
 
   <div class="center-container">
@@ -170,11 +203,29 @@ html, body {
     </div>
   </div>
 
+  <!-- NEXT -->
+  <div class="next-video" onclick="nextVideo()">NEXT</div>
+
   <div class="scroll-indicator">
     <div class="scroll-line"></div>
   </div>
 
 </div>
+
+<!-- VIDEO LOGIC (انت هتزود الفيديوهات) -->
+<script>
+const videos = [
+  // حط الفيديوهات هنا
+];
+
+let currentVideo = 0;
+
+function nextVideo() {
+  if (!videos.length) return;
+  currentVideo = (currentVideo + 1) % videos.length;
+  document.getElementById("vimeoFrame").src = videos[currentVideo];
+}
+</script>
 
 </body>
 </html>
