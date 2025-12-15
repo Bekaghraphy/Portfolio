@@ -13,159 +13,175 @@
 
 <style>
 /* RESET */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-html, body {
-  width: 100%;
-  height: 100%;
-  background: #000;
-  font-family: 'Raleway', sans-serif;
-  overflow: hidden;
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{
+  width:100%;
+  height:100%;
+  background:#000;
+  font-family:'Raleway',sans-serif;
+  overflow:hidden;
 }
 
-/* NAVIGATION */
-.main-nav {
-  position: fixed;
-  top: 40px;
-  right: 60px;
-  z-index: 20;
+/* NAV */
+.main-nav{
+  position:fixed;
+  top:40px;
+  right:60px;
+  z-index:20;
 }
-.main-nav a {
-  margin-left: 28px;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 12px;
-  letter-spacing: 0.18em;
-  color: #fff;
-  text-decoration: none;
-  opacity: 0.75;
-  transition: opacity .3s ease;
+.main-nav a{
+  margin-left:28px;
+  font-family:'Montserrat',sans-serif;
+  font-size:12px;
+  letter-spacing:.18em;
+  color:#fff;
+  text-decoration:none;
+  opacity:.75;
 }
-.main-nav a:hover {
-  opacity: 1;
-}
+.main-nav a:hover{opacity:1}
 
 /* SECTION */
-.section {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
+.section{
+  position:relative;
+  width:100%;
+  height:100vh;
+  overflow:hidden;
 }
 
 /* HERO */
-.hero-fullscreen {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  overflow: hidden;
+.hero-fullscreen{
+  position:absolute;
+  inset:0;
+  z-index:0;
 }
-
-/* OVERLAY */
-.hero-fullscreen::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,.45);
-  z-index: 1;
+.hero-fullscreen::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,.45);
+  z-index:1;
 }
 
 /* VIMEO */
-#vimeo-videoContainment {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
+#vimeo-videoContainment{
+  position:absolute;
+  inset:0;
+  z-index:0;
 }
-#vimeo-videoContainment iframe {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 100vw;
-  height: 56.25vw;
-  min-height: 100vh;
-  min-width: 177.78vh;
-  transform: translate(-50%, -50%);
+#vimeo-videoContainment iframe{
+  position:absolute;
+  top:50%;
+  left:50%;
+  width:100vw;
+  height:56.25vw;
+  min-height:100vh;
+  min-width:177.78vh;
+  transform:translate(-50%,-50%);
+  transition:opacity .6s ease;
+}
+
+/* PARALLAX TRANSITION */
+.parallax-transition{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    120deg,
+    rgba(212,175,55,.15),
+    rgba(0,0,0,.8),
+    rgba(212,175,55,.15)
+  );
+  transform:translateY(100%);
+  transition:transform .9s ease;
+  z-index:4;
+  pointer-events:none;
+}
+.parallax-transition.active{
+  transform:translateY(0);
 }
 
 /* CENTER CONTENT */
-.center-container {
-  position: absolute;
-  inset: 0;
-  display: table;
-  z-index: 2;
+.center-container{
+  position:absolute;
+  inset:0;
+  display:table;
+  z-index:2;
 }
-.center-block {
-  vertical-align: middle;
-  padding-top: 140px;
-}
-
-/* TITLE */
-.hero-title {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 900;
-  font-size: clamp(38px, 6vw, 90px);
-  line-height: 0.9;
-  letter-spacing: -0.08em;
-  color: #fff;
-  text-transform: uppercase;
-  text-align: left;
-  margin-left: 140px;
+.center-block{
+  vertical-align:middle;
+  padding-top:140px;
 }
 
-/* SQUARE */
-.hero-square {
-  width: 20px;
-  height: 20px;
-  background: #fff;
-  margin: 30px auto 0;
+/* TITLE + GOLD FRAME */
+.hero-title-wrap{
+  position:relative;
+  display:inline-block;
+  margin-left:140px;
+  padding:30px 40px;
+}
+.hero-title-wrap::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  border:1px solid rgba(212,175,55,.9);
+  animation:goldPulse 4s infinite ease-in-out;
+}
+@keyframes goldPulse{
+  0%{transform:scale(1);opacity:.4}
+  50%{transform:scale(1.03);opacity:1}
+  100%{transform:scale(1);opacity:.4}
 }
 
-/* NEXT VIDEO */
-.next-video {
-  position: absolute;
-  bottom: 40px;
-  right: 60px;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 12px;
-  letter-spacing: 0.25em;
-  color: #fff;
-  cursor: pointer;
-  opacity: 0.7;
-  transition: opacity .3s ease;
-  z-index: 10;
+.hero-title{
+  font-family:'Montserrat',sans-serif;
+  font-weight:900;
+  font-size:clamp(38px,6vw,90px);
+  line-height:.9;
+  letter-spacing:-.08em;
+  color:#fff;
+  text-transform:uppercase;
+  text-align:left;
 }
-.next-video:hover {
-  opacity: 1;
+
+/* NEXT */
+.next-video{
+  position:absolute;
+  bottom:40px;
+  right:60px;
+  font-family:'Montserrat',sans-serif;
+  font-size:12px;
+  letter-spacing:.25em;
+  color:#fff;
+  cursor:pointer;
+  opacity:.7;
+  z-index:10;
 }
+.next-video:hover{opacity:1}
 
 /* SCROLL */
-.scroll-indicator {
-  position: absolute;
-  bottom: 60px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 3;
+.scroll-indicator{
+  position:absolute;
+  bottom:60px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:3;
 }
-.scroll-line {
-  width: 1px;
-  height: 50px;
-  background: rgba(255,255,255,.3);
-  position: relative;
+.scroll-line{
+  width:1px;
+  height:50px;
+  background:rgba(255,255,255,.3);
 }
-.scroll-line::before {
-  content: "";
-  position: absolute;
-  width: 1px;
-  height: 100%;
-  background: #fff;
-  animation: scrollDown 2s infinite;
+.scroll-line::before{
+  content:"";
+  display:block;
+  width:1px;
+  height:100%;
+  background:#fff;
+  animation:scrollDown 2s infinite;
 }
-@keyframes scrollDown {
-  0% { height: 0; }
-  50% { height: 100%; }
-  100% { height: 0; }
+@keyframes scrollDown{
+  0%{height:0}
+  50%{height:100%}
+  100%{height:0}
 }
 </style>
 </head>
@@ -186,24 +202,24 @@ html, body {
 
   <div class="hero-fullscreen">
     <div id="vimeo-videoContainment">
-      <iframe
-        id="vimeoFrame"
-        src="https://player.vimeo.com/video/1093436208?autoplay=1&muted=1&background=1&loop=1"
+      <iframe id="vimeoFrame"
+        src="https://player.vimeo.com/video/348818970?autoplay=1&muted=1&background=1&loop=1"
         allow="autoplay; fullscreen">
       </iframe>
     </div>
+    <div class="parallax-transition"></div>
   </div>
 
   <div class="center-container">
     <div class="center-block">
-      <div class="hero-title">
-        Made<br>for<br>..
+      <div class="hero-title-wrap">
+        <div class="hero-title">
+          Made<br>for<br>..
+        </div>
       </div>
-      <div class="hero-square"></div>
     </div>
   </div>
 
-  <!-- NEXT -->
   <div class="next-video" onclick="nextVideo()">NEXT</div>
 
   <div class="scroll-indicator">
@@ -212,19 +228,41 @@ html, body {
 
 </div>
 
-<!-- VIDEO LOGIC (انت هتزود الفيديوهات) -->
 <script>
 const videos = [
-  // حط الفيديوهات هنا
+  "https://player.vimeo.com/video/348818970?autoplay=1&muted=1&background=1&loop=1",
+  "https://player.vimeo.com/video/782962222?autoplay=1&muted=1&background=1&loop=1",
+  "https://player.vimeo.com/video/1093436208?autoplay=1&muted=1&background=1&loop=1",
+  "https://player.vimeo.com/video/1127837184?autoplay=1&muted=1&background=1&loop=1"
 ];
 
 let currentVideo = 0;
+const VIDEO_DURATION = 8000;
+let interval = null;
 
-function nextVideo() {
-  if (!videos.length) return;
-  currentVideo = (currentVideo + 1) % videos.length;
-  document.getElementById("vimeoFrame").src = videos[currentVideo];
+function startRotation(){
+  interval = setInterval(nextVideo, VIDEO_DURATION);
 }
+
+function nextVideo(){
+  const frame = document.getElementById("vimeoFrame");
+  const transition = document.querySelector(".parallax-transition");
+
+  transition.classList.add("active");
+  frame.style.opacity = 0;
+
+  setTimeout(()=>{
+    currentVideo = (currentVideo + 1) % videos.length;
+    frame.src = videos[currentVideo];
+  },600);
+
+  setTimeout(()=>{
+    transition.classList.remove("active");
+    frame.style.opacity = 1;
+  },1500);
+}
+
+window.addEventListener("load", startRotation);
 </script>
 
 </body>
