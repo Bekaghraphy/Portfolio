@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Hero Vimeo Section</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Raleway:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html, body {
+  width: 100%;
+  height: 100%;
+  background: #000;
+  font-family: 'Raleway', sans-serif;
+  overflow: hidden;
+}
+
+/* SECTION */
+.section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* HERO */
+.hero-fullscreen {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+/* OVERLAY */
+.hero-fullscreen::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,.45);
+  z-index: 1;
+}
+
+/* VIMEO */
+#vimeo-videoContainment {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+#vimeo-videoContainment iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* MOBILE FALLBACK */
+.vimeo-bg {
+  display: none;
+}
+@media (max-width: 992px) {
+  #vimeo-videoContainment {
+    display: none;
+  }
+  .vimeo-bg {
+    display: block;
+    position: absolute;
+    inset: 0;
+    background: #000;
+  }
+}
+
+/* CENTER CONTENT */
+.center-container {
+  position: absolute;
+  inset: 0;
+  display: table;
+  z-index: 2;
+}
+.center-block {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+
+/* TITLE */
+.hero-title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: clamp(48px, 8vw, 120px);
+  line-height: 0.9;
+  letter-spacing: -0.08em;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+/* SQUARE */
+.hero-square {
+  width: 20px;
+  height: 20px;
+  background: #fff;
+  margin: 30px auto 0;
+}
+
+/* SCROLL */
+.scroll-indicator {
+  position: absolute;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+}
+.scroll-line {
+  width: 1px;
+  height: 50px;
+  background: rgba(255,255,255,.3);
+  position: relative;
+}
+.scroll-line::before {
+  content: "";
+  position: absolute;
+  width: 1px;
+  height: 100%;
+  background: #fff;
+  animation: scrollDown 2s infinite;
+}
+
+@keyframes scrollDown {
+  0% { height: 0; }
+  50% { height: 100%; }
+  100% { height: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="section">
+
+  <div class="hero-fullscreen">
+    <div id="vimeo-videoContainment">
+      <iframe
+        src="https://player.vimeo.com/video/1093436208?autoplay=1&muted=1&background=1&loop=1"
+        allow="autoplay; fullscreen">
+      </iframe>
+    </div>
+    <div class="vimeo-bg"></div>
+  </div>
+
+  <div class="center-container">
+    <div class="center-block">
+      <div class="hero-title">
+        Made<br>for<br>..
+      </div>
+      <div class="hero-square"></div>
+    </div>
+  </div>
+
+  <div class="scroll-indicator">
+    <div class="scroll-line"></div>
+  </div>
+
+</div>
+
+</body>
+</html>
