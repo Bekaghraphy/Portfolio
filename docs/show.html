@@ -2,13 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>My Work</title>
+<title>Show</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- Favicon -->
 <link rel="icon" type="image/png" href="favicon.png">
 
-<!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Raleway:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
@@ -24,21 +22,27 @@ html,body{
 /* NAV */
 .main-nav{
   position:fixed;
-  top:40px;
-  right:60px;
+  top:20px;
+  right:0;
+  left:0;
+  display:flex;
+  justify-content:center;
+  gap:22px;
   z-index:20;
+  padding:10px 20px;
+  overflow-x:auto;
+  white-space:nowrap;
 }
 .main-nav a{
-  margin-left:28px;
   font-family:'Montserrat',sans-serif;
   font-size:12px;
   letter-spacing:.18em;
   color:#fff;
   text-decoration:none;
-  opacity:.6;
+  opacity:.7;
 }
-.main-nav a.active,
-.main-nav a:hover{opacity:1}
+.main-nav a:hover,
+.main-nav a.active{opacity:1}
 
 /* SECTION */
 .section{
@@ -52,13 +56,12 @@ html,body{
 .hero-fullscreen{
   position:absolute;
   inset:0;
-  z-index:0;
 }
 .hero-fullscreen::before{
   content:"";
   position:absolute;
   inset:0;
-  background:rgba(0,0,0,.45);
+  background:rgba(0,0,0,.35);
   z-index:1;
 }
 
@@ -73,97 +76,91 @@ html,body{
   left:50%;
   width:100vw;
   height:56.25vw;
-  min-height:100vh;
   min-width:177.78vh;
+  min-height:100vh;
   transform:translate(-50%,-50%);
-  transition:opacity .25s ease;
+  transition:opacity .25s ease, transform .4s ease;
 }
 
 /* FAST TRANSITION */
-.parallax-transition{
-  position:absolute;
-  inset:0;
-  background:rgba(0,0,0,.9);
-  transform:scaleY(0);
-  transform-origin:bottom;
-  transition:transform .35s ease;
-  z-index:4;
-  pointer-events:none;
-}
-.parallax-transition.active{
-  transform:scaleY(1);
+.video-fade{
+  opacity:0;
+  transform:translate(-50%,-48%);
 }
 
-/* CENTER */
+/* CENTER TITLE */
 .center-container{
   position:absolute;
   inset:0;
-  display:table;
+  display:flex;
+  align-items:center;
   z-index:2;
 }
-.center-block{
-  vertical-align:middle;
-  padding-top:140px;
-}
-
-/* TITLE + GOLD LINE */
 .hero-title-wrap{
-  position:relative;
-  display:inline-block;
-  margin-left:140px;
-  padding:28px 38px;
-}
-.hero-title-wrap::before{
-  content:"";
-  position:absolute;
-  inset:0;
+  margin-left:12vw;
+  padding:26px 34px;
   border:1px solid rgba(212,175,55,.9);
-  animation:goldMove 2.5s linear infinite;
 }
-@keyframes goldMove{
-  0%{clip-path:inset(0 100% 0 0)}
-  50%{clip-path:inset(0 0 0 0)}
-  100%{clip-path:inset(0 0 0 100%)}
-}
-
 .hero-title{
   font-family:'Montserrat',sans-serif;
   font-weight:900;
-  font-size:clamp(38px,6vw,90px);
+  font-size:clamp(34px,6vw,90px);
   line-height:.9;
   letter-spacing:-.08em;
   color:#fff;
   text-transform:uppercase;
-  text-align:left;
 }
 
-/* NEXT */
-.next-video{
+/* CONTROLS */
+.video-controls{
   position:absolute;
   bottom:40px;
-  right:60px;
+  right:40px;
+  display:flex;
+  align-items:center;
+  gap:24px;
+  z-index:10;
+}
+.play-btn{
+  font-family:'Montserrat',sans-serif;
+  font-size:16px;
+  letter-spacing:.3em;
+  cursor:pointer;
+  color:#fff;
+  opacity:.9;
+}
+.next-btn{
   font-family:'Montserrat',sans-serif;
   font-size:12px;
   letter-spacing:.25em;
-  color:#fff;
   cursor:pointer;
+  color:#fff;
   opacity:.7;
-  z-index:10;
 }
-.next-video:hover{opacity:1}
+.play-btn:hover,
+.next-btn:hover{opacity:1}
+
+/* MOBILE */
+@media(max-width:768px){
+  .hero-title-wrap{margin-left:8vw}
+  .video-controls{
+    left:50%;
+    right:auto;
+    transform:translateX(-50%);
+  }
+}
 </style>
 </head>
 
 <body>
 
-<!-- NAV -->
 <nav class="main-nav">
   <a href="index.html">Home</a>
-  <a href="work.html" class="active">My Work</a>
+  <a href="work.html">My Work</a>
   <a href="gallery.html">Gallery</a>
   <a href="academy.html">Academy</a>
   <a href="cv.html">CV</a>
-  <a href="show.html">Show</a>
+  <a href="show.html" class="active">Show</a>
 </nav>
 
 <div class="section">
@@ -175,20 +172,18 @@ html,body{
         allow="autoplay; fullscreen">
       </iframe>
     </div>
-    <div class="parallax-transition"></div>
   </div>
 
   <div class="center-container">
-    <div class="center-block">
-      <div class="hero-title-wrap">
-        <div class="hero-title">
-          My<br>Work
-        </div>
-      </div>
+    <div class="hero-title-wrap">
+      <div class="hero-title">Show<br>Reel</div>
     </div>
   </div>
 
-  <div class="next-video" onclick="nextVideo()">NEXT</div>
+  <div class="video-controls">
+    <div class="play-btn" onclick="togglePlay()">PLAY</div>
+    <div class="next-btn" onclick="nextVideo()">NEXT</div>
+  </div>
 
 </div>
 
@@ -200,28 +195,28 @@ const videos = [
   "https://player.vimeo.com/video/1127837184?autoplay=1&muted=1&background=1&loop=1"
 ];
 
-let currentVideo = 0;
-const VIDEO_DURATION = 8000;
+let index = 0;
+let timer = null;
+const DURATION = 8000;
 
 function nextVideo(){
   const frame = document.getElementById("vimeoFrame");
-  const t = document.querySelector(".parallax-transition");
-
-  t.classList.add("active");
-  frame.style.opacity = 0;
-
+  frame.classList.add("video-fade");
   setTimeout(()=>{
-    currentVideo = (currentVideo + 1) % videos.length;
-    frame.src = videos[currentVideo];
+    index = (index + 1) % videos.length;
+    frame.src = videos[index];
+    frame.classList.remove("video-fade");
   },200);
-
-  setTimeout(()=>{
-    t.classList.remove("active");
-    frame.style.opacity = 1;
-  },450);
 }
 
-setInterval(nextVideo, VIDEO_DURATION);
+function togglePlay(){
+  if(timer){
+    clearInterval(timer);
+    timer = null;
+  }else{
+    timer = setInterval(nextVideo, DURATION);
+  }
+}
 </script>
 
 </body>
