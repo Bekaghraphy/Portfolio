@@ -2,17 +2,16 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Show</title>
+<title>My Work</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- Favicon -->
-<link rel="icon" type="image/png" href="img/favicon.png">
+<link rel="icon" type="image/png" href="favicon.png">
 
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Raleway:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
-/* RESET */
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{
   width:100%;
@@ -36,8 +35,9 @@ html,body{
   letter-spacing:.18em;
   color:#fff;
   text-decoration:none;
-  opacity:.75;
+  opacity:.6;
 }
+.main-nav a.active,
 .main-nav a:hover{opacity:1}
 
 /* SECTION */
@@ -66,7 +66,6 @@ html,body{
 #vimeo-videoContainment{
   position:absolute;
   inset:0;
-  z-index:0;
 }
 #vimeo-videoContainment iframe{
   position:absolute;
@@ -77,29 +76,25 @@ html,body{
   min-height:100vh;
   min-width:177.78vh;
   transform:translate(-50%,-50%);
-  transition:opacity .6s ease;
+  transition:opacity .25s ease;
 }
 
-/* PARALLAX TRANSITION */
+/* FAST TRANSITION */
 .parallax-transition{
   position:absolute;
   inset:0;
-  background:linear-gradient(
-    120deg,
-    rgba(212,175,55,.15),
-    rgba(0,0,0,.8),
-    rgba(212,175,55,.15)
-  );
-  transform:translateY(100%);
-  transition:transform .9s ease;
+  background:rgba(0,0,0,.9);
+  transform:scaleY(0);
+  transform-origin:bottom;
+  transition:transform .35s ease;
   z-index:4;
   pointer-events:none;
 }
 .parallax-transition.active{
-  transform:translateY(0);
+  transform:scaleY(1);
 }
 
-/* CENTER CONTENT */
+/* CENTER */
 .center-container{
   position:absolute;
   inset:0;
@@ -111,24 +106,24 @@ html,body{
   padding-top:140px;
 }
 
-/* TITLE + GOLD FRAME */
+/* TITLE + GOLD LINE */
 .hero-title-wrap{
   position:relative;
   display:inline-block;
   margin-left:140px;
-  padding:30px 40px;
+  padding:28px 38px;
 }
 .hero-title-wrap::before{
   content:"";
   position:absolute;
   inset:0;
   border:1px solid rgba(212,175,55,.9);
-  animation:goldPulse 4s infinite ease-in-out;
+  animation:goldMove 2.5s linear infinite;
 }
-@keyframes goldPulse{
-  0%{transform:scale(1);opacity:.4}
-  50%{transform:scale(1.03);opacity:1}
-  100%{transform:scale(1);opacity:.4}
+@keyframes goldMove{
+  0%{clip-path:inset(0 100% 0 0)}
+  50%{clip-path:inset(0 0 0 0)}
+  100%{clip-path:inset(0 0 0 100%)}
 }
 
 .hero-title{
@@ -156,33 +151,6 @@ html,body{
   z-index:10;
 }
 .next-video:hover{opacity:1}
-
-/* SCROLL */
-.scroll-indicator{
-  position:absolute;
-  bottom:60px;
-  left:50%;
-  transform:translateX(-50%);
-  z-index:3;
-}
-.scroll-line{
-  width:1px;
-  height:50px;
-  background:rgba(255,255,255,.3);
-}
-.scroll-line::before{
-  content:"";
-  display:block;
-  width:1px;
-  height:100%;
-  background:#fff;
-  animation:scrollDown 2s infinite;
-}
-@keyframes scrollDown{
-  0%{height:0}
-  50%{height:100%}
-  100%{height:0}
-}
 </style>
 </head>
 
@@ -191,7 +159,7 @@ html,body{
 <!-- NAV -->
 <nav class="main-nav">
   <a href="index.html">Home</a>
-  <a href="work.html">My Work</a>
+  <a href="work.html" class="active">My Work</a>
   <a href="gallery.html">Gallery</a>
   <a href="academy.html">Academy</a>
   <a href="cv.html">CV</a>
@@ -214,17 +182,13 @@ html,body{
     <div class="center-block">
       <div class="hero-title-wrap">
         <div class="hero-title">
-          Made<br>for<br>..
+          My<br>Work
         </div>
       </div>
     </div>
   </div>
 
   <div class="next-video" onclick="nextVideo()">NEXT</div>
-
-  <div class="scroll-indicator">
-    <div class="scroll-line"></div>
-  </div>
 
 </div>
 
@@ -238,31 +202,26 @@ const videos = [
 
 let currentVideo = 0;
 const VIDEO_DURATION = 8000;
-let interval = null;
-
-function startRotation(){
-  interval = setInterval(nextVideo, VIDEO_DURATION);
-}
 
 function nextVideo(){
   const frame = document.getElementById("vimeoFrame");
-  const transition = document.querySelector(".parallax-transition");
+  const t = document.querySelector(".parallax-transition");
 
-  transition.classList.add("active");
+  t.classList.add("active");
   frame.style.opacity = 0;
 
   setTimeout(()=>{
     currentVideo = (currentVideo + 1) % videos.length;
     frame.src = videos[currentVideo];
-  },600);
+  },200);
 
   setTimeout(()=>{
-    transition.classList.remove("active");
+    t.classList.remove("active");
     frame.style.opacity = 1;
-  },1500);
+  },450);
 }
 
-window.addEventListener("load", startRotation);
+setInterval(nextVideo, VIDEO_DURATION);
 </script>
 
 </body>
