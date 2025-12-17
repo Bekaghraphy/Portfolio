@@ -2,41 +2,39 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Gallery</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gallery | Hesham Abdelhamed</title>
 
-<link rel="icon" type="image/png" href="img/favicon.png">
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="img/favicon.png" />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet"/>
 
 <style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
+:root{
+  --gold:#d8b97a;
+  --text:#ffffff;
 }
 
 body{
-  background:#000;
-  color:#fff;
+  margin:0;
   font-family:'Montserrat',sans-serif;
+  background:#000;
+  color:var(--text);
+  overflow-x:hidden;
 }
 
 /* ================= NAV ================= */
 .site-nav{
   position:fixed;
-  top:16px;
+  top:24px;
   left:0;
   right:0;
   z-index:100;
   display:flex;
   justify-content:center;
   gap:28px;
-  padding:6px 14px;
-  overflow-x:auto;
-  white-space:nowrap;
 }
 .site-nav a{
-  font-size:13px;
+  font-size:14px;
   letter-spacing:.18em;
   text-transform:uppercase;
   color:#fff;
@@ -47,51 +45,90 @@ body{
   color:#f5c14a;
   opacity:1;
 }
-.site-nav::-webkit-scrollbar{display:none}
 
-/* ================= GALLERY ================= */
-.gallery{
-  margin:100px auto 60px;
-  padding:0 20px;
-  max-width:1300px;
-
-  column-count:4;
-  column-gap:18px;
+/* ================= HERO ================= */
+.hero-gallery{
+  position:relative;
+  height:100vh;
+  background:url("img/work1.jpg") center/cover no-repeat;
 }
 
-.gallery img{
-  width:100%;
-  margin-bottom:18px;
-  border-radius:10px;
+.hero-gallery::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,.45);
+}
+
+/* Text overlay */
+.hero-text{
+  position:absolute;
+  inset:0;
+  z-index:2;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:20px;
+}
+
+.hero-text h1{
+  font-size:clamp(36px,6vw,90px);
+  font-weight:700;
+  letter-spacing:.12em;
+}
+
+.hero-text span{
   display:block;
-  cursor:pointer;
-  break-inside:avoid;
-  transition:transform .25s ease, filter .25s ease;
+  margin-top:14px;
+  font-size:14px;
+  letter-spacing:.3em;
+  color:var(--gold);
+  text-transform:uppercase;
 }
 
-.gallery img:hover{
-  transform:scale(1.02);
-  filter:brightness(1.05);
+/* ================= PARALLAX STRIP ================= */
+.parallax-strip{
+  position:relative;
+  height:55vh;
+  overflow:hidden;
+  background:#000;
 }
 
-/* Tablet */
-@media (max-width:1024px){
-  .gallery{
-    column-count:3;
+.parallax-track{
+  display:flex;
+  height:100%;
+  gap:20px;
+  animation:scroll 45s linear infinite;
+}
+
+.parallax-track img{
+  height:100%;
+  width:auto;
+  border-radius:10px;
+  object-fit:cover;
+}
+
+/* Animation */
+@keyframes scroll{
+  0%{transform:translateX(0)}
+  100%{transform:translateX(-50%)}
+}
+
+/* Duplicate track for seamless loop */
+.parallax-track.clone{
+  position:absolute;
+  left:100%;
+  top:0;
+}
+
+/* ================= MOBILE ================= */
+@media(max-width:768px){
+  .parallax-strip{
+    height:40vh;
   }
-}
-
-/* Mobile */
-@media (max-width:768px){
-  .gallery{
-    column-count:2;
-  }
-}
-
-/* Small Mobile */
-@media (max-width:480px){
-  .gallery{
-    column-count:1;
+  .hero-text h1{
+    font-size:34px;
   }
 }
 </style>
@@ -109,25 +146,45 @@ body{
   <a href="show.html">Showreel</a>
 </nav>
 
-<!-- GALLERY -->
-<div class="gallery">
-  <!-- استبدل الصور أو زود براحتك -->
- <img src="img/work1.jpg"
- <img src="img/slide7.jpg"
- <img src="img/work2.jpg"
- <img src="img/slide5.jpg"
- <img src="img/work3.jpg"
- <img src="img/slide1.jpg"
- <img src="img/slide4.jpg"
- <img src="img/slide3.jpg">
- <img src="img/slide6.jpg">
- <img src="img/BEK-055.JPG">
- <img src="img/BEK_0621.jpg"
- <img src="img/BEK_2578.jpg"
- <img src="img/BEK_3211.jpg"
- <img src="img/BEK_3268.jpg"
- <img src="img/BEK_5574.jpg"
-</div>
+<!-- HERO -->
+<section class="hero-gallery">
+  <div class="hero-text">
+    <div>
+      <h1>VISUAL STORIES</h1>
+      <span>Captured Moments</span>
+    </div>
+  </div>
+</section>
+
+<!-- PARALLAX IMAGES -->
+<section class="parallax-strip">
+  <div class="parallax-track">
+    <img src="img/slide7.jpg">
+    <img src="img/work2.jpg">
+    <img src="img/slide5.jpg">
+    <img src="img/work3.jpg">
+    <img src="img/slide1.jpg">
+    <img src="img/slide4.jpg">
+    <img src="img/slide3.jpg">
+    <img src="img/slide6.jpg">
+    <img src="img/BEK-055.JPG">
+    <img src="img/BEK_0621.jpg">
+  </div>
+
+  <!-- Clone for smooth loop -->
+  <div class="parallax-track clone">
+    <img src="img/slide7.jpg">
+    <img src="img/work2.jpg">
+    <img src="img/slide5.jpg">
+    <img src="img/work3.jpg">
+    <img src="img/slide1.jpg">
+    <img src="img/slide4.jpg">
+    <img src="img/slide3.jpg">
+    <img src="img/slide6.jpg">
+    <img src="img/BEK-055.JPG">
+    <img src="img/BEK_0621.jpg">
+  </div>
+</section>
 
 </body>
 </html>
