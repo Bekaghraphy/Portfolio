@@ -168,25 +168,39 @@ body{
     top:12px;
   }
 }
-/* ===== FINAL MOBILE NAV FIX ===== */
+/* ===== MOBILE NAV – FINAL CLEAN FIX ===== */
 @media (max-width:768px){
 
   .site-nav{
     position: fixed;
-    top: env(safe-area-inset-top);
-    padding-top: 12px;
-    padding-bottom: 8px;
+    top: 12px;
+    left: 0;
+    right: 0;
 
-    background: linear-gradient(
-      to bottom,
-      rgba(0,0,0,0.65),
-      rgba(0,0,0,0)
-    );
+    padding: 10px 14px;
+    gap: 18px;
 
-    backdrop-filter: blur(6px);
+    justify-content: flex-start;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+
+    background: rgba(0,0,0,0.45);
+    backdrop-filter: blur(8px);
+
+    z-index: 999;
   }
 
+  .site-nav a{
+    font-size: 12px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .site-nav::-webkit-scrollbar{
+    display: none;
+  }
 }
+
 </style>
 </head>
 
