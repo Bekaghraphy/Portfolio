@@ -18,7 +18,7 @@ html,body{
   overflow:hidden;
 }
 
-/* ===== GLOBAL NAVBAR ===== */
+/* ===== NAVBAR (موحّد – متركزش عليه) ===== */
 .site-nav{
   position:fixed;
   top:16px;
@@ -26,9 +26,9 @@ html,body{
   right:0;
   z-index:100;
   display:flex;
+  justify-content:center;
   gap:28px;
   padding:6px 14px;
-  justify-content:flex-start;
   overflow-x:auto;
   white-space:nowrap;
   font-family:'Montserrat',sans-serif;
@@ -49,23 +49,9 @@ html,body{
   position:relative;
   width:100%;
   height:100vh;
-  overflow:hidden;
 }
 
-/* HERO */
-.hero-fullscreen{
-  position:absolute;
-  inset:0;
-}
-.hero-fullscreen::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:rgba(0,0,0,.35);
-  z-index:1;
-}
-
-/* VIMEO */
+/* VIDEO */
 #vimeo-videoContainment{
   position:absolute;
   inset:0;
@@ -79,10 +65,9 @@ html,body{
   min-width:177.78vh;
   min-height:100vh;
   transform:translate(-50%,-50%);
-  opacity:1;
-  transition:opacity .15s ease;
+  transition:opacity .12s linear;
 }
-.video-fade{opacity:0}
+.fade-out{opacity:0}
 
 /* TITLE */
 .center-container{
@@ -110,23 +95,19 @@ html,body{
 /* CONTROLS */
 .video-controls{
   position:absolute;
-  bottom:36px;
-  right:36px;
+  bottom:40px;
+  right:40px;
   display:flex;
-  gap:26px;
+  gap:28px;
   z-index:10;
 }
 .ctrl-btn{
   font-family:'Montserrat',sans-serif;
-  font-size:16px;
+  font-size:18px;
   letter-spacing:.25em;
   cursor:pointer;
   color:#fff;
   opacity:.9;
-}
-.ctrl-btn.small{
-  font-size:13px;
-  opacity:.75;
 }
 .ctrl-btn:hover{opacity:1}
 
@@ -155,14 +136,12 @@ html,body{
 
 <div class="section">
 
-  <div class="hero-fullscreen">
-    <div id="vimeo-videoContainment">
-      <iframe
-        id="vimeoFrame"
-        src="https://player.vimeo.com/video/348818970?autoplay=1&muted=1&background=1&loop=1"
-        allow="autoplay; fullscreen">
-      </iframe>
-    </div>
+  <div id="vimeo-videoContainment">
+    <iframe
+      id="vimeoFrame"
+      src="https://player.vimeo.com/video/348818970?autoplay=1&muted=1&background=1"
+      allow="autoplay; fullscreen">
+    </iframe>
   </div>
 
   <div class="center-container">
@@ -173,23 +152,23 @@ html,body{
 
   <div class="video-controls">
     <div class="ctrl-btn" onclick="togglePlay()">PLAY</div>
-    <div class="ctrl-btn small" onclick="nextVideo()">NEXT</div>
-    <div class="ctrl-btn small" onclick="toggleMute()">MUTE</div>
+    <div class="ctrl-btn" onclick="nextVideo()">NEXT</div>
+    <div class="ctrl-btn" onclick="toggleMute()">MUTE</div>
   </div>
 
 </div>
 
 <script>
 const videos = [
-  "https://player.vimeo.com/video/348818970?autoplay=1&background=1&loop=1",
-  "https://player.vimeo.com/video/782962222?autoplay=1&background=1&loop=1",
-  "https://player.vimeo.com/video/1093436208?autoplay=1&background=1&loop=1",
-  "https://player.vimeo.com/video/1127837184?autoplay=1&background=1&loop=1"
-  "https://player.vimeo.com/video/697540206?autoplay=1&background=1&loop=1"
-  "https://player.vimeo.com/video/1081231929?autoplay=1&background=1&loop=1"
-  "https://player.vimeo.com/video/348850766?autoplay=1&background=1&loop=1"
-  "https://player.vimeo.com/video/1137725566?autoplay=1&background=1&loop=1"
-  "https://player.vimeo.com/video/1127838352?autoplay=1&background=1&loop=1"
+  "https://player.vimeo.com/video/348818970",
+  "https://player.vimeo.com/video/782962222",
+  "https://player.vimeo.com/video/1093436208",
+  "https://player.vimeo.com/video/1127837184",
+  "https://player.vimeo.com/video/697540206",
+  "https://player.vimeo.com/video/1081231929",
+  "https://player.vimeo.com/video/348850766",
+  "https://player.vimeo.com/video/1137725566",
+  "https://player.vimeo.com/video/1127838352"
 ];
 
 let index = 0;
@@ -197,12 +176,16 @@ let timer = null;
 let muted = true;
 const DURATION = 6000;
 
+function buildSrc(i){
+  return videos[i] + `?autoplay=1&background=1&muted=${muted ? 1 : 0}`;
+}
+
 function loadVideo(i){
   const frame = document.getElementById("vimeoFrame");
-  frame.classList.add("video-fade");
+  frame.classList.add("fade-out");
   setTimeout(()=>{
-    frame.src = videos[i] + (muted ? "&muted=1" : "&muted=0");
-    frame.classList.remove("video-fade");
+    frame.src = buildSrc(i);
+    frame.classList.remove("fade-out");
   },120);
 }
 
@@ -230,8 +213,8 @@ function toggleMute(){
   loadVideo(index);
 }
 
-/* تشغيل فوري بدون شاشة سوداء */
-window.addEventListener("load", ()=>{
+/* تشغيل فوري بدون سواد */
+window.addEventListener("DOMContentLoaded", ()=>{
   loadVideo(index);
   startLoop();
 });
