@@ -2,253 +2,127 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<title>Gallery</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gallery | Hesham Abdelhamed</title>
 
-<link rel="icon" type="image/png" href="img/favicon.png" />
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+<link rel="icon" type="image/png" href="img/favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
 
 <style>
-
-:root {
-  --gold: #d8b97a;
-  --text: #ffffff;
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
 }
 
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Montserrat', sans-serif;
-  background: #000;
-  color: var(--text);
+body{
+  background:#000;
+  color:#fff;
+  font-family:'Montserrat',sans-serif;
 }
 
-/* NAVBAR */
-nav {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  padding: 18px 40px;
-  background: rgba(0,0,0,0.65);
-  backdrop-filter: blur(10px);
-  display: flex;
-  justify-content: center;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
-  z-index: 1000;
+/* ================= NAV ================= */
+.site-nav{
+  position:fixed;
+  top:16px;
+  left:0;
+  right:0;
+  z-index:100;
+  display:flex;
+  justify-content:center;
+  gap:28px;
+  padding:6px 14px;
+  overflow-x:auto;
+  white-space:nowrap;
+}
+.site-nav a{
+  font-size:13px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:#fff;
+  text-decoration:none;
+  opacity:.75;
+}
+.site-nav a.active{
+  color:#f5c14a;
+  opacity:1;
+}
+.site-nav::-webkit-scrollbar{display:none}
+
+/* ================= GALLERY ================= */
+.gallery{
+  margin:100px auto 60px;
+  padding:0 20px;
+  max-width:1300px;
+
+  column-count:4;
+  column-gap:18px;
 }
 
-.nav-links {
-  display: flex;
-  gap: 30px;
+.gallery img{
+  width:100%;
+  margin-bottom:18px;
+  border-radius:10px;
+  display:block;
+  cursor:pointer;
+  break-inside:avoid;
+  transition:transform .25s ease, filter .25s ease;
 }
 
-.nav-links a {
-  color: #fff;
-  text-decoration: none;
-  font-size: 15px;
-  opacity: .7;
-  transition: .3s;
+.gallery img:hover{
+  transform:scale(1.02);
+  filter:brightness(1.05);
 }
 
-.nav-links a:hover,
-.nav-links .active {
-  opacity: 1;
-  color: var(--gold);
-}
-
-/* HEADER */
-.header {
-  text-align: center;
-  margin-top: 140px;
-  padding: 0 20px;
-}
-
-.header h1 {
-  font-size: 38px;
-  color: var(--gold);
-  margin-bottom: 10px;
-}
-
-.header p {
-  max-width: 800px;
-  margin: auto;
-  opacity: .8;
-  font-size: 16px;
-  line-height: 1.7;
-}
-
-/* GALLERY GRID */
-.gallery {
-  margin: 70px auto;
-  padding: 0 20px 40px;
-  max-width: 1300px;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 18px;
-}
-
-.gallery img {
-  width: 100%;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: .25s;
-  object-fit: cover;
-}
-
-.gallery img:hover {
-  transform: scale(1.03);
-  filter: brightness(1.05);
-}
-
-/* LIGHTBOX */
-#lightbox {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.9);
-  display: none;
-  justify-content: center;
-  align-items: center;
-  z-index: 2000;
-}
-
-#lightbox img {
-  max-width: 92%;
-  max-height: 90%;
-  border-radius: 12px;
-}
-  /* ===== GLOBAL NAVBAR ===== */
-.site-nav {
-  position: fixed;
-  top: 24px;
-  left: 0;
-  right: 0;
-  z-index: 100;
-
-  display: flex;
-  justify-content: center;
-  gap: 28px;
-
-  font-family: 'Montserrat', sans-serif;
-}
-
-.site-nav a {
-  font-size: 14px;
-  font-weight: 500;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-
-  color: #ffffff;
-  text-decoration: none;
-  opacity: 0.75;
-
-  transition: color 0.25s ease, opacity 0.25s ease;
-}
-
-/* Hover */
-.site-nav a:hover {
-  opacity: 1;
-}
-
-/* Active page */
-.site-nav a.active {
-  color: #f5c14a;
-  opacity: 1;
+/* Tablet */
+@media (max-width:1024px){
+  .gallery{
+    column-count:3;
+  }
 }
 
 /* Mobile */
-@media (max-width: 768px) {
-  .site-nav {
-    top: 16px;
-    padding: 6px 12px;
-
-    overflow-x: auto;
-    white-space: nowrap;
-    justify-content: flex-start;
-  }
-
-  .site-nav a {
-    font-size: 12px;
-    margin-right: 22px;
-  }
-
-  .site-nav::-webkit-scrollbar {
-    display: none;
+@media (max-width:768px){
+  .gallery{
+    column-count:2;
   }
 }
 
+/* Small Mobile */
+@media (max-width:480px){
+  .gallery{
+    column-count:1;
+  }
+}
 </style>
-
 </head>
+
 <body>
 
-<!-- NAVBAR -->
-<nav>
- <nav class="site-nav">
-  <a href="index.html">Home</a> 
+<!-- NAV -->
+<nav class="site-nav">
+  <a href="index.html">Home</a>
   <a href="my-work.html">My Work</a>
-  <a href="gallery.html"class="active">Galley</a>
+  <a href="gallery.html" class="active">Gallery</a>
   <a href="academy.html">Academy</a>
-  <a href="cv.html">CV</a>
+  <a href="cv.html">Profile</a>
   <a href="show.html">Showreel</a>
 </nav>
 
-</nav>
-
-<!-- HEADER -->
-<div class="header">
-  <h1>Photography Gallery</h1>
-  <p>
-    A collection of visual moments captured throughout my journey as a former photojournalist.  
-    I documented global events, conflicts, and human stories across the world, focusing on authenticity,  
-    emotional depth, and the power of visual truth.
-  </p>
-</div>
-
-<!-- GALLERY GRID -->
+<!-- GALLERY -->
 <div class="gallery">
-
-  <img src="img/work1.jpg">
-  <img src="img/slide7.jpg">
-  <img src="img/work2.jpg">
-  <img src="img/slide5.jpg">
-  <img src="img/work3.jpg">
-  <img src="img/slide1.jpg">
-  <img src="img/slide4.jpg">
-  <img src="img/slide3.jpg">
-  <img src="img/slide6.jpg">
-  <img src="img/BEK-055.JPG">
-  <img src="img/BEK_0621.jpg">
-  <img src="img/BEK_2578.jpg">
-  <img src="img/BEK_3211.jpg">
-  <img src="img/BEK_3268.jpg">
-  <img src="img/BEK_5574.jpg">
-
+  <!-- استبدل الصور أو زود براحتك -->
+  <img src="img/gallery/1.jpg" alt="">
+  <img src="img/gallery/2.jpg" alt="">
+  <img src="img/gallery/3.jpg" alt="">
+  <img src="img/gallery/4.jpg" alt="">
+  <img src="img/gallery/5.jpg" alt="">
+  <img src="img/gallery/6.jpg" alt="">
+  <img src="img/gallery/7.jpg" alt="">
+  <img src="img/gallery/8.jpg" alt="">
+  <img src="img/gallery/9.jpg" alt="">
+  <img src="img/gallery/10.jpg" alt="">
 </div>
-
-<!-- LIGHTBOX -->
-<div id="lightbox" onclick="closeLightbox()">
-  <img id="lightbox-img" src="">
-</div>
-
-<script>
-const galleryImages = document.querySelectorAll('.gallery img');
-const lightbox = document.getElementById('lightbox');
-const lightboxImg = document.getElementById('lightbox-img');
-
-galleryImages.forEach(img => {
-  img.addEventListener('click', () => {
-    lightboxImg.src = img.src;
-    lightbox.style.display = 'flex';
-  });
-});
-
-function closeLightbox() {
-  lightbox.style.display = 'none';
-}
-</script>
 
 </body>
 </html>
