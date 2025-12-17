@@ -398,7 +398,38 @@
       font-size: 14px;
       opacity: 0.9;
     }
+.showreel-cta {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+}
 
+.showreel-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+
+  padding: 12px 22px;
+  border-radius: 999px;
+
+  color: #000;
+  background: #f5c14a;
+  text-decoration: none;
+
+  box-shadow: 0 10px 30px rgba(245,193,74,0.35);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, opacity 0.25s ease;
+}
+
+.showreel-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 36px rgba(245,193,74,0.55);
+  opacity: 0.95;
+}
     /* بس تأكد إن الصفحة واخدة كلاس page-work من style.css */
   </style>
 </head>
@@ -422,6 +453,11 @@
   <!-- CONTENT -->
   <main class="page page-work">
     <div class="page-inner">
+      <div class="showreel-cta">
+  <a href="show.html" class="showreel-btn">
+    ▶ View Showreel
+  </a>
+</div>
       <section class="work-hero">
         <div class="work-hero-text">
           <h1 class="work-hero-title">
