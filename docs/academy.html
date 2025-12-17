@@ -127,7 +127,65 @@
     .m-title span { color:#f5c14a; }
     .m-text { max-width:800px; margin:auto; font-size:17px; line-height:1.9; opacity:.9; margin-bottom:30px; }
     .m-cta { padding:14px 26px; font-size:15px; background:#25d366; border-radius:999px; color:#000; font-weight:700; text-decoration:none; }
+/* ===== GLOBAL NAVBAR ===== */
+.site-nav {
+  position: fixed;
+  top: 24px;
+  left: 0;
+  right: 0;
+  z-index: 100;
 
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+
+  font-family: 'Montserrat', sans-serif;
+}
+
+.site-nav a {
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+
+  color: #ffffff;
+  text-decoration: none;
+  opacity: 0.75;
+
+  transition: color 0.25s ease, opacity 0.25s ease;
+}
+
+/* Hover */
+.site-nav a:hover {
+  opacity: 1;
+}
+
+/* Active page */
+.site-nav a.active {
+  color: #f5c14a;
+  opacity: 1;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .site-nav {
+    top: 16px;
+    padding: 6px 12px;
+
+    overflow-x: auto;
+    white-space: nowrap;
+    justify-content: flex-start;
+  }
+
+  .site-nav a {
+    font-size: 12px;
+    margin-right: 22px;
+  }
+
+  .site-nav::-webkit-scrollbar {
+    display: none;
+  }
+}
   </style>
 </head>
 
@@ -135,14 +193,15 @@
 
   <!-- NAV -->
   <header class="nav">
-    <nav class="nav-center">
-      <a href="index.html">Home</a>
-      <a href="my-work.html">My Work</a>
-      <a href="gallery.html">Gallery</a>
-      <a href="academy.html" class="active">Academy</a>
-      <a href="cv.html">CV</a>
-      <a href="show.html">Showreel</a>
-    </nav>
+    <nav class="site-nav">
+  <a href="index.html">Home</a>
+  <a href="my-work.html">My Work</a>
+  <a href="gallery.html">Gallery</a>
+  <a href="academy.html" class="active">ِAcademy</a>
+  <a href="cv.html">CV</a>
+  <a href="show.html">Showreel</a>
+</nav>
+
   </header>
 
   <main class="academy-page">
