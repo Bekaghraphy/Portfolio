@@ -134,25 +134,38 @@ body{
   }
 }
 
-/* ===== MOBILE NAV FIX ===== */
-@media (max-width: 768px) {
+/* ================= MOBILE FIX ================= */
+@media (max-width:768px){
+
+  /* نسمح بإعادة توزيع المساحة داخل نفس الشاشة */
+  .hero-gallery{
+    height:100svh; /* حل مشكلة iOS vh */
+  }
+
+  /* النص يتحرك لفوق شوية */
+  .hero-text{
+    align-items:flex-start;
+    padding-top:120px;
+  }
+
+  /* شريط الصور ياخد مساحة أكبر */
+  .parallax-strip{
+    height:42svh;
+  }
+
+  /* الصور تبان كاملة */
+  .parallax-track img{
+    object-fit:contain;
+  }
+
+  /* سرعة أعلى شوية */
+  .parallax-track{
+    animation-duration:18s;
+  }
+
+  /* Nav كما هو */
   .site-nav{
-    top: 12px;
-    padding: 8px 12px;
-    gap: 18px;
-    justify-content: flex-start;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .site-nav a{
-    font-size: 12px;
-    white-space: nowrap;
-    flex-shrink: 0;
-  }
-
-  .site-nav::-webkit-scrollbar{
-    display: none;
+    top:12px;
   }
 }
 </style>
