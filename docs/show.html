@@ -6,7 +6,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link rel="icon" type="image/png" href="img/favicon.png">
-
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Raleway:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
@@ -19,30 +18,31 @@ html,body{
   overflow:hidden;
 }
 
-/* NAV */
-.main-nav{
+/* ===== GLOBAL NAVBAR ===== */
+.site-nav{
   position:fixed;
-  top:20px;
-  right:0;
+  top:16px;
   left:0;
+  right:0;
+  z-index:100;
   display:flex;
-  justify-content:center;
-  gap:22px;
-  z-index:20;
-  padding:10px 20px;
+  gap:28px;
+  padding:6px 14px;
+  justify-content:flex-start;
   overflow-x:auto;
   white-space:nowrap;
-}
-.main-nav a{
   font-family:'Montserrat',sans-serif;
-  font-size:12px;
+}
+.site-nav a{
+  font-size:13px;
   letter-spacing:.18em;
+  text-transform:uppercase;
   color:#fff;
   text-decoration:none;
-  opacity:.7;
+  opacity:.75;
 }
-.main-nav a:hover,
-.main-nav a.active{opacity:1}
+.site-nav a.active{color:#f5c14a;opacity:1}
+.site-nav::-webkit-scrollbar{display:none}
 
 /* SECTION */
 .section{
@@ -79,16 +79,12 @@ html,body{
   min-width:177.78vh;
   min-height:100vh;
   transform:translate(-50%,-50%);
-  transition:opacity .25s ease, transform .4s ease;
+  opacity:1;
+  transition:opacity .15s ease;
 }
+.video-fade{opacity:0}
 
-/* FAST TRANSITION */
-.video-fade{
-  opacity:0;
-  transform:translate(-50%,-48%);
-}
-
-/* CENTER TITLE */
+/* TITLE */
 .center-container{
   position:absolute;
   inset:0;
@@ -98,13 +94,13 @@ html,body{
 }
 .hero-title-wrap{
   margin-left:12vw;
-  padding:26px 34px;
+  padding:24px 32px;
   border:1px solid rgba(212,175,55,.9);
 }
 .hero-title{
   font-family:'Montserrat',sans-serif;
   font-weight:900;
-  font-size:clamp(34px,6vw,90px);
+  font-size:clamp(32px,6vw,90px);
   line-height:.9;
   letter-spacing:-.08em;
   color:#fff;
@@ -114,31 +110,25 @@ html,body{
 /* CONTROLS */
 .video-controls{
   position:absolute;
-  bottom:40px;
-  right:40px;
+  bottom:36px;
+  right:36px;
   display:flex;
-  align-items:center;
-  gap:24px;
+  gap:26px;
   z-index:10;
 }
-.play-btn{
+.ctrl-btn{
   font-family:'Montserrat',sans-serif;
   font-size:16px;
-  letter-spacing:.3em;
+  letter-spacing:.25em;
   cursor:pointer;
   color:#fff;
   opacity:.9;
 }
-.next-btn{
-  font-family:'Montserrat',sans-serif;
-  font-size:12px;
-  letter-spacing:.25em;
-  cursor:pointer;
-  color:#fff;
-  opacity:.7;
+.ctrl-btn.small{
+  font-size:13px;
+  opacity:.75;
 }
-.play-btn:hover,
-.next-btn:hover{opacity:1}
+.ctrl-btn:hover{opacity:1}
 
 /* MOBILE */
 @media(max-width:768px){
@@ -147,65 +137,6 @@ html,body{
     left:50%;
     right:auto;
     transform:translateX(-50%);
-  }
-}
-  /* ===== GLOBAL NAVBAR ===== */
-.site-nav {
-  position: fixed;
-  top: 24px;
-  left: 0;
-  right: 0;
-  z-index: 100;
-
-  display: flex;
-  justify-content: center;
-  gap: 28px;
-
-  font-family: 'Montserrat', sans-serif;
-}
-
-.site-nav a {
-  font-size: 14px;
-  font-weight: 500;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-
-  color: #ffffff;
-  text-decoration: none;
-  opacity: 0.75;
-
-  transition: color 0.25s ease, opacity 0.25s ease;
-}
-
-/* Hover */
-.site-nav a:hover {
-  opacity: 1;
-}
-
-/* Active page */
-.site-nav a.active {
-  color: #f5c14a;
-  opacity: 1;
-}
-
-/* Mobile */
-@media (max-width: 768px) {
-  .site-nav {
-    top: 16px;
-    padding: 6px 12px;
-
-    overflow-x: auto;
-    white-space: nowrap;
-    justify-content: flex-start;
-  }
-
-  .site-nav a {
-    font-size: 12px;
-    margin-right: 22px;
-  }
-
-  .site-nav::-webkit-scrollbar {
-    display: none;
   }
 }
 </style>
@@ -226,7 +157,8 @@ html,body{
 
   <div class="hero-fullscreen">
     <div id="vimeo-videoContainment">
-      <iframe id="vimeoFrame"
+      <iframe
+        id="vimeoFrame"
         src="https://player.vimeo.com/video/348818970?autoplay=1&muted=1&background=1&loop=1"
         allow="autoplay; fullscreen">
       </iframe>
@@ -240,32 +172,48 @@ html,body{
   </div>
 
   <div class="video-controls">
-    <div class="play-btn" onclick="togglePlay()">PLAY</div>
-    <div class="next-btn" onclick="nextVideo()">NEXT</div>
+    <div class="ctrl-btn" onclick="togglePlay()">PLAY</div>
+    <div class="ctrl-btn small" onclick="nextVideo()">NEXT</div>
+    <div class="ctrl-btn small" onclick="toggleMute()">MUTE</div>
   </div>
 
 </div>
 
 <script>
 const videos = [
-  "https://player.vimeo.com/video/348818970?autoplay=1&muted=1&background=1&loop=1",
-  "https://player.vimeo.com/video/782962222?autoplay=1&muted=1&background=1&loop=1",
-  "https://player.vimeo.com/video/1093436208?autoplay=1&muted=1&background=1&loop=1",
-  "https://player.vimeo.com/video/1127837184?autoplay=1&muted=1&background=1&loop=1"
+  "https://player.vimeo.com/video/348818970?autoplay=1&background=1&loop=1",
+  "https://player.vimeo.com/video/782962222?autoplay=1&background=1&loop=1",
+  "https://player.vimeo.com/video/1093436208?autoplay=1&background=1&loop=1",
+  "https://player.vimeo.com/video/1127837184?autoplay=1&background=1&loop=1"
+  "https://player.vimeo.com/video/697540206?autoplay=1&background=1&loop=1"
+  "https://player.vimeo.com/video/1081231929?autoplay=1&background=1&loop=1"
+  "https://player.vimeo.com/video/348850766?autoplay=1&background=1&loop=1"
+  "https://player.vimeo.com/video/1137725566?autoplay=1&background=1&loop=1"
+  "https://player.vimeo.com/video/1127838352?autoplay=1&background=1&loop=1"
 ];
 
 let index = 0;
 let timer = null;
-const DURATION = 8000;
+let muted = true;
+const DURATION = 6000;
 
-function nextVideo(){
+function loadVideo(i){
   const frame = document.getElementById("vimeoFrame");
   frame.classList.add("video-fade");
   setTimeout(()=>{
-    index = (index + 1) % videos.length;
-    frame.src = videos[index];
+    frame.src = videos[i] + (muted ? "&muted=1" : "&muted=0");
     frame.classList.remove("video-fade");
-  },200);
+  },120);
+}
+
+function nextVideo(){
+  index = (index + 1) % videos.length;
+  loadVideo(index);
+}
+
+function startLoop(){
+  clearInterval(timer);
+  timer = setInterval(nextVideo, DURATION);
 }
 
 function togglePlay(){
@@ -273,9 +221,20 @@ function togglePlay(){
     clearInterval(timer);
     timer = null;
   }else{
-    timer = setInterval(nextVideo, DURATION);
+    startLoop();
   }
 }
+
+function toggleMute(){
+  muted = !muted;
+  loadVideo(index);
+}
+
+/* تشغيل فوري بدون شاشة سوداء */
+window.addEventListener("load", ()=>{
+  loadVideo(index);
+  startLoop();
+});
 </script>
 
 </body>
