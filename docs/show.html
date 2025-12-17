@@ -99,7 +99,7 @@ html,body{
   right:40px;
   display:flex;
   gap:32px;
-  z-index:10;
+  z-index:999; /* مهم */
 }
 .ctrl-btn{
   font-family:'Montserrat',sans-serif;
@@ -118,15 +118,13 @@ html,body{
 
 /* MOBILE */
 @media(max-width:768px){
-  /* الأزرار في النص تحت */
   .video-controls{
     left:50%;
     right:auto;
     transform:translateX(-50%);
-    bottom:28px;
+    bottom:24px;
   }
 
-  /* تقليل الزووم */
   #vimeo-videoContainment iframe{
     width:100%;
     height:100%;
@@ -175,16 +173,19 @@ html,body{
 
 <script>
 const videos = [
-  "https://player.vimeo.com/video/348818970",
-  "https://player.vimeo.com/video/782962222",
-  "https://player.vimeo.com/video/1093436208",
-  "https://player.vimeo.com/video/1127837184"
+"https://player.vimeo.com/video/348818970",
+"https://player.vimeo.com/video/782962222",
+"https://player.vimeo.com/video/1093436208",
+"https://player.vimeo.com/video/1127837184",
+"https://player.vimeo.com/video/697540206",
+"https://player.vimeo.com/video/1081231929",
+"https://player.vimeo.com/video/348850766",
+"https://player.vimeo.com/video/1137725566",
+"https://player.vimeo.com/video/1127838352"
 ];
 
 let index = 0;
 let muted = true;
-let timer = null;
-const DURATION = 6000;
 
 function buildSrc(i){
   return videos[i] + `?autoplay=1&background=1&muted=${muted ? 1 : 0}`;
@@ -207,15 +208,14 @@ function nextVideo(){
 function toggleMute(){
   muted = !muted;
   document.getElementById("muteBtn").classList.toggle("active", muted);
-  /* نغير الصوت من غير ما نغير الفيديو */
+  /* نغير الصوت فقط */
   const frame = document.getElementById("vimeoFrame");
   frame.src = buildSrc(index);
 }
 
-/* تشغيل تلقائي + Loop */
+/* تشغيل أول فيديو فورًا */
 window.addEventListener("DOMContentLoaded", ()=>{
   loadVideo(index);
-  timer = setInterval(nextVideo, DURATION);
 });
 </script>
 
