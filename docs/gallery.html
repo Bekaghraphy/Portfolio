@@ -131,6 +131,28 @@ body{
     font-size:34px;
   }
 }
+  /* ===== MOBILE NAV FIX ===== */
+@media (max-width: 768px) {
+  .site-nav{
+    top: 12px;
+    padding: 8px 12px;
+    gap: 18px;
+
+    justify-content: flex-start;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .site-nav a{
+    font-size: 12px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .site-nav::-webkit-scrollbar{
+    display: none;
+  }
+}
 </style>
 </head>
 
