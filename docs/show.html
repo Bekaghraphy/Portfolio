@@ -18,7 +18,7 @@ html,body{
   overflow:hidden;
 }
 
-/* ===== NAVBAR (موحّد – متركزش عليه) ===== */
+/* NAVBAR */
 .site-nav{
   position:fixed;
   top:16px;
@@ -98,7 +98,7 @@ html,body{
   bottom:40px;
   right:40px;
   display:flex;
-  gap:28px;
+  gap:32px;
   z-index:10;
 }
 .ctrl-btn{
@@ -107,18 +107,34 @@ html,body{
   letter-spacing:.25em;
   cursor:pointer;
   color:#fff;
-  opacity:.9;
+  opacity:.7;
+  transition:color .2s ease, opacity .2s ease;
+}
+.ctrl-btn.active{
+  color:#f5c14a;
+  opacity:1;
 }
 .ctrl-btn:hover{opacity:1}
 
 /* MOBILE */
 @media(max-width:768px){
-  .hero-title-wrap{margin-left:8vw}
+  /* الأزرار في النص تحت */
   .video-controls{
     left:50%;
     right:auto;
     transform:translateX(-50%);
+    bottom:28px;
   }
+
+  /* تقليل الزووم */
+  #vimeo-videoContainment iframe{
+    width:100%;
+    height:100%;
+    min-width:0;
+    min-height:0;
+  }
+
+  .hero-title-wrap{margin-left:8vw}
 }
 </style>
 </head>
@@ -151,9 +167,8 @@ html,body{
   </div>
 
   <div class="video-controls">
-    <div class="ctrl-btn" onclick="togglePlay()">PLAY</div>
-    <div class="ctrl-btn" onclick="nextVideo()">NEXT</div>
-    <div class="ctrl-btn" onclick="toggleMute()">MUTE</div>
+    <div id="nextBtn" class="ctrl-btn" onclick="nextVideo()">NEXT</div>
+    <div id="muteBtn" class="ctrl-btn active" onclick="toggleMute()">MUTE</div>
   </div>
 
 </div>
@@ -163,17 +178,12 @@ const videos = [
   "https://player.vimeo.com/video/348818970",
   "https://player.vimeo.com/video/782962222",
   "https://player.vimeo.com/video/1093436208",
-  "https://player.vimeo.com/video/1127837184",
-  "https://player.vimeo.com/video/697540206",
-  "https://player.vimeo.com/video/1081231929",
-  "https://player.vimeo.com/video/348850766",
-  "https://player.vimeo.com/video/1137725566",
-  "https://player.vimeo.com/video/1127838352"
+  "https://player.vimeo.com/video/1127837184"
 ];
 
 let index = 0;
-let timer = null;
 let muted = true;
+let timer = null;
 const DURATION = 6000;
 
 function buildSrc(i){
@@ -194,29 +204,18 @@ function nextVideo(){
   loadVideo(index);
 }
 
-function startLoop(){
-  clearInterval(timer);
-  timer = setInterval(nextVideo, DURATION);
-}
-
-function togglePlay(){
-  if(timer){
-    clearInterval(timer);
-    timer = null;
-  }else{
-    startLoop();
-  }
-}
-
 function toggleMute(){
   muted = !muted;
-  loadVideo(index);
+  document.getElementById("muteBtn").classList.toggle("active", muted);
+  /* نغير الصوت من غير ما نغير الفيديو */
+  const frame = document.getElementById("vimeoFrame");
+  frame.src = buildSrc(index);
 }
 
-/* تشغيل فوري بدون سواد */
+/* تشغيل تلقائي + Loop */
 window.addEventListener("DOMContentLoaded", ()=>{
   loadVideo(index);
-  startLoop();
+  timer = setInterval(nextVideo, DURATION);
 });
 </script>
 
