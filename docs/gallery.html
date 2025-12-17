@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Gallery | Hesham Abdelhamed</title>
 
 <link rel="icon" type="image/png" href="img/favicon.png" />
@@ -11,24 +11,26 @@
 <style>
 :root{
   --gold:#d8b97a;
-  --text:#ffffff;
+  --white:#ffffff;
 }
+
+*{box-sizing:border-box}
 
 body{
   margin:0;
   font-family:'Montserrat',sans-serif;
   background:#000;
-  color:var(--text);
-  overflow:hidden; /* مفيش سكرول */
+  color:var(--white);
+  overflow:hidden;
 }
 
 /* ================= NAV ================= */
 .site-nav{
   position:fixed;
-  top:24px;
+  top:20px;
   left:0;
   right:0;
-  z-index:100;
+  z-index:1000;
   display:flex;
   justify-content:center;
   gap:28px;
@@ -39,168 +41,139 @@ body{
   text-transform:uppercase;
   color:#fff;
   text-decoration:none;
-  opacity:.75;
+  opacity:.7;
 }
 .site-nav a.active{
-  color:#f5c14a;
+  color:var(--gold);
   opacity:1;
 }
 
-/* ================= HERO + STRIP (ONE SECTION) ================= */
-.hero-gallery{
+/* ================= SLIDER ================= */
+.gallery-slider{
   position:relative;
+  width:100%;
   height:100vh;
-  background:url("img/work1.jpg") center/cover no-repeat;
 }
 
-.hero-gallery::after{
-  content:"";
+.slide{
   position:absolute;
   inset:0;
-  background:rgba(0,0,0,.45);
+  background-size:cover;
+  background-position:center;
+  opacity:0;
+  transition:opacity .9s ease;
+}
+
+.slide.active{
+  opacity:1;
   z-index:1;
 }
 
-/* Text overlay */
-.hero-text{
+/* gradient overlay */
+.slide::after{
+  content:"";
   position:absolute;
   inset:0;
-  z-index:2;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  padding:20px;
+  background:
+    radial-gradient(circle at center, rgba(0,0,0,.2), rgba(0,0,0,.75)),
+    linear-gradient(to bottom, rgba(0,0,0,.4), rgba(0,0,0,.85));
 }
 
-.hero-text h1{
-  font-size:clamp(36px,6vw,90px);
-  font-weight:700;
-  letter-spacing:.12em;
-}
-
-.hero-text span{
-  display:block;
-  margin-top:14px;
-  font-size:14px;
-  letter-spacing:.3em;
-  color:var(--gold);
-  text-transform:uppercase;
-}
-
-/* ================= PARALLAX STRIP INSIDE HERO ================= */
-.parallax-strip{
+/* ================= TEXT ================= */
+.slide-content{
   position:absolute;
-  left:0;
-  right:0;
-  bottom:0;
-  height:28vh;              /* داخل نفس السيكشن */
-  overflow:hidden;
+  left:10%;
+  top:50%;
+  transform:translateY(-50%);
   z-index:2;
+  max-width:520px;
 }
 
-.parallax-track{
-  display:flex;
-  height:100%;
-  gap:18px;
-  animation:scroll 25s linear infinite; /* أسرع */
+.slide-content h1{
+  font-size:clamp(36px,6vw,88px);
+  letter-spacing:.15em;
+  margin:0;
+  opacity:0;
+  transform:translateY(20px);
+  animation:fadeUp .9s ease forwards;
 }
 
-.parallax-track img{
-  height:100%;
-  width:auto;
-  border-radius:10px;
-  object-fit:cover;
+.slide-content span{
+  display:block;
+  margin-top:12px;
+  color:var(--gold);
+  letter-spacing:.35em;
+  font-size:14px;
+  opacity:0;
+  animation:fadeUp .9s ease forwards;
+  animation-delay:.2s;
 }
 
-/* Animation */
-@keyframes scroll{
-  0%{transform:translateX(0)}
-  100%{transform:translateX(-50%)}
+@keyframes fadeUp{
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+/* ================= ARROWS ================= */
+.arrow{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:56px;
+  color:#fff;
+  cursor:pointer;
+  z-index:5;
+  opacity:.7;
+  transition:.3s;
+  user-select:none;
+}
+.arrow:hover{opacity:1}
+
+.arrow.left{left:40px}
+.arrow.right{right:40px}
+
+/* ================= FOOTER ================= */
+.footer{
+  position:absolute;
+  bottom:18px;
+  left:50%;
+  transform:translateX(-50%);
+  font-size:12px;
+  letter-spacing:.12em;
+  opacity:.6;
+  z-index:3;
 }
 
 /* ================= MOBILE ================= */
 @media(max-width:768px){
-  .hero-text h1{
-    font-size:32px;
-  }
 
-  .parallax-strip{
-    height:32vh; /* أكبر شوية للموبايل */
-  }
-
-  .parallax-track{
-    animation-duration:20s; /* أسرع على الموبايل */
-  }
-}
-
-/* ================= MOBILE FIX ================= */
-@media (max-width:768px){
-
-  /* نسمح بإعادة توزيع المساحة داخل نفس الشاشة */
-  .hero-gallery{
-    height:100svh; /* حل مشكلة iOS vh */
-  }
-
-  /* النص يتحرك لفوق شوية */
-  .hero-text{
-    align-items:flex-start;
-    padding-top:120px;
-  }
-
-  /* شريط الصور ياخد مساحة أكبر */
-  .parallax-strip{
-    height:42svh;
-  }
-
-  /* الصور تبان كاملة */
-  .parallax-track img{
-    object-fit:contain;
-  }
-
-  /* سرعة أعلى شوية */
-  .parallax-track{
-    animation-duration:18s;
-  }
-
-  /* Nav كما هو */
   .site-nav{
     top:12px;
-  }
-}
-/* ===== MOBILE NAV – FINAL CLEAN FIX ===== */
-@media (max-width:768px){
-
-  .site-nav{
-    position: fixed;
-    top: 12px;
-    left: 0;
-    right: 0;
-
-    padding: 10px 14px;
-    gap: 18px;
-
-    justify-content: flex-start;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-
-    background: rgba(0,0,0,0.45);
-    backdrop-filter: blur(8px);
-
-    z-index: 999;
+    padding:8px 12px;
+    justify-content:flex-start;
+    overflow-x:auto;
+    background:rgba(0,0,0,.45);
+    backdrop-filter:blur(8px);
   }
 
   .site-nav a{
-    font-size: 12px;
-    white-space: nowrap;
-    flex-shrink: 0;
+    font-size:12px;
+    white-space:nowrap;
   }
 
-  .site-nav::-webkit-scrollbar{
-    display: none;
+  .slide-content{
+    left:8%;
+    right:8%;
+    top:55%;
+    text-align:left;
+  }
+
+  .arrow{
+    font-size:42px;
   }
 }
-
 </style>
 </head>
 
@@ -216,33 +189,62 @@ body{
   <a href="show.html">Showreel</a>
 </nav>
 
-<!-- ONE FULL SECTION -->
-<section class="hero-gallery">
+<!-- SLIDER -->
+<section class="gallery-slider" id="slider">
 
-  <div class="hero-text">
-    <div>
+  <div class="slide active" style="background-image:url('img/work1.jpg')">
+    <div class="slide-content">
       <h1>VISUAL STORIES</h1>
-      <span>Captured Moments</span>
+      <span>CAPTURED MOMENTS</span>
     </div>
   </div>
 
-  <!-- PARALLAX IMAGES INSIDE SAME SECTION -->
-  <div class="parallax-strip">
-    <div class="parallax-track">
-      <img src="img/slide7.jpg">
-      <img src="img/work2.jpg">
-      <img src="img/slide5.jpg">
-      <img src="img/work3.jpg">
-      <img src="img/slide1.jpg">
-      <img src="img/slide4.jpg">
-      <img src="img/slide3.jpg">
-      <img src="img/slide6.jpg">
-      <img src="img/BEK-055.JPG">
-      <img src="img/BEK_0621.jpg">
-    </div>
-  </div>
+  <div class="slide" style="background-image:url('img/slide7.jpg')"></div>
+  <div class="slide" style="background-image:url('img/work2.jpg')"></div>
+  <div class="slide" style="background-image:url('img/slide5.jpg')"></div>
+
+  <!-- ARROWS -->
+  <div class="arrow left" onclick="prevSlide()">‹</div>
+  <div class="arrow right" onclick="nextSlide()">›</div>
+
+  <!-- FOOTER -->
+  <div class="footer">© 2025 HESHAM ABDELHAMED | ALL RIGHTS RESERVED.</div>
 
 </section>
+
+<script>
+const slides = document.querySelectorAll('.slide');
+let index = 0;
+
+/* show slide */
+function showSlide(i){
+  slides.forEach(s => s.classList.remove('active'));
+  slides[i].classList.add('active');
+}
+
+/* controls */
+function nextSlide(){
+  index = (index + 1) % slides.length;
+  showSlide(index);
+}
+
+function prevSlide(){
+  index = (index - 1 + slides.length) % slides.length;
+  showSlide(index);
+}
+
+/* swipe (mobile) */
+let startX = 0;
+document.getElementById('slider').addEventListener('touchstart', e=>{
+  startX = e.touches[0].clientX;
+});
+
+document.getElementById('slider').addEventListener('touchend', e=>{
+  let endX = e.changedTouches[0].clientX;
+  if(startX - endX > 50) nextSlide();
+  if(endX - startX > 50) prevSlide();
+});
+</script>
 
 </body>
 </html>
