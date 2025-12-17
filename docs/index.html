@@ -21,6 +21,65 @@
       background-color: #d8b97a !important; /* ذهبي */
       box-shadow: 0 0 20px rgba(216, 185, 122, 0.4) !important;
     }
+    /* ===== GLOBAL NAVBAR ===== */
+.site-nav {
+  position: fixed;
+  top: 24px;
+  left: 0;
+  right: 0;
+  z-index: 100;
+
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+
+  font-family: 'Montserrat', sans-serif;
+}
+
+.site-nav a {
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+
+  color: #ffffff;
+  text-decoration: none;
+  opacity: 0.75;
+
+  transition: color 0.25s ease, opacity 0.25s ease;
+}
+
+/* Hover */
+.site-nav a:hover {
+  opacity: 1;
+}
+
+/* Active page */
+.site-nav a.active {
+  color: #f5c14a;
+  opacity: 1;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .site-nav {
+    top: 16px;
+    padding: 6px 12px;
+
+    overflow-x: auto;
+    white-space: nowrap;
+    justify-content: flex-start;
+  }
+
+  .site-nav a {
+    font-size: 12px;
+    margin-right: 22px;
+  }
+
+  .site-nav::-webkit-scrollbar {
+    display: none;
+  }
+}
   </style>
 
 </head>
@@ -29,14 +88,14 @@
 
   <!-- NAVBAR -->
   <header class="nav">
-    <nav class="nav-center">
-      <a href="index.html" class="active">Home</a>
-      <a href="my-work.html">My Work</a>
-      <a href="gallery.html">Gallery</a>
-      <a href="academy.html">Academy</a>
-      <a href="cv.html">CV</a>
-      <a href="show.html">Showreel</a>
-    </nav>
+<nav class="site-nav">
+  <a href="index.html" class="active">Home</a>
+  <a href="my-work.html">My Work</a>
+  <a href="gallery.html">Gallery</a>
+  <a href="academy.html">Academy</a>
+  <a href="cv.html">CV</a>
+  <a href="show.html">Showreel</a>
+</nav>
   </header>
 
   <!-- HERO -->
