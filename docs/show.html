@@ -55,6 +55,7 @@ html,body{
 #vimeo-videoContainment{
   position:absolute;
   inset:0;
+  z-index:1;
 }
 #vimeo-videoContainment iframe{
   position:absolute;
@@ -92,14 +93,16 @@ html,body{
   text-transform:uppercase;
 }
 
-/* CONTROLS */
+/* CONTROLS – الحل هنا */
 .video-controls{
-  position:absolute;
-  bottom:40px;
-  right:40px;
+  position:fixed; /* مهم */
+  bottom:calc(24px + env(safe-area-inset-bottom));
+  left:50%;
+  transform:translateX(-50%);
   display:flex;
   gap:32px;
-  z-index:999; /* مهم */
+  z-index:9999; /* فوق أي iframe */
+  pointer-events:auto;
 }
 .ctrl-btn{
   font-family:'Montserrat',sans-serif;
@@ -118,13 +121,6 @@ html,body{
 
 /* MOBILE */
 @media(max-width:768px){
-  .video-controls{
-    left:50%;
-    right:auto;
-    transform:translateX(-50%);
-    bottom:24px;
-  }
-
   #vimeo-videoContainment iframe{
     width:100%;
     height:100%;
@@ -164,11 +160,12 @@ html,body{
     </div>
   </div>
 
-  <div class="video-controls">
-    <div id="nextBtn" class="ctrl-btn" onclick="nextVideo()">NEXT</div>
-    <div id="muteBtn" class="ctrl-btn active" onclick="toggleMute()">MUTE</div>
-  </div>
+</div>
 
+<!-- CONTROLS خارج section -->
+<div class="video-controls">
+  <div id="nextBtn" class="ctrl-btn" onclick="nextVideo()">NEXT</div>
+  <div id="muteBtn" class="ctrl-btn active" onclick="toggleMute()">MUTE</div>
 </div>
 
 <script>
@@ -208,12 +205,10 @@ function nextVideo(){
 function toggleMute(){
   muted = !muted;
   document.getElementById("muteBtn").classList.toggle("active", muted);
-  /* نغير الصوت فقط */
-  const frame = document.getElementById("vimeoFrame");
-  frame.src = buildSrc(index);
+  document.getElementById("vimeoFrame").src = buildSrc(index);
 }
 
-/* تشغيل أول فيديو فورًا */
+/* تشغيل أول فيديو */
 window.addEventListener("DOMContentLoaded", ()=>{
   loadVideo(index);
 });
