@@ -12,257 +12,196 @@
 
   <link rel="stylesheet" href="style.css" />
 
-  <!-- Chatbase Custom Position & Style -->
   <style>
     /* زر الشات */
     #chatbase-bubble, .cb-bubble {
-      bottom: 40px !important;   /* رفعه عن أسفل الشاشة */
-      right: 30px !important;    /* إبعاده عن الطرف */
-      background-color: #d8b97a !important; /* ذهبي */
+      bottom: 40px !important;
+      right: 30px !important;
+      background-color: #d8b97a !important;
       box-shadow: 0 0 20px rgba(216, 185, 122, 0.4) !important;
     }
+
     /* ===== GLOBAL NAVBAR ===== */
-.site-nav {
-  position: fixed;
-  top: 24px;
-  left: 0;
-  right: 0;
-  z-index: 100;
+    .site-nav {
+      position: fixed;
+      top: 24px;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 28px;
+      font-family: 'Montserrat', sans-serif;
+    }
 
-  display: flex;
-  justify-content: center;
-  gap: 28px;
+    .site-nav a {
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #ffffff;
+      text-decoration: none;
+      opacity: 0.75;
+      transition: color 0.25s ease, opacity 0.25s ease;
+    }
 
-  font-family: 'Montserrat', sans-serif;
-}
+    .site-nav a:hover {
+      opacity: 1;
+    }
 
-.site-nav a {
-  font-size: 14px;
-  font-weight: 500;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
+    .site-nav a.active {
+      color: #f5c14a;
+      opacity: 1;
+    }
 
-  color: #ffffff;
-  text-decoration: none;
-  opacity: 0.75;
+    /* ===== LOGO GOLD GLOW (التعديل الوحيد) ===== */
+    .nav-logo img{
+      width:34px;
+      height:34px;
+      transition: transform .3s ease, filter .3s ease;
+    }
 
-  transition: color 0.25s ease, opacity 0.25s ease;
-}
+    .nav-logo:hover img,
+    .nav-logo:focus img{
+      transform: scale(1.08);
+      filter:
+        drop-shadow(0 0 6px rgba(216,185,122,.65))
+        drop-shadow(0 0 14px rgba(216,185,122,.45));
+    }
 
-/* Hover */
-.site-nav a:hover {
-  opacity: 1;
-}
+    @media (hover:none){
+      .nav-logo:active img{
+        transform: scale(1.1);
+        filter:
+          drop-shadow(0 0 8px rgba(216,185,122,.7))
+          drop-shadow(0 0 18px rgba(216,185,122,.5));
+      }
+    }
 
-/* Active page */
-.site-nav a.active {
-  color: #f5c14a;
-  opacity: 1;
-}
+    /* Mobile */
+    @media (max-width: 768px) {
+      .site-nav {
+        top: 16px;
+        padding: 6px 12px;
+        overflow-x: auto;
+        white-space: nowrap;
+        justify-content: flex-start;
+      }
 
-/* Mobile */
-@media (max-width: 768px) {
-  .site-nav {
-    top: 16px;
-    padding: 6px 12px;
+      .site-nav a {
+        font-size: 12px;
+        margin-right: 22px;
+      }
 
-    overflow-x: auto;
-    white-space: nowrap;
-    justify-content: flex-start;
-  }
+      .site-nav::-webkit-scrollbar {
+        display: none;
+      }
+    }
 
-  .site-nav a {
-    font-size: 12px;
-    margin-right: 22px;
-  }
-
-  .site-nav::-webkit-scrollbar {
-    display: none;
-  }
-}
     body{
-  min-height:100vh;
-  display:flex;
-  flex-direction:column;
-}
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+    }
 
-/* ================= FOOTER ================= */
-.site-footer{
-  width:100%;
-  padding:20px 0 24px;
-  text-align:center;
-  font-family:'Montserrat', sans-serif;
-  font-size:11px;
-  letter-spacing:.2em;
-  text-transform:uppercase;
-  color:rgba(255,255,255,.45);
-}
+    .site-footer{
+      width:100%;
+      padding:20px 0 24px;
+      text-align:center;
+      font-family:'Montserrat', sans-serif;
+      font-size:11px;
+      letter-spacing:.2em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,.45);
+    }
+
     /* ===== LOADER ===== */
-#loader{
-  position:fixed;
-  inset:0;
-  background:#000;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  z-index:9999;
-}
+    #loader{
+      position:fixed;
+      inset:0;
+      background:#000;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      z-index:9999;
+    }
 
-#loader img{
-  width:90px;
-  margin-bottom:16px;
-  animation:pulse 1.2s ease-in-out infinite;
-}
+    #loader img{
+      width:90px;
+      margin-bottom:16px;
+      animation:pulse 1.2s ease-in-out infinite;
+    }
 
-#loader span{
-  color:#aaa;
-  font-size:12px;
-  letter-spacing:.25em;
-  text-transform:uppercase;
-}
+    #loader span{
+      color:#aaa;
+      font-size:12px;
+      letter-spacing:.25em;
+      text-transform:uppercase;
+    }
 
-@keyframes pulse{
-  0%{transform:scale(1);opacity:.6}
-  50%{transform:scale(1.05);opacity:1}
-  100%{transform:scale(1);opacity:.6}
-}
+    @keyframes pulse{
+      0%{transform:scale(1);opacity:.6}
+      50%{transform:scale(1.05);opacity:1}
+      100%{transform:scale(1);opacity:.6}
+    }
   </style>
-
 </head>
 
 <body>
-  <div id="loader">
+
+<div id="loader">
   <img src="img/favicon.png" alt="Loading Logo">
   <span>Loading<span class="dots">...</span></span>
 </div>
 
-  <!-- NAVBAR -->
-  <header class="nav">
-<nav class="site-nav">
-  <a href="index.html" class="nav-logo">
-    <img src="img/favicon.png" alt="Home">
-  </a>
+<header class="nav">
+  <nav class="site-nav">
+    <a href="index.html" class="nav-logo">
+      <img src="img/favicon.png" alt="Home">
+    </a>
 
-  <div class="nav-links">
-    <a href="index.html">Home</a>
-    <a href="my-work.html">My Work</a>
-    <a href="gallery.html">Gallery</a>
-    <a href="academy.html">Pro</a>
-    <a href="cv.html">Profile</a>
-    <a href="show.html">Showreel</a>
-  </div>
-</nav>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="my-work.html">My Work</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="academy.html">Pro</a>
+      <a href="cv.html">Profile</a>
+      <a href="show.html">Showreel</a>
+    </div>
+  </nav>
+</header>
 
-  </header>
+<section class="hero" id="hero" style="background-image:url('img/home-hero.jpg');">
+  <div class="hero-overlay"></div>
 
-  <!-- HERO -->
-  <section class="hero" id="hero" style="background-image:url('img/home-hero.jpg');">
-    <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1 class="hero-name">HESHAM ABDELHAMED</h1>
 
-    <div class="hero-content">
-
-      <h1 class="hero-name">HESHAM ABDELHAMED</h1>
-
-      <div class="hero-heading">
-        CINEMATIC<br>VISUAL STORIES
-      </div>
-
-      <div class="hero-sub">
-        I am a filmmaker and video editor crafting cinematic narratives,
-        mixing documentary sensitivity with strong visual composition.
-        From concept to final cut, I focus on emotion, rhythm, and details.
-      </div>
-
-      <div class="social-row">
-
-        <a href="https://www.linkedin.com/in/heshamabdelhamed" target="_blank" class="icon-circle">
-          <img src="img/linkedin.png" alt="">
-        </a>
-
-        <a href="https://www.instagram.com/hisham.abdlhamed" target="_blank" class="icon-circle">
-          <img src="img/instagram.png" alt="">
-        </a>
-
-        <a href="https://www.tiktok.com/@hisham.abdelhamed" target="_blank" class="icon-circle">
-          <img src="img/tiktok.png" alt="">
-        </a>
-
-        <a href="https://www.facebook.com/hishamabdelhamedd" target="_blank" class="icon-circle">
-          <img src="img/facebook.png" alt="">
-        </a>
-
-        <a href="mailto:per.hisham@gmail.com" class="icon-circle">
-          <img src="img/email.png" alt="">
-        </a>
-
-        <a href="https://wa.me/966503064408" target="_blank" class="icon-circle">
-          <img src="img/whatsapp.png" alt="">
-        </a>
-
-        <a href="tel:+966503064408" class="icon-circle">
-          <img src="img/phone.png" alt="">
-        </a>
-
-      </div>
-
+    <div class="hero-heading">
+      CINEMATIC<br>VISUAL STORIES
     </div>
 
-  </section>
+    <div class="hero-sub">
+      I am a filmmaker and video editor crafting cinematic narratives,
+      mixing documentary sensitivity with strong visual composition.
+      From concept to final cut, I focus on emotion, rhythm, and details.
+    </div>
+  </div>
+</section>
 
-  <script>
-    /* Parallax */
-    window.addEventListener("scroll", () => {
-      const hero = document.getElementById("hero");
-      hero.style.backgroundPositionY = -window.scrollY * 0.25 + "px";
-    });
-
-    document.body.classList.add("page-loaded");
-  </script>
-
-  <script>
-    window.addEventListener("scroll", () => {
-      const nav = document.querySelector(".nav");
-      if (window.scrollY > 10) nav.classList.add("scrolled");
-      else nav.classList.remove("scrolled");
-    });
-  </script>
-
-  <!-- Chatbase Embed -->
-  <script>
-  (function(){
-      if(!window.chatbase || window.chatbase("getState")!=="initialized"){
-          window.chatbase=(...arguments)=>{
-              if(!window.chatbase.q){window.chatbase.q=[]}
-              window.chatbase.q.push(arguments)
-          };
-          window.chatbase=new Proxy(window.chatbase,{
-              get(target,prop){
-                  if(prop==="q"){return target.q}
-                  return(...args)=>target(prop,...args)
-              }
-          })
-      }
-      const onLoad=function(){
-          const script=document.createElement("script");
-          script.src="https://www.chatbase.co/embed.min.js";
-          script.id="rwown8CWB2qHyVnsfg35Q";
-          script.domain="www.chatbase.co";
-          document.body.appendChild(script)
-      };
-      if(document.readyState==="complete"){onLoad()}
-      else{window.addEventListener("load",onLoad)}
-  })();
-  </script>
 <footer class="site-footer">
   © 2025 Hesham Abdelhamed I All rights reserved.
 </footer>
+
 <script>
   window.addEventListener("load", () => {
     setTimeout(() => {
       document.getElementById("loader").style.display = "none";
-    }, 1000); // ثانية واحدة
+    }, 1000);
   });
 </script>
+
 </body>
 </html>
