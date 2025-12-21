@@ -158,6 +158,47 @@
   color:#f5c14a;
   opacity:1;
 }
+    /* ===== SOCIAL ICONS ===== */
+.social-icons{
+  position: fixed;
+  left: 24px;
+  bottom: 36px;
+  z-index: 150;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.icon-circle{
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform .3s ease, background .3s ease;
+}
+
+.icon-circle img{
+  width: 18px;
+  height: 18px;
+}
+
+.icon-circle:hover{
+  background: rgba(216,185,122,0.2);
+  transform: scale(1.08);
+}
+
+/* ===== MOBILE (VISIBLE) ===== */
+@media (max-width:768px){
+  .social-icons{
+    left: 14px;
+    bottom: 20px;
+    flex-direction: row;
+    gap: 10px;
+  }
+}
   </style>
 </head>
 
@@ -216,6 +257,35 @@
     }, 1000);
   });
 </script>
+<!-- SOCIAL ICONS -->
+<div class="social-icons">
+  <a href="https://www.linkedin.com/in/heshamabdelhamed" target="_blank" class="icon-circle">
+    <img src="img/linkedin.png" alt="LinkedIn">
+  </a>
 
+  <a href="https://www.instagram.com/hisham.abdlhamed" target="_blank" class="icon-circle">
+    <img src="img/instagram.png" alt="Instagram">
+  </a>
+
+  <a href="https://www.tiktok.com/@hisham.abdelhamed" target="_blank" class="icon-circle">
+    <img src="img/tiktok.png" alt="TikTok">
+  </a>
+
+  <a href="https://www.facebook.com/hishamabdelhamedd" target="_blank" class="icon-circle">
+    <img src="img/facebook.png" alt="Facebook">
+  </a>
+
+  <a href="mailto:per.hisham@gmail.com" class="icon-circle">
+    <img src="img/email.png" alt="Email">
+  </a>
+
+  <a href="https://wa.me/966503064408" target="_blank" class="icon-circle">
+    <img src="img/whatsapp.png" alt="WhatsApp">
+  </a>
+
+  <a href="tel:+966503064408" class="icon-circle">
+    <img src="img/phone.png" alt="Phone">
+  </a>
+</div>
 </body>
 </html>
