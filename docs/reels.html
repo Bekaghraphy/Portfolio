@@ -592,45 +592,32 @@
       return 'Video';
     }
 
-    async function fetchThumbnail(src) {
-      try {
-        // Vimeo
-        if (src.includes('vimeo.com')) {
-          const match = src.match(/vimeo\.com\/video\/(\d+)/);
-          const id = match ? match[1] : null;
-          if (!id) throw new Error('No Vimeo ID');
-          const apiUrl = `https://vimeo.com/api/v2/video/${id}.json`;
-          const response = await fetch(apiUrl);
-          if (!response.ok) throw new Error('Vimeo API error');
-          const data = await response.json();
-          if (data && data[0]) {
-            return data[0].thumbnail_large || data[0].thumbnail_medium || data[0].thumbnail_small;
-          }
-        }
+    function getThumb(src) {
 
-        // YouTube
-        if (src.includes('youtube.com') || src.includes('youtu.be')) {
-          let videoId = '';
-          if (src.includes('embed/')) {
-            const m = src.match(/embed\/([^?&]+)/);
-            videoId = m ? m[1] : '';
-          } else if (src.includes('youtu.be/')) {
-            const m = src.match(/youtu\.be\/([^?&]+)/);
-            videoId = m ? m[1] : '';
-          } else {
-            const u = new URL(src);
-            videoId = u.searchParams.get('v') || '';
-          }
-          if (!videoId) throw new Error('No YouTube ID');
-          return `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
-        }
-      } catch (e) {
-        console.warn('Thumbnail error:', e);
-      }
+  // 1️⃣ Instagram أو TikTok
+  if (src.includes('instagram.com') || src.includes('tiktok.com')) {
+    return 'img/social-thumb.jpg';
+  }
 
-      // صورة بديلة لو حصل أي مشكلة – تأكد إن الملف ده موجود أو غيّر اسمه
-      return 'img/work-fallback.jpg';
-    }
+  // 2️⃣ Vimeo
+  if (src.includes('vimeo.com')) {
+    const id = src.match(/video\/(\d+)/)?.[1];
+    return id
+      ? `https://vumbnail.com/${id}.jpg`
+      : 'img/work-fallback.jpg';
+  }
+
+  // 3️⃣ YouTube
+  if (src.includes('youtube.com')) {
+    const id = src.match(/embed\/([^?&]+)/)?.[1];
+    return id
+      ? `https://img.youtube.com/vi/${id}/hqdefault.jpg`
+      : 'img/work-fallback.jpg';
+  }
+
+  // 4️⃣ أي حاجة تانية
+  return 'img/work-fallback.jpg';
+}
 
     async function buildGrid() {
       grid.innerHTML = '';
