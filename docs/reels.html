@@ -1,73 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Reels | Hesham Abdelhamed</title>
 
-<link rel="icon" type="image/png" href="img/favicon.png" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet" />
+<link rel="icon" type="image/png" href="img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-<!-- نفس ستايل الموقع -->
-<link rel="stylesheet" href="style.css" />
+<link rel="stylesheet" href="style.css">
 
 <style>
-/* ===== REELS HERO ===== */
+/* ===== HERO ===== */
 .reels-hero h1 {
   font-size: 40px;
   font-weight: 700;
   margin-bottom: 12px;
 }
-
-.reels-hero h1 span {
-  color: #f5c14a;
-}
+.reels-hero h1 span { color:#f5c14a; }
 
 .reels-hero p {
   font-size: 15px;
   line-height: 1.8;
-  opacity: 0.9;
-  color: #f3f3f6;
+  opacity: .9;
   max-width: 620px;
 }
 
-/* ===== VISUAL TAGS ===== */
+/* ===== TAGS (VISUAL ONLY) ===== */
 .reels-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 14px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:14px;
 }
-
 .reels-tag {
-  font-size: 11px;
-  padding: 5px 12px;
-  border-radius: 999px;
-  border: 1px solid rgba(255,255,255,0.18);
-  color: #f3f3f6;
-  background: rgba(10,10,16,0.6);
-  opacity: 0.75;
-  transition: all 0.25s ease;
+  font-size:11px;
+  padding:5px 12px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.18);
+  background:rgba(10,10,16,.6);
+  color:#f3f3f6;
+  opacity:.75;
+  transition:.25s;
 }
-
 .reels-tag:hover {
-  color: #f5c14a;
-  border-color: #f5c14a;
-  opacity: 1;
+  color:#f5c14a;
+  border-color:#f5c14a;
+  opacity:1;
 }
 
-/* ===== VERTICAL FIX ===== */
+/* ===== FORCE VERTICAL ===== */
 .video-thumb {
-  padding-top: 177.78%; /* 9:16 */
+  padding-top:177.78%;
 }
 </style>
 </head>
 
 <body>
 
-<!-- ===== NAVBAR (نفس My Work) ===== -->
+<!-- NAVBAR (زي My Work) -->
 <header class="nav">
   <nav class="site-nav">
     <a href="index.html">Home</a>
@@ -80,47 +73,45 @@
   </nav>
 </header>
 
-<!-- SIDE TITLE -->
 <div class="side-title">REELS</div>
 
 <main class="page page-work">
 <div class="page-inner">
 
-  <!-- ===== HERO TEXT ===== -->
-  <section class="work-hero">
-    <div class="reels-hero">
-      <h1>Vertical <span>Reels</span>.</h1>
-      <p>
-        Short-form vertical edits designed for fast attention —
-        cinematic pacing, clean visuals, and high-retention storytelling.
-      </p>
+<!-- HERO -->
+<section class="work-hero">
+  <div class="reels-hero">
+    <h1>Vertical <span>Reels</span>.</h1>
+    <p>
+      Short-form vertical edits designed for fast attention —
+      cinematic pacing, clean visuals, and high-retention storytelling.
+    </p>
 
-      <!-- Visual only tags -->
-      <div class="reels-tags">
-        <span class="reels-tag">Commercial</span>
-        <span class="reels-tag">Documentary</span>
-        <span class="reels-tag">Healthcare</span>
-        <span class="reels-tag">Animation</span>
-        <span class="reels-tag">Human Stories</span>
-        <span class="reels-tag">Broadcast</span>
-      </div>
+    <div class="reels-tags">
+      <span class="reels-tag">Commercial</span>
+      <span class="reels-tag">Documentary</span>
+      <span class="reels-tag">Healthcare</span>
+      <span class="reels-tag">Animation</span>
+      <span class="reels-tag">Human Stories</span>
+      <span class="reels-tag">Broadcast</span>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ===== REELS LIBRARY ===== -->
-  <section class="work-section">
-    <div class="work-section-header">
-      <h2>Reel Library</h2>
-      <p>Tap any reel to watch it in a vertical, full-screen player.</p>
-    </div>
+<!-- REELS LIBRARY -->
+<section class="work-section">
+  <div class="work-section-header">
+    <h2>Reel Library</h2>
+    <p>Tap any reel to watch it in a vertical, full-screen player.</p>
+  </div>
 
-    <div class="videos-grid" id="videoGrid"></div>
-  </section>
+  <div class="videos-grid" id="videoGrid"></div>
+</section>
 
 </div>
 </main>
 
-<!-- ===== MODAL (نفس My Work) ===== -->
+<!-- MODAL -->
 <div class="video-modal" id="videoModal">
   <div class="video-modal-content">
     <button class="video-modal-close" id="modalClose">×</button>
@@ -129,7 +120,6 @@
 </div>
 
 <script>
-/* نفس فيديوهات My Work – عدلهم براحتك */
 const videos = [
   "https://player.vimeo.com/video/1081231929",
   "https://player.vimeo.com/video/1093436208",
@@ -151,35 +141,47 @@ const modal = document.getElementById('videoModal');
 const frame = document.getElementById('modalFrame');
 const closeBtn = document.getElementById('modalClose');
 
-videos.forEach((src, i) => {
+function getThumb(src){
+  if(src.includes('vimeo')){
+    const id = src.match(/video\/(\d+)/)?.[1];
+    return `https://vumbnail.com/${id}.jpg`;
+  }
+  if(src.includes('youtube')){
+    const id = src.match(/embed\/([^?&]+)/)?.[1];
+    return `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
+  }
+  return 'img/work-fallback.jpg';
+}
+
+videos.forEach((src,i)=>{
   const card = document.createElement('div');
-  card.className = 'video-card';
-  card.innerHTML = `
+  card.className='video-card';
+  card.innerHTML=`
     <div class="video-thumb">
+      <img class="video-img" src="${getThumb(src)}">
       <div class="video-thumb-overlay">
         <div class="video-index">REEL ${String(i+1).padStart(2,'0')}</div>
         <div class="video-play-icon">▶</div>
       </div>
-    </div>
-  `;
-  card.onclick = () => openVideo(src);
+    </div>`;
+  card.onclick=()=>openVideo(src);
   grid.appendChild(card);
 });
 
-function openVideo(src) {
-  frame.innerHTML = `<iframe src="${src}?autoplay=1" allow="autoplay; fullscreen"></iframe>`;
+function openVideo(src){
+  frame.innerHTML=`<iframe src="${src}?autoplay=1" allow="autoplay; fullscreen"></iframe>`;
   modal.classList.add('open');
-  document.body.style.overflow = 'hidden';
+  document.body.style.overflow='hidden';
 }
 
-closeBtn.onclick = () => {
+closeBtn.onclick=()=>{
   modal.classList.remove('open');
-  frame.innerHTML = '';
-  document.body.style.overflow = '';
+  frame.innerHTML='';
+  document.body.style.overflow='';
 };
 
-modal.onclick = e => {
-  if (e.target === modal) closeBtn.click();
+modal.onclick=e=>{
+  if(e.target===modal) closeBtn.click();
 };
 </script>
 
