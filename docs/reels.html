@@ -10,92 +10,32 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet" />
 
-  <!-- ستايل الموقع الأساسي -->
   <link rel="stylesheet" href="style.css" />
 
-  <!-- SEO -->
-  <meta name="description" content="A curated selection of cinematic work by filmmaker and video editor Hesham Abdelhamed – documentary films, commercial projects, and digital stories from the Middle East and beyond." />
-  <meta name="keywords" content="Hesham Abdelhamed, filmmaker, director, video editor, documentary films, commercial, Riyadh, Cairo, Middle East, cinematic portfolio" />
-  <meta name="robots" content="index,follow" />
-  <link rel="canonical" href="https://www.hisham.digital/reels.html" />
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="Reels | Hesham Abdelhamed" />
-  <meta property="og:description" content="Cinematic portfolio of documentary, commercial, and digital work by filmmaker and editor Hesham Abdelhamed." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://www.hisham.digital/reels.html" />
-  <!-- غيّر الصورة دي لما ترفع OG حقيقية -->
-  <meta property="og:image" content="https://www.hisham.digital/img/og-cover.jpg" />
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Reels | Hesham Abdelhamed" />
-  <meta name="twitter:description" content="A curated selection of cinematic work by filmmaker and video editor Hesham Abdelhamed." />
-  <meta name="twitter:image" content="https://www.hisham.digital/img/og-cover.jpg" />
-
-  <!-- Structured Data: Person -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Hesham Abdelhamed",
-    "jobTitle": "Filmmaker & Video Editor",
-    "url": "https://www.hisham.digital",
-    "sameAs": [
-      "https://www.linkedin.com/in/heshamabdelhamed",
-      "https://vimeo.com/hishamabdelhamed"
-    ]
-  }
-  </script>
-
   <style>
-    body.page-loaded {
-      opacity: 1;
-    }
+    body.page-loaded { opacity: 1; }
 
     .page-work .page-inner {
       padding-top: 120px;
       padding-bottom: 60px;
     }
 
-    .work-hero {
-      display: grid;
-      grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.4fr);
-      gap: 32px;
-      margin-bottom: 40px;
-      align-items: center;
-    }
-
-    @media (max-width: 900px) {
-      .work-hero {
-        grid-template-columns: minmax(0,1fr);
-      }
-    }
+    .work-hero { margin-bottom: 30px; }
 
     .work-hero-title {
       font-size: 40px;
       font-weight: 700;
       margin-bottom: 12px;
-      color: #ffffff;
+      color: #fff;
     }
 
-    .work-hero-title span {
-      color: #f5c14a;
-    }
-
-    .work-hero-text p {
-      font-size: 15px;
-      line-height: 1.8;
-      opacity: 0.9;
-      margin-bottom: 14px;
-      color: #f3f3f6;
-    }
+    .work-hero-title span { color: #f5c14a; }
 
     .work-tags {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      margin-top: 10px;
+      margin-top: 12px;
     }
 
     .work-tag {
@@ -103,131 +43,42 @@
       padding: 5px 10px;
       border-radius: 999px;
       border: 1px solid rgba(255,255,255,0.18);
-      opacity: 0.85;
-      color: #f3f3f6;
       background: rgba(10,10,16,0.7);
-    }
-
-    .work-hero-feature {
-      position: relative;
-      border-radius: 14px;
-      overflow: hidden;
-      background: radial-gradient(circle at top left, #f5c14a 0, #000 55%);
-      min-height: 230px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 18px 40px rgba(0,0,0,0.75);
-      cursor: pointer;
-    }
-
-    .feature-overlay {
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at center, rgba(0,0,0,0.15) 0, rgba(0,0,0,0.88) 70%);
-    }
-
-    .feature-content {
-      position: relative;
-      text-align: center;
-      padding: 20px;
-    }
-
-    .feature-label {
-      font-size: 11px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      opacity: 0.8;
-      margin-bottom: 10px;
       color: #f3f3f6;
-    }
-
-    .feature-text {
-      font-size: 16px;
-      font-weight: 600;
-      margin-bottom: 14px;
-      color: #ffffff;
-    }
-
-    .feature-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 13px;
-      padding: 8px 14px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.7);
-      background: rgba(0,0,0,0.5);
-      cursor: pointer;
-      transition: 0.2s ease;
-      color: #f3f3f6;
-    }
-
-    .feature-cta span.play-icon {
-      width: 22px;
-      height: 22px;
-      border-radius: 50%;
-      border: 1px solid rgba(255,255,255,0.9);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 11px;
-    }
-
-    .feature-cta:hover {
-      border-color: #f5c14a;
-      background: rgba(0,0,0,0.8);
-      transform: translateY(-1px);
-      color: #ffffff;
     }
 
     .videos-grid {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0,1fr));
+      grid-template-columns: repeat(4, 1fr);
       gap: 22px;
-      margin-top: 10px;
+      margin-top: 14px;
     }
 
-    @media (max-width: 1100px) {
-      .videos-grid {
-        grid-template-columns: repeat(3, minmax(0,1fr));
-      }
-    }
-
-    @media (max-width: 800px) {
-      .videos-grid {
-        grid-template-columns: repeat(2, minmax(0,1fr));
-      }
+    @media (max-width: 900px) {
+      .videos-grid { grid-template-columns: repeat(2, 1fr); }
     }
 
     @media (max-width: 540px) {
-      .videos-grid {
-        grid-template-columns: minmax(0,1fr);
-      }
+      .videos-grid { grid-template-columns: 1fr; }
     }
 
     .video-card {
-      position: relative;
       border-radius: 12px;
       background: #05050a;
       overflow: hidden;
       cursor: pointer;
-      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
       border: 1px solid rgba(255,255,255,0.08);
-      min-height: 280px;
+      transition: transform .25s ease, box-shadow .25s ease;
     }
 
     .video-card:hover {
       transform: translateY(-4px);
-      box-shadow: 0 18px 32px rgba(0,0,0,0.9);
-      border-color: rgba(245,193,74,0.8);
+      box-shadow: 0 18px 32px rgba(0,0,0,.9);
     }
 
     .video-thumb {
       position: relative;
-      width: 100%;
-      padding-top: 177.78%; /* 9:16 vertical */
-      overflow: hidden;
+      padding-top: 177.78%;
     }
 
     .video-img {
@@ -236,134 +87,67 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transform: scale(1.02);
-      transition: transform 0.35s ease;
-    }
-
-    .video-card:hover .video-img {
-      transform: scale(1.07);
     }
 
     .video-thumb-overlay {
       position: absolute;
       inset: 0;
+      padding: 12px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      padding: 10px 12px;
-      background: linear-gradient(to top, rgba(0,0,0,0.8) 0, rgba(0,0,0,0.05) 55%);
+      background: linear-gradient(to top, rgba(0,0,0,.85), rgba(0,0,0,.05));
     }
 
     .video-index {
       font-size: 11px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      opacity: 0.85;
+      letter-spacing: .18em;
       color: #f5c14a;
     }
 
     .video-bottom-row {
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      gap: 8px;
-    }
-
-    .video-label {
-      font-size: 13px;
-      opacity: 0.95;
-      color: #ffffff;
-    }
-
-    .video-type {
-      font-size: 11px;
-      opacity: 0.75;
-      color: #f3f3f6;
+      align-items: center;
     }
 
     .video-play-icon {
       width: 32px;
       height: 32px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.9);
+      border-radius: 50%;
+      border: 1px solid #fff;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 14px;
-      color: #ffffff;
-      background: rgba(0,0,0,0.6);
-      transition: 0.25s ease;
+      background: rgba(0,0,0,.6);
     }
 
-    .video-card:hover .video-play-icon {
-      background: #f5c14a;
-      border-color: #f5c14a;
-      color: #000;
-    }
-
-    .work-section-header {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 16px;
-      margin-bottom: 14px;
-    }
-
-    .work-section-header h2 {
-      font-size: 18px;
-      font-weight: 600;
-      color: #ffffff;
-    }
-
-    .work-section-header p {
-      font-size: 13px;
-      opacity: 0.8;
-      color: #f3f3f6;
-    }
-
-    /* Modal */
     .video-modal {
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.9);
+      background: rgba(0,0,0,.9);
       display: none;
       align-items: center;
       justify-content: center;
-      z-index: 80;
-      padding: 16px;
+      z-index: 99;
     }
 
-    .video-modal.open {
-      display: flex;
-    }
+    .video-modal.open { display: flex; }
 
     .video-modal-content {
       width: min(90vw, 520px);
-      aspect-ratio: 9 / 16;
+      aspect-ratio: 9/16;
       background: #000;
       border-radius: 16px;
-      position: relative;
-      box-shadow: 0 26px 50px rgba(0,0,0,0.95);
       overflow: hidden;
+      position: relative;
     }
 
-    .video-modal-frame {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-
-.video-modal-frame iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border: none;
-  display: block;
-  object-fit: cover;
-}
-}
+    .video-modal-frame iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
 
     .video-modal-close {
       position: absolute;
@@ -371,24 +155,13 @@
       right: 12px;
       width: 32px;
       height: 32px;
-      border-radius: 999px;
+      border-radius: 50%;
       border: none;
-      background: rgba(0,0,0,0.7);
+      background: rgba(0,0,0,.7);
       color: #fff;
-      cursor: pointer;
       font-size: 18px;
-      line-height: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      cursor: pointer;
       z-index: 2;
-      transition: background 0.2s ease, transform 0.2s ease;
-    }
-
-    .video-modal-close:hover {
-      background: rgba(245,193,74,0.95);
-      transform: translateY(-1px);
-      color: #000;
     }
 
     .more-text {
@@ -396,174 +169,56 @@
       text-align: center;
       color: #f5c14a;
       font-size: 14px;
-      opacity: 0.9;
     }
-.showreel-cta {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 40px;
-}
-
-.showreel-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-
-  font-family: 'Montserrat', sans-serif;
-  font-size: 13px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-
-  padding: 12px 22px;
-  border-radius: 999px;
-
-  color: #000;
-  background: #f5c14a;
-  text-decoration: none;
-
-  box-shadow: 0 10px 30px rgba(245,193,74,0.35);
-  transition: transform 0.25s ease, box-shadow 0.25s ease, opacity 0.25s ease;
-}
-
-.showreel-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 14px 36px rgba(245,193,74,0.55);
-  opacity: 0.95;
-}
-    /* ===== GLOBAL NAVBAR ===== */
-.site-nav {
-  position: fixed;
-  top: 24px;
-  left: 0;
-  right: 0;
-  z-index: 100;
-
-  display: flex;
-  justify-content: center;
-  gap: 28px;
-
-  font-family: 'Montserrat', sans-serif;
-}
-
-.site-nav a {
-  font-size: 14px;
-  font-weight: 500;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-
-  color: #ffffff;
-  text-decoration: none;
-  opacity: 0.75;
-
-  transition: color 0.25s ease, opacity 0.25s ease;
-}
-
-/* Hover */
-.site-nav a:hover {
-  opacity: 1;
-}
-
-/* Active page */
-.site-nav a.active {
-  color: #f5c14a;
-  opacity: 1;
-}
-
-/* Mobile */
-@media (max-width: 768px) {
-  .site-nav {
-    top: 16px;
-    padding: 6px 12px;
-
-    overflow-x: auto;
-    white-space: nowrap;
-    justify-content: flex-start;
-  }
-
-  .site-nav a {
-    font-size: 12px;
-    margin-right: 22px;
-  }
-
-  .site-nav::-webkit-scrollbar {
-    display: none;
-  }
-}
-    /* بس تأكد إن الصفحة واخدة كلاس page-work من style.css */
   </style>
 </head>
 
 <body>
-  <!-- نفس النافبار الأساسي -->
-  <header class="nav">
-    <nav class="site-nav">
-  <a href="index.html" >Home</a>
-  <a href="my-work.html">My Work</a>
-  <a href="reels.html" class="active">Reels</a>
-  <a href="gallery.html">Gallery</a>
-  <a href="academy.html">Pro</a>
-  <a href="cv.html">Profile</a>
-  <a href="show.html">Showreel</a>
-</nav>
+<header class="nav">
+  <nav class="site-nav">
+    <a href="index.html">Home</a>
+    <a href="my-work.html">My Work</a>
+    <a href="reels.html" class="active">Reels</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="academy.html">Pro</a>
+    <a href="cv.html">Profile</a>
+    <a href="show.html">Showreel</a>
+  </nav>
+</header>
 
-  </header>
-  <!-- SIDE TITLE من ستايل الموقع -->
-  <div class="side-title">REELS</div>
+<div class="side-title">REELS</div>
 
-  <!-- CONTENT -->
-  <main class="page page-work page-reels">
-    <div class="page-inner">
-      <div class="showreel-cta">
-  <a href="show.html" class="showreel-btn">
-    ▶ View Showreel
-  </a>
-</div>
-      <section class="work-hero">
-        <div class="work-hero-text">
-          <h1 class="work-hero-title">
-            Vertical <span>Reels</span>.
-          </h1>
-          <p>
-            Short-form vertical edits designed for fast attention — cinematic pacing, clean typography, and high-retention storytelling.
-          </p>
-            <div class="work-tags">
-            <span class="work-tag">Commercial</span>
-            <span class="work-tag">Documentary </span>
-            <span class="work-tag">Human Stories</span>
-            <span class="work-tag">Healthcare</span>
-            <span class="work-tag">Animation</span>  
-             <span class="work-tag">Boadcast</span>  
-          </div>
-        </div>
-      </section>
+<main class="page page-work">
+  <div class="page-inner">
+    <section class="work-hero">
+      <h1 class="work-hero-title">Vertical <span>Reels</span>.</h1>
+      <p>Short-form vertical edits designed for fast attention.</p>
+      <div class="work-tags">
+        <span class="work-tag">Commercial</span>
+        <span class="work-tag">Documentary</span>
+        <span class="work-tag">Human Stories</span>
+        <span class="work-tag">Healthcare</span>
+        <span class="work-tag">Animation</span>
+        <span class="work-tag">Broadcast</span>
+      </div>
+    </section>
 
-      <section class="work-section">
-        <div class="work-section-header">
-          <h2>Reels Library</h2>
-          </div>
+    <h2>Reels Library</h2>
+    <div class="videos-grid" id="videoGrid"></div>
 
-        <div class="videos-grid" id="videoGrid"></div>
-      </section>
-
-      <p class="more-text">And there is still much more to come…</p>
-    </div>
-  </main>
-
-  <!-- MODAL -->
-  <div class="video-modal" id="videoModal" aria-hidden="true">
-    <div class="video-modal-content">
-      <button class="video-modal-close" id="modalClose" aria-label="Close video">×</button>
-      <div class="video-modal-frame" id="modalFrame"></div>
-    </div>
+    <p class="more-text">And there is still much more to come…</p>
   </div>
+</main>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      document.body.classList.add('page-loaded');
-    });
+<div class="video-modal" id="videoModal">
+  <div class="video-modal-content">
+    <button class="video-modal-close" id="modalClose">×</button>
+    <div class="video-modal-frame" id="modalFrame"></div>
+  </div>
+</div>
 
-    // نفس الروابط اللي كنت مستخدمها قبل كده
-    const videos = [
+<script>
+const videos = [
   "https://player.vimeo.com/video/1149314212",
   "https://player.vimeo.com/video/1149314239",
   "https://player.vimeo.com/video/1149314171",
@@ -578,131 +233,55 @@
   "https://www.tiktok.com/embed/v2/7564346673514712340"
 ];
 
+const grid = document.getElementById('videoGrid');
+const modal = document.getElementById('videoModal');
+const modalFrame = document.getElementById('modalFrame');
+const modalClose = document.getElementById('modalClose');
 
-    const grid = document.getElementById('videoGrid');
-    const modal = document.getElementById('videoModal');
-    const modalFrame = document.getElementById('modalFrame');
-    const modalClose = document.getElementById('modalClose');
-    const feature = document.querySelector('.work-hero-feature');
-    const featureButton = document.querySelector('.feature-cta');
-
-    function getTypeLabel(src) {
-      if (src.includes('youtube.com') || src.includes('youtu.be')) return 'YouTube';
-      if (src.includes('vimeo.com')) return 'Vimeo';
-      return 'Video';
-    }
-
-    function getThumb(src) {
-
-  // 1️⃣ Instagram أو TikTok
+function getThumb(src) {
   if (src.includes('instagram.com') || src.includes('tiktok.com')) {
     return 'img/social-thumb.jpg';
   }
-
-  // 2️⃣ Vimeo
   if (src.includes('vimeo.com')) {
     const id = src.match(/video\/(\d+)/)?.[1];
-    return id
-      ? `https://vumbnail.com/${id}.jpg`
-      : 'img/work-fallback.jpg';
+    return id ? `https://vumbnail.com/${id}.jpg` : 'img/work-fallback.jpg';
   }
-
-  // 3️⃣ YouTube
-  if (src.includes('youtube.com')) {
-    const id = src.match(/embed\/([^?&]+)/)?.[1];
-    return id
-      ? `https://img.youtube.com/vi/${id}/hqdefault.jpg`
-      : 'img/work-fallback.jpg';
-  }
-
-  // 4️⃣ أي حاجة تانية
   return 'img/work-fallback.jpg';
 }
 
-    async function buildGrid() {
-      grid.innerHTML = '';
-      for (let index = 0; index < videos.length; index++) {
-        const src = videos[index];
-        const card = document.createElement('div');
-        card.className = 'video-card';
-        card.dataset.index = index;
-
-        const labelIndex = String(index + 1).padStart(2, '0');
-        const typeLabel = getTypeLabel(src);
-
-        card.innerHTML = `
-          <div class="video-thumb">
-            <img class="video-img" src="" alt="Reel #${index + 1}">
-            <div class="video-thumb-overlay">
-              <div class="video-index">REEL ${labelIndex}</div>
-              <div class="video-bottom-row">
-                <div>
-                  <div class="video-label">Reel #${index + 1}</div>
-                  <div class="video-type">${typeLabel}</div>
-                </div>
-                <div class="video-play-icon">▶</div>
-              </div>
-            </div>
+function buildGrid() {
+  grid.innerHTML = '';
+  videos.forEach((src, i) => {
+    const card = document.createElement('div');
+    card.className = 'video-card';
+    card.innerHTML = `
+      <div class="video-thumb">
+        <img class="video-img" src="${getThumb(src)}">
+        <div class="video-thumb-overlay">
+          <div class="video-index">REEL ${String(i+1).padStart(2,'0')}</div>
+          <div class="video-bottom-row">
+            <div></div>
+            <div class="video-play-icon">▶</div>
           </div>
-        `;
-        grid.appendChild(card);
+        </div>
+      </div>`;
+    card.onclick = () => openVideo(src);
+    grid.appendChild(card);
+  });
+}
 
-        const imgEl = card.querySelector('.video-img');
-        const thumb = await fetchThumbnail(src);
-        imgEl.src = thumb;
-      }
-    }
+function openVideo(src) {
+  modalFrame.innerHTML =
+    `<iframe src="${src}?autoplay=1" allow="autoplay; fullscreen" allowfullscreen></iframe>`;
+  modal.classList.add('open');
+}
 
-    function openVideo(index) {
-      const src = videos[index];
-      if (!src) return;
+modalClose.onclick = () => {
+  modal.classList.remove('open');
+  modalFrame.innerHTML = '';
+};
 
-      let url = src;
-      const joinChar = src.includes('?') ? '&' : '?';
-      if (!src.includes('autoplay=')) {
-        url = src + joinChar + 'autoplay=1';
-      }
-
-      modalFrame.innerHTML = '<iframe src="' + url + '" allow="autoplay; fullscreen" allowfullscreen loading="lazy"></iframe>';
-      modal.classList.add('open');
-      modal.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeVideo() {
-      modal.classList.remove('open');
-      modal.setAttribute('aria-hidden', 'true');
-      modalFrame.innerHTML = '';
-      document.body.style.overflow = '';
-    }
-
-    grid.addEventListener('click', function (e) {
-      const card = e.target.closest('.video-card');
-      if (!card) return;
-      const index = parseInt(card.dataset.index, 10);
-      openVideo(index);
-    });
-
-    if (feature) {
-      feature.addEventListener('click', function () {
-        const index = parseInt(feature.dataset.videoIndex || '0', 10);
-        openVideo(index);
-      });
-    }
-    modalClose.addEventListener('click', closeVideo);
-    modal.addEventListener('click', function (e) {
-      if (e.target === modal) {
-        closeVideo();
-      }
-    });
-
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && modal.classList.contains('open')) {
-        closeVideo();
-      }
-    });
-
-    buildGrid();
-  </script>
+buildGrid();
+</script>
 </body>
 </html>
