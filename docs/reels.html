@@ -527,29 +527,13 @@
           <p>
             Short-form vertical edits designed for fast attention — cinematic pacing, clean typography, and high-retention storytelling.
           </p>
-          <p>
-            اضغط على أي فيديو علشان يشتغل في شاشة كاملة بوضع عمودي.
-          </p>
-          <div class="work-tags">
-            <span class="work-tag">Documentary</span>
+            <div class="work-tags">
             <span class="work-tag">Commercial</span>
+            <span class="work-tag">Documentary </span>
             <span class="work-tag">Human Stories</span>
-            <span class="work-tag">Healthcare Content</span>
-          </div>
-        </div>
-
-        <!-- Featured Reel (أول فيديو في الليست) -->
-        <div class="work-hero-feature" data-video-index="0">
-          <div class="feature-overlay"></div>
-          <div class="feature-content">
-            <div class="feature-label">Featured Reel</div>
-            <div class="feature-text">
-              Start with a highlighted piece from recent projects across the region.
-            </div>
-            <button class="feature-cta" type="button">
-              <span class="play-icon">▶</span>
-              <span>Play Featured Reel</span>
-            </button>
+            <span class="work-tag">Healthcare</span>
+            <span class="work-tag">Animation</span>  
+             <span class="work-tag">Boadcast</span>  
           </div>
         </div>
       </section>
@@ -557,8 +541,7 @@
       <section class="work-section">
         <div class="work-section-header">
           <h2>Reels Library</h2>
-          <p>Tap any tile to watch it in a vertical, full-screen player.</p>
-        </div>
+          </div>
 
         <div class="videos-grid" id="videoGrid"></div>
       </section>
@@ -721,15 +704,6 @@
         openVideo(index);
       });
     }
-
-    if (featureButton) {
-      featureButton.addEventListener('click', function (e) {
-        e.stopPropagation();
-        const index = parseInt(feature.dataset.videoIndex || '0', 10);
-        openVideo(index);
-      });
-    }
-
     modalClose.addEventListener('click', closeVideo);
     modal.addEventListener('click', function (e) {
       if (e.target === modal) {
