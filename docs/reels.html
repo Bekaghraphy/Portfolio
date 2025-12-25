@@ -1,137 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Reels | Hesham Abdelhamed</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="img/favicon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="style.css" />
 
 <style>
-:root {
-  --bg:#000;
-  --text:#fff;
-  --muted:rgba(255,255,255,.7);
-  --gold:#f5c04a;
+/* ===== REELS HERO TEXT ===== */
+.reels-intro {
+  margin-bottom: 18px;
 }
 
-* {
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:'Montserrat',sans-serif;
+.reels-intro h1 {
+  font-size: 40px;
+  font-weight: 700;
+  margin-bottom: 12px;
 }
 
-body {
-  background:var(--bg);
-  color:var(--text);
+.reels-intro h1 span {
+  color: #f5c14a;
 }
 
-/* ===== HERO ===== */
-.hero {
-  position:relative;
-  height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  overflow:hidden;
+.reels-intro p {
+  font-size: 15px;
+  line-height: 1.8;
+  opacity: 0.9;
+  color: #f3f3f6;
+  max-width: 620px;
 }
 
-.hero iframe {
-  aspect-ratio:9/16;
-  height:100%;
-  max-width:420px;
-  border:0;
+/* ===== FILTERS ===== */
+.reels-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 16px;
 }
 
-.hero-overlay {
-  position:absolute;
-  inset:0;
-  background:linear-gradient(to bottom,rgba(0,0,0,.6),rgba(0,0,0,.9));
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  padding:40px;
+.reels-filter {
+  font-size: 12px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.18);
+  color: #f3f3f6;
+  background: rgba(10,10,16,0.7);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  opacity: 0.85;
 }
 
-.hero-overlay h1 {
-  font-size:clamp(36px,6vw,72px);
-  font-weight:700;
+.reels-filter:hover,
+.reels-filter.active {
+  border-color: #f5c14a;
+  color: #f5c14a;
+  opacity: 1;
+  background: rgba(0,0,0,0.6);
 }
 
-.hero-overlay h1 span {
-  color:var(--gold);
-}
-
-.hero-overlay p {
-  margin-top:16px;
-  max-width:460px;
-  line-height:1.6;
-  color:var(--muted);
-}
-
-.hero-overlay button {
-  margin-top:28px;
-  padding:14px 28px;
-  border-radius:40px;
-  border:none;
-  background:var(--gold);
-  color:#000;
-  font-weight:600;
-  cursor:pointer;
-}
-
-/* ===== REELS GRID ===== */
-.reels {
-  padding:80px 6vw;
-}
-
-.reels h2 {
-  font-size:28px;
-  margin-bottom:24px;
-}
-
-.grid {
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
-  gap:20px;
-}
-
-.card {
-  aspect-ratio:9/16;
-  background:#111;
-  border-radius:18px;
-  overflow:hidden;
-  position:relative;
-}
-
-.card iframe {
-  width:100%;
-  height:100%;
-  border:0;
-}
-
-.card::after {
-  content:"▶";
-  position:absolute;
-  inset:0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:40px;
-  opacity:0;
-  background:rgba(0,0,0,.4);
-  transition:.3s;
-}
-
-.card:hover::after {
-  opacity:1;
-}
-
-/* ===== MOBILE ===== */
-@media(max-width:768px){
-  .hero-overlay{
-    padding:24px;
+/* Mobile */
+@media (max-width: 768px) {
+  .reels-intro h1 {
+    font-size: 32px;
   }
 }
 </style>
@@ -139,66 +75,142 @@ body {
 
 <body>
 
-<!-- ===== HERO REEL ===== -->
-<section class="hero">
+<header class="nav">
+  <nav class="site-nav">
+    <a href="index.html">Home</a>
+    <a href="my-work.html">My Work</a>
+    <a href="reels.html" class="active">Reels</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="academy.html">Pro</a>
+    <a href="cv.html">Profile</a>
+    <a href="show.html">Showreel</a>
+  </nav>
+</header>
 
-  <!-- 🔴 HERO VIDEO LINK (يفضل Vimeo أو YouTube) -->
-  <!-- Vimeo Example -->
-  <!--
-  <iframe src="https://player.vimeo.com/video/VIDEO_ID?autoplay=1&muted=1&loop=1&background=1"
-          allow="autoplay; fullscreen"></iframe>
-  -->
+<div class="side-title">REELS</div>
 
-  <!-- YouTube Example -->
-  <iframe src="https://www.youtube.com/embed/VIDEO_ID?autoplay=1&mute=1&loop=1&controls=0&playlist=VIDEO_ID"
-          allow="autoplay; encrypted-media"></iframe>
+<main class="page page-work">
+<div class="page-inner">
 
-  <div class="hero-overlay">
-    <h1>Vertical <span>Reels</span>.</h1>
-    <p>
-      Short cinematic stories crafted for vertical screens —
-      designed to stop the scroll and hold attention.
-    </p>
-    <button onclick="document.querySelector('.reels').scrollIntoView({behavior:'smooth'})">
-      Watch More
-    </button>
-  </div>
-</section>
+  <section class="work-hero">
+    <div class="reels-intro">
+      <h1>Vertical <span>Reels</span>.</h1>
+      <p>
+        Short-form vertical edits designed for fast attention —
+        cinematic pacing, clean visuals, and high-retention storytelling.
+      </p>
 
-<!-- ===== REELS GRID ===== -->
-<section class="reels">
-<h2>Reels Library</h2>
+      <div class="reels-filters" id="filters">
+        <div class="reels-filter active" data-filter="All">All</div>
+        <div class="reels-filter" data-filter="Commercial">Commercial</div>
+        <div class="reels-filter" data-filter="Documentary">Documentary</div>
+        <div class="reels-filter" data-filter="Healthcare">Healthcare</div>
+        <div class="reels-filter" data-filter="Animation">Animation</div>
+        <div class="reels-filter" data-filter="Human Stories">Human Stories</div>
+        <div class="reels-filter" data-filter="Broadcast">Broadcast</div>
+      </div>
+    </div>
+  </section>
 
-<div class="grid">
+  <section class="work-section">
+    <div class="work-section-header">
+      <h2>Reel Library</h2>
+      <p>Newest to oldest · Tap any reel to watch full screen.</p>
+    </div>
 
-  <!-- ===== REEL CARD ===== -->
-
-  <!-- YouTube -->
-  <div class="card">
-    <iframe src="https://www.youtube.com/embed/VIDEO_ID"
-            allowfullscreen></iframe>
-  </div>
-
-  <!-- Vimeo -->
-  <div class="card">
-    <iframe src="https://player.vimeo.com/video/VIDEO_ID"
-            allowfullscreen></iframe>
-  </div>
-
-  <!-- TikTok -->
-  <div class="card">
-    <iframe src="https://www.tiktok.com/embed/v2/VIDEO_ID"
-            allowfullscreen></iframe>
-  </div>
-
-  <!-- Instagram -->
-  <div class="card">
-    <iframe src="https://www.instagram.com/reel/REEL_ID/embed"
-            allowfullscreen></iframe>
-  </div>
+    <div class="videos-grid" id="videoGrid"></div>
+  </section>
 
 </div>
-</section>
+</main>
+
+<!-- MODAL -->
+<div class="video-modal" id="videoModal">
+  <div class="video-modal-content">
+    <button class="video-modal-close" id="modalClose">×</button>
+    <div class="video-modal-frame" id="modalFrame"></div>
+  </div>
+</div>
+
+<script>
+const videos = [
+  {
+    src: "https://player.vimeo.com/video/1141818722",
+    type: "Commercial",
+    date: "2025-12-10"
+  },
+  {
+    src: "https://player.vimeo.com/video/1137725566",
+    type: "Healthcare",
+    date: "2025-11-22"
+  },
+  {
+    src: "https://www.youtube.com/embed/n4gmpMHBUK4",
+    type: "Broadcast",
+    date: "2025-10-01"
+  },
+  {
+    src: "https://player.vimeo.com/video/1088303838",
+    type: "Documentary",
+    date: "2025-09-15"
+  },
+  {
+    src: "https://player.vimeo.com/video/697540206",
+    type: "Human Stories",
+    date: "2025-08-01"
+  }
+];
+
+// sort newest → oldest
+videos.sort((a,b)=> new Date(b.date) - new Date(a.date));
+
+const grid = document.getElementById('videoGrid');
+const modal = document.getElementById('videoModal');
+const frame = document.getElementById('modalFrame');
+const closeBtn = document.getElementById('modalClose');
+const filters = document.querySelectorAll('.reels-filter');
+
+function render(filter="All") {
+  grid.innerHTML = '';
+  videos
+    .filter(v => filter === "All" || v.type === filter)
+    .forEach((v, i) => {
+      const card = document.createElement('div');
+      card.className = 'video-card';
+      card.innerHTML = `
+        <div class="video-thumb">
+          <div class="video-thumb-overlay">
+            <div class="video-index">${v.type}</div>
+            <div class="video-play-icon">▶</div>
+          </div>
+        </div>`;
+      card.onclick = () => openVideo(v.src);
+      grid.appendChild(card);
+    });
+}
+
+function openVideo(src) {
+  frame.innerHTML = `<iframe src="${src}?autoplay=1" allow="autoplay; fullscreen"></iframe>`;
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+closeBtn.onclick = () => {
+  modal.classList.remove('open');
+  frame.innerHTML = '';
+  document.body.style.overflow = '';
+};
+
+filters.forEach(f => {
+  f.onclick = () => {
+    filters.forEach(x => x.classList.remove('active'));
+    f.classList.add('active');
+    render(f.dataset.filter);
+  };
+});
+
+render();
+</script>
 
 </body>
 </html>
