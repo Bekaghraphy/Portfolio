@@ -1,197 +1,204 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Reels | Hesham Abdelhamed</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta charset="UTF-8">
+<title>Reels | Hesham Abdelhamed</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 
-  <style>
-    :root {
-      --gold: #f5c04a;
-      --bg: #000;
-      --text: #fff;
-      --muted: rgba(255,255,255,0.7);
-    }
+<style>
+:root {
+  --bg:#000;
+  --text:#fff;
+  --muted:rgba(255,255,255,.7);
+  --gold:#f5c04a;
+}
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Montserrat', sans-serif;
-    }
+* {
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Montserrat',sans-serif;
+}
 
-    body {
-      background: var(--bg);
-      color: var(--text);
-      overflow-x: hidden;
-    }
+body {
+  background:var(--bg);
+  color:var(--text);
+}
 
-    /* ===== HERO REEL ===== */
-    .reel-hero {
-      position: relative;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+/* ===== HERO ===== */
+.hero {
+  position:relative;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;
+}
 
-    .reel-video {
-      height: 100%;
-      width: auto;
-      aspect-ratio: 9 / 16;
-      object-fit: cover;
-    }
+.hero iframe {
+  aspect-ratio:9/16;
+  height:100%;
+  max-width:420px;
+  border:0;
+}
 
-    .hero-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        to bottom,
-        rgba(0,0,0,0.6),
-        rgba(0,0,0,0.85)
-      );
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 40px;
-    }
+.hero-overlay {
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to bottom,rgba(0,0,0,.6),rgba(0,0,0,.9));
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:40px;
+}
 
-    .hero-overlay h1 {
-      font-size: clamp(36px, 6vw, 72px);
-      font-weight: 700;
-    }
+.hero-overlay h1 {
+  font-size:clamp(36px,6vw,72px);
+  font-weight:700;
+}
 
-    .hero-overlay h1 span {
-      color: var(--gold);
-    }
+.hero-overlay h1 span {
+  color:var(--gold);
+}
 
-    .hero-overlay p {
-      max-width: 480px;
-      margin-top: 16px;
-      font-size: 16px;
-      color: var(--muted);
-      line-height: 1.6;
-    }
+.hero-overlay p {
+  margin-top:16px;
+  max-width:460px;
+  line-height:1.6;
+  color:var(--muted);
+}
 
-    .hero-overlay button {
-      margin-top: 28px;
-      width: fit-content;
-      padding: 14px 28px;
-      border-radius: 40px;
-      border: none;
-      background: var(--gold);
-      color: #000;
-      font-weight: 600;
-      cursor: pointer;
-      transition: transform 0.3s ease;
-    }
+.hero-overlay button {
+  margin-top:28px;
+  padding:14px 28px;
+  border-radius:40px;
+  border:none;
+  background:var(--gold);
+  color:#000;
+  font-weight:600;
+  cursor:pointer;
+}
 
-    .hero-overlay button:hover {
-      transform: scale(1.05);
-    }
+/* ===== REELS GRID ===== */
+.reels {
+  padding:80px 6vw;
+}
 
-    /* ===== REELS GRID ===== */
-    .reels-section {
-      padding: 80px 6vw;
-    }
+.reels h2 {
+  font-size:28px;
+  margin-bottom:24px;
+}
 
-    .reels-title {
-      font-size: 28px;
-      margin-bottom: 24px;
-    }
+.grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+  gap:20px;
+}
 
-    .reels-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 20px;
-    }
+.card {
+  aspect-ratio:9/16;
+  background:#111;
+  border-radius:18px;
+  overflow:hidden;
+  position:relative;
+}
 
-    .reel-card {
-      position: relative;
-      aspect-ratio: 9 / 16;
-      border-radius: 18px;
-      overflow: hidden;
-      cursor: pointer;
-      background: #111;
-    }
+.card iframe {
+  width:100%;
+  height:100%;
+  border:0;
+}
 
-    .reel-card video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+.card::after {
+  content:"▶";
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:40px;
+  opacity:0;
+  background:rgba(0,0,0,.4);
+  transition:.3s;
+}
 
-    .reel-card::after {
-      content: "▶";
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 42px;
-      color: #fff;
-      opacity: 0;
-      background: rgba(0,0,0,0.4);
-      transition: opacity 0.3s ease;
-    }
+.card:hover::after {
+  opacity:1;
+}
 
-    .reel-card:hover::after {
-      opacity: 1;
-    }
-
-    /* ===== MOBILE ===== */
-    @media (max-width: 768px) {
-      .hero-overlay {
-        padding: 24px;
-      }
-
-      .hero-overlay p {
-        font-size: 14px;
-      }
-    }
-  </style>
+/* ===== MOBILE ===== */
+@media(max-width:768px){
+  .hero-overlay{
+    padding:24px;
+  }
+}
+</style>
 </head>
 
 <body>
 
-  <!-- HERO -->
-  <section class="reel-hero">
-    <!-- استبدل الفيديو ده بأول Reel -->
-    <video class="reel-video" src="videos/reel-01.mp4" autoplay muted loop playsinline></video>
+<!-- ===== HERO REEL ===== -->
+<section class="hero">
 
-    <div class="hero-overlay">
-      <h1>Vertical <span>Reels</span>.</h1>
-      <p>
-        Short-form cinematic stories crafted for vertical screens — designed to stop the scroll and hold attention.
-      </p>
-      <button onclick="document.querySelector('.reels-section').scrollIntoView({behavior:'smooth'})">
-        Watch More
-      </button>
-    </div>
-  </section>
+  <!-- 🔴 HERO VIDEO LINK (يفضل Vimeo أو YouTube) -->
+  <!-- Vimeo Example -->
+  <!--
+  <iframe src="https://player.vimeo.com/video/VIDEO_ID?autoplay=1&muted=1&loop=1&background=1"
+          allow="autoplay; fullscreen"></iframe>
+  -->
 
-  <!-- REELS GRID -->
-  <section class="reels-section">
-    <h2 class="reels-title">Reels Library</h2>
+  <!-- YouTube Example -->
+  <iframe src="https://www.youtube.com/embed/VIDEO_ID?autoplay=1&mute=1&loop=1&controls=0&playlist=VIDEO_ID"
+          allow="autoplay; encrypted-media"></iframe>
 
-    <div class="reels-grid">
-      <!-- كرر البلوك ده -->
-      <div class="reel-card">
-        <video src="videos/reel-02.mp4" muted loop></video>
-      </div>
+  <div class="hero-overlay">
+    <h1>Vertical <span>Reels</span>.</h1>
+    <p>
+      Short cinematic stories crafted for vertical screens —
+      designed to stop the scroll and hold attention.
+    </p>
+    <button onclick="document.querySelector('.reels').scrollIntoView({behavior:'smooth'})">
+      Watch More
+    </button>
+  </div>
+</section>
 
-      <div class="reel-card">
-        <video src="videos/reel-03.mp4" muted loop></video>
-      </div>
+<!-- ===== REELS GRID ===== -->
+<section class="reels">
+<h2>Reels Library</h2>
 
-      <div class="reel-card">
-        <video src="videos/reel-04.mp4" muted loop></video>
-      </div>
-    </div>
-  </section>
+<div class="grid">
+
+  <!-- ===== REEL CARD ===== -->
+
+  <!-- YouTube -->
+  <div class="card">
+    <iframe src="https://www.youtube.com/embed/VIDEO_ID"
+            allowfullscreen></iframe>
+  </div>
+
+  <!-- Vimeo -->
+  <div class="card">
+    <iframe src="https://player.vimeo.com/video/VIDEO_ID"
+            allowfullscreen></iframe>
+  </div>
+
+  <!-- TikTok -->
+  <div class="card">
+    <iframe src="https://www.tiktok.com/embed/v2/VIDEO_ID"
+            allowfullscreen></iframe>
+  </div>
+
+  <!-- Instagram -->
+  <div class="card">
+    <iframe src="https://www.instagram.com/reel/REEL_ID/embed"
+            allowfullscreen></iframe>
+  </div>
+
+</div>
+</section>
 
 </body>
 </html>
