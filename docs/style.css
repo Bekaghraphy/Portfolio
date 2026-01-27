@@ -74,12 +74,7 @@ body.page-loaded { opacity: 1; }
   z-index: 0;
 }
 
-.hero-overlay{
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.25), rgba(0,0,0,0.85));
-}
+.hero-overlay{ display:none; } /* يقفلها تمامًا */
 
 .hero-content{
   position: relative;
@@ -250,7 +245,10 @@ body.page-loaded { opacity: 1; }
     background-position: center top;
   }
 
-  .hero-name { font-size: 34px; }
+  .hero-name{
+  text-shadow: 0 0 18px rgba(212,175,55,.25);
+}
+
   .hero-heading { font-size: 28px; }
 
   .hero-sub {
@@ -288,9 +286,14 @@ body {
   z-index: 6; /* فوق النص علشان الحركة تبان */
 }
 
-/* نخفي الاسم الحقيقي لما الـ particles تشتغل */
-.hero-name.particles-hide{
-  color: transparent !important;
-  text-shadow: none !important;
+.nav{
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  box-shadow: none !important;
 }
 
+.nav::before,
+.nav::after{
+  content: none !important;
+}
