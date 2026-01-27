@@ -23,8 +23,8 @@
 
     /* ===== GLOBAL NAVBAR ===== */
     .site-nav {
-      position: fixed;
-      top: 24px;
+      position: relative;
+      top: 0;
       left: 0;
       right: 0;
       z-index: 100;
@@ -232,14 +232,14 @@
     <source src="img/5.mp4" type="video/mp4" />
   </video>
 
+  <canvas id="nameParticles" aria-hidden="true"></canvas>
+
   <div class="hero-overlay"></div>
 
   <div class="hero-content">
     <h1 class="hero-name">HESHAM ABDELHAMED</h1>
 
-    <div class="hero-heading">
-      CINEMATIC<br>VISUAL STORIES
-    </div>
+    <div class="hero-heading"><span id="typeTarget"></span><span class="cursor">|</span></div>
 
     <div class="hero-sub">
       I am a filmmaker and video editor crafting cinematic narratives,
@@ -262,6 +262,178 @@
     }, 1000);
   });
 </script>
+
+<script>
+/* ============ TYPEWRITER (Hero Heading) ============ */
+(function(){
+  const el = document.getElementById("typeTarget");
+  if(!el) return;
+
+  const text = "CINEMATIC\nVISUAL STORIES";
+  const speed = 55;      // ms per char
+  const startDelay = 450; // ms
+
+  let i = 0;
+  function tick(){
+    i++;
+    const current = text.slice(0, i)
+      .replace(/\n/g, "<br>");
+    el.innerHTML = current;
+
+    if(i < text.length){
+      setTimeout(tick, speed);
+    }
+  }
+  setTimeout(tick, startDelay);
+})();
+
+/* ============ PARTICLE TEXT (Name only) ============ */
+(function(){
+  const canvas = document.getElementById("nameParticles");
+  const nameEl = document.querySelector(".hero-name");
+  if(!canvas || !nameEl) return;
+
+  const ctx = canvas.getContext("2d", { alpha: true });
+  const dpr = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
+
+  let particles = [];
+  let targets = [];
+  let animId = null;
+
+  function resize(){
+    const w = Math.floor(window.innerWidth);
+    const h = Math.floor(window.innerHeight);
+    canvas.width  = Math.floor(w * dpr);
+    canvas.height = Math.floor(h * dpr);
+    canvas.style.width = w + "px";
+    canvas.style.height = h + "px";
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    buildTargets();
+  }
+
+  function buildTargets(){
+    // Offscreen canvas to rasterize text
+    const w = window.innerWidth;
+    const h = window.innerHeight;
+
+    const rect = nameEl.getBoundingClientRect();
+    const text = nameEl.textContent.trim();
+    if(!text) return;
+
+    const off = document.createElement("canvas");
+    off.width = w;
+    off.height = h;
+    const offCtx = off.getContext("2d");
+
+    const style = getComputedStyle(nameEl);
+    const fontSize = parseFloat(style.fontSize) || 40;
+    const fontWeight = style.fontWeight || "700";
+    const fontFamily = style.fontFamily || "Montserrat, sans-serif";
+
+    offCtx.clearRect(0,0,w,h);
+    offCtx.fillStyle = "#ffffff";
+    offCtx.textBaseline = "top";
+    offCtx.font = `${fontWeight} ${fontSize}px ${fontFamily}`;
+
+    // draw text where the H1 is
+    offCtx.fillText(text, rect.left, rect.top);
+
+    const img = offCtx.getImageData(0, 0, w, h).data;
+
+    targets = [];
+    const step = 4; // smaller = denser
+    for(let y = 0; y < h; y += step){
+      for(let x = 0; x < w; x += step){
+        const a = img[(y*w + x)*4 + 3];
+        if(a > 10){
+          targets.push({ x, y });
+        }
+      }
+    }
+
+    // init particles (keep count stable)
+    const count = Math.min(900, Math.max(220, Math.floor(targets.length * 0.08)));
+    const needed = count - particles.length;
+
+    if(needed > 0){
+      for(let i=0;i<needed;i++){
+        particles.push({
+          x: rect.left + Math.random()*rect.width,
+          y: rect.top + Math.random()*rect.height + 40,
+          vx: 0,
+          vy: 0,
+          tx: 0,
+          ty: 0
+        });
+      }
+    }else if(needed < 0){
+      particles = particles.slice(0, count);
+    }
+
+    // assign targets
+    for(let i=0;i<particles.length;i++){
+      const t = targets[Math.floor(Math.random() * targets.length)] || {x: rect.left, y: rect.top};
+      particles[i].tx = t.x;
+      particles[i].ty = t.y;
+    }
+
+    start();
+  }
+
+  function start(){
+    if(animId) cancelAnimationFrame(animId);
+    animate();
+  }
+
+  function animate(){
+    const w = window.innerWidth;
+    const h = window.innerHeight;
+    ctx.clearRect(0,0,w,h);
+
+    // style (gold)
+    ctx.fillStyle = "rgba(212,175,55,0.85)";
+
+    const ease = 0.06;
+    const friction = 0.86;
+
+    for(const p of particles){
+      const dx = p.tx - p.x;
+      const dy = p.ty - p.y;
+
+      p.vx += dx * ease;
+      p.vy += dy * ease;
+
+      p.vx *= friction;
+      p.vy *= friction;
+
+      p.x += p.vx;
+      p.y += p.vy;
+
+      // draw
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, 1.1, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    animId = requestAnimationFrame(animate);
+  }
+
+  // Rebuild on resize (debounced)
+  let rT = null;
+  window.addEventListener("resize", () => {
+    clearTimeout(rT);
+    rT = setTimeout(resize, 180);
+  });
+
+  // If fonts load late, wait a bit
+  window.addEventListener("load", () => {
+    resize();
+    setTimeout(buildTargets, 350);
+  });
+})();
+</script>
+
 <!-- SOCIAL ICONS -->
 <div class="social-icons">
   <a href="https://www.linkedin.com/in/heshamabdelhamed" target="_blank" class="icon-circle">
@@ -294,3 +466,4 @@
 </div>
 </body>
 </html>
+
