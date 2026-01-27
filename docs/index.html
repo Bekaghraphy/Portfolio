@@ -199,6 +199,32 @@
     gap: 10px;
   }
 }
+    .hero{
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-bg{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.hero-overlay{
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  /* لو عندك ستايل قديم للـ overlay سيبه، أو استخدم ده */
+  background: rgba(0,0,0,0.35);
+}
+
+.hero-content{
+  position: relative;
+  z-index: 2;
+}
   </style>
 </head>
 
@@ -206,7 +232,7 @@
 
 <div id="loader">
   <img src="img/favicon.png" alt="Loading Logo">
-  <span>Loading<span class="dots">...</span></span>
+  <span>Welcome<span class="dots">...</span></span>
 </div>
 
 <header class="nav">
@@ -227,7 +253,11 @@
   </nav>
 </header>
 
-<section class="hero" id="hero" style="background-image:url('img/home-hero.jpg');">
+<section class="hero" id="hero">
+  <video class="hero-bg" autoplay muted loop playsinline preload="auto">
+    <source src="img/5.mp4" type="video/mp4" />
+  </video>
+
   <div class="hero-overlay"></div>
 
   <div class="hero-content">
