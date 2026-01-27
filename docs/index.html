@@ -316,8 +316,14 @@
     const h = window.innerHeight;
 
     const rect = nameEl.getBoundingClientRect();
-    const text = nameEl.textContent.trim();
-    if(!text || rect.width < 10) return;
+const heroRect = hero.getBoundingClientRect();
+
+const x0 = rect.left - heroRect.left;
+const y0 = rect.top  - heroRect.top;
+
+...
+offCtx.fillText(text, x0, y0);
+
 
     const off = document.createElement("canvas");
     off.width = w;
@@ -351,11 +357,12 @@
     // عدد particles ثابت (واضح)
     const count = Math.min(1400, Math.max(450, Math.floor(points.length * 0.12)));
     particles = new Array(count).fill(0).map((_,i)=>{
-      const p = points[(Math.random()*points.length)|0] || {x:rect.left, y:rect.top};
+      const p = points[(Math.random()*points.length)|0] || {x:x0, y:y0};
       // تبدأ متبعثرة حوالين مكان الاسم
       return {
-        x: rect.left + (Math.random()*rect.width),
-        y: rect.top  + (Math.random()*rect.height) + 60,
+        x: x0 + (Math.random()*rect.width),
+y: y0 + (Math.random()*rect.height) + 60,
+
         vx: (Math.random()-0.5)*3,
         vy: (Math.random()-0.5)*3,
         tx: p.x,
@@ -415,9 +422,19 @@
   }
 
   window.addEventListener("mousemove", (e)=>{
-    mouse.x = e.clientX;
-    mouse.y = e.clientY;
-  });
+  const r = hero.getBoundingClientRect();
+  mouse.x = e.clientX - r.left;
+  mouse.y = e.clientY - r.top;
+});
+
+window.addEventListener("touchmove", (e)=>{
+  const t = e.touches && e.touches[0];
+  if(!t) return;
+  const r = hero.getBoundingClientRect();
+  mouse.x = t.clientX - r.left;
+  mouse.y = t.clientY - r.top;
+}, { passive:true });
+
 
   // touch
   window.addEventListener("touchmove", (e)=>{
