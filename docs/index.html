@@ -232,14 +232,18 @@
     <source src="img/5.mp4" type="video/mp4" />
   </video>
 
-  <canvas id="nameParticles" aria-hidden="true"></canvas>
+  <!-- Canvas للـ particles على الاسم -->
+  <canvas id="nameParticles"></canvas>
 
+  <!-- Overlay للهيرو فقط (مش للـ navbar) -->
   <div class="hero-overlay"></div>
 
   <div class="hero-content">
     <h1 class="hero-name">Hesham Abdelhamed</h1>
 
-    <div class="hero-heading"><span id="typeTarget"></span><span class="cursor">|</span></div>
+    <div class="hero-heading">
+      <span id="typeTarget"></span><span class="type-cursor">|</span>
+    </div>
 
     <div class="hero-sub">
       I am a filmmaker and video editor crafting cinematic narratives,
@@ -248,6 +252,7 @@
     </div>
   </div>
 </section>
+
 
 <footer class="site-footer">
   © 2025 Hesham Abdelhamed I All rights reserved.
@@ -488,6 +493,201 @@ window.addEventListener("touchmove", (e)=>{
     <img src="img/phone.png" alt="Phone">
   </a>
 </div>
+  <script>
+/* ===== TYPEWRITER ===== */
+(function(){
+  const el = document.getElementById("typeTarget");
+  if(!el) return;
+
+  const lines = ["CINEMATIC", "VISUAL STORIES"];
+  const text = lines.join("\n");
+  const speed = 55;
+  const startDelay = 250;
+
+  let i = 0;
+  function tick(){
+    i++;
+    el.innerHTML = text.slice(0, i).replace(/\n/g, "<br>");
+    if(i < text.length) setTimeout(tick, speed);
+  }
+  setTimeout(tick, startDelay);
+})();
+
+/* ===== PARTICLES NAME (FRAMER-LIKE) ===== */
+(function(){
+  const hero = document.getElementById("hero");
+  const canvas = document.getElementById("nameParticles");
+  const nameEl = document.querySelector(".hero-name");
+  if(!hero || !canvas || !nameEl) return;
+
+  const ctx = canvas.getContext("2d", { alpha:true });
+  const dpr = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
+
+  let particles = [];
+  let targets = [];
+  let raf = null;
+
+  const mouse = { x: -9999, y: -9999, r: 90 };
+
+  function resize(){
+    const w = hero.clientWidth;
+    const h = hero.clientHeight;
+
+    canvas.width  = Math.floor(w * dpr);
+    canvas.height = Math.floor(h * dpr);
+    canvas.style.width = w + "px";
+    canvas.style.height = h + "px";
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    buildTargets();
+  }
+
+  function buildTargets(){
+    const w = hero.clientWidth;
+    const h = hero.clientHeight;
+
+    const rect = nameEl.getBoundingClientRect();
+    const heroRect = hero.getBoundingClientRect();
+
+    const x0 = rect.left - heroRect.left;
+    const y0 = rect.top  - heroRect.top;
+
+    const text = nameEl.textContent.trim();
+    if(!text) return;
+
+    const st = getComputedStyle(nameEl);
+    const fontSize = parseFloat(st.fontSize) || 48;
+    const fontWeight = st.fontWeight || "800";
+    const fontFamily = st.fontFamily || "Montserrat, sans-serif";
+
+    // offscreen render
+    const off = document.createElement("canvas");
+    off.width = w;
+    off.height = h;
+    const o = off.getContext("2d");
+
+    o.clearRect(0,0,w,h);
+    o.fillStyle = "#fff";
+    o.textBaseline = "top";
+    o.font = `${fontWeight} ${fontSize}px ${fontFamily}`;
+    o.fillText(text, x0, y0);
+
+    const img = o.getImageData(0,0,w,h).data;
+    targets = [];
+
+    const step = 3; // كثافة
+    for(let y=0; y<h; y+=step){
+      for(let x=0; x<w; x+=step){
+        const a = img[(y*w + x)*4 + 3];
+        if(a > 30) targets.push({x,y});
+      }
+    }
+
+    // particles count
+    const count = Math.min(1200, Math.max(450, Math.floor(targets.length * 0.12)));
+    particles = new Array(count).fill(0).map(() => {
+      const t = targets[(Math.random()*targets.length)|0] || {x:x0, y:y0};
+      return {
+        x: x0 + (Math.random()*rect.width) + (Math.random()*220 - 110),
+        y: y0 + (Math.random()*rect.height) + (Math.random()*120 - 60),
+        vx: (Math.random()-0.5)*6,
+        vy: (Math.random()-0.5)*6,
+        tx: t.x,
+        ty: t.y,
+        lock: false
+      };
+    });
+
+    start();
+  }
+
+  function start(){
+    if(raf) cancelAnimationFrame(raf);
+    animate();
+  }
+
+  function animate(){
+    const w = hero.clientWidth;
+    const h = hero.clientHeight;
+
+    ctx.clearRect(0,0,w,h);
+
+    // لون ذهبي مثل الهوية
+    ctx.fillStyle = "rgba(212,175,55,0.95)";
+
+    const ease = 0.08;
+    const friction = 0.82;
+    const lockDist = 0.9;
+
+    for(const p of particles){
+      // جذب للهدف
+      const dx = p.tx - p.x;
+      const dy = p.ty - p.y;
+
+      p.vx += dx * ease;
+      p.vy += dy * ease;
+
+      // repel mouse
+      const mx = p.x - mouse.x;
+      const my = p.y - mouse.y;
+      const dist = Math.hypot(mx,my);
+      if(dist < mouse.r){
+        const f = (1 - dist/mouse.r) * 7;
+        p.vx += (mx / (dist || 1)) * f;
+        p.vy += (my / (dist || 1)) * f;
+      }
+
+      p.vx *= friction;
+      p.vy *= friction;
+
+      p.x += p.vx;
+      p.y += p.vy;
+
+      // بعد ما يوصل لمكانه: يهدي ويعمل shimmer بسيط
+      if(Math.abs(dx) < lockDist && Math.abs(dy) < lockDist){
+        p.lock = true;
+      }
+      if(p.lock){
+        p.x += (Math.random()-0.5) * 0.35;
+        p.y += (Math.random()-0.5) * 0.35;
+      }
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, 1.25, 0, Math.PI*2);
+      ctx.fill();
+    }
+
+    raf = requestAnimationFrame(animate);
+  }
+
+  // mouse relative to hero
+  window.addEventListener("mousemove", (e)=>{
+    const r = hero.getBoundingClientRect();
+    mouse.x = e.clientX - r.left;
+    mouse.y = e.clientY - r.top;
+  });
+
+  window.addEventListener("touchmove", (e)=>{
+    const t = e.touches && e.touches[0];
+    if(!t) return;
+    const r = hero.getBoundingClientRect();
+    mouse.x = t.clientX - r.left;
+    mouse.y = t.clientY - r.top;
+  }, { passive:true });
+
+  let rt=null;
+  window.addEventListener("resize", ()=>{
+    clearTimeout(rt);
+    rt=setTimeout(resize, 160);
+  });
+
+  // ensure fonts ready
+  window.addEventListener("load", ()=>{
+    resize();
+    setTimeout(buildTargets, 350);
+  });
+})();
+</script>
 </body>
 </html>
 
