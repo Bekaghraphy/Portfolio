@@ -288,8 +288,6 @@
   const nameEl = document.querySelector(".hero-name");
   if(!canvas || !nameEl) return;
 
-  // اخفي النص الأصلي عشان الـ particles تبان كـ animation على الاسم نفسه
-  nameEl.classList.add("particles-hide");
 
   const ctx = canvas.getContext("2d", { alpha: true });
   const dpr = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
