@@ -1,138 +1,461 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Profile | Hesham Abdelhamed</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Portfolio Journey | Hesham Abdelhamed</title>
 
-<link rel="icon" href="img/favicon.png"/>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+  <link rel="icon" type="image/png" href="img/favicon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet" />
 
-<style>
-:root{
-  --bg:#000;
-  --panel:rgba(255,255,255,.04);
-  --border:rgba(255,255,255,.08);
-  --gold:#d8b97a;
-  --text:#fff;
-  --muted:rgba(255,255,255,.7);
-}
+  <style>
+    :root{
+      --bg:#000;
+      --bg2:#070707;
+      --ink:#ffffff;
+      --muted:rgba(255,255,255,.72);
+      --muted2:rgba(255,255,255,.52);
+      --gold:#d8b97a;
+      --gold2:rgba(216,185,122,.35);
+      --line:rgba(255,255,255,.10);
+      --line2:rgba(216,185,122,.22);
+      --max:1150px;
+      --pad: clamp(18px, 4vw, 44px);
+      --radius: 18px;
+      --shadow: 0 0 26px rgba(216,185,122,.18);
+    }
 
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  margin:0;
-  background:var(--bg);
-  color:var(--text);
-  font-family:Montserrat,sans-serif;
-  padding-top:110px;
-}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:"Montserrat",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background: radial-gradient(1100px 600px at 20% -10%, rgba(216,185,122,.14), transparent 60%),
+                  radial-gradient(900px 500px at 90% 10%, rgba(216,185,122,.10), transparent 55%),
+                  var(--bg);
+      color:var(--ink);
+      padding-top:96px;
+      overflow-x:hidden;
+    }
 
-/* NAV */
-.nav{
-  position:fixed;top:0;left:0;right:0;
-  background:rgba(0,0,0,.65);
-  backdrop-filter:blur(10px);
-  border-bottom:1px solid var(--border);
-  z-index:1000;
-}
-.site-nav{
-  display:flex;justify-content:center;gap:28px;
-  padding:18px 0;
-}
-.site-nav a{
-  color:#fff;text-decoration:none;
-  font-size:14px;letter-spacing:.18em;
-  text-transform:uppercase;opacity:.75;
-}
-.site-nav a.active,.site-nav a:hover{
-  color:var(--gold);opacity:1;
-}
+    /* ===== TOP NAV ===== */
+    header.nav{
+      position:fixed;
+      top:0;left:0;right:0;
+      z-index:1000;
+      background:rgba(0,0,0,.66);
+      backdrop-filter: blur(12px);
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    .site-nav{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:16px var(--pad);
+      display:flex;
+      justify-content:center;
+      gap:26px;
+      overflow:auto;
+      white-space:nowrap;
+    }
+    .site-nav::-webkit-scrollbar{display:none}
+    .site-nav a{
+      color:#fff;
+      text-decoration:none;
+      font-size:13px;
+      font-weight:500;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      opacity:.75;
+      transition: opacity .2s ease, color .2s ease;
+    }
+    .site-nav a:hover{opacity:1}
+    .site-nav a.active{color:var(--gold);opacity:1}
 
-/* WRAP */
-.wrap{width:92%;max-width:1100px;margin:auto}
+    /* ===== WRAPPER ===== */
+    main{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:0 var(--pad) 90px;
+    }
 
-/* LANG */
-.lang{
-  display:flex;gap:12px;margin:20px 0 40px
-}
-.lang button{
-  padding:8px 18px;border-radius:999px;
-  border:1px solid var(--gold);
-  background:transparent;color:var(--gold);
-  cursor:pointer;font-size:12px;font-weight:600
-}
-.lang button.active{background:var(--gold);color:#000}
+    /* ===== LANGUAGE SWITCH ===== */
+    .langbar{
+      display:flex;
+      justify-content:flex-end;
+      gap:10px;
+      margin: 16px 0 8px;
+    }
+    .langbtn{
+      appearance:none;
+      border:1px solid var(--gold);
+      background:transparent;
+      color:var(--gold);
+      padding:8px 16px;
+      border-radius:999px;
+      font-weight:700;
+      font-size:12px;
+      letter-spacing:.08em;
+      cursor:pointer;
+      transition:.2s ease;
+    }
+    .langbtn.active{
+      background:var(--gold);
+      color:#000;
+      box-shadow: var(--shadow);
+    }
 
-/* HERO */
-.hero{
-  display:flex;gap:32px;align-items:center;
-  margin-bottom:40px
-}
-.hero img{
-  width:130px;height:130px;border-radius:14px;
-  object-fit:cover;border:2px solid var(--gold);
-  box-shadow:0 0 22px rgba(216,185,122,.35)
-}
-.h-title{font-size:34px;color:var(--gold);font-weight:700}
-.h-role{opacity:.85;margin:6px 0}
-.h-meta{font-size:14px;opacity:.7;line-height:1.7}
+    /* ===== HERO (COVER) ===== */
+    .hero{
+      position:relative;
+      padding: 26px 0 34px;
+    }
+    .herogrid{
+      display:grid;
+      grid-template-columns: 150px 1fr;
+      gap:24px;
+      align-items:center;
+      padding-top:6px;
+    }
+    .avatar{
+      width:140px;height:140px;
+      border-radius:16px;
+      object-fit:cover;
+      border:2px solid var(--gold);
+      box-shadow: 0 0 28px rgba(216,185,122,.32);
+    }
+    .kicker{
+      color:var(--muted2);
+      letter-spacing:.22em;
+      text-transform:uppercase;
+      font-size:12px;
+      margin-bottom:8px;
+    }
+    h1{
+      margin:0;
+      font-size: clamp(34px, 5vw, 54px);
+      line-height:1.05;
+      letter-spacing:.02em;
+      color:var(--gold);
+      font-weight:800;
+    }
+    .role{
+      margin-top:10px;
+      font-size: 15px;
+      color: var(--muted);
+      line-height:1.7;
+    }
+    .meta{
+      margin-top:10px;
+      font-size: 13px;
+      color: var(--muted2);
+      line-height:1.7;
+    }
 
-/* BTN */
-.btn{
-  display:inline-block;margin:18px 0 40px;
-  padding:10px 26px;border-radius:999px;
-  background:var(--gold);color:#000;
-  font-weight:600;text-decoration:none;
-  box-shadow:0 0 18px rgba(216,185,122,.6)
-}
+    .heroActions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:18px;
+      align-items:center;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      text-decoration:none;
+      padding:10px 18px;
+      border-radius:999px;
+      font-weight:800;
+      font-size:13px;
+      letter-spacing:.06em;
+      border:1px solid rgba(255,255,255,.12);
+      transition:.22s ease;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .btnPrimary{
+      background:var(--gold);
+      color:#000;
+      border-color:transparent;
+      box-shadow: 0 0 20px rgba(216,185,122,.55);
+    }
+    .btnPrimary:hover{transform:translateY(-1px);filter:brightness(1.03)}
+    .btnGhost{
+      background:rgba(255,255,255,.02);
+      color:#fff;
+    }
+    .btnGhost:hover{border-color:rgba(216,185,122,.35);transform:translateY(-1px)}
+    .btn svg{width:18px;height:18px}
 
-/* SECTIONS */
-.section{margin-bottom:64px}
-.st{
-  color:var(--gold);font-size:22px;
-  font-weight:700;margin-bottom:16px
-}
-.box{
-  background:var(--panel);border:1px solid var(--border);
-  border-radius:16px;padding:22px;
-  line-height:1.8;font-size:15px
-}
+    /* ===== DIVIDER LINES ===== */
+    .divider{
+      height:1px;
+      background: linear-gradient(90deg, transparent, var(--line2), var(--line), transparent);
+      margin: 26px 0;
+    }
 
-/* STORY ANIMATION */
-.fade{opacity:0;transform:translateY(30px);transition:.8s}
-.fade.show{opacity:1;transform:none}
+    /* ===== SECTION STYLE (NO BOXES) ===== */
+    section.block{
+      position:relative;
+      padding: 34px 0;
+    }
+    .titleRow{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:20px;
+      margin-bottom:14px;
+    }
+    .h2{
+      margin:0;
+      font-size: clamp(22px, 3vw, 30px);
+      font-weight:800;
+      color:var(--gold);
+      letter-spacing:.02em;
+    }
+    .hint{
+      color:var(--muted2);
+      font-size:12px;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      white-space:nowrap;
+    }
+    .lead{
+      margin:0;
+      max-width: 860px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height:1.95;
+    }
+    .quoteLine{
+      margin-top:18px;
+      padding-left:14px;
+      border-left:2px solid var(--gold);
+      color:#fff;
+      font-weight:700;
+      letter-spacing:.01em;
+    }
 
-/* VALUES */
-.values{display:grid;gap:10px}
-.values span{opacity:.85}
+    /* ===== DOODLE ICONS (SVG) ===== */
+    .doodle{
+      position:absolute;
+      right:-18px;
+      top:8px;
+      width: 190px;
+      opacity:.55;
+      pointer-events:none;
+      filter: drop-shadow(0 0 14px rgba(216,185,122,.18));
+    }
+    .doodle path, .doodle circle, .doodle line, .doodle polyline{
+      stroke: rgba(216,185,122,.85);
+      stroke-width: 2;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 240;
+      stroke-dashoffset: 240;
+    }
+    .draw .doodle path,
+    .draw .doodle circle,
+    .draw .doodle line,
+    .draw .doodle polyline{
+      animation: draw 1.4s ease forwards;
+    }
+    @keyframes draw{
+      to{stroke-dashoffset:0}
+    }
 
-/* CREATE */
-.create{display:flex;flex-wrap:wrap;gap:14px}
-.tag{
-  padding:10px 18px;border-radius:999px;
-  border:1px solid var(--border);
-  color:var(--gold);font-size:13px
-}
+    /* ===== VALUES LIST ===== */
+    ul.clean{
+      margin:14px 0 0;
+      padding:0;
+      list-style:none;
+      max-width: 820px;
+      border-top:1px solid rgba(255,255,255,.08);
+    }
+    ul.clean li{
+      padding:14px 0;
+      border-bottom:1px solid rgba(255,255,255,.08);
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      color:var(--muted);
+      line-height:1.7;
+    }
+    ul.clean li span.bullet{
+      width:10px;height:10px;
+      border-radius:50%;
+      margin-top:6px;
+      background:var(--gold);
+      box-shadow:0 0 14px rgba(216,185,122,.45);
+      flex:0 0 auto;
+    }
 
-/* TIMELINE */
-.timeline{border-left:2px solid var(--gold);padding-left:22px}
-.exp{margin-bottom:28px}
-.exp h4{margin:0 0 6px}
-.exp small{opacity:.6}
-.exp p{opacity:.9}
+    /* ===== WHAT I CREATE ===== */
+    .chips{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:16px;
+      max-width: 920px;
+    }
+    .chip{
+      border:1px solid rgba(255,255,255,.12);
+      color:var(--gold);
+      padding:10px 14px;
+      border-radius:999px;
+      font-weight:800;
+      font-size:12px;
+      letter-spacing:.10em;
+      text-transform:uppercase;
+      background: rgba(255,255,255,.02);
+      transition:.2s ease;
+    }
+    .chip:hover{
+      transform:translateY(-1px);
+      border-color: rgba(216,185,122,.45);
+    }
 
-/* ARABIC */
-.ar{display:none;direction:rtl}
-.ar .timeline{border-left:none;border-right:2px solid var(--gold);padding-left:0;padding-right:22px}
+    /* ===== EDUCATION / SKILLS / TOOLS (LINE-BASED) ===== */
+    .cols{
+      display:grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap:22px;
+      margin-top:16px;
+    }
+    .col{
+      border-top:1px solid rgba(255,255,255,.10);
+      padding-top:14px;
+    }
+    .col h3{
+      margin:0 0 10px;
+      font-size:13px;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color: var(--muted2);
+    }
+    .col p{
+      margin:0 0 10px;
+      color: var(--muted);
+      line-height:1.8;
+      font-size:14px;
+    }
 
-/* FOOTER */
-.footer{text-align:center;opacity:.7;margin:60px 0}
+    /* ===== EXPERIENCE TIMELINE ===== */
+    .timeline{
+      position:relative;
+      margin-top:18px;
+      padding-left:22px;
+      border-left:2px solid var(--gold);
+    }
+    .item{
+      position:relative;
+      padding: 0 0 26px 0;
+      margin-bottom: 22px;
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    .dot{
+      position:absolute;
+      left:-29px;
+      top:4px;
+      width:12px;height:12px;
+      border-radius:50%;
+      background:var(--gold);
+      box-shadow:0 0 16px rgba(216,185,122,.55);
+    }
+    .item h4{
+      margin:0 0 6px;
+      font-size:16px;
+      color:#fff;
+      letter-spacing:.01em;
+    }
+    .small{
+      color:var(--muted2);
+      font-size:12px;
+      letter-spacing:.10em;
+      text-transform:uppercase;
+      margin-bottom:10px;
+    }
+    .desc{
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.9;
+      margin:0;
+      max-width: 920px;
+    }
+    .subline{
+      margin-top:12px;
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+      color: var(--muted2);
+      font-size:13px;
+    }
+    .badge{
+      border:1px solid rgba(216,185,122,.28);
+      color: rgba(216,185,122,.95);
+      padding:8px 12px;
+      border-radius:999px;
+      font-weight:800;
+      font-size:11px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      background:rgba(216,185,122,.06);
+    }
+    .logos{
+      margin-top:14px;
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      align-items:center;
+      opacity:.95;
+    }
+    .logos img{
+      height:26px;
+      width:auto;
+      filter: saturate(1.05);
+      opacity:.95;
+    }
 
-@media(max-width:768px){
-  .hero{flex-direction:column;align-items:flex-start}
-}
-</style>
+    /* ===== FOOTER ===== */
+    .footer{
+      text-align:center;
+      margin-top: 56px;
+      padding-top: 24px;
+      border-top:1px solid rgba(255,255,255,.10);
+      color: var(--muted2);
+      line-height:1.9;
+      font-size:13px;
+    }
+    .footer a{color:var(--gold);text-decoration:none}
+
+    /* ===== REVEAL ===== */
+    .reveal{
+      opacity:0;
+      transform: translateY(26px);
+      transition: .75s ease;
+    }
+    .reveal.show{
+      opacity:1;
+      transform:none;
+    }
+
+    /* ===== ARABIC MODE ===== */
+    .ar{display:none; direction:rtl}
+    .ar .site-nav{direction:ltr} /* keep global nav readable */
+    .ar .quoteLine{border-left:none;border-right:2px solid var(--gold);padding-left:0;padding-right:14px}
+    .ar .timeline{border-left:none;border-right:2px solid var(--gold);padding-left:0;padding-right:22px}
+    .ar .dot{left:auto; right:-29px}
+    .ar .doodle{right:auto; left:-18px}
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width:860px){
+      .herogrid{grid-template-columns:1fr; }
+      .avatar{width:120px;height:120px}
+      .cols{grid-template-columns:1fr; gap:14px}
+      .titleRow{flex-direction:column;align-items:flex-start}
+    }
+  </style>
 </head>
 
 <body>
@@ -143,189 +466,802 @@ body{
     <a href="my-work.html">My Work</a>
     <a href="reels.html">Reels</a>
     <a href="gallery.html">Gallery</a>
+    <a href="academy.html">Pro</a>
     <a href="cv.html" class="active">Profile</a>
+    <a href="show.html">Showreel</a>
   </nav>
 </header>
 
-<main class="wrap">
+<main>
 
-<div class="lang">
-  <button class="active" onclick="en()">English</button>
-  <button onclick="ar()">عربي</button>
-</div>
-
-<!-- ENGLISH -->
-<div class="en">
-
-<section class="hero fade">
-  <img src="img/heshampersonal.jpg"/>
-  <div>
-    <div class="h-title">Hesham Abdelhamed</div>
-    <div class="h-role">Visual Storyteller · Multimedia Producer</div>
-    <div class="h-meta">Based in Riyadh · Available for collaborations</div>
+  <!-- LANG -->
+  <div class="langbar">
+    <button class="langbtn active" id="btnEn" onclick="setLang('en')">English</button>
+    <button class="langbtn" id="btnAr" onclick="setLang('ar')">عربي</button>
   </div>
-</section>
 
-<a class="btn" href="Hesham-Abdelhamed-Portfolio.pdf" download>Download Portfolio PDF</a>
+  <!-- ================= ENGLISH ================= -->
+  <div class="en" id="en">
 
-<section class="section fade">
-  <div class="st">WHO AM I?</div>
-  <div class="box">
-    I am a visual storyteller crafting cinematic narratives with documentary sensitivity.
-    From concept to final cut, I focus on emotion, rhythm, and meaning.
+    <!-- COVER -->
+    <section class="hero reveal draw" id="cover">
+      <div class="herogrid">
+        <img class="avatar" src="img/heshampersonal.jpg" alt="Hesham Abdelhamed" />
+        <div>
+          <div class="kicker">Portfolio 2026</div>
+          <h1>HESHAM<br/>ABDELHAMED</h1>
+          <div class="role">VISUAL STORYTELLER &amp; CREATIVE BRAND</div>
+          <div class="meta">Based in Riyadh, Saudi Arabia · Available for collaborations</div>
+
+          <div class="heroActions">
+            <a class="btn btnPrimary" href="Hesham-Abdelhamed-Portfolio.pdf" download>
+              <svg viewBox="0 0 24 24" fill="none"><path d="M12 3v10m0 0 4-4m-4 4-4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M5 14v5h14v-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              Download Portfolio PDF
+            </a>
+            <a class="btn btnGhost" href="https://hisham.digital" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M10 14a5 5 0 0 1 0-7l1-1a5 5 0 0 1 7 7l-1 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M14 10a5 5 0 0 1 0 7l-1 1a5 5 0 0 1-7-7l1-1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              Visit Website
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- doodle -->
+      <svg class="doodle" viewBox="0 0 220 220" aria-hidden="true">
+        <path d="M52 150c10-22 34-44 66-52 44-11 70 5 88 30"/>
+        <path d="M44 156c18 8 36 14 54 16 28 3 52-2 86-18"/>
+        <circle cx="170" cy="68" r="10"/>
+        <path d="M153 56l-16-12M176 56l16-12"/>
+        <path d="M86 62c10 4 20 12 26 24"/>
+        <path d="M60 90c12-2 22 0 30 8"/>
+      </svg>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- WHO AM I -->
+    <section class="block reveal draw" id="who">
+      <div class="titleRow">
+        <h2 class="h2">WHO AM I?</h2>
+        <div class="hint">chapter 01</div>
+      </div>
+      <p class="lead">
+        I am a filmmaker and video editor crafting cinematic narratives, mixing documentary sensitivity with strong visual composition.
+        From concept to final cut, I focus on emotion, rhythm, and details.
+      </p>
+
+      <svg class="doodle" viewBox="0 0 220 220" aria-hidden="true">
+        <path d="M70 80h88l-10 70H80z"/>
+        <path d="M95 78l6-22h26l6 22"/>
+        <path d="M82 130h64"/>
+        <path d="M86 150h56"/>
+        <circle cx="168" cy="120" r="8"/>
+        <path d="M165 120l-18 0"/>
+      </svg>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ORIGINS -->
+    <section class="block reveal draw" id="origins">
+      <div class="titleRow">
+        <h2 class="h2">Origins</h2>
+        <div class="hint">chapter 02</div>
+      </div>
+      <p class="lead">
+        I was born in a small room beneath a staircase, in an alley within an alley off a busy street.
+        There, I learned early that life is not only seen with the eyes, but understood with the heart.
+        Among people’s faces, street sounds, and raw experiences, my awareness was shaped, and I began noticing the small details that create great stories.
+      </p>
+      <div class="quoteLine">This is where my journey with storytelling began — not as a choice, but as instinct.</div>
+
+      <svg class="doodle" viewBox="0 0 220 220" aria-hidden="true">
+        <path d="M35 160v-50l30-20 30 20v50"/>
+        <path d="M105 160v-70l40-28 40 28v70"/>
+        <path d="M53 160v-24h24v24"/>
+        <path d="M132 160v-28h26v28"/>
+        <path d="M40 84c8-6 14-8 22-10"/>
+        <path d="M148 38c6 10 10 20 10 34"/>
+      </svg>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- SEEING WITH THE HEART -->
+    <section class="block reveal draw" id="heart">
+      <div class="titleRow">
+        <h2 class="h2">Seeing with the Heart</h2>
+        <div class="hint">chapter 03</div>
+      </div>
+      <p class="lead">
+        One day, I heard a child crying in the street.<br/>
+        A blind old man stepped outside, holding the child, calling people to ask about his family.<br/>
+        When they asked him, “Whose child is this?”<br/>
+        He calmly said: “Ask Hesham, son of Abdelhamid.”<br/>
+        I froze.<br/>
+        How did he see me when he could not see?<br/>
+        In that moment, I understood that some people see with the heart before the eyes.<br/>
+        From that day on, I learned to look at the world the same way.
+      </p>
+
+      <svg class="doodle" viewBox="0 0 220 220" aria-hidden="true">
+        <path d="M70 150c-18-30-6-70 28-82 18-6 36-2 48 10 12-12 30-16 48-10 34 12 46 52 28 82-14 24-46 44-76 58-30-14-62-34-76-58z"/>
+        <path d="M86 88c8 0 14 6 14 14"/>
+        <path d="M150 88c8 0 14 6 14 14"/>
+        <path d="M98 120c14 10 30 10 44 0"/>
+      </svg>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- MY JOURNEY -->
+    <section class="block reveal draw" id="journey">
+      <div class="titleRow">
+        <h2 class="h2">My Journey</h2>
+        <div class="hint">chapter 04</div>
+      </div>
+      <p class="lead">
+        My journey began in the streets, listening more than speaking, learning from people before books.<br/>
+        I was drawn to art in all its forms: writing, drawing, music, and imagery.<br/>
+        I worked across many fields and lived through challenging yet formative experiences, until visual storytelling became my true language.<br/><br/>
+        Over time, the journey was no longer about finding a job, but about finding meaning.<br/>
+        I traveled, documented faces and stories, and covered difficult and high-risk moments, learning that human potential is far greater than the limits we see around us.<br/><br/>
+        I am still on the journey.<br/>
+        And I am still learning.
+      </p>
+
+      <svg class="doodle" viewBox="0 0 220 220" aria-hidden="true">
+        <path d="M40 160c30-40 66-62 110-66"/>
+        <path d="M150 94c10-2 22 2 30 10"/>
+        <path d="M168 112l12-8"/>
+        <path d="M100 60c8 6 14 14 18 24"/>
+        <circle cx="70" cy="88" r="10"/>
+        <path d="M62 88h16"/>
+      </svg>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- PURPOSE -->
+    <section class="block reveal draw" id="purpose">
+      <div class="titleRow">
+        <h2 class="h2">Purpose</h2>
+        <div class="hint">chapter 05</div>
+      </div>
+      <p class="lead">
+        In the middle of the journey, everything changed.<br/>
+        Laila and Nelly came into my life not to add a new role, but to give meaning to everything before it.<br/>
+        With her, ambition became responsibility, and passion became commitment.<br/>
+        I no longer seek success alone, but impact.<br/>
+        To create a calm, honest life, free from unnecessary noise.<br/>
+        To give my best not only because I can, but because someone deserves it.<br/>
+        Laila and Nelly reminded me that purpose is not only about arriving, but about arriving as our true selves.
+      </p>
+
+      <svg class="doodle" viewBox="0 0 220 220" aria-hidden="true">
+        <path d="M70 165c10-36 28-56 52-66 32-14 64-6 86 14"/>
+        <path d="M84 100c8-18 22-28 40-30"/>
+        <path d="M150 70c12 2 22 10 28 22"/>
+        <path d="M110 150c10 10 22 16 34 18"/>
+        <circle cx="86" cy="86" r="10"/>
+        <circle cx="142" cy="88" r="8"/>
+      </svg>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- VALUES -->
+    <section class="block reveal draw" id="values">
+      <div class="titleRow">
+        <h2 class="h2">Values &amp; Beliefs</h2>
+        <div class="hint">chapter 06</div>
+      </div>
+
+      <ul class="clean">
+        <li><span class="bullet"></span>Story before technique</li>
+        <li><span class="bullet"></span>Meaning over noise</li>
+        <li><span class="bullet"></span>See with the heart before the eyes</li>
+        <li><span class="bullet"></span>Simplicity is strength</li>
+        <li><span class="bullet"></span>Learning is a lifelong responsibility</li>
+        <li><span class="bullet"></span>Consistency over moments</li>
+        <li><span class="bullet"></span>Respect is the foundation of every collaboration</li>
+      </ul>
+
+      <div class="quoteLine">Let’s Start</div>
+
+      <svg class="doodle" viewBox="0 0 220 220" aria-hidden="true">
+        <path d="M70 150c-10-26 4-52 30-62 26-10 56 2 66 28 10 26-2 56-28 66-26 10-56-2-68-32z"/>
+        <path d="M52 74l14 10"/>
+        <path d="M168 52l-12 16"/>
+        <path d="M176 140l18 6"/>
+        <path d="M52 148l-16 16"/>
+      </svg>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- WHAT I CREATE -->
+    <section class="block reveal draw" id="create">
+      <div class="titleRow">
+        <h2 class="h2">WHAT I CREATE?</h2>
+        <div class="hint">chapter 07</div>
+      </div>
+
+      <div class="chips">
+        <div class="chip">Writing</div>
+        <div class="chip">Videography</div>
+        <div class="chip">Video Editing</div>
+        <div class="chip">Motion</div>
+        <div class="chip">Director</div>
+        <div class="chip">Illustration</div>
+      </div>
+
+      <svg class="doodle" viewBox="0 0 220 220" aria-hidden="true">
+        <path d="M60 160l20-80 26 36 26-36 20 80"/>
+        <path d="M74 110h92"/>
+        <circle cx="160" cy="78" r="10"/>
+        <path d="M165 72l20-10"/>
+        <path d="M165 84l20 10"/>
+      </svg>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- EDUCATION / SKILLS / TOOLS (from PDF page 9 content) -->
+    <section class="block reveal draw" id="edu">
+      <div class="titleRow">
+        <h2 class="h2">Education · Skills · Tools</h2>
+        <div class="hint">chapter 08</div>
+      </div>
+
+      <div class="cols">
+        <div class="col">
+          <h3>Education</h3>
+          <p>- Bachelor of faculty fine art (BFA).</p>
+          <p>- Music criticism · Instituit Press</p>
+          <p>- Anthropology certificate programs · Instituit Press</p>
+        </div>
+
+        <div class="col">
+          <h3>Skills</h3>
+          <p>- Producer · Video Production · Collage Art</p>
+          <p>- Camera · Adobe Creative · Mobile</p>
+          <p>- Video Editing</p>
+          <p>- Illustration</p>
+        </div>
+
+        <div class="col">
+          <h3>Tools</h3>
+          <p>Adobe Premiere Pro · After Effects · Photoshop · Illustrator · Lightroom</p>
+          <p>Camera Operations · Mobile Filmmaking</p>
+        </div>
+      </div>
+
+      <svg class="doodle" viewBox="0 0 220 220" aria-hidden="true">
+        <path d="M64 150h92"/>
+        <path d="M78 150v-84h64v84"/>
+        <path d="M92 84h36"/>
+        <path d="M92 104h36"/>
+        <path d="M92 124h36"/>
+        <circle cx="170" cy="92" r="10"/>
+        <path d="M170 82v20"/>
+      </svg>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- EXPERIENCE (from PDF pages 11–17) -->
+    <section class="block reveal draw" id="experience">
+      <div class="titleRow">
+        <h2 class="h2">Experience</h2>
+        <div class="hint">chapter 09</div>
+      </div>
+
+      <div class="timeline">
+
+        <div class="item">
+          <div class="dot"></div>
+          <h4>FLOW Medical Solutions (HMG) — Multimedia Producer</h4>
+          <div class="small">January 2024 – Present · Riyadh, Saudi Arabia</div>
+          <p class="desc">
+            I create brand-driven stories through video production and post-production, ensuring high-quality content aligned with brand identity and audience impact.
+          </p>
+          <div class="subline">
+            <span class="badge">Videography</span>
+            <span class="badge">Video Editing</span>
+          </div>
+          <div class="logos">
+            <img src="img/co1.png" alt="FLOW"/>
+            <img src="img/co250.png" alt="HMG"/>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="dot"></div>
+          <h4>Freelance — Multimedia Producer</h4>
+          <div class="small">January 2023 – January 2024 · Egypt, Saudi Arabia</div>
+          <p class="desc">
+            I worked across report, sports and documentary projects, collaborating with international institutions like the BBC, DW, and French Television.
+          </p>
+          <div class="subline">
+            <span class="badge">Production</span>
+            <span class="badge">Post-Production</span>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="dot"></div>
+          <h4>Freelance — Multimedia Producer</h4>
+          <div class="small">January 2023 – January 2024 · Egypt</div>
+          <p class="desc">
+            I worked across report, News, and documentary projects, collaborating with international institutions like the Ontv, Alarabiya, Now, Cairobioghraphy.
+          </p>
+        </div>
+
+        <div class="item">
+          <div class="dot"></div>
+          <h4>Baheya Foundation — Manager of multimedia</h4>
+          <div class="small">January 2022 – January 2023 · Egypt</div>
+          <p class="desc">
+            I led the filming and editing function, crafting respectful and inspiring stories of women courageously facing illness within the institution.
+            My responsibility was to present their journeys with sensitivity, highlighting their strength, treatment, and recovery.
+          </p>
+          <div class="subline">
+            <span class="badge">Sensitive Storytelling</span>
+            <span class="badge">Medical Content</span>
+          </div>
+          <div class="logos">
+            <img src="img/co5.png" alt="Baheya"/>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="dot"></div>
+          <h4>Media Vision — Multimedia Producer</h4>
+          <div class="small">January 2018 – January 2022 · Egypt, Lebanon, Tunis, Morocco, Jordan</div>
+          <p class="desc">
+            During my time with the company, I produced over 40 documentary films across Lebanon, Morocco, Jordan, and Tunisia.
+            These projects explored diverse cultures and human experiences, forming the core of my work and significantly shaping my professional and personal growth.
+            Selected films are part of the series Habr ‘Ala Al Raseef and Muna’ Min Al-Tadawol, broadcast on Al Ghad TV.
+          </p>
+          <div class="subline">
+            <span class="badge">40+ Documentaries</span>
+            <span class="badge">Long-form Series</span>
+          </div>
+
+          <div class="subline" style="margin-top:12px">
+            <span class="badge">Program: Produced 21 documentary films</span>
+            <span class="badge">Program: Produced 19 documentary films</span>
+          </div>
+
+          <div class="logos">
+            <img src="img/co6.png" alt="Media Vision"/>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="dot"></div>
+          <h4>WAYA Media — Multimedia Producer</h4>
+          <div class="small">January 2019 – January 2021 · Egypt</div>
+          <p class="desc">
+            Waya Media is a leading platform showcasing success stories of emerging businesses and startups.
+            I worked as part of the production team, filming inspiring stories that resonated with the community and contributed to sharing meaningful entrepreneurial experiences.
+          </p>
+          <div class="logos">
+            <img src="img/co8.png" alt="WAYA"/>
+          </div>
+        </div>
+
+        <div class="item" style="border-bottom:none;margin-bottom:0">
+          <div class="dot"></div>
+          <h4>Gammarapho Francias Agency — Multimedia Producer</h4>
+          <div class="small">January 2014 – January 2018 · France, Lebanon, Egypt</div>
+          <p class="desc">
+            My role involved producing content that documented a pivotal period in nations such as Egypt, Lebanon, Syria, Sudan, and Libya.
+            These assignments were immensely enriching, offering valuable learning experiences particularly in light of the challenging circumstances,
+            including ongoing conflicts, dynamic social changes, and rapidly evolving events.
+          </p>
+          <p class="desc" style="margin-top:12px">
+            We also produced content through this platform for major channels such as Al Arabiya, BBC, Deutsche Welle, Reuters, Associated Press,
+            Al-jazeera, Vice News, France 24, and Agence France-Presse.
+          </p>
+          <div class="subline">
+            <span class="badge">News</span>
+            <span class="badge">Documentary</span>
+            <span class="badge">Field Production</span>
+          </div>
+          <div class="logos">
+            <img src="img/co11.png" alt="BBC"/>
+            <img src="img/co4.png" alt="DW"/>
+            <img src="img/co260.png" alt="Reuters"/>
+            <img src="img/co270.png" alt="AFP"/>
+          </div>
+        </div>
+
+      </div>
+
+      <svg class="doodle" viewBox="0 0 220 220" aria-hidden="true" style="top:-6px">
+        <path d="M64 160c10-28 34-46 60-56 30-12 58-10 84 8"/>
+        <path d="M64 120c14 6 28 10 44 10"/>
+        <path d="M140 86c10 2 18 8 24 16"/>
+        <circle cx="64" cy="90" r="10"/>
+        <path d="M64 80v20"/>
+      </svg>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- CLOSING -->
+    <section class="block reveal draw" id="closing">
+      <div class="titleRow">
+        <h2 class="h2">Closing</h2>
+        <div class="hint">final</div>
+      </div>
+      <p class="lead">
+        To explore more of my work and learn more about my journey,<br/>
+        visit my website for a different experience.<br/>
+        <strong style="color:var(--gold)">https://hisham.digital</strong>
+      </p>
+
+      <svg class="doodle" viewBox="0 0 220 220" aria-hidden="true">
+        <path d="M70 150c22-40 60-70 110-84"/>
+        <path d="M154 64l26-6-14 22"/>
+        <path d="M62 154l16 10"/>
+        <path d="M176 130l18 14"/>
+        <circle cx="92" cy="86" r="10"/>
+      </svg>
+    </section>
+
+    <div class="footer">
+      Download the full PDF for the full visual experience ·
+      <a href="https://hisham.digital" target="_blank" rel="noopener">hisham.digital</a>
+    </div>
+
   </div>
-</section>
 
-<section class="section fade">
-  <div class="st">Origins</div>
-  <div class="box">
-    I was born in a small room beneath a staircase, in an alley within an alley.
-    There, I learned early that life is understood with the heart before the eyes.
+  <!-- ================= ARABIC ================= -->
+  <div class="ar" id="ar" dir="rtl">
+
+    <!-- COVER -->
+    <section class="hero reveal draw" id="cover-ar">
+      <div class="herogrid">
+        <img class="avatar" src="img/heshampersonal.jpg" alt="هشام عبد الحميد" />
+        <div>
+          <div class="kicker">بورتفوليو 2026</div>
+          <h1>هشام<br/>عبد الحميد</h1>
+          <div class="role">حكّاء بصري &amp; علامة إبداعية</div>
+          <div class="meta">مقيم في الرياض، المملكة العربية السعودية · متاح للتعاون</div>
+
+          <div class="heroActions">
+            <a class="btn btnPrimary" href="Hesham-Abdelhamed-Portfolio.pdf">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M12 3v10m0 0 4-4m-4 4-4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M5 14v5h14v-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              تحميل ملف الأعمال PDF
+            </a>
+            <a class="btn btnGhost" href="https://hisham.digital" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M10 14a5 5 0 0 1 0-7l1-1a5 5 0 0 1 7 7l-1 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M14 10a5 5 0 0 1 0 7l-1 1a5 5 0 0 1-7-7l1-1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              زيارة الموقع
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <svg class="doodle" viewBox="0 0 220 220" aria-hidden="true">
+        <path d="M52 150c10-22 34-44 66-52 44-11 70 5 88 30"/>
+        <path d="M44 156c18 8 36 14 54 16 28 3 52-2 86-18"/>
+        <circle cx="170" cy="68" r="10"/>
+        <path d="M153 56l-16-12M176 56l16-12"/>
+        <path d="M86 62c10 4 20 12 26 24"/>
+        <path d="M60 90c12-2 22 0 30 8"/>
+      </svg>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- WHO AM I -->
+    <section class="block reveal draw" id="who-ar">
+      <div class="titleRow">
+        <h2 class="h2">من أنا؟</h2>
+        <div class="hint">الفصل 01</div>
+      </div>
+      <p class="lead">
+        أنا صانع أفلام ومونتير أصنع سردًا سينمائيًا يمزج حساسية الوثائقي مع تكوين بصري قوي.
+        من الفكرة إلى النسخة النهائية، أركز على الإحساس والإيقاع والتفاصيل.
+      </p>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ORIGINS -->
+    <section class="block reveal draw" id="origins-ar">
+      <div class="titleRow">
+        <h2 class="h2">الجذور</h2>
+        <div class="hint">الفصل 02</div>
+      </div>
+      <p class="lead">
+        وُلدت في غرفة صغيرة تحت سُلّم، في حارة داخل حارة بجوار شارع مزدحم.
+        هناك تعلمت مبكرًا أن الحياة لا تُرى بالعين فقط، بل تُفهم بالقلب.
+        بين وجوه الناس وأصوات الشوارع والتجارب الخام، تشكّل وعيي،
+        وبدأت ألاحظ التفاصيل الصغيرة التي تصنع الحكايات الكبيرة.
+      </p>
+      <div class="quoteLine">هنا بدأت رحلتي مع الحكي — ليس كاختيار، بل كفطرة.</div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- SEEING WITH THE HEART -->
+    <section class="block reveal draw" id="heart-ar">
+      <div class="titleRow">
+        <h2 class="h2">الرؤية بالقلب</h2>
+        <div class="hint">الفصل 03</div>
+      </div>
+      <p class="lead">
+        في يومٍ ما سمعت طفلًا يبكي في الشارع.<br/>
+        خرج شيخٌ ضرير يحمل الطفل وينادي الناس ليسأل عن أهله.<br/>
+        وعندما سألوه: «ابن مَن هذا؟»<br/>
+        قال بهدوء: «اسألوا هشام ابن عبد الحميد».<br/>
+        تجمّدت في مكاني.<br/>
+        كيف رآني وهو لا يرى؟<br/>
+        في تلك اللحظة فهمت أن بعض الناس يرون بالقلب قبل العين.<br/>
+        ومنذ ذلك اليوم تعلمت أن أنظر للعالم بالطريقة نفسها.
+      </p>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- MY JOURNEY -->
+    <section class="block reveal draw" id="journey-ar">
+      <div class="titleRow">
+        <h2 class="h2">رحلتي</h2>
+        <div class="hint">الفصل 04</div>
+      </div>
+      <p class="lead">
+        بدأت رحلتي في الشوارع؛ أستمع أكثر مما أتكلم، وأتعلم من الناس قبل الكتب.<br/>
+        انجذبت للفنون بكل أشكالها: الكتابة والرسم والموسيقى والصورة.<br/>
+        عملت في مجالات عديدة وعشت تجارب صعبة لكنها صنعتني،
+        حتى صار الحكي البصري لغتي الحقيقية.<br/><br/>
+        مع الوقت لم تعد الرحلة بحثًا عن عمل، بل بحثًا عن معنى.<br/>
+        سافرت ووثّقت وجوهًا وحكايات، وغطّيت لحظات صعبة وخطرة،
+        وتعلمت أن قدرة الإنسان أكبر بكثير من حدود ما نراه حولنا.<br/><br/>
+        ما زلت في الرحلة… وما زلت أتعلم.
+      </p>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- PURPOSE -->
+    <section class="block reveal draw" id="purpose-ar">
+      <div class="titleRow">
+        <h2 class="h2">الهدف</h2>
+        <div class="hint">الفصل 05</div>
+      </div>
+      <p class="lead">
+        في منتصف الرحلة تغيّر كل شيء.<br/>
+        جاءت ليلى ونيلي إلى حياتي ليس لإضافة دور جديد، بل لإعطاء معنى لكل ما سبق.<br/>
+        معها صار الطموح مسؤولية، وصار الشغف التزامًا.<br/>
+        لم أعد أبحث عن النجاح وحده، بل عن الأثر.<br/>
+        أن أخلق حياة هادئة وصادقة بعيدًا عن الضجيج غير الضروري.<br/>
+        وأن أقدّم أفضل ما لدي… ليس لأنني أستطيع فقط، بل لأن هناك من يستحق.<br/>
+        ذكرتني ليلى ونيلي أن الهدف ليس مجرد الوصول، بل أن نصل ونحن على حقيقتنا.
+      </p>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- VALUES -->
+    <section class="block reveal draw" id="values-ar">
+      <div class="titleRow">
+        <h2 class="h2">القيم والمبادئ</h2>
+        <div class="hint">الفصل 06</div>
+      </div>
+      <ul class="clean">
+        <li><span class="bullet"></span>الحكاية قبل التقنية</li>
+        <li><span class="bullet"></span>المعنى أهم من الضجيج</li>
+        <li><span class="bullet"></span>الرؤية بالقلب قبل العين</li>
+        <li><span class="bullet"></span>البساطة قوة</li>
+        <li><span class="bullet"></span>التعلم مسؤولية مستمرة</li>
+        <li><span class="bullet"></span>الثبات أهم من اللحظة</li>
+        <li><span class="bullet"></span>الاحترام أساس أي تعاون</li>
+      </ul>
+      <div class="quoteLine">لنبدأ</div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- WHAT I CREATE -->
+    <section class="block reveal draw" id="create-ar">
+      <div class="titleRow">
+        <h2 class="h2">ماذا أقدّم؟</h2>
+        <div class="hint">الفصل 07</div>
+      </div>
+      <div class="chips">
+        <div class="chip">كتابة</div>
+        <div class="chip">تصوير</div>
+        <div class="chip">مونتاج</div>
+        <div class="chip">موشن</div>
+        <div class="chip">إخراج</div>
+        <div class="chip">رسم</div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- EDUCATION / SKILLS / TOOLS -->
+    <section class="block reveal draw" id="edu-ar">
+      <div class="titleRow">
+        <h2 class="h2">التعليم · المهارات · الأدوات</h2>
+        <div class="hint">الفصل 08</div>
+      </div>
+
+      <div class="cols">
+        <div class="col">
+          <h3>التعليم</h3>
+          <p>- بكالوريوس فنون جميلة (BFA).</p>
+          <p>- نقد موسيقي · Instituit Press</p>
+          <p>- برامج شهادة في الأنثروبولوجيا · Instituit Press</p>
+        </div>
+
+        <div class="col">
+          <h3>المهارات</h3>
+          <p>- منتج · إنتاج فيديو · Collage Art</p>
+          <p>- كاميرا · Adobe Creative · Mobile</p>
+          <p>- مونتاج فيديو</p>
+          <p>- رسم</p>
+        </div>
+
+        <div class="col">
+          <h3>الأدوات</h3>
+          <p>Premiere Pro · After Effects · Photoshop · Illustrator · Lightroom</p>
+          <p>تشغيل الكاميرا · التصوير بالموبايل</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- EXPERIENCE -->
+    <section class="block reveal draw" id="experience-ar">
+      <div class="titleRow">
+        <h2 class="h2">الخبرات</h2>
+        <div class="hint">الفصل 09</div>
+      </div>
+
+      <div class="timeline">
+
+        <div class="item">
+          <div class="dot"></div>
+          <h4>FLOW Medical Solutions (HMG) — منتج وسائط متعددة</h4>
+          <div class="small">يناير 2024 – حتى الآن · الرياض</div>
+          <p class="desc">
+            أصنع قصصًا مرتبطة بالعلامة عبر الإنتاج وما بعد الإنتاج، مع ضمان جودة عالية تتماشى مع هوية العلامة وتحقق أثرًا وتفاعلًا مع الجمهور.
+          </p>
+        </div>
+
+        <div class="item">
+          <div class="dot"></div>
+          <h4>عمل حر — منتج وسائط متعددة</h4>
+          <div class="small">يناير 2023 – يناير 2024 · مصر، السعودية</div>
+          <p class="desc">
+            عملت على تقارير ومشاريع رياضية ووثائقية بالتعاون مع مؤسسات دولية مثل BBC وDW والتلفزيون الفرنسي.
+          </p>
+        </div>
+
+        <div class="item">
+          <div class="dot"></div>
+          <h4>عمل حر — منتج وسائط متعددة</h4>
+          <div class="small">يناير 2023 – يناير 2024 · مصر</div>
+          <p class="desc">
+            عملت على تقارير وأخبار وأفلام وثائقية بالتعاون مع منصات مثل ONtv والعربية وNow وغيرها.
+          </p>
+        </div>
+
+        <div class="item">
+          <div class="dot"></div>
+          <h4>مؤسسة بهية — مدير الوسائط المتعددة</h4>
+          <div class="small">يناير 2022 – يناير 2023 · مصر</div>
+          <p class="desc">
+            قدت التصوير والمونتاج لصناعة قصص إنسانية محترمة وملهمة لسيدات يواجهن المرض، مع حساسية عالية في السرد وتوثيق رحلة العلاج والتعافي.
+          </p>
+        </div>
+
+        <div class="item">
+          <div class="dot"></div>
+          <h4>Media Vision — منتج وسائط متعددة</h4>
+          <div class="small">يناير 2018 – يناير 2022 · مصر، لبنان، تونس، المغرب، الأردن</div>
+          <p class="desc">
+            أنتجت أكثر من 40 فيلمًا وثائقيًا عبر عدة دول، تستكشف الثقافات والتجارب الإنسانية، ضمن سلاسل وثائقية طويلة.
+            كما عُرضت أعمال مختارة ضمن برامج (حبر على الرصيف) و(ممنوع من التداول) على قناة الغد.
+          </p>
+          <div class="subline">
+            <span class="badge">برنامج: 21 فيلمًا وثائقيًا</span>
+            <span class="badge">برنامج: 19 فيلمًا وثائقيًا</span>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="dot"></div>
+          <h4>WAYA Media — منتج وسائط متعددة</h4>
+          <div class="small">يناير 2019 – يناير 2021 · مصر</div>
+          <p class="desc">
+            منصة رائدة لقصص نجاح الشركات الناشئة. شاركت ضمن فريق الإنتاج لتصوير قصص ملهمة ذات أثر مجتمعي وتجارب ريادية مؤثرة.
+          </p>
+        </div>
+
+        <div class="item" style="border-bottom:none;margin-bottom:0">
+          <div class="dot"></div>
+          <h4>Gammarapho Francias Agency — منتج وسائط متعددة</h4>
+          <div class="small">يناير 2014 – يناير 2018 · فرنسا، لبنان، مصر</div>
+          <p class="desc">
+            إنتاج محتوى يوثّق فترات مفصلية في دول مثل مصر ولبنان وسوريا والسودان وليبيا،
+            وسط ظروف معقدة وتغيرات اجتماعية سريعة وأحداث متسارعة.
+          </p>
+          <p class="desc" style="margin-top:12px">
+            كما تم إنتاج محتوى لصالح قنوات كبرى مثل العربية وBBC وDW وReuters وAssociated Press والجزيرة وVice News وFrance 24 وAFP.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- CLOSING -->
+    <section class="block reveal draw" id="closing-ar">
+      <div class="titleRow">
+        <h2 class="h2">الخاتمة</h2>
+        <div class="hint">النهاية</div>
+      </div>
+      <p class="lead">
+        لمشاهدة المزيد من أعمالي والتعرّف على رحلتي بشكل أعمق،<br/>
+        يمكنك زيارة موقعي لتجربة مختلفة:<br/>
+        <strong style="color:var(--gold)">https://hisham.digital</strong>
+      </p>
+    </section>
+
+    <div class="footer">
+      <a href="https://hisham.digital" target="_blank" rel="noopener">hisham.digital</a>
+    </div>
+
   </div>
-</section>
-
-<section class="section fade">
-  <div class="st">Seeing with the Heart</div>
-  <div class="box">
-    A blind man once recognized me without seeing me.
-    That moment taught me how true vision works.
-  </div>
-</section>
-
-<section class="section fade">
-  <div class="st">The Journey</div>
-  <div class="box">
-    My journey moved through streets, arts, conflicts, and stories.
-    I am still learning. Still moving.
-  </div>
-</section>
-
-<section class="section fade">
-  <div class="st">Purpose</div>
-  <div class="box">
-    Purpose became clear with family.
-    Impact mattered more than success.
-  </div>
-</section>
-
-<section class="section fade">
-  <div class="st">Values & Beliefs</div>
-  <div class="box values">
-    <span>Story before technique</span>
-    <span>Meaning over noise</span>
-    <span>Simplicity is strength</span>
-    <span>Consistency over moments</span>
-  </div>
-</section>
-
-<section class="section fade">
-  <div class="st">What I Create</div>
-  <div class="create">
-    <div class="tag">Documentary</div>
-    <div class="tag">Brand Films</div>
-    <div class="tag">Videography</div>
-    <div class="tag">Editing</div>
-    <div class="tag">Motion</div>
-  </div>
-</section>
-
-</div>
-
-<!-- ARABIC -->
-<div class="ar">
-
-<section class="hero fade">
-  <img src="img/heshampersonal.jpg"/>
-  <div>
-    <div class="h-title">هشام عبد الحميد</div>
-    <div class="h-role">حكّاء بصري · منتج وسائط</div>
-    <div class="h-meta">مقيم في الرياض · متاح للتعاون</div>
-  </div>
-</section>
-
-<a class="btn" href="Hesham-Abdelhamed-Portfolio.pdf">تحميل ملف الأعمال</a>
-
-<section class="section fade">
-  <div class="st">من أنا</div>
-  <div class="box">
-    حكّاء بصري أصنع السرد من الصورة والإحساس والمعنى.
-  </div>
-</section>
-
-<section class="section fade">
-  <div class="st">الجذور</div>
-  <div class="box">
-    وُلدت في مساحة صغيرة، وتعلّمت مبكرًا أن الرؤية بالقلب.
-  </div>
-</section>
-
-<section class="section fade">
-  <div class="st">الرؤية بالقلب</div>
-  <div class="box">
-    لحظة غيّرت طريقة نظري للعالم.
-  </div>
-</section>
-
-<section class="section fade">
-  <div class="st">الرحلة</div>
-  <div class="box">
-    رحلة بين الناس والفن والحياة… وما زالت مستمرة.
-  </div>
-</section>
-
-<section class="section fade">
-  <div class="st">الهدف</div>
-  <div class="box">
-    الأثر أهم من الوصول.
-  </div>
-</section>
-
-<section class="section fade">
-  <div class="st">القيم</div>
-  <div class="box values">
-    <span>الحكاية قبل التقنية</span>
-    <span>المعنى أهم من الضجيج</span>
-    <span>البساطة قوة</span>
-  </div>
-</section>
-
-<section class="section fade">
-  <div class="st">ماذا أقدّم</div>
-  <div class="create">
-    <div class="tag">وثائقي</div>
-    <div class="tag">أفلام علامات</div>
-    <div class="tag">تصوير</div>
-    <div class="tag">مونتاج</div>
-  </div>
-</section>
-
-</div>
-
-<div class="footer">
-  Visit hisham.digital · Experience the journey
-</div>
 
 </main>
 
 <script>
-const f=document.querySelectorAll('.fade');
-const io=new IntersectionObserver(e=>{
-  e.forEach(x=>x.isIntersecting&&x.target.classList.add('show'))
-},{threshold:.2});
-f.forEach(el=>io.observe(el));
+  // Language switch
+  function setLang(lang){
+    const en = document.getElementById('en');
+    const ar = document.getElementById('ar');
+    const btnEn = document.getElementById('btnEn');
+    const btnAr = document.getElementById('btnAr');
 
-function en(){
-  document.querySelector('.en').style.display='block';
-  document.querySelector('.ar').style.display='none';
-  document.querySelectorAll('.lang button')[0].classList.add('active');
-  document.querySelectorAll('.lang button')[1].classList.remove('active');
-}
-function ar(){
-  document.querySelector('.en').style.display='none';
-  document.querySelector('.ar').style.display='block';
-  document.querySelectorAll('.lang button')[1].classList.add('active');
-  document.querySelectorAll('.lang button')[0].classList.remove('active');
-}
+    if(lang === 'ar'){
+      en.style.display = 'none';
+      ar.style.display = 'block';
+      btnAr.classList.add('active');
+      btnEn.classList.remove('active');
+      document.documentElement.setAttribute('lang','ar');
+    }else{
+      ar.style.display = 'none';
+      en.style.display = 'block';
+      btnEn.classList.add('active');
+      btnAr.classList.remove('active');
+      document.documentElement.setAttribute('lang','en');
+    }
+  }
+
+  // Scroll reveal + doodle draw trigger
+  const items = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('show');
+        // trigger doodle draw only once
+        e.target.classList.add('draw');
+        io.unobserve(e.target);
+      }
+    });
+  }, {threshold: 0.18});
+
+  items.forEach(el=>io.observe(el));
 </script>
 
 </body>
