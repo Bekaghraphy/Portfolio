@@ -1,686 +1,332 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Profile | Hesham Abdelhamed</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Profile | Hesham Abdelhamed</title>
 
-  <link rel="icon" type="image/png" href="img/favicon.png" />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet" />
+<link rel="icon" href="img/favicon.png"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet"/>
 
-  <style>
-    body {
-      margin: 0;
-      background: #000;
-      color: #fff;
-      font-family: "Montserrat", sans-serif;
-      padding-top: 110px;
-    }
-
-    /* NAV */
-    .nav {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background: rgba(0, 0, 0, 0.65);
-      backdrop-filter: blur(10px);
-      z-index: 1000;
-      padding: 20px 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-    }
-
-    .nav-center {
-      display: flex;
-      justify-content: center;
-      gap: 34px;
-    }
-
-    .nav-center a {
-      text-decoration: none;
-      color: #fff;
-      font-size: 16px;
-      font-weight: 600;
-      opacity: 0.85;
-    }
-
-    .nav-center a.active,
-    .nav-center a:hover {
-      color: #d8b97a;
-      opacity: 1;
-    }
-
-    /* PAGE WRAPPER */
-    .cv-wrap {
-      width: 92%;
-      max-width: 1150px;
-      margin: auto;
-      padding-bottom: 80px;
-    }
-
-    /* LANG SWITCH */
-    .lang-switch {
-      display: flex;
-      gap: 14px;
-      margin-bottom: 34px;
-    }
-
-    .lang-btn {
-      padding: 8px 20px;
-      border-radius: 999px;
-      border: 1px solid #d8b97a;
-      background: transparent;
-      color: #d8b97a;
-      cursor: pointer;
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-    }
-
-    .lang-btn.active {
-      background: #d8b97a;
-      color: #000;
-    }
-
-    .arabic {
-      display: none;
-    }
-
-    /* HERO */
-    .cv-hero {
-      display: flex;
-      align-items: center;
-      gap: 34px;
-      margin-bottom: 20px;
-    }
-
-    .cv-hero img {
-      width: 130px;
-      height: 130px;
-      border-radius: 14px;
-      object-fit: cover;
-      border: 2px solid #d8b97a;
-      box-shadow: 0 0 20px rgba(216, 185, 122, 0.35);
-    }
-
-    .cv-title {
-      font-size: 34px;
-      font-weight: 700;
-      color: #d8b97a;
-      margin-bottom: 6px;
-    }
-
-    .cv-role {
-      opacity: 0.85;
-      font-size: 16px;
-      margin-bottom: 10px;
-    }
-
-    .cv-meta {
-      opacity: 0.7;
-      font-size: 14px;
-      line-height: 1.7;
-    }
-
-    /* DOWNLOAD BUTTON */
-    .download-btn {
-      display: inline-block;
-      margin: 10px 0 34px 0;
-      padding: 10px 24px;
-      background: #d8b97a;
-      color: #000;
-      border-radius: 999px;
-      font-weight: 600;
-      text-decoration: none;
-      box-shadow: 0 0 16px rgba(216, 185, 122, 0.65);
-      transition: 0.25s;
-    }
-
-    .download-btn:hover {
-      background: #e6c894;
-    }
-
-    /* SECTION */
-    .section-title {
-      font-size: 20px;
-      font-weight: 700;
-      color: #d8b97a;
-      margin: 30px 0 14px;
-    }
-
-    .section-box {
-      background: rgba(255, 255, 255, 0.03);
-      border-radius: 14px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      padding: 20px;
-      font-size: 14px;
-      line-height: 1.7;
-      margin-bottom: 24px;
-    }
-
-    /* SKILLS BAR */
-    .skills-bar {
-      overflow: hidden;
-      white-space: nowrap;
-      margin-bottom: 22px;
-      border-top: 1px solid rgba(255, 255, 255, 0.06);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-      padding: 12px 0;
-    }
-
-    .skills-scroll {
-      display: inline-block;
-      animation: skillMove 16s linear infinite;
-    }
-
-    .skill-item {
-      display: inline-block;
-      margin: 0 22px;
-      font-size: 15px;
-      opacity: 0.8;
-      color: #d8b97a;
-    }
-
-    @keyframes skillMove {
-      from {
-        transform: translateX(0);
-      }
-
-      to {
-        transform: translateX(-50%);
-      }
-    }
-
-    /* EXPERIENCE */
-    .experience-timeline {
-      border-left: 2px solid #d8b97a;
-      padding-left: 22px;
-    }
-
-    .arabic .experience-timeline {
-      border-left: none;
-      border-right: 2px solid #d8b97a;
-      padding-left: 0;
-      padding-right: 22px;
-    }
-
-    .exp-item {
-      margin-bottom: 26px;
-      padding-bottom: 16px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    .exp-role {
-      font-size: 15px;
-      font-weight: 700;
-      margin-bottom: 4px;
-    }
-
-    .exp-meta {
-      opacity: 0.7;
-      font-size: 12px;
-      margin-bottom: 6px;
-    }
-
-    .exp-desc {
-      opacity: 0.9;
-      font-size: 14px;
-      line-height: 1.7;
-      margin-bottom: 12px;
-    }
-
-    .exp-logos {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    .exp-logos img {
-      width: 58px;
-      opacity: 0.9;
-    }
-    /* ===== GLOBAL NAVBAR ===== */
-.site-nav {
-  position: fixed;
-  top: 24px;
-  left: 0;
-  right: 0;
-  z-index: 100;
-
-  display: flex;
-  justify-content: center;
-  gap: 28px;
-
-  font-family: 'Montserrat', sans-serif;
+<style>
+:root{
+  --bg:#000;
+  --panel:rgba(255,255,255,.04);
+  --border:rgba(255,255,255,.08);
+  --gold:#d8b97a;
+  --text:#fff;
+  --muted:rgba(255,255,255,.7);
 }
 
-.site-nav a {
-  font-size: 14px;
-  font-weight: 500;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-
-  color: #ffffff;
-  text-decoration: none;
-  opacity: 0.75;
-
-  transition: color 0.25s ease, opacity 0.25s ease;
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Montserrat,sans-serif;
+  padding-top:110px;
 }
 
-/* Hover */
-.site-nav a:hover {
-  opacity: 1;
+/* NAV */
+.nav{
+  position:fixed;top:0;left:0;right:0;
+  background:rgba(0,0,0,.65);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--border);
+  z-index:1000;
+}
+.site-nav{
+  display:flex;justify-content:center;gap:28px;
+  padding:18px 0;
+}
+.site-nav a{
+  color:#fff;text-decoration:none;
+  font-size:14px;letter-spacing:.18em;
+  text-transform:uppercase;opacity:.75;
+}
+.site-nav a.active,.site-nav a:hover{
+  color:var(--gold);opacity:1;
 }
 
-/* Active page */
-.site-nav a.active {
-  color: #f5c14a;
-  opacity: 1;
+/* WRAP */
+.wrap{width:92%;max-width:1100px;margin:auto}
+
+/* LANG */
+.lang{
+  display:flex;gap:12px;margin:20px 0 40px
+}
+.lang button{
+  padding:8px 18px;border-radius:999px;
+  border:1px solid var(--gold);
+  background:transparent;color:var(--gold);
+  cursor:pointer;font-size:12px;font-weight:600
+}
+.lang button.active{background:var(--gold);color:#000}
+
+/* HERO */
+.hero{
+  display:flex;gap:32px;align-items:center;
+  margin-bottom:40px
+}
+.hero img{
+  width:130px;height:130px;border-radius:14px;
+  object-fit:cover;border:2px solid var(--gold);
+  box-shadow:0 0 22px rgba(216,185,122,.35)
+}
+.h-title{font-size:34px;color:var(--gold);font-weight:700}
+.h-role{opacity:.85;margin:6px 0}
+.h-meta{font-size:14px;opacity:.7;line-height:1.7}
+
+/* BTN */
+.btn{
+  display:inline-block;margin:18px 0 40px;
+  padding:10px 26px;border-radius:999px;
+  background:var(--gold);color:#000;
+  font-weight:600;text-decoration:none;
+  box-shadow:0 0 18px rgba(216,185,122,.6)
 }
 
-/* Mobile */
-@media (max-width: 768px) {
-  .site-nav {
-    top: 16px;
-    padding: 6px 12px;
-
-    overflow-x: auto;
-    white-space: nowrap;
-    justify-content: flex-start;
-  }
-
-  .site-nav a {
-    font-size: 12px;
-    margin-right: 22px;
-  }
-
-  .site-nav::-webkit-scrollbar {
-    display: none;
-  }
+/* SECTIONS */
+.section{margin-bottom:64px}
+.st{
+  color:var(--gold);font-size:22px;
+  font-weight:700;margin-bottom:16px
 }
-  </style>
+.box{
+  background:var(--panel);border:1px solid var(--border);
+  border-radius:16px;padding:22px;
+  line-height:1.8;font-size:15px
+}
+
+/* STORY ANIMATION */
+.fade{opacity:0;transform:translateY(30px);transition:.8s}
+.fade.show{opacity:1;transform:none}
+
+/* VALUES */
+.values{display:grid;gap:10px}
+.values span{opacity:.85}
+
+/* CREATE */
+.create{display:flex;flex-wrap:wrap;gap:14px}
+.tag{
+  padding:10px 18px;border-radius:999px;
+  border:1px solid var(--border);
+  color:var(--gold);font-size:13px
+}
+
+/* TIMELINE */
+.timeline{border-left:2px solid var(--gold);padding-left:22px}
+.exp{margin-bottom:28px}
+.exp h4{margin:0 0 6px}
+.exp small{opacity:.6}
+.exp p{opacity:.9}
+
+/* ARABIC */
+.ar{display:none;direction:rtl}
+.ar .timeline{border-left:none;border-right:2px solid var(--gold);padding-left:0;padding-right:22px}
+
+/* FOOTER */
+.footer{text-align:center;opacity:.7;margin:60px 0}
+
+@media(max-width:768px){
+  .hero{flex-direction:column;align-items:flex-start}
+}
+</style>
 </head>
 
 <body>
 
-  <!-- NAV -->
-  <header class="nav">
-    <nav class="site-nav">
-  <a href="index.html">Home</a> 
-  <a href="my-work.html">My Work</a>
-  <a href="reels.html">Reels</a>
-  <a href="gallery.html">Gallery</a>
-  <a href="academy.html">Pro</a>
-  <a href="cv.html"class="active">Profile</a>
-  <a href="show.html">Showreel</a>
-</nav>
+<header class="nav">
+  <nav class="site-nav">
+    <a href="index.html">Home</a>
+    <a href="my-work.html">My Work</a>
+    <a href="reels.html">Reels</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="cv.html" class="active">Profile</a>
+  </nav>
+</header>
 
-  </header>
+<main class="wrap">
 
-  <main class="cv-wrap">
+<div class="lang">
+  <button class="active" onclick="en()">English</button>
+  <button onclick="ar()">عربي</button>
+</div>
 
-    <!-- LANGUAGE SWITCH -->
-    <div class="lang-switch">
-      <button class="lang-btn active" onclick="showEnglish()">English</button>
-      <button class="lang-btn" onclick="showArabic()">عربي</button>
-    </div>
+<!-- ENGLISH -->
+<div class="en">
 
-    <!-- ENGLISH -->
-    <div class="english">
+<section class="hero fade">
+  <img src="img/heshampersonal.jpg"/>
+  <div>
+    <div class="h-title">Hesham Abdelhamed</div>
+    <div class="h-role">Visual Storyteller · Multimedia Producer</div>
+    <div class="h-meta">Based in Riyadh · Available for collaborations</div>
+  </div>
+</section>
 
-      <!-- HERO -->
-      <section class="cv-hero">
-        <img src="img/heshampersonal.jpg"/>
-        <div>
-          <div class="cv-title">Hesham Abdelhamed</div>
-          <div class="cv-role">Filmmaker · Video Editor · Director</div>
-          <div class="cv-meta">Available for freelance & collaborations<br>Based In Riyadh, Saudia Arabia</div>
-        </div>
-      </section>
+<a class="btn" href="Hesham-Abdelhamed-Portfolio.pdf" download>Download Portfolio PDF</a>
 
-      <a class="download-btn" href="Hesham-Abdelhamed-CV.pdf" download>Download CV</a>
+<section class="section fade">
+  <div class="st">WHO AM I?</div>
+  <div class="box">
+    I am a visual storyteller crafting cinematic narratives with documentary sensitivity.
+    From concept to final cut, I focus on emotion, rhythm, and meaning.
+  </div>
+</section>
 
-      <!-- Skills Bar -->
-      <div class="skills-bar">
-        <div class="skills-scroll">
-          <span class="skill-item">Cinematography</span>
-          <span class="skill-item">Editing</span>
-          <span class="skill-item">Storytelling</span>
-          <span class="skill-item">Lighting</span>
-          <span class="skill-item">Documentary</span>
-          <span class="skill-item">Brand Films</span>
-          <span class="skill-item">Storyboarding</span>
-          <span class="skill-item">Directing</span>
-          <span class="skill-item">Motion Graphics</span>
+<section class="section fade">
+  <div class="st">Origins</div>
+  <div class="box">
+    I was born in a small room beneath a staircase, in an alley within an alley.
+    There, I learned early that life is understood with the heart before the eyes.
+  </div>
+</section>
 
-          <span class="skill-item">Cinematography</span>
-          <span class="skill-item">Editing</span>
-          <span class="skill-item">Storytelling</span>
-          <span class="skill-item">Lighting</span>
-          <span class="skill-item">Documentary</span>
-          <span class="skill-item">Brand Films</span>
-          <span class="skill-item">Storyboarding</span>
-          <span class="skill-item">Directing</span>
-          <span class="skill-item">Motion Graphics</span>
-        </div>
-      </div>
+<section class="section fade">
+  <div class="st">Seeing with the Heart</div>
+  <div class="box">
+    A blind man once recognized me without seeing me.
+    That moment taught me how true vision works.
+  </div>
+</section>
 
-      <!-- EXPERIENCE -->
-      <div class="section-title">Experience</div>
+<section class="section fade">
+  <div class="st">The Journey</div>
+  <div class="box">
+    My journey moved through streets, arts, conflicts, and stories.
+    I am still learning. Still moving.
+  </div>
+</section>
 
-      <div class="section-box experience-timeline">
+<section class="section fade">
+  <div class="st">Purpose</div>
+  <div class="box">
+    Purpose became clear with family.
+    Impact mattered more than success.
+  </div>
+</section>
 
-        <!-- 1 — FLOW MEDICAL SOLUTIONS -->
-        <div class="exp-item">
-          <div class="exp-role">Multimedia Producer – FLOW Medical Solutions (HMG)</div>
-          <div class="exp-meta">Jan 2024 – Present · Riyadh, Saudi Arabia</div>
-          <div class="exp-desc">
-            Working within the marketing department, capturing inspiring stories that reflect FLOW’s values
-            and documenting project outcomes through video production, editing and visual design—
-            ensuring every piece of content aligns with the brand and creates meaningful impact.
-          </div>
-          <div class="exp-logos">
-            <img src="img/co1.png" />
-            <img src="img/co250.png" />
-          </div>
-        </div>
+<section class="section fade">
+  <div class="st">Values & Beliefs</div>
+  <div class="box values">
+    <span>Story before technique</span>
+    <span>Meaning over noise</span>
+    <span>Simplicity is strength</span>
+    <span>Consistency over moments</span>
+  </div>
+</section>
 
-        <!-- 2 — FREELANCE -->
-        <div class="exp-item">
-          <div class="exp-role">Freelance Filmmaker</div>
-          <div class="exp-meta">Jan 2023 – Jan 2024 · Cairo, Lebanon, Morocco</div>
-          <div class="exp-desc">
-            Worked on specialized projects across film production, advertising, sports, medical content
-            and documentary storytelling. Collaborated with institutions such as BBC, DW and French Television
-            on high-quality productions.
-          </div>
-          <div class="exp-logos">
-            <img src="img/co2.png" />
-            <img src="img/co3.png" />
-            <img src="img/co4.png" />
-          </div>
-        </div>
+<section class="section fade">
+  <div class="st">What I Create</div>
+  <div class="create">
+    <div class="tag">Documentary</div>
+    <div class="tag">Brand Films</div>
+    <div class="tag">Videography</div>
+    <div class="tag">Editing</div>
+    <div class="tag">Motion</div>
+  </div>
+</section>
 
-        <!-- 3 — BAHEYA -->
-        <div class="exp-item">
-          <div class="exp-role">Manager of Multimedia – Baheya Foundation</div>
-          <div class="exp-meta">Sep 2022 – Dec 2022 · Cairo, Egypt</div>
-          <div class="exp-desc">
-            Led filming and editing, crafting inspiring stories of women fighting breast cancer and presenting
-            their journeys with empathy, strength and respect.
-          </div>
-          <div class="exp-logos">
-            <img src="img/co5.png" />
-          </div>
-        </div>
+</div>
 
-        <!-- 4 — MEDIA VISION COMPANY INTL -->
-        <div class="exp-item">
-          <div class="exp-role">Filmmaker – Media Vision Company International</div>
-          <div class="exp-meta">Aug 2018 – Dec 2022 · Cairo, Lebanon, Morocco, Jordan, Tunisia</div>
-          <div class="exp-desc">
-            Produced over 40 documentary films across several countries, exploring diverse cultural,
-            social and human stories as part of long-form documentary series.
-          </div>
-          <div class="exp-logos">
-            <img src="img/co6.png" />
-          </div>
-        </div>
+<!-- ARABIC -->
+<div class="ar">
 
-        <!-- 5 — AL-MANASSA -->
-        <div class="exp-item">
-          <div class="exp-role">Multimedia Reporter – Al-Manassa Newsroom</div>
-          <div class="exp-meta">2020 – 2022 · Cairo, Egypt</div>
-          <div class="exp-desc">
-            Covered social, cultural and political stories using multimedia journalism, producing
-            impactful visual news content for digital platforms.
-          </div>
-          <div class="exp-logos">
-            <img src="img/co7.png" />
-          </div>
-        </div>
+<section class="hero fade">
+  <img src="img/heshampersonal.jpg"/>
+  <div>
+    <div class="h-title">هشام عبد الحميد</div>
+    <div class="h-role">حكّاء بصري · منتج وسائط</div>
+    <div class="h-meta">مقيم في الرياض · متاح للتعاون</div>
+  </div>
+</section>
 
-        <!-- 6 — WAYA MEDIA -->
-        <div class="exp-item">
-          <div class="exp-role">Videographer / Video Editor – WAYA Media</div>
-          <div class="exp-meta">2019 – 2020 · Cairo, Egypt</div>  
-          <div class="exp-desc">
-            Filmed and edited business and startup-focused stories, delivering modern,
-            high-impact visuals tailored for social media growth.
-          </div>
-          <div class="exp-logos">
-            <img src="img/co8.png" />
-          </div>
-        </div>
+<a class="btn" href="Hesham-Abdelhamed-Portfolio.pdf">تحميل ملف الأعمال</a>
 
-        <!-- 7 — GAMMA AGENCY -->
-        <div class="exp-item">
-          <div class="exp-role">Multimedia Producer – Gamma Agency for Media Production</div>
-          <div class="exp-meta">2016 – 2020 · Egypt</div>
-          <div class="exp-desc">
-            Produced visual content for major international networks including Al Arabiya,
-            BBC, DW, Reuters and AFP across news, documentary and feature formats.
-          </div>
-          <div class="exp-logos">
-            <img src="img/co9.png" />
-            <img src="img/co10.png" />
-            <img src="img/co11.png" />
-            <img src="img/co12.png" />
-            <img src="img/co260.png" />
-            <img src="img/co270.png" />
-          </div>
-        </div>
+<section class="section fade">
+  <div class="st">من أنا</div>
+  <div class="box">
+    حكّاء بصري أصنع السرد من الصورة والإحساس والمعنى.
+  </div>
+</section>
 
-        <!-- 8 — ALARABY TV -->
-        <div class="exp-item">
-          <div class="exp-role">Camera Operator / Video Editor – AlAraby TV</div>
-          <div class="exp-meta">2014 – 2016 · Cairo, Egypt</div>
-          <div class="exp-desc">
-            Worked on news features and TV reports as part of the multimedia production team,
-            ensuring high-quality visual storytelling for broadcast.
-          </div>
-          <div class="exp-logos">
-            <img src="img/co13.png" />
-          </div>
-        </div>
+<section class="section fade">
+  <div class="st">الجذور</div>
+  <div class="box">
+    وُلدت في مساحة صغيرة، وتعلّمت مبكرًا أن الرؤية بالقلب.
+  </div>
+</section>
 
-        <!-- 9 — FREELANCE MULTIMEDIA REPORTER -->
-        <div class="exp-item">
-          <div class="exp-role">Freelance Multimedia Reporter</div>
-          <div class="exp-meta">2011 – 2014 · Egypt</div>
-          <div class="exp-desc">
-            Covered human-interest stories, field reporting and social issues for regional
-            TV channels and digital media outlets.
-          </div>
-          <div class="exp-logos">
-            <img src="img/co14.png" />
-          </div>
-        </div>
+<section class="section fade">
+  <div class="st">الرؤية بالقلب</div>
+  <div class="box">
+    لحظة غيّرت طريقة نظري للعالم.
+  </div>
+</section>
 
-      </div>
+<section class="section fade">
+  <div class="st">الرحلة</div>
+  <div class="box">
+    رحلة بين الناس والفن والحياة… وما زالت مستمرة.
+  </div>
+</section>
 
-    </div>
+<section class="section fade">
+  <div class="st">الهدف</div>
+  <div class="box">
+    الأثر أهم من الوصول.
+  </div>
+</section>
 
-    <!-- ARABIC VERSION -->
-    <div class="arabic" dir="rtl">
+<section class="section fade">
+  <div class="st">القيم</div>
+  <div class="box values">
+    <span>الحكاية قبل التقنية</span>
+    <span>المعنى أهم من الضجيج</span>
+    <span>البساطة قوة</span>
+  </div>
+</section>
 
-      <section class="cv-hero">
-        <img src="img/heshampersonal.jpg" />
-        <div>
-          <div class="cv-title">هشام عبد الحميد</div>
-          <div class="cv-role">صانع أفلام · مونتير · مخرج</div>
-          <div class="cv-meta">متاح للعمل الحر والتعاونات<br>مقيم في الرياض </div>
-        </div>
-      </section>
+<section class="section fade">
+  <div class="st">ماذا أقدّم</div>
+  <div class="create">
+    <div class="tag">وثائقي</div>
+    <div class="tag">أفلام علامات</div>
+    <div class="tag">تصوير</div>
+    <div class="tag">مونتاج</div>
+  </div>
+</section>
 
-      <a class="download-btn" href="Hesham-Abdelhamed-CV.pdf">تحميل السيرة الذاتية</a>
+</div>
 
-      <!-- AR SKILLS BAR -->
-      <div class="skills-bar">
-        <div class="skills-scroll">
-          <span class="skill-item">تصوير سينمائي</span>
-          <span class="skill-item">مونتاج</span>
-          <span class="skill-item">سرد قصصي</span>
-          <span class="skill-item">إضاءة</span>
-          <span class="skill-item">وثائقي</span>
-          <span class="skill-item">أفلام العلامات التجارية</span>
+<div class="footer">
+  Visit hisham.digital · Experience the journey
+</div>
 
-          <span class="skill-item">تصوير سينمائي</span>
-          <span class="skill-item">مونتاج</span>
-          <span class="skill-item">سرد قصصي</span>
-          <span class="skill-item">إضاءة</span>
-        </div>
-      </div>
+</main>
 
-      <div class="section-title">الخبرات</div>
+<script>
+const f=document.querySelectorAll('.fade');
+const io=new IntersectionObserver(e=>{
+  e.forEach(x=>x.isIntersecting&&x.target.classList.add('show'))
+},{threshold:.2});
+f.forEach(el=>io.observe(el));
 
-      <div class="section-box experience-timeline">
-
-        <!-- 1 — FLOW -->
-        <div class="exp-item">
-          <div class="exp-role">منتج وسائط متعددة – FLOW Medical Solutions</div>
-          <div class="exp-meta">2024 – حتى الآن · الرياض</div>
-          <div class="exp-desc">
-            العمل ضمن قسم التسويق لتوثيق وتصوير القصص الملهمة المرتبطة بمشاريع الشركة،
-            بالإضافة إلى المونتاج وتصميم المواد البصرية بما يحقق هوية العلامة ويصنع أثراً حقيقياً.
-          </div>
-          <div class="exp-logos">
-            <img src="img/co1.png" />
-          </div>
-        </div>
-
-        <!-- 2 — FREELANCE -->
-        <div class="exp-item">
-          <div class="exp-role">صانع أفلام مستقل</div>
-          <div class="exp-meta">2023 – 2024 · القاهرة، لبنان، المغرب</div>
-          <div class="exp-desc">
-            العمل على مشروعات متخصصة في مجالات الأفلام، الإعلانات، الرياضة، المحتوى الطبي
-            والأفلام الوثائقية بالتعاون مع مؤسسات دولية مثل BBC وDW والتلفزيون الفرنسي.
-          </div>
-          <div class="exp-logos">
-            <img src="img/co2.png" />
-            <img src="img/co3.png" />
-            <img src="img/co4.png" />
-          </div>
-        </div>
-
-        <!-- 3 — BAHEYA -->
-        <div class="exp-item">
-          <div class="exp-role">مدير قسم الوسائط المتعددة – مؤسسة بهية</div>
-          <div class="exp-meta">2022 – 2022 · القاهرة</div>
-          <div class="exp-desc">
-            مسؤول عن تصوير ومونتاج قصص السيدات المحاربات،
-            وتقديم هذه الرحلات الإنسانية بشكل ملهم ويحترم خصوصيتهن.
-          </div>
-          <div class="exp-logos">
-            <img src="img/co5.png" />
-          </div>
-        </div>
-
-        <!-- 4 — MEDIA VISION -->
-        <div class="exp-item">
-          <div class="exp-role">صانع أفلام – Media Vision Company International</div>
-          <div class="exp-meta">2018 – 2022 · لبنان، المغرب، الأردن، تونس</div>
-          <div class="exp-desc">
-            إنتاج أكثر من 40 فيلماً وثائقياً من دول مختلفة، تسلط الضوء على حكايات إنسانية
-            وتجارب اجتماعية وثقافية ضمن سلاسل وثائقية طويلة.
-          </div>
-          <div class="exp-logos">
-            <img src="img/co6.png" />
-          </div>
-        </div>
-
-        <!-- 5 — ALMANASSA -->
-        <div class="exp-item">
-          <div class="exp-role">مراسل وسائط متعددة – غرفة أخبار المنصة</div>
-          <div class="exp-meta">2020 – 2022 · القاهرة</div>
-          <div class="exp-desc">
-            تغطية قصص اجتماعية وثقافية وسياسية باستخدام الصحافة متعددة الوسائط،
-            وإنتاج مواد بصرية تفاعلية للمنصات الرقمية.
-          </div>
-          <div class="exp-logos">
-            <img src="img/co7.png" />
-          </div>
-        </div>
-
-        <!-- 6 — WAYA MEDIA -->
-        <div class="exp-item">
-          <div class="exp-role">مصور فيديو · مونتير – WAYA Media</div>
-          <div class="exp-meta">2019 – 2020 · القاهرة</div>
-          <div class="exp-desc">
-            تصوير ومونتاج قصص الشركات الناشئة وريادة الأعمال،
-            وتقديم محتوى بصري عصري لمنصات السوشيال ميديا.
-          </div>
-          <div class="exp-logos">
-            <img src="img/co8.png" />
-          </div>
-        </div>
-
-        <!-- 7 — GAMMA -->
-        <div class="exp-item">
-          <div class="exp-role">منتج وسائط متعددة – Gamma Agency</div>
-          <div class="exp-meta">2016 – 2020 · مصر</div>
-          <div class="exp-desc">
-            إنتاج تقارير ومواد بصرية لقنوات دولية مثل العربية، BBC، DW، رويترز وAFP
-            في مجالات الأخبار والبرامج الوثائقية.
-          </div>
-          <div class="exp-logos">
-            <img src="img/co9.png" />
-            <img src="img/co10.png" />
-            <img src="img/co11.png" />
-            <img src="img/co12.png" />
-          </div>
-        </div>
-
-        <!-- 8 — ALARABY -->
-        <div class="exp-item">
-          <div class="exp-role">مصور كاميرا · مونتير – قناة العربي</div>
-          <div class="exp-meta">2014 – 2016 · القاهرة</div>
-          <div class="exp-desc">
-            العمل على التقارير التلفزيونية والقصص الإنسانية ضمن فريق الإنتاج متعدد الوسائط،
-            وضمان جودة السرد المرئي للتلفزيون.
-          </div>
-          <div class="exp-logos">
-            <img src="img/co13.png" />
-          </div>
-        </div>
-
-        <!-- 9 — FREELANCE REPORTER -->
-        <div class="exp-item">
-          <div class="exp-role">مراسل وسائط متعددة مستقل</div>
-          <div class="exp-meta">2011 – 2014 · مصر</div>
-          <div class="exp-desc">
-            تغطية قصص إنسانية واجتماعية وإنتاج محتوى ميداني لقنوات إخبارية
-            ومنصات رقمية في المنطقة.
-          </div>
-          <div class="exp-logos">
-            <img src="img/co14.png" />
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-
-  </main>
-
-  <script>
-    function showEnglish() {
-      document.querySelector(".english").style.display = "block";
-      document.querySelector(".arabic").style.display = "none";
-      document.querySelectorAll(".lang-btn")[0].classList.add("active");
-      document.querySelectorAll(".lang-btn")[1].classList.remove("active");
-    }
-
-    function showArabic() {
-      document.querySelector(".english").style.display = "none";
-      document.querySelector(".arabic").style.display = "block";
-      document.querySelectorAll(".lang-btn")[1].classList.add("active");
-      document.querySelectorAll(".lang-btn")[0].classList.remove("active");
-    }
-  </script>
+function en(){
+  document.querySelector('.en').style.display='block';
+  document.querySelector('.ar').style.display='none';
+  document.querySelectorAll('.lang button')[0].classList.add('active');
+  document.querySelectorAll('.lang button')[1].classList.remove('active');
+}
+function ar(){
+  document.querySelector('.en').style.display='none';
+  document.querySelector('.ar').style.display='block';
+  document.querySelectorAll('.lang button')[1].classList.add('active');
+  document.querySelectorAll('.lang button')[0].classList.remove('active');
+}
+</script>
 
 </body>
-
 </html>
