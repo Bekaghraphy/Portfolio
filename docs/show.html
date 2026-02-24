@@ -2,227 +2,202 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Showreel | Hesham Abdelhamed</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Documentary Studio</title>
 
-<link rel="icon" type="image/png" href="img/favicon.png">
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Raleway:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-html,body{
-  width:100%;
-  height:100%;
-  background:#000;
-  font-family:'Raleway',sans-serif;
-  overflow:hidden;
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Montserrat',sans-serif;}
+
+body{
+background:#000;
+color:#fff;
+overflow:hidden;
+perspective:1000px;
 }
 
-/* NAVBAR */
-.site-nav{
-  position:fixed;
-  top:16px;
-  left:0;
-  right:0;
-  z-index:100;
-  display:flex;
-  justify-content:center;
-  gap:28px;
-  padding:6px 14px;
-  overflow-x:auto;
-  white-space:nowrap;
-  font-family:'Montserrat',sans-serif;
-}
-.site-nav a{
-  font-size:13px;
-  letter-spacing:.18em;
-  text-transform:uppercase;
-  color:#fff;
-  text-decoration:none;
-  opacity:.75;
-}
-.site-nav a.active{color:#f5c14a;opacity:1}
-.site-nav::-webkit-scrollbar{display:none}
-
-/* SECTION */
-.section{
-  position:relative;
-  width:100%;
-  height:100vh;
+section{
+position:relative;
+height:100vh;
+width:100%;
+display:flex;
+align-items:center;
+justify-content:center;
+overflow:hidden;
 }
 
-/* VIDEO */
-#vimeo-videoContainment{
-  position:absolute;
-  inset:0;
-  z-index:1;
-}
-#vimeo-videoContainment iframe{
-  position:absolute;
-  top:50%;
-  left:50%;
-  width:100vw;
-  height:56.25vw;
-  min-width:177.78vh;
-  min-height:100vh;
-  transform:translate(-50%,-50%);
-  transition:opacity .12s linear;
-}
-.fade-out{opacity:0}
-
-/* TITLE */
-.center-container{
-  position:absolute;
-  inset:0;
-  display:flex;
-  align-items:center;
-  z-index:2;
-}
-.hero-title-wrap{
-  margin-left:12vw;
-  padding:24px 32px;
-  border:1px solid rgba(212,175,55,.9);
-}
-.hero-title{
-  font-family:'Montserrat',sans-serif;
-  font-weight:900;
-  font-size:clamp(32px,6vw,90px);
-  line-height:.9;
-  letter-spacing:-.08em;
-  color:#fff;
-  text-transform:uppercase;
+.layer{
+position:absolute;
+inset:0;
+width:100%;
+height:100%;
+object-fit:cover;
+z-index:0;
 }
 
-/* CONTROLS */
-.video-controls{
-  position:fixed;
-  bottom:calc(24px + env(safe-area-inset-bottom));
-  left:50%;
-  transform:translateX(-50%);
-  display:flex;
-  gap:32px;
-  z-index:99999;
-  pointer-events:auto;
-
-  /* Background to ensure visibility */
-  padding:12px 18px;
-  border-radius:999px;
-  background:rgba(0,0,0,.45);
-  backdrop-filter: blur(6px);
+.overlay{
+position:absolute;
+inset:0;
+background:rgba(0,0,0,.65);
+z-index:1;
 }
 
-.ctrl-btn{
-  font-family:'Montserrat',sans-serif;
-  font-size:18px;
-  letter-spacing:.25em;
-  cursor:pointer;
-  color:#fff;
-  opacity:.75;
-  transition:color .2s ease, opacity .2s ease;
+.content{
+position:relative;
+z-index:2;
+max-width:900px;
+padding:0 8%;
+transform-style:preserve-3d;
 }
-.ctrl-btn.active{
-  color:#f5c14a;
-  opacity:1;
-}
-.ctrl-btn:hover{opacity:1}
 
-/* MOBILE */
+h1{
+font-size:70px;
+color:#d4af37;
+margin-bottom:20px;
+text-shadow:0 0 30px rgba(212,175,55,.5);
+}
+
+h2{
+font-size:52px;
+line-height:1.3;
+}
+
+p{
+font-size:22px;
+opacity:.9;
+line-height:1.7;
+}
+
+.featured{
+background:#000;
+height:auto;
+padding:140px 10%;
+text-align:center;
+}
+
+.featured iframe{
+width:100%;
+max-width:1000px;
+height:550px;
+margin:40px auto;
+display:block;
+}
+
 @media(max-width:768px){
-  /* ارفع الكنترولز لفوق عشان ما تتغطاش تحت شريط المتصفح */
-  .video-controls{
-    bottom:calc(110px + env(safe-area-inset-bottom));
-  }
-
-  /* Video look good on mobile (no zoom cropping) */
-  #vimeo-videoContainment iframe{
-    width:100%;
-    height:100%;
-    min-width:0;
-    min-height:0;
-  }
-
-  .hero-title-wrap{margin-left:8vw}
+h1{font-size:36px;}
+h2{font-size:24px;}
+p{font-size:16px;}
+.featured iframe{height:240px;}
 }
 </style>
 </head>
 
 <body>
 
-<nav class="site-nav">
-  <a href="index.html">Home</a>
-  <a href="my-work.html">My Work</a>
-  <a href="reels.html">Reels</a>
-  <a href="gallery.html">Gallery</a>
-  <a href="academy.html">Pro</a>
-  <a href="cv.html">Profile</a>
-  <a href="show.html" class="active">Showreel</a>
-</nav>
-
-<div class="section">
-
-  <div id="vimeo-videoContainment">
-    <iframe
-      id="vimeoFrame"
-      src="https://player.vimeo.com/video/348818970?autoplay=1&muted=1&background=1"
-      allow="autoplay; fullscreen">
-    </iframe>
-  </div>
-
-  <div class="center-container">
-    <div class="hero-title-wrap">
-      <div class="hero-title">Show<br>Reel</div>
-    </div>
-  </div>
-
+<!-- HERO -->
+<section class="hero">
+<video class="layer" autoplay muted loop playsinline>
+<source src="https://www.w3schools.com/howto/rain.mp4" type="video/mp4">
+</video>
+<div class="overlay"></div>
+<div class="content">
+<h1>HESHAM ABDELHAMED</h1>
+<p>Documentary Storytelling<br>
+"I don’t film moments. I preserve memory."</p>
 </div>
+</section>
 
-<div class="video-controls">
-  <div id="nextBtn" class="ctrl-btn" onclick="nextVideo()">NEXT</div>
-  <div id="muteBtn" class="ctrl-btn active" onclick="toggleMute()">MUTE</div>
+<!-- TRANSITION TEXT -->
+<section class="scene2">
+<img class="layer" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1600&auto=format&fit=crop">
+<div class="overlay"></div>
+<div class="content">
+<h2>A documentary is not about information.<br>It is about emotion.</h2>
 </div>
+</section>
+
+<!-- PINNED DEPTH -->
+<section class="scene3">
+<div class="content">
+<h2 id="step-title">OBSERVE</h2>
+<p id="step-text">We watch before we move.</p>
+</div>
+</section>
+
+<!-- FEATURED -->
+<section class="featured">
+<h2 style="color:#d4af37">Featured Documentary</h2>
+<iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+<p>
+This film explores silence and emotional presence.
+Each cut was motivated by feeling, not speed.
+</p>
+</section>
+
+<script src="https://unpkg.com/lenis@1.0.19/bundled/lenis.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
 <script>
-const videos = [
-"https://player.vimeo.com/video/348818970",
-"https://player.vimeo.com/video/782962222",
-"https://player.vimeo.com/video/1093436208",
-"https://player.vimeo.com/video/1127837184",
-"https://player.vimeo.com/video/697540206",
-"https://player.vimeo.com/video/1081231929",
-"https://player.vimeo.com/video/348850766",
-"https://player.vimeo.com/video/1137725566",
-"https://player.vimeo.com/video/1127838352"
+gsap.registerPlugin(ScrollTrigger);
+
+/* Smooth Scroll */
+const lenis = new Lenis({duration:1.2});
+function raf(time){lenis.raf(time);requestAnimationFrame(raf);}
+requestAnimationFrame(raf);
+
+/* HERO 3D zoom */
+gsap.to(".hero .layer",{
+scale:1.2,
+rotationZ:1,
+scrollTrigger:{
+trigger:".hero",
+start:"top top",
+end:"bottom top",
+scrub:true
+}
+});
+
+/* Scene2 parallax depth */
+gsap.to(".scene2 .layer",{
+y:-200,
+scale:1.1,
+scrollTrigger:{
+trigger:".scene2",
+start:"top bottom",
+end:"bottom top",
+scrub:true
+}
+});
+
+/* Scene3 pinned cinematic text */
+const steps=[
+{title:"OBSERVE",text:"We watch before we move."},
+{title:"FEEL",text:"We listen before we speak."},
+{title:"TRANSLATE",text:"We edit without destroying reality."}
 ];
 
-let index = 0;
-let muted = true;
-
-function buildSrc(i){
-  return videos[i] + `?autoplay=1&background=1&muted=${muted ? 1 : 0}`;
+let tl=gsap.timeline({
+scrollTrigger:{
+trigger:".scene3",
+start:"top top",
+end:"+=300%",
+scrub:true,
+pin:true
 }
+});
 
-function loadVideo(i){
-  const frame = document.getElementById("vimeoFrame");
-  frame.classList.add("fade-out");
-  setTimeout(()=>{
-    frame.src = buildSrc(i);
-    frame.classList.remove("fade-out");
-  },120);
-}
-
-function nextVideo(){
-  index = (index + 1) % videos.length;
-  loadVideo(index);
-}
-
-function toggleMute(){
-  muted = !muted;
-  document.getElementById("muteBtn").classList.toggle("active", muted);
-  document.getElementById("vimeoFrame").src = buildSrc(index);
-}
-
-window.addEventListener("DOMContentLoaded", ()=>{
-  loadVideo(index);
+steps.forEach(step=>{
+tl.to("#step-title",{opacity:0,duration:.4})
+.to("#step-text",{opacity:0,duration:.4})
+.call(()=>{
+document.getElementById("step-title").innerText=step.title;
+document.getElementById("step-text").innerText=step.text;
+})
+.to("#step-title",{opacity:1,duration:.4})
+.to("#step-text",{opacity:1,duration:.4})
+.to({}, {duration:1});
 });
 </script>
 
