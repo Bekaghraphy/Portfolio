@@ -1,691 +1,277 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Home | Hesham Abdelhamed</title>
-  <link rel="icon" type="image/png" href="img/favicon.png" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home | Hesham Abdelhamed</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet" />
+<link rel="icon" type="image/png" href="img/favicon.png">
 
-  <link rel="stylesheet" href="style.css" />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-  <style>
-    /* زر الشات */
-    #chatbase-bubble, .cb-bubble {
-      bottom: 40px !important;
-      right: 30px !important;
-      background-color: #d8b97a !important;
-      box-shadow: 0 0 20px rgba(216, 185, 122, 0.4) !important;
-    }
+<link rel="stylesheet" href="style.css">
 
-    /* ===== GLOBAL NAVBAR ===== */
-    .site-nav {
-      position: relative;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 28px;
-      font-family: 'Montserrat', sans-serif;
-    }
+<style>
 
-    .site-nav a {
-      font-size: 14px;
-      font-weight: 500;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: #ffffff;
-      text-decoration: none;
-      opacity: 0.75;
-      transition: color 0.25s ease, opacity 0.25s ease;
-    }
-
-    .site-nav a:hover {
-      opacity: 1;
-    }
-
-    .site-nav a.active {
-      color: #f5c14a;
-      opacity: 1;
-    }
-
-    /* ===== LOGO GOLD GLOW (التعديل الوحيد) ===== */
-    .nav-logo img{
-      width:34px;
-      height:34px;
-      transition: transform .3s ease, filter .3s ease;
-    }
-
-    .nav-logo:hover img,
-    .nav-logo:focus img{
-      transform: scale(1.08);
-      filter:
-        drop-shadow(0 0 6px rgba(216,185,122,.65))
-        drop-shadow(0 0 14px rgba(216,185,122,.45));
-    }
-
-    @media (hover:none){
-      .nav-logo:active img{
-        transform: scale(1.1);
-        filter:
-          drop-shadow(0 0 8px rgba(216,185,122,.7))
-          drop-shadow(0 0 18px rgba(216,185,122,.5));
-      }
-    }
-
-    /* Mobile */
-    @media (max-width: 768px) {
-      .site-nav {
-        top: 16px;
-        padding: 6px 12px;
-        overflow-x: auto;
-        white-space: nowrap;
-        justify-content: flex-start;
-      }
-
-      .site-nav a {
-        font-size: 12px;
-        margin-right: 22px;
-      }
-
-      .site-nav::-webkit-scrollbar {
-        display: none;
-      }
-    }
-
-    body{
-      min-height:100vh;
-      display:flex;
-      flex-direction:column;
-    }
-
-    .site-footer{
-      width:100%;
-      padding:20px 0 24px;
-      text-align:center;
-      font-family:'Montserrat', sans-serif;
-      font-size:11px;
-      letter-spacing:.2em;
-      text-transform:uppercase;
-      color:rgba(255,255,255,.45);
-    }
-
-    /* ===== LOADER ===== */
- #loader{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,0.75); /* بدل الأسود الكامل */
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  z-index:9999;
-  transition:opacity .6s ease; /* للـ fade */
+body{
+min-height:100vh;
+display:flex;
+flex-direction:column;
+font-family:'Montserrat',sans-serif;
 }
 
-    #loader img{
-      width:90px;
-      margin-bottom:16px;
-      animation:pulse 1.2s ease-in-out infinite;
-    }
+/* NAV */
 
-    #loader span{
-      color:#aaa;
-      font-size:12px;
-      letter-spacing:.25em;
-      text-transform:uppercase;
-    }
-
-    @keyframes pulse{
-      0%{transform:scale(1);opacity:.6}
-      50%{transform:scale(1.05);opacity:1}
-      100%{transform:scale(1);opacity:.6}
-    }
-    /* ===== NAV SPACING FIX ===== */
-.nav-links{
-  display:flex;
-  gap:28px; /* رجّع المسافة */
+.site-nav{
+display:flex;
+justify-content:center;
+gap:28px;
 }
 
-/* ===== ACTIVE LINK GOLD ===== */
-.nav-links a.active{
-  color:#f5c14a;
-  opacity:1;
+.site-nav a{
+font-size:14px;
+letter-spacing:.18em;
+text-transform:uppercase;
+color:#fff;
+opacity:.75;
+text-decoration:none;
 }
-    /* ===== SOCIAL ICONS ===== */
+
+.site-nav a.active{
+color:#f5c14a;
+opacity:1;
+}
+
+/* HERO */
+
+.hero{
+position:relative;
+height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+}
+
+.hero-bg{
+position:absolute;
+inset:0;
+width:100%;
+height:100%;
+object-fit:cover;
+z-index:-2;
+}
+
+.hero-overlay{
+position:absolute;
+inset:0;
+background:rgba(0,0,0,.45);
+z-index:-1;
+}
+
+.hero-content{
+max-width:760px;
+padding:20px;
+}
+
+.hero-name{
+font-size:60px;
+font-weight:700;
+margin-bottom:20px;
+}
+
+.hero-heading{
+font-size:26px;
+margin-bottom:20px;
+letter-spacing:.12em;
+}
+
+.hero-sub{
+opacity:.85;
+line-height:1.6;
+margin-bottom:40px;
+}
+
+/* SOCIAL ICONS UNDER TEXT */
+
 .social-icons{
-  position: fixed;
-  left: 24px;
-  bottom: 36px;
-  z-index: 150;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
+
+display:flex;
+justify-content:center;
+gap:14px;
+flex-wrap:wrap;
+
 }
 
 .icon-circle{
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.06);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform .3s ease, background .3s ease;
+
+width:38px;
+height:38px;
+
+border-radius:50%;
+
+background:rgba(255,255,255,.08);
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+transition:.3s;
+
 }
 
 .icon-circle img{
-  width: 18px;
-  height: 18px;
+width:18px;
+height:18px;
 }
 
 .icon-circle:hover{
-  background: rgba(216,185,122,0.2);
-  transform: scale(1.08);
+
+background:rgba(216,185,122,.25);
+
+transform:scale(1.1);
+
 }
 
-/* ===== MOBILE (VISIBLE) ===== */
-@media (max-width:768px){
-  .social-icons{
-    left: 14px;
-    bottom: 20px;
-    flex-direction: row;
-    gap: 10px;
-  }
+/* FOOTER */
+
+.site-footer{
+
+text-align:center;
+
+font-size:11px;
+
+letter-spacing:.2em;
+
+padding:20px;
+
+opacity:.5;
+
 }
+
 </style>
+
 </head>
 
 <body>
 
-<div id="loader">
-  <img src="img/favicon.png" alt="Loading Logo">
-  <span>Welcome<span class="dots">...</span></span>
-</div>
-
 <header class="nav">
-  <nav class="site-nav">
-    <a href="index.html" class="nav-logo">
-      <img src="img/favicon.png" alt="Home">
-    </a>
 
-    <div class="nav-links">
-      <a href="index.html" class="active">Home</a>
-      <a href="my-work.html">My Work</a>
-      <a href="ai-motion.html">Ai & Animation</a>
-      <a href="academy.html">Pro</a>
-      <a href="show.html">Showreel</a>
-    </div>
-  </nav>
+<nav class="site-nav">
+
+<a href="index.html" class="nav-logo">
+<img src="img/favicon.png" width="34">
+</a>
+
+<a href="index.html" class="active">Home</a>
+<a href="my-work.html">My Work</a>
+<a href="ai-motion.html">AI & Animation</a>
+<a href="academy.html">Pro</a>
+<a href="show.html">Showreel</a>
+
+</nav>
+
 </header>
 
-<section class="hero" id="hero">
-  <video class="hero-bg" autoplay muted loop playsinline preload="auto">
-    <source src="img/5.mp4" type="video/mp4" />
-  </video>
 
-  <!-- Canvas للـ particles على الاسم -->
-  <canvas id="nameParticles"></canvas>
+<section class="hero">
 
-  <!-- Overlay للهيرو فقط (مش للـ navbar) -->
-  <div class="hero-overlay"></div>
+<video class="hero-bg" autoplay muted loop playsinline>
+<source src="img/5.mp4" type="video/mp4">
+</video>
 
-  <div class="hero-content">
-    <h1 class="hero-name">Hesham Abdelhamed</h1>
+<div class="hero-overlay"></div>
 
-    <div class="hero-heading">
-      <span id="typeTarget"></span><span class="type-cursor">|</span>
-    </div>
+<div class="hero-content">
 
-    <div class="hero-sub">
-      I am a filmmaker and video editor crafting cinematic narratives,
-      mixing documentary sensitivity with strong visual composition.
-      From concept to final cut, I focus on emotion, rhythm, and details.
-    </div>
-  </div>
-</section>
+<h1 class="hero-name">Hesham Abdelhamed</h1>
 
+<div class="hero-heading">
+<span id="typeTarget"></span><span class="type-cursor">|</span>
+</div>
 
-<footer class="site-footer">
-  © 2025 Hesham Abdelhamed I All rights reserved.
-</footer>
+<div class="hero-sub">
 
-<script>
-  window.addEventListener("load", () => {
-    setTimeout(() => {
-      const loader = document.getElementById("loader");
-      loader.style.opacity = "0";
-      setTimeout(() => loader.style.display = "none", 600);
-    }, 1000);
-  });
-</script>
+I am a filmmaker and video editor crafting cinematic narratives,
+mixing documentary sensitivity with strong visual composition.
+From concept to final cut, I focus on emotion, rhythm, and details.
 
-<script>
-/* ============ TYPEWRITER (Hero Heading) ============ */
-(function(){
-  const el = document.getElementById("typeTarget");
-  if(!el) return;
-
-  const text = "CINEMATIC\nVISUAL STORIES";
-  const speed = 55;
-  const startDelay = 300;
-
-  let i = 0;
-  function tick(){
-    i++;
-    el.innerHTML = text.slice(0, i).replace(/\n/g, "<br>");
-    if(i < text.length) setTimeout(tick, speed);
-  }
-  setTimeout(tick, startDelay);
-})();
-
-/* ============ PARTICLE TEXT (Name only) ============ */
-(function(){
-  const canvas = document.getElementById("nameParticles");
-  const nameEl = document.querySelector(".hero-name");
-  if(!canvas || !nameEl) return;
-
-
-  const ctx = canvas.getContext("2d", { alpha: true });
-  const dpr = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
-
-  let particles = [];
-  let points = [];
-  let animId = null;
-
-  const mouse = { x: -9999, y: -9999, r: 90 };
-
-  function resize(){
-    const w = Math.floor(window.innerWidth);
-    const h = Math.floor(window.innerHeight);
-
-    canvas.width  = Math.floor(w * dpr);
-    canvas.height = Math.floor(h * dpr);
-    canvas.style.width = w + "px";
-    canvas.style.height = h + "px";
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-
-    buildTextPoints();
-  }
-
-  function buildTextPoints(){
-    const w = window.innerWidth;
-    const h = window.innerHeight;
-
-    const rect = nameEl.getBoundingClientRect();
-const heroRect = hero.getBoundingClientRect();
-
-const x0 = rect.left - heroRect.left;
-const y0 = rect.top  - heroRect.top;
-
-...
-offCtx.fillText(text, x0, y0);
-
-
-    const off = document.createElement("canvas");
-    off.width = w;
-    off.height = h;
-    const offCtx = off.getContext("2d");
-
-    const st = getComputedStyle(nameEl);
-    const fontSize = parseFloat(st.fontSize) || 40;
-    const fontWeight = st.fontWeight || "700";
-    const fontFamily = st.fontFamily || "Montserrat, sans-serif";
-
-    offCtx.clearRect(0,0,w,h);
-    offCtx.fillStyle = "#fff";
-    offCtx.textBaseline = "top";
-    offCtx.font = `${fontWeight} ${fontSize}px ${fontFamily}`;
-
-    // ارسم النص في نفس مكانه
-    offCtx.fillText(text, rect.left, rect.top);
-
-    const img = offCtx.getImageData(0,0,w,h).data;
-
-    points = [];
-    const step = 3; // كثافة أعلى
-    for(let y=0; y<h; y+=step){
-      for(let x=0; x<w; x+=step){
-        const a = img[(y*w + x)*4 + 3];
-        if(a > 20) points.push({x,y});
-      }
-    }
-
-    // عدد particles ثابت (واضح)
-    const count = Math.min(1400, Math.max(450, Math.floor(points.length * 0.12)));
-    particles = new Array(count).fill(0).map((_,i)=>{
-      const p = points[(Math.random()*points.length)|0] || {x:x0, y:y0};
-      // تبدأ متبعثرة حوالين مكان الاسم
-      return {
-        x: x0 + (Math.random()*rect.width),
-y: y0 + (Math.random()*rect.height) + 60,
-
-        vx: (Math.random()-0.5)*3,
-        vy: (Math.random()-0.5)*3,
-        tx: p.x,
-        ty: p.y
-      };
-    });
-
-    start();
-  }
-
-  function start(){
-    if(animId) cancelAnimationFrame(animId);
-    animate();
-  }
-
-  function animate(){
-    const w = window.innerWidth;
-    const h = window.innerHeight;
-    ctx.clearRect(0,0,w,h);
-
-    // لون الذهب
-    ctx.fillStyle = "rgba(212,175,55,0.95)";
-
-    const ease = 0.07;
-    const friction = 0.84;
-
-    for(const p of particles){
-      // جذب للنقاط
-      const dx = p.tx - p.x;
-      const dy = p.ty - p.y;
-
-      p.vx += dx * ease;
-      p.vy += dy * ease;
-
-      // repel mouse
-      const mx = p.x - mouse.x;
-      const my = p.y - mouse.y;
-      const dist = Math.hypot(mx,my);
-      if(dist < mouse.r){
-        const f = (1 - dist/mouse.r) * 6.5;
-        p.vx += (mx / (dist || 1)) * f;
-        p.vy += (my / (dist || 1)) * f;
-      }
-
-      p.vx *= friction;
-      p.vy *= friction;
-
-      p.x += p.vx;
-      p.y += p.vy;
-
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, 1.25, 0, Math.PI*2);
-      ctx.fill();
-    }
-
-    animId = requestAnimationFrame(animate);
-  }
-
-  window.addEventListener("mousemove", (e)=>{
-  const r = hero.getBoundingClientRect();
-  mouse.x = e.clientX - r.left;
-  mouse.y = e.clientY - r.top;
-});
-
-window.addEventListener("touchmove", (e)=>{
-  const t = e.touches && e.touches[0];
-  if(!t) return;
-  const r = hero.getBoundingClientRect();
-  mouse.x = t.clientX - r.left;
-  mouse.y = t.clientY - r.top;
-}, { passive:true });
-
-
-  // touch
-  window.addEventListener("touchmove", (e)=>{
-    const t = e.touches && e.touches[0];
-    if(!t) return;
-    mouse.x = t.clientX;
-    mouse.y = t.clientY;
-  }, { passive:true });
-
-  let rt=null;
-  window.addEventListener("resize", ()=>{
-    clearTimeout(rt);
-    rt=setTimeout(resize, 160);
-  });
-
-  window.addEventListener("load", ()=>{
-    resize();
-    // بعد تحميل الخطوط
-    setTimeout(buildTextPoints, 350);
-  });
-})();
-</script>
+</div>
 
 <!-- SOCIAL ICONS -->
 <div class="social-icons">
-  <a href="https://www.linkedin.com/in/heshamabdelhamed" target="_blank" class="icon-circle">
-    <img src="img/linkedin.png" alt="LinkedIn">
-  </a>
 
-  <a href="https://www.instagram.com/hisham.abdlhamed" target="_blank" class="icon-circle">
-    <img src="img/instagram.png" alt="Instagram">
-  </a>
+<a href="https://www.linkedin.com/in/heshamabdelhamed" target="_blank" class="icon-circle">
+<img src="img/linkedin.png">
+</a>
 
-  <a href="https://www.tiktok.com/@hisham.abdelhamed" target="_blank" class="icon-circle">
-    <img src="img/tiktok.png" alt="TikTok">
-  </a>
+<a href="https://www.instagram.com/hisham.abdlhamed" target="_blank" class="icon-circle">
+<img src="img/instagram.png">
+</a>
 
-  <a href="https://www.facebook.com/hishamabdelhamedd" target="_blank" class="icon-circle">
-    <img src="img/facebook.png" alt="Facebook">
-  </a>
+<a href="https://www.tiktok.com/@hisham.abdelhamed" target="_blank" class="icon-circle">
+<img src="img/tiktok.png">
+</a>
 
-  <a href="mailto:per.hisham@gmail.com" class="icon-circle">
-    <img src="img/email.png" alt="Email">
-  </a>
+<a href="https://www.facebook.com/hishamabdelhamedd" target="_blank" class="icon-circle">
+<img src="img/facebook.png">
+</a>
 
-  <a href="https://wa.me/966503064408" target="_blank" class="icon-circle">
-    <img src="img/whatsapp.png" alt="WhatsApp">
-  </a>
+<a href="mailto:per.hisham@gmail.com" class="icon-circle">
+<img src="img/email.png">
+</a>
 
-  <a href="tel:+966503064408" class="icon-circle">
-    <img src="img/phone.png" alt="Phone">
-  </a>
+<a href="https://wa.me/966503064408" target="_blank" class="icon-circle">
+<img src="img/whatsapp.png">
+</a>
+
+<a href="tel:+966503064408" class="icon-circle">
+<img src="img/phone.png">
+</a>
+
 </div>
-  <script>
-/* ===== TYPEWRITER ===== */
+
+</div>
+
+</section>
+
+<footer class="site-footer">
+
+© 2025 Hesham Abdelhamed | All rights reserved
+
+</footer>
+
+<script>
+
+/* TYPEWRITER */
+
 (function(){
-  const el = document.getElementById("typeTarget");
-  if(!el) return;
 
-  const lines = ["CINEMATIC", "VISUAL STORIES"];
-  const text = lines.join("\n");
-  const speed = 55;
-  const startDelay = 250;
+const el=document.getElementById("typeTarget")
 
-  let i = 0;
-  function tick(){
-    i++;
-    el.innerHTML = text.slice(0, i).replace(/\n/g, "<br>");
-    if(i < text.length) setTimeout(tick, speed);
-  }
-  setTimeout(tick, startDelay);
-})();
+const text="CINEMATIC\nVISUAL STORIES"
 
-/* ===== PARTICLES NAME (FRAMER-LIKE) ===== */
-(function(){
-  const hero = document.getElementById("hero");
-  const canvas = document.getElementById("nameParticles");
-  const nameEl = document.querySelector(".hero-name");
-  if(!hero || !canvas || !nameEl) return;
+let i=0
 
-  const ctx = canvas.getContext("2d", { alpha:true });
-  const dpr = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
+function type(){
 
-  let particles = [];
-  let targets = [];
-  let raf = null;
+i++
 
-  const mouse = { x: -9999, y: -9999, r: 90 };
+el.innerHTML=text.slice(0,i).replace(/\n/g,"<br>")
 
-  function resize(){
-    const w = hero.clientWidth;
-    const h = hero.clientHeight;
+if(i<text.length){
 
-    canvas.width  = Math.floor(w * dpr);
-    canvas.height = Math.floor(h * dpr);
-    canvas.style.width = w + "px";
-    canvas.style.height = h + "px";
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+setTimeout(type,60)
 
-    buildTargets();
-  }
+}
 
-  function buildTargets(){
-    const w = hero.clientWidth;
-    const h = hero.clientHeight;
+}
 
-    const rect = nameEl.getBoundingClientRect();
-    const heroRect = hero.getBoundingClientRect();
+setTimeout(type,300)
 
-    const x0 = rect.left - heroRect.left;
-    const y0 = rect.top  - heroRect.top;
+})()
 
-    const text = nameEl.textContent.trim();
-    if(!text) return;
-
-    const st = getComputedStyle(nameEl);
-    const fontSize = parseFloat(st.fontSize) || 48;
-    const fontWeight = st.fontWeight || "800";
-    const fontFamily = st.fontFamily || "Montserrat, sans-serif";
-
-    // offscreen render
-    const off = document.createElement("canvas");
-    off.width = w;
-    off.height = h;
-    const o = off.getContext("2d");
-
-    o.clearRect(0,0,w,h);
-    o.fillStyle = "#fff";
-    o.textBaseline = "top";
-    o.font = `${fontWeight} ${fontSize}px ${fontFamily}`;
-    o.fillText(text, x0, y0);
-
-    const img = o.getImageData(0,0,w,h).data;
-    targets = [];
-
-    const step = 3; // كثافة
-    for(let y=0; y<h; y+=step){
-      for(let x=0; x<w; x+=step){
-        const a = img[(y*w + x)*4 + 3];
-        if(a > 30) targets.push({x,y});
-      }
-    }
-
-    // particles count
-    const count = Math.min(1200, Math.max(450, Math.floor(targets.length * 0.12)));
-    particles = new Array(count).fill(0).map(() => {
-      const t = targets[(Math.random()*targets.length)|0] || {x:x0, y:y0};
-      return {
-        x: x0 + (Math.random()*rect.width) + (Math.random()*220 - 110),
-        y: y0 + (Math.random()*rect.height) + (Math.random()*120 - 60),
-        vx: (Math.random()-0.5)*6,
-        vy: (Math.random()-0.5)*6,
-        tx: t.x,
-        ty: t.y,
-        lock: false
-      };
-    });
-
-    start();
-  }
-
-  function start(){
-    if(raf) cancelAnimationFrame(raf);
-    animate();
-  }
-
-  function animate(){
-    const w = hero.clientWidth;
-    const h = hero.clientHeight;
-
-    ctx.clearRect(0,0,w,h);
-
-    // لون ذهبي مثل الهوية
-    ctx.fillStyle = "rgba(212,175,55,0.95)";
-
-    const ease = 0.08;
-    const friction = 0.82;
-    const lockDist = 0.9;
-
-    for(const p of particles){
-      // جذب للهدف
-      const dx = p.tx - p.x;
-      const dy = p.ty - p.y;
-
-      p.vx += dx * ease;
-      p.vy += dy * ease;
-
-      // repel mouse
-      const mx = p.x - mouse.x;
-      const my = p.y - mouse.y;
-      const dist = Math.hypot(mx,my);
-      if(dist < mouse.r){
-        const f = (1 - dist/mouse.r) * 7;
-        p.vx += (mx / (dist || 1)) * f;
-        p.vy += (my / (dist || 1)) * f;
-      }
-
-      p.vx *= friction;
-      p.vy *= friction;
-
-      p.x += p.vx;
-      p.y += p.vy;
-
-      // بعد ما يوصل لمكانه: يهدي ويعمل shimmer بسيط
-      if(Math.abs(dx) < lockDist && Math.abs(dy) < lockDist){
-        p.lock = true;
-      }
-      if(p.lock){
-        p.x += (Math.random()-0.5) * 0.35;
-        p.y += (Math.random()-0.5) * 0.35;
-      }
-
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, 1.25, 0, Math.PI*2);
-      ctx.fill();
-    }
-
-    raf = requestAnimationFrame(animate);
-  }
-
-  // mouse relative to hero
-  window.addEventListener("mousemove", (e)=>{
-    const r = hero.getBoundingClientRect();
-    mouse.x = e.clientX - r.left;
-    mouse.y = e.clientY - r.top;
-  });
-
-  window.addEventListener("touchmove", (e)=>{
-    const t = e.touches && e.touches[0];
-    if(!t) return;
-    const r = hero.getBoundingClientRect();
-    mouse.x = t.clientX - r.left;
-    mouse.y = t.clientY - r.top;
-  }, { passive:true });
-
-  let rt=null;
-  window.addEventListener("resize", ()=>{
-    clearTimeout(rt);
-    rt=setTimeout(resize, 160);
-  });
-
-  // ensure fonts ready
-  window.addEventListener("load", ()=>{
-    resize();
-    setTimeout(buildTargets, 350);
-  });
-})();
 </script>
+
 </body>
 </html>
-
