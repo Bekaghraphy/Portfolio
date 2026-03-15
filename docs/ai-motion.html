@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
 <meta charset="UTF-8">
@@ -11,12 +12,17 @@
 
 <style>
 
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Montserrat',sans-serif}
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Montserrat',sans-serif
+}
 
 body{
 background:#040405;
-color:#fff;
-overflow-x:hidden;
+color:white;
+overflow-x:hidden
 }
 
 /* PARTICLES */
@@ -27,10 +33,10 @@ top:0;
 left:0;
 width:100%;
 height:100%;
-z-index:-2;
+z-index:-2
 }
 
-/* AI BACKGROUND */
+/* BACKGROUND */
 
 .ai-bg{
 position:fixed;
@@ -45,7 +51,7 @@ radial-gradient(circle at 20% 20%, rgba(245,193,74,.15), transparent 40%),
 radial-gradient(circle at 80% 60%, rgba(0,120,255,.12), transparent 40%),
 #020207;
 
-animation:bgMove 18s infinite alternate ease-in-out;
+animation:bgMove 18s infinite alternate ease-in-out
 }
 
 @keyframes bgMove{
@@ -60,126 +66,61 @@ position:fixed;
 top:24px;
 left:0;
 right:0;
+
 display:flex;
 justify-content:center;
 gap:30px;
-z-index:100;
+
+z-index:100
 }
 
 .site-nav a{
 font-size:13px;
 letter-spacing:.18em;
 text-transform:uppercase;
-color:#fff;
+color:white;
 text-decoration:none;
-opacity:.7;
+opacity:.7
 }
 
-.site-nav a:hover{
-opacity:1;
-}
+.site-nav a:hover{opacity:1}
 
 .site-nav a.active{
 color:#f5c14a;
-opacity:1;
+opacity:1
 }
 
 /* PAGE */
 
 .page{
-padding-top:200px;
+padding-top:260px;
 max-width:1200px;
 margin:auto;
-padding:0 20px;
+padding-left:20px;
+padding-right:20px
 }
 
 /* HERO */
 
 .hero{
-display:grid;
-grid-template-columns:1.5fr 1fr;
-gap:40px;
-margin-bottom:80px;
-align-items:center;
+margin-bottom:100px;
+max-width:700px
 }
 
 .hero h1{
-font-size:44px;
-margin-bottom:18px;
+font-size:52px;
+line-height:1.1;
+margin-bottom:18px
 }
 
 .hero span{
-color:#f5c14a;
+color:#f5c14a
 }
 
 .hero p{
 opacity:.85;
 line-height:1.7;
-font-size:15px;
-}
-
-/* PLAY BUTTON */
-
-.feature{
-height:220px;
-display:flex;
-align-items:center;
-justify-content:center;
-border-radius:14px;
-border:1px solid rgba(255,255,255,.15);
-cursor:pointer;
-}
-
-.play-ring{
-position:relative;
-width:120px;
-height:120px;
-display:flex;
-align-items:center;
-justify-content:center;
-}
-
-.play-ring::before{
-content:"";
-position:absolute;
-width:120px;
-height:120px;
-border-radius:50%;
-border:2px solid rgba(255,255,255,.2);
-border-top:2px solid #f5c14a;
-animation:spin 3s linear infinite;
-}
-
-.play-ring::after{
-content:"";
-position:absolute;
-width:120px;
-height:120px;
-border-radius:50%;
-border:1px solid rgba(255,255,255,.15);
-animation:pulse 2.5s infinite;
-}
-
-.play-circle{
-width:70px;
-height:70px;
-border-radius:50%;
-border:1px solid rgba(255,255,255,.6);
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:22px;
-}
-
-@keyframes spin{
-0%{transform:rotate(0)}
-100%{transform:rotate(360deg)}
-}
-
-@keyframes pulse{
-0%{transform:scale(1);opacity:.6}
-70%{transform:scale(1.3);opacity:0}
-100%{opacity:0}
+font-size:15px
 }
 
 /* LIGHT DIVIDER */
@@ -196,13 +137,16 @@ transparent,
 rgba(255,255,255,0.2),
 transparent
 );
-overflow:hidden;
+
+overflow:hidden
 }
 
 .light-divider::after{
 
 content:"";
+
 position:absolute;
+
 top:0;
 left:-40%;
 
@@ -216,15 +160,12 @@ rgba(245,193,74,0.9),
 transparent
 );
 
-animation:lightSweep 4s linear infinite;
+animation:lightSweep 4s linear infinite
 }
 
 @keyframes lightSweep{
-
 0%{left:-40%}
-
 100%{left:120%}
-
 }
 
 /* GRID */
@@ -232,20 +173,20 @@ animation:lightSweep 4s linear infinite;
 .grid{
 display:grid;
 grid-template-columns:repeat(4,1fr);
-gap:22px;
+gap:22px
 }
 
 .card{
 
 border-radius:12px;
 overflow:hidden;
+
 cursor:pointer;
 
 background:#07070c;
 border:1px solid rgba(255,255,255,.08);
 
-transition:.35s;
-
+transition:.35s
 }
 
 .card:hover{
@@ -257,83 +198,102 @@ box-shadow:
 0 0 25px rgba(245,193,74,0.25),
 0 0 40px rgba(245,193,74,0.15);
 
-border-color:#f5c14a;
-
+border-color:#f5c14a
 }
 
 .thumb{
 position:relative;
 width:100%;
-padding-top:56%;
+padding-top:56%
 }
 
 .thumb video{
+
 position:absolute;
+top:0;
+left:0;
+
 width:100%;
 height:100%;
-object-fit:cover;
+
+object-fit:cover
 }
 
 .overlay{
+
 position:absolute;
 inset:0;
+
 background:linear-gradient(to top,rgba(0,0,0,.85),transparent);
+
 display:flex;
 align-items:flex-end;
-padding:12px;
+
+padding:12px
 }
 
 .label{
-font-size:13px;
+font-size:13px
 }
 
 /* MODAL */
 
 .modal{
+
 position:fixed;
 inset:0;
+
 background:rgba(0,0,0,.92);
+
 display:none;
 align-items:center;
 justify-content:center;
-z-index:200;
+
+z-index:200
 }
 
 .modal.open{
-display:flex;
+display:flex
 }
 
 .modal-frame{
+
 width:90%;
 max-width:1100px;
 aspect-ratio:16/9;
-background:black;
+
+background:black
 }
 
 .modal video{
+
 width:100%;
 height:100%;
-object-fit:contain;
+
+object-fit:contain
 }
 
 .close{
+
 position:absolute;
 top:30px;
 right:40px;
+
 font-size:32px;
-cursor:pointer;
+
+cursor:pointer
 }
 
 /* MOBILE */
 
 @media(max-width:900px){
 
-.hero{
-grid-template-columns:1fr;
+.grid{
+grid-template-columns:repeat(2,1fr)
 }
 
-.grid{
-grid-template-columns:repeat(2,1fr);
+.hero h1{
+font-size:40px
 }
 
 }
@@ -361,28 +321,12 @@ grid-template-columns:repeat(2,1fr);
 
 <section class="hero">
 
-<div>
-
 <h1>AI Motion & <span>Animated Worlds</span></h1>
 
 <p>
-
 A collection of AI-generated motion pieces, experimental animation,
 and cinematic visual storytelling created through emerging technologies.
-
 </p>
-
-</div>
-
-<div class="feature" onclick="openVideo(0)">
-
-<div class="play-ring">
-
-<div class="play-circle">▶</div>
-
-</div>
-
-</div>
 
 </section>
 
@@ -390,7 +334,7 @@ and cinematic visual storytelling created through emerging technologies.
 
 <section>
 
-<h2 style="margin-bottom:20px">AI Experiments & Animation</h2>
+<h2 style="margin-bottom:25px">AI Experiments & Animation</h2>
 
 <div class="grid" id="videoGrid"></div>
 
@@ -437,7 +381,7 @@ card.innerHTML=`
 
 <div class="thumb">
 
-<video muted loop playsinline preload="metadata">
+<video muted loop playsinline preload="auto">
 
 <source src="${v}" type="video/mp4">
 
@@ -457,7 +401,7 @@ grid.appendChild(card)
 
 })
 
-/* HOVER VIDEO */
+/* HOVER PREVIEW */
 
 document.addEventListener("mouseover",(e)=>{
 
@@ -492,7 +436,7 @@ v.currentTime=0
 
 })
 
-/* MODAL PLAYER */
+/* MODAL */
 
 function openVideo(i){
 
@@ -536,7 +480,9 @@ particles.push({
 
 x:Math.random()*canvas.width,
 y:Math.random()*canvas.height,
+
 size:Math.random()*2+0.5,
+
 speedX:(Math.random()-0.5)*0.3,
 speedY:(Math.random()-0.5)*0.3
 
@@ -560,6 +506,7 @@ if(p.y<0)p.y=canvas.height
 
 ctx.beginPath()
 ctx.arc(p.x,p.y,p.size,0,Math.PI*2)
+
 ctx.fillStyle="rgba(255,255,255,0.2)"
 ctx.fill()
 
