@@ -1,151 +1,257 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Home | Hesham Abdelhamed</title>
 
-<link rel="icon" type="image/png" href="img/favicon.png">
+<title>Hesham Abdelhamed</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="style.css">
-
 <style>
 
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
 body{
-min-height:100vh;
-display:flex;
-flex-direction:column;
-font-family:'Montserrat',sans-serif;
+
+font-family:Montserrat;
+color:white;
+background:black;
+
 }
 
 /* NAV */
 
-.site-nav{
+nav{
+
+position:fixed;
+top:0;
+width:100%;
 display:flex;
 justify-content:center;
-gap:28px;
+gap:30px;
+padding:22px;
+z-index:10;
+
 }
 
-.site-nav a{
-font-size:14px;
-letter-spacing:.18em;
-text-transform:uppercase;
-color:#fff;
-opacity:.75;
+nav a{
+
+color:white;
 text-decoration:none;
+letter-spacing:2px;
+font-size:13px;
+opacity:.8;
+
 }
 
-.site-nav a.active{
-color:#f5c14a;
-opacity:1;
+nav a:hover{
+
+color:#d8b97a;
+
 }
 
 /* HERO */
 
 .hero{
-position:relative;
+
 height:100vh;
 display:flex;
 align-items:center;
-justify-content:center;
-text-align:center;
+
+padding-left:10%;
+padding-right:10%;
+
+position:relative;
+
 }
 
-.hero-bg{
+.hero video{
+
 position:absolute;
-inset:0;
+top:0;
+left:0;
 width:100%;
 height:100%;
 object-fit:cover;
 z-index:-2;
+
 }
 
-.hero-overlay{
+.overlay{
+
 position:absolute;
-inset:0;
-background:rgba(0,0,0,.45);
+top:0;
+left:0;
+width:100%;
+height:100%;
+
+background:linear-gradient(
+90deg,
+rgba(0,0,0,.8),
+rgba(0,0,0,.3)
+);
+
 z-index:-1;
+
 }
+
+/* CONTENT */
 
 .hero-content{
-max-width:760px;
-padding:20px;
+
+max-width:650px;
+
 }
 
-.hero-name{
-font-size:60px;
-font-weight:700;
+.hero h1{
+
+font-size:64px;
+color:#d8b97a;
+margin-bottom:15px;
+
+}
+
+.hero h2{
+
+font-size:20px;
+letter-spacing:5px;
 margin-bottom:20px;
-}
-
-.hero-heading{
-font-size:26px;
-margin-bottom:20px;
-letter-spacing:.12em;
-}
-
-.hero-sub{
-opacity:.85;
-line-height:1.6;
-margin-bottom:40px;
-}
-
-/* SOCIAL ICONS UNDER TEXT */
-
-.social-icons{
-
-display:flex;
-justify-content:center;
-gap:14px;
-flex-wrap:wrap;
 
 }
 
-.icon-circle{
+.hero p{
 
-width:38px;
-height:38px;
+line-height:1.7;
+opacity:.9;
+margin-bottom:30px;
 
-border-radius:50%;
+}
 
-background:rgba(255,255,255,.08);
+/* DOWNLOAD BUTTON */
 
-display:flex;
+.download-btn{
+
+display:inline-flex;
 align-items:center;
-justify-content:center;
+gap:12px;
 
-transition:.3s;
+padding:16px 28px;
+
+border-radius:8px;
+
+text-decoration:none;
+
+background:linear-gradient(
+135deg,
+rgba(216,185,122,.9),
+rgba(216,185,122,.4)
+);
+
+color:black;
+
+font-weight:600;
+
+letter-spacing:1px;
+
+box-shadow:
+
+0 0 25px rgba(216,185,122,.5);
+
+transition:.35s;
 
 }
 
-.icon-circle img{
-width:18px;
-height:18px;
-}
+.download-btn:hover{
 
-.icon-circle:hover{
+transform:translateY(-3px);
 
-background:rgba(216,185,122,.25);
+box-shadow:
 
-transform:scale(1.1);
+0 0 45px rgba(216,185,122,.9);
 
 }
 
-/* FOOTER */
+/* LIGHT SWEEP */
 
-.site-footer{
+.download-btn::before{
 
-text-align:center;
+content:"";
 
-font-size:11px;
+position:absolute;
 
-letter-spacing:.2em;
+width:60px;
+height:200%;
 
-padding:20px;
+background:rgba(255,255,255,.4);
 
-opacity:.5;
+transform:rotate(25deg);
+
+left:-80px;
+
+transition:.7s;
+
+}
+
+.download-btn:hover::before{
+
+left:120%;
+
+}
+
+/* SOCIAL */
+
+.social{
+
+margin-top:35px;
+display:flex;
+gap:14px;
+
+}
+
+.social img{
+
+width:22px;
+opacity:.8;
+
+}
+
+.social img:hover{
+
+opacity:1;
+
+}
+
+/* LANGUAGE TOGGLE */
+
+.lang-toggle{
+
+position:absolute;
+top:80px;
+right:10%;
+
+display:flex;
+gap:10px;
+
+}
+
+.lang-toggle button{
+
+padding:6px 12px;
+
+border:none;
+
+background:#d8b97a;
+
+cursor:pointer;
+
+font-size:12px;
 
 }
 
@@ -155,132 +261,104 @@ opacity:.5;
 
 <body>
 
-<header class="nav">
 
-<nav class="site-nav">
+<nav>
 
-<a href="index.html" class="nav-logo">
-<img src="img/favicon.png" width="34">
-</a>
-
-<a href="index.html" class="active">Home</a>
-<a href="my-work.html">My Work</a>
-<a href="ai-motion.html">AI & Animation</a>
-<a href="academy.html">Pro</a>
-<a href="show.html">Showreel</a>
+<a href="#">HOME</a>
+<a href="#">MY WORK</a>
+<a href="#">AI & ANIMATION</a>
+<a href="#">PRO</a>
+<a href="#">SHOWREEL</a>
 
 </nav>
 
-</header>
 
+<div class="hero">
 
-<section class="hero">
-
-<video class="hero-bg" autoplay muted loop playsinline>
+<video autoplay muted loop>
 <source src="img/5.mp4" type="video/mp4">
 </video>
 
-<div class="hero-overlay"></div>
+<div class="overlay"></div>
+
 
 <div class="hero-content">
 
-<h1 class="hero-name">Hesham Abdelhamed</h1>
+<h1 id="title">Hesham Abdelhamed</h1>
 
-<div class="hero-heading">
-<span id="typeTarget"></span><span class="type-cursor">|</span>
-</div>
+<h2 id="subtitle">
+CINEMATIC VISUAL STORIES
+</h2>
 
-<div class="hero-sub">
+<p id="desc">
 
-I am a filmmaker and video editor crafting cinematic narratives,
-mixing documentary sensitivity with strong visual composition.
-From concept to final cut, I focus on emotion, rhythm, and details.
-  
-<div class="download-portfolio">
+I am a filmmaker and video editor crafting cinematic narratives, mixing documentary sensitivity with strong visual composition.
 
-<a href="img/Hesham-Abdelhamed-Portfolio.pdf" download class="download-btn">
+</p>
 
-<span>Download Portfolio</span>
+
+<a href="img/Hesham-Abdelhamed-Portfolio.pdf"
+download
+class="download-btn">
+
+⬇ Download Portfolio
 
 </a>
 
-</div>
-</div>
 
-<!-- SOCIAL ICONS -->
-<div class="social-icons">
+<div class="social">
 
-<a href="https://www.linkedin.com/in/heshamabdelhamed" target="_blank" class="icon-circle">
 <img src="img/linkedin.png">
-</a>
-
-<a href="https://www.instagram.com/hisham.abdlhamed" target="_blank" class="icon-circle">
 <img src="img/instagram.png">
-</a>
-
-<a href="https://www.tiktok.com/@hisham.abdelhamed" target="_blank" class="icon-circle">
 <img src="img/tiktok.png">
-</a>
-
-<a href="https://www.facebook.com/hishamabdelhamedd" target="_blank" class="icon-circle">
 <img src="img/facebook.png">
-</a>
-
-<a href="mailto:per.hisham@gmail.com" class="icon-circle">
 <img src="img/email.png">
-</a>
-
-<a href="https://wa.me/966503064408" target="_blank" class="icon-circle">
-<img src="img/whatsapp.png">
-</a>
-
-<a href="tel:+966503064408" class="icon-circle">
-<img src="img/phone.png">
-</a>
 
 </div>
 
 </div>
 
-</section>
 
-<footer class="site-footer">
+<div class="lang-toggle">
 
-© 2025 Hesham Abdelhamed | All rights reserved
+<button onclick="setLang('en')">EN</button>
+<button onclick="setLang('ar')">AR</button>
 
-</footer>
+</div>
+
+</div>
+
 
 <script>
 
-/* TYPEWRITER */
+function setLang(lang){
 
-(function(){
+if(lang=="ar"){
 
-const el=document.getElementById("typeTarget")
+document.body.dir="rtl"
 
-const text="CINEMATIC\nVISUAL STORIES"
+document.getElementById("subtitle").innerHTML="قصص بصرية سينمائية"
 
-let i=0
+document.getElementById("desc").innerHTML=
+"أنا صانع أفلام ومونتير فيديو أصنع قصصًا بصرية سينمائية تجمع بين الحس الوثائقي والتكوين البصري القوي."
 
-function type(){
+}
 
-i++
+else{
 
-el.innerHTML=text.slice(0,i).replace(/\n/g,"<br>")
+document.body.dir="ltr"
 
-if(i<text.length){
+document.getElementById("subtitle").innerHTML="CINEMATIC VISUAL STORIES"
 
-setTimeout(type,60)
+document.getElementById("desc").innerHTML=
+"I am a filmmaker and video editor crafting cinematic narratives, mixing documentary sensitivity with strong visual composition."
 
 }
 
 }
-
-setTimeout(type,300)
-
-})()
 
 </script>
 
 </body>
+
 </html>
