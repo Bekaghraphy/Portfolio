@@ -19,11 +19,10 @@ box-sizing:border-box;
 }
 
 body{
-
 font-family:Montserrat;
 color:white;
 background:black;
-
+overflow-x:hidden;
 }
 
 /* NAV */
@@ -33,10 +32,13 @@ nav{
 position:fixed;
 top:0;
 width:100%;
+
 display:flex;
 justify-content:center;
 gap:30px;
+
 padding:22px;
+
 z-index:10;
 
 }
@@ -52,9 +54,7 @@ opacity:.8;
 }
 
 nav a:hover{
-
 color:#d8b97a;
-
 }
 
 /* HERO */
@@ -62,6 +62,7 @@ color:#d8b97a;
 .hero{
 
 height:100vh;
+
 display:flex;
 align-items:center;
 
@@ -77,9 +78,12 @@ position:relative;
 position:absolute;
 top:0;
 left:0;
+
 width:100%;
 height:100%;
+
 object-fit:cover;
+
 z-index:-2;
 
 }
@@ -89,13 +93,14 @@ z-index:-2;
 position:absolute;
 top:0;
 left:0;
+
 width:100%;
 height:100%;
 
 background:linear-gradient(
 90deg,
-rgba(0,0,0,.8),
-rgba(0,0,0,.3)
+rgba(0,0,0,.85),
+rgba(0,0,0,.25)
 );
 
 z-index:-1;
@@ -114,6 +119,7 @@ max-width:650px;
 
 font-size:64px;
 color:#d8b97a;
+
 margin-bottom:15px;
 
 }
@@ -122,6 +128,7 @@ margin-bottom:15px;
 
 font-size:20px;
 letter-spacing:5px;
+
 margin-bottom:20px;
 
 }
@@ -130,6 +137,7 @@ margin-bottom:20px;
 
 line-height:1.7;
 opacity:.9;
+
 margin-bottom:30px;
 
 }
@@ -140,9 +148,8 @@ margin-bottom:30px;
 
 display:inline-flex;
 align-items:center;
-gap:12px;
 
-padding:16px 28px;
+padding:15px 28px;
 
 border-radius:8px;
 
@@ -150,58 +157,26 @@ text-decoration:none;
 
 background:linear-gradient(
 135deg,
-rgba(216,185,122,.9),
-rgba(216,185,122,.4)
+rgba(216,185,122,.95),
+rgba(216,185,122,.5)
 );
 
 color:black;
 
 font-weight:600;
-
 letter-spacing:1px;
 
-box-shadow:
+box-shadow:0 0 25px rgba(216,185,122,.5);
 
-0 0 25px rgba(216,185,122,.5);
-
-transition:.35s;
+transition:.25s;
 
 }
 
 .download-btn:hover{
 
-transform:translateY(-3px);
+transform:translateY(-2px);
 
-box-shadow:
-
-0 0 45px rgba(216,185,122,.9);
-
-}
-
-/* LIGHT SWEEP */
-
-.download-btn::before{
-
-content:"";
-
-position:absolute;
-
-width:60px;
-height:200%;
-
-background:rgba(255,255,255,.4);
-
-transform:rotate(25deg);
-
-left:-80px;
-
-transition:.7s;
-
-}
-
-.download-btn:hover::before{
-
-left:120%;
+box-shadow:0 0 35px rgba(216,185,122,.8);
 
 }
 
@@ -210,21 +185,26 @@ left:120%;
 .social{
 
 margin-top:35px;
+
 display:flex;
-gap:14px;
+gap:16px;
 
 }
 
-.social img{
+.social a img{
 
 width:22px;
+
 opacity:.8;
+
+transition:.3s;
 
 }
 
-.social img:hover{
+.social a img:hover{
 
 opacity:1;
+transform:scale(1.1);
 
 }
 
@@ -232,26 +212,47 @@ opacity:1;
 
 .lang-toggle{
 
-position:absolute;
-top:80px;
-right:10%;
+position:fixed;
+
+top:20px;
+right:40px;
 
 display:flex;
-gap:10px;
+
+border:1px solid rgba(216,185,122,.6);
+
+border-radius:6px;
+
+overflow:hidden;
+
+background:rgba(0,0,0,.35);
+
+backdrop-filter:blur(10px);
 
 }
 
-.lang-toggle button{
+.lang-btn{
 
-padding:6px 12px;
+padding:6px 14px;
 
 border:none;
 
-background:#d8b97a;
+background:transparent;
+
+color:#d8b97a;
+
+font-size:12px;
+letter-spacing:1px;
 
 cursor:pointer;
 
-font-size:12px;
+transition:.3s;
+
+}
+
+.lang-btn:hover{
+
+background:rgba(216,185,122,.15);
 
 }
 
@@ -263,19 +264,17 @@ font-size:12px;
 
 
 <nav>
-
-<a href="#">HOME</a>
-<a href="#">MY WORK</a>
-<a href="#">AI & ANIMATION</a>
-<a href="#">PRO</a>
-<a href="#">SHOWREEL</a>
-
+<a href="index.html" class="active">HOME</a>
+<a href="my-work.html">MY WORK</a>
+<a href="ai-motion.html">AI & ANIMATION</a>
+<a href="pro.html">PRO</a>
+<a href="show.html">SHOWREEL</a>
 </nav>
 
 
 <div class="hero">
 
-<video autoplay muted loop>
+<video autoplay muted loop playsinline>
 <source src="img/5.mp4" type="video/mp4">
 </video>
 
@@ -292,7 +291,8 @@ CINEMATIC VISUAL STORIES
 
 <p id="desc">
 
-I am a filmmaker and video editor crafting cinematic narratives, mixing documentary sensitivity with strong visual composition.
+I am a filmmaker and video editor crafting cinematic narratives,
+mixing documentary sensitivity with strong visual composition.
 
 </p>
 
@@ -308,11 +308,27 @@ class="download-btn">
 
 <div class="social">
 
+<a href="https://www.linkedin.com/in/hishamabdelhamed" target="_blank">
 <img src="img/linkedin.png">
+</a>
+
+<a href="https://www.instagram.com/hisham.abdelhamed" target="_blank">
 <img src="img/instagram.png">
+</a>
+
+<a href="https://www.tiktok.com/@hisham.abdelhamed" target="_blank">
 <img src="img/tiktok.png">
+</a>
+
+<a href="https://facebook.com/hishamabdelhamedd" target="_blank">
 <img src="img/facebook.png">
+</a>
+
+<a href="mailto:per.hisham@gmail.com">
 <img src="img/email.png">
+</a>
+
+</div>
 
 </div>
 
@@ -321,10 +337,8 @@ class="download-btn">
 
 <div class="lang-toggle">
 
-<button onclick="setLang('en')">EN</button>
-<button onclick="setLang('ar')">AR</button>
-
-</div>
+<button onclick="setLang('en')" class="lang-btn">EN</button>
+<button onclick="setLang('ar')" class="lang-btn">AR</button>
 
 </div>
 
