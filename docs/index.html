@@ -5,7 +5,7 @@
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<link rel="icon" type="image/png" href="img/favicon.png">
 <title>Hesham Abdelhamed</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -255,7 +255,9 @@ transition:.3s;
 background:rgba(216,185,122,.15);
 
 }
-
+.hero{
+justify-content:flex-start;
+}
 </style>
 
 </head>
@@ -337,8 +339,8 @@ class="download-btn">
 
 <div class="lang-toggle">
 
-<button onclick="setLang('en')" class="lang-btn">EN</button>
-<button onclick="setLang('ar')" class="lang-btn">AR</button>
+<button class="lang-btn" onclick="setLang('en')">EN</button>
+<button class="lang-btn" onclick="setLang('ar')">AR</button>
 
 </div>
 
@@ -347,30 +349,36 @@ class="download-btn">
 
 function setLang(lang){
 
-if(lang=="ar"){
+const hero = document.querySelector(".hero")
 
-document.body.dir="rtl"
+if(lang === "ar"){
 
-document.getElementById("subtitle").innerHTML="قصص بصرية سينمائية"
+document.body.dir = "rtl"
 
-document.getElementById("desc").innerHTML=
+hero.style.justifyContent = "flex-end"
+
+document.getElementById("subtitle").innerHTML = "قصص بصرية سينمائية"
+
+document.getElementById("desc").innerHTML =
 "أنا صانع أفلام ومونتير فيديو أصنع قصصًا بصرية سينمائية تجمع بين الحس الوثائقي والتكوين البصري القوي."
 
 }
 
 else{
 
-document.body.dir="ltr"
+document.body.dir = "ltr"
 
-document.getElementById("subtitle").innerHTML="CINEMATIC VISUAL STORIES"
+hero.style.justifyContent = "flex-start"
 
-document.getElementById("desc").innerHTML=
+document.getElementById("subtitle").innerHTML =
+"CINEMATIC VISUAL STORIES"
+
+document.getElementById("desc").innerHTML =
 "I am a filmmaker and video editor crafting cinematic narratives, mixing documentary sensitivity with strong visual composition."
 
 }
 
 }
-
 </script>
 
 </body>
