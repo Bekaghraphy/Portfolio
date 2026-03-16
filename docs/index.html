@@ -258,6 +258,107 @@ background:rgba(216,185,122,.15);
 .hero{
 justify-content:flex-start;
 }
+  /* ================= MOBILE ================= */
+
+@media (max-width:768px){
+
+nav{
+gap:18px;
+padding:16px;
+flex-wrap:wrap;
+}
+
+nav a{
+font-size:11px;
+letter-spacing:1px;
+}
+
+.hero{
+padding-left:24px;
+padding-right:24px;
+height:100vh;
+align-items:center;
+}
+
+.hero-content{
+max-width:100%;
+}
+
+.hero h1{
+font-size:36px;
+line-height:1.2;
+}
+
+.hero h2{
+font-size:14px;
+letter-spacing:3px;
+}
+
+.hero p{
+font-size:14px;
+line-height:1.6;
+}
+
+.download-btn{
+padding:12px 20px;
+font-size:13px;
+}
+
+.social{
+gap:14px;
+flex-wrap:wrap;
+}
+
+.social a img{
+width:20px;
+}
+
+/* language toggle */
+
+.lang-toggle{
+top:14px;
+right:14px;
+}
+
+.lang-btn{
+padding:6px 10px;
+font-size:11px;
+}
+
+}
+nav{
+overflow-x:auto;
+white-space:nowrap;
+}
+  /* ===== FOOTER ===== */
+
+.site-footer{
+
+width:100%;
+
+padding:40px 20px;
+
+margin-top:80px;
+
+text-align:center;
+
+font-size:12px;
+
+letter-spacing:2px;
+
+color:rgba(255,255,255,0.45);
+
+border-top:1px solid rgba(255,255,255,0.08);
+
+}
+
+.footer-content{
+
+max-width:1200px;
+
+margin:auto;
+
+}
 </style>
 
 </head>
@@ -380,7 +481,15 @@ document.getElementById("desc").innerHTML =
 
 }
 </script>
+<footer class="site-footer">
 
+<div class="footer-content">
+
+<span>© 2026 Hesham Abdelhamed — All Rights Reserved</span>
+
+</div>
+
+</footer>
 </body>
 
 </html>
