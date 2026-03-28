@@ -39,16 +39,9 @@ background:
 radial-gradient(circle at 20% 20%, rgba(245,193,74,.15), transparent 40%),
 radial-gradient(circle at 80% 60%, rgba(0,120,255,.12), transparent 40%),
 #020207;
-
-animation:bgMove 18s infinite alternate ease-in-out
 }
 
-@keyframes bgMove{
-0%{transform:scale(1)}
-100%{transform:scale(1.1)}
-}
-
-/* NAVBAR (نفس index) */
+/* NAV */
 
 .site-nav{
 position:fixed;
@@ -59,7 +52,6 @@ justify-content:center;
 gap:20px;
 padding:16px;
 z-index:100;
-
 overflow-x:auto;
 white-space:nowrap;
 background:rgba(0,0,0,.4);
@@ -76,89 +68,55 @@ opacity:.7;
 flex-shrink:0;
 }
 
-.site-nav a:hover{opacity:1}
-
 .site-nav a.active{
 color:#f5c14a;
-opacity:1
+opacity:1;
 }
 
 /* PAGE */
 
 .page{
-padding-top:140px; /* 👈 رفعنا المحتوى */
+padding-top:140px;
 max-width:1200px;
 margin:auto;
-padding-left:20px;
-padding-right:20px
+padding:0 20px;
 }
 
 /* HERO */
 
 .hero{
 margin-bottom:70px;
-max-width:700px
+max-width:700px;
 }
 
 .hero h1{
 font-size:42px;
-line-height:1.1;
-margin-bottom:14px
+margin-bottom:12px;
 }
 
 .hero span{
-color:#f5c14a
+color:#f5c14a;
 }
 
 .hero p{
 opacity:.85;
 line-height:1.7;
-font-size:14px
+font-size:14px;
 }
 
-/* LIGHT DIVIDER */
+/* TYPE CURSOR */
 
-.light-divider{
-position:relative;
-width:100%;
-height:1px;
-margin:60px 0;
-
-background:linear-gradient(
-90deg,
-transparent,
-rgba(255,255,255,0.2),
-transparent
-);
-
-overflow:hidden
+.cursor{
+display:inline-block;
+width:2px;
+background:#f5c14a;
+margin-left:5px;
+animation:blink 1s infinite;
 }
 
-.light-divider::after{
-
-content:"";
-
-position:absolute;
-
-top:0;
-left:-40%;
-
-width:40%;
-height:100%;
-
-background:linear-gradient(
-90deg,
-transparent,
-rgba(245,193,74,0.9),
-transparent
-);
-
-animation:lightSweep 4s linear infinite
-}
-
-@keyframes lightSweep{
-0%{left:-40%}
-100%{left:120%}
+@keyframes blink{
+0%,100%{opacity:1}
+50%{opacity:0}
 }
 
 /* GRID */
@@ -166,8 +124,10 @@ animation:lightSweep 4s linear infinite
 .grid{
 display:grid;
 grid-template-columns:repeat(4,1fr);
-gap:18px
+gap:18px;
 }
+
+/* CARD */
 
 .card{
 border-radius:10px;
@@ -175,46 +135,41 @@ overflow:hidden;
 cursor:pointer;
 background:#07070c;
 border:1px solid rgba(255,255,255,.06);
-transition:.3s
 }
 
-.card:hover{
-transform:translateY(-4px);
-border-color:#f5c14a
-}
-
-/* الفيديو واضح 👇 */
+/* THUMBNAIL IMAGE */
 
 .thumb{
 position:relative;
 width:100%;
 padding-top:56%;
-background:black;
 }
 
-.thumb video{
+.thumb img{
 position:absolute;
 top:0;
 left:0;
 width:100%;
 height:100%;
 object-fit:cover;
-filter:brightness(1.05); /* 👈 أهم تعديل */
 }
 
-/* خففنا التعتيم 👇 */
+/* PLAY ICON */
 
-.overlay{
+.play{
 position:absolute;
 inset:0;
-background:linear-gradient(to top,rgba(0,0,0,.4),transparent);
 display:flex;
-align-items:flex-end;
-padding:10px
+align-items:center;
+justify-content:center;
+font-size:28px;
+background:rgba(0,0,0,.4);
+opacity:0;
+transition:.3s;
 }
 
-.label{
-font-size:12px
+.card:hover .play{
+opacity:1;
 }
 
 /* MODAL */
@@ -226,32 +181,34 @@ background:rgba(0,0,0,.95);
 display:none;
 align-items:center;
 justify-content:center;
-z-index:200
+z-index:200;
 }
 
 .modal.open{
-display:flex
+display:flex;
 }
 
 .modal-frame{
 width:90%;
 max-width:1000px;
 aspect-ratio:16/9;
-background:black
+background:black;
 }
 
 .modal video{
 width:100%;
 height:100%;
-object-fit:contain
 }
 
-.close{
-position:absolute;
-top:20px;
-right:20px;
-font-size:30px;
-cursor:pointer
+/* FOOTER */
+
+.footer{
+margin-top:80px;
+padding:30px;
+text-align:center;
+font-size:12px;
+opacity:.5;
+border-top:1px solid rgba(255,255,255,.1);
 }
 
 /* MOBILE */
@@ -259,11 +216,11 @@ cursor:pointer
 @media(max-width:768px){
 
 .grid{
-grid-template-columns:repeat(2,1fr)
+grid-template-columns:repeat(2,1fr);
 }
 
 .hero h1{
-font-size:32px
+font-size:30px;
 }
 
 }
@@ -290,20 +247,16 @@ font-size:32px
 
 <section class="hero">
 
-<h1>AI Motion & <span>Animated Worlds</span></h1>
+<h1 id="typeTitle"></h1>
 
 <p>
-A collection of AI-generated motion pieces, experimental animation,
-and cinematic visual storytelling created through emerging technologies.
+A curated collection of AI-driven motion pieces and experimental animation,
+exploring new forms of cinematic storytelling and visual expression.
 </p>
 
 </section>
 
-<div class="light-divider"></div>
-
 <section>
-
-<h2 style="margin-bottom:20px">AI Experiments & Animation</h2>
 
 <div class="grid" id="videoGrid"></div>
 
@@ -312,20 +265,54 @@ and cinematic visual storytelling created through emerging technologies.
 </div>
 
 <div class="modal" id="modal">
-
-<div class="close" onclick="closeVideo()">×</div>
-
 <div class="modal-frame" id="frame"></div>
-
 </div>
+
+<footer class="footer">
+© 2026 Hesham Abdelhamed — All Rights Reserved
+</footer>
 
 <script>
 
-/* VIDEO LIST */
+/* TYPEWRITER */
+
+const text="AI Motion & Animated Worlds"
+let i=0
+
+function type(){
+if(i<text.length){
+document.getElementById("typeTitle").innerHTML+=text[i]
+i++
+setTimeout(type,40)
+}else{
+document.getElementById("typeTitle").innerHTML+='<span class="cursor"></span>'
+}
+}
+
+type()
+
+/* VIDEOS + THUMBNAILS */
 
 const videos=[
-"img/ai01.mp4","img/ai02.mp4","img/ai03.mp4","img/ai04.mp4",
-"img/ai05.mp4","img/ai06.mp4","img/ai07.mp4","img/ai08.mp4"
+"img/ai01.mp4",
+"img/ai02.mp4",
+"img/ai03.mp4",
+"img/ai04.mp4",
+"img/ai05.mp4",
+"img/ai06.mp4",
+"img/ai07.mp4",
+"img/ai08.mp4"
+]
+
+const thumbs=[
+"img/thumb1.jpg",
+"img/thumb2.jpg",
+"img/thumb3.jpg",
+"img/thumb4.jpg",
+"img/thumb5.jpg",
+"img/thumb6.jpg",
+"img/thumb7.jpg",
+"img/thumb8.jpg"
 ]
 
 const grid=document.getElementById("videoGrid")
@@ -338,12 +325,8 @@ card.onclick=()=>openVideo(i)
 
 card.innerHTML=`
 <div class="thumb">
-<video muted loop playsinline preload="auto">
-<source src="${v}" type="video/mp4">
-</video>
-<div class="overlay">
-<div class="label">AI Scene ${i+1}</div>
-</div>
+<img src="${thumbs[i]}" alt="">
+<div class="play">▶</div>
 </div>
 `
 
@@ -351,30 +334,10 @@ grid.appendChild(card)
 
 })
 
-/* hover */
-
-document.addEventListener("mouseover",(e)=>{
-let card=e.target.closest(".card")
-if(card){
-let v=card.querySelector("video")
-if(v) v.play()
-}
-})
-
-document.addEventListener("mouseout",(e)=>{
-let card=e.target.closest(".card")
-if(card){
-let v=card.querySelector("video")
-if(v){
-v.pause()
-v.currentTime=0
-}
-}
-})
-
-/* modal */
+/* MODAL */
 
 function openVideo(i){
+
 const modal=document.getElementById("modal")
 const frame=document.getElementById("frame")
 
@@ -385,11 +348,6 @@ frame.innerHTML=`
 `
 
 modal.classList.add("open")
-}
-
-function closeVideo(){
-document.getElementById("modal").classList.remove("open")
-document.getElementById("frame").innerHTML=""
 }
 
 </script>
