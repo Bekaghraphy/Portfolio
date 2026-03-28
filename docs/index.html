@@ -322,21 +322,24 @@ width:20px;
 }
 
 /* TOGGLE */
+.lang-toggle.inside{
 
-.lang-toggle{
-top:12px;
-right:12px;
-}
+position:relative;
 
-.lang-btn{
-padding:5px 10px;
-font-size:11px;
-}
+margin-bottom:15px;
 
-}
-.lang-btn.active{
-background:#d8b97a;
-color:black;
+display:inline-flex;
+
+border:1px solid rgba(216,185,122,.6);
+
+border-radius:6px;
+
+overflow:hidden;
+
+background:rgba(0,0,0,.35);
+
+backdrop-filter:blur(10px);
+
 }
 
   /* ===== FOOTER ===== */
@@ -368,6 +371,7 @@ max-width:1200px;
 margin:auto;
 
 }
+
 </style>
 
 </head>
@@ -392,11 +396,16 @@ margin:auto;
 
 <div class="overlay"></div>
 
-
 <div class="hero-content">
 
-<h1 id="title">Hesham Abdelhamed</h1>
+<div class="lang-toggle inside">
 
+<button class="lang-btn" onclick="setLang('en')">EN</button>
+<button class="lang-btn" onclick="setLang('ar')">AR</button>
+
+</div>
+
+<h1 id="title">Hesham Abdelhamed</h1>
 <h2 id="subtitle">
 CINEMATIC VISUAL STORIES
 </h2>
@@ -443,14 +452,6 @@ class="download-btn">
 </div>
 
 </div>
-
-</div>
-
-
-<div class="lang-toggle">
-
-<button class="lang-btn" onclick="setLang('en')">EN</button>
-<button class="lang-btn" onclick="setLang('ar')">AR</button>
 
 </div>
 
