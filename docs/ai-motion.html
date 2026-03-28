@@ -25,17 +25,6 @@ color:white;
 overflow-x:hidden
 }
 
-/* PARTICLES */
-
-#particles{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-z-index:-2
-}
-
 /* BACKGROUND */
 
 .ai-bg{
@@ -56,31 +45,35 @@ animation:bgMove 18s infinite alternate ease-in-out
 
 @keyframes bgMove{
 0%{transform:scale(1)}
-100%{transform:scale(1.15)}
+100%{transform:scale(1.1)}
 }
 
-/* NAVBAR */
+/* NAVBAR (نفس index) */
 
 .site-nav{
 position:fixed;
-top:24px;
-left:0;
-right:0;
-
+top:0;
+width:100%;
 display:flex;
 justify-content:center;
-gap:30px;
+gap:20px;
+padding:16px;
+z-index:100;
 
-z-index:100
+overflow-x:auto;
+white-space:nowrap;
+background:rgba(0,0,0,.4);
+backdrop-filter:blur(10px);
 }
 
 .site-nav a{
-font-size:13px;
-letter-spacing:.18em;
+font-size:12px;
+letter-spacing:.15em;
 text-transform:uppercase;
 color:white;
 text-decoration:none;
-opacity:.7
+opacity:.7;
+flex-shrink:0;
 }
 
 .site-nav a:hover{opacity:1}
@@ -93,7 +86,7 @@ opacity:1
 /* PAGE */
 
 .page{
-padding-top:260px;
+padding-top:140px; /* 👈 رفعنا المحتوى */
 max-width:1200px;
 margin:auto;
 padding-left:20px;
@@ -103,14 +96,14 @@ padding-right:20px
 /* HERO */
 
 .hero{
-margin-bottom:100px;
+margin-bottom:70px;
 max-width:700px
 }
 
 .hero h1{
-font-size:52px;
+font-size:42px;
 line-height:1.1;
-margin-bottom:18px
+margin-bottom:14px
 }
 
 .hero span{
@@ -120,7 +113,7 @@ color:#f5c14a
 .hero p{
 opacity:.85;
 line-height:1.7;
-font-size:15px
+font-size:14px
 }
 
 /* LIGHT DIVIDER */
@@ -129,7 +122,7 @@ font-size:15px
 position:relative;
 width:100%;
 height:1px;
-margin:70px 0;
+margin:60px 0;
 
 background:linear-gradient(
 90deg,
@@ -173,82 +166,66 @@ animation:lightSweep 4s linear infinite
 .grid{
 display:grid;
 grid-template-columns:repeat(4,1fr);
-gap:22px
+gap:18px
 }
 
 .card{
-
-border-radius:12px;
+border-radius:10px;
 overflow:hidden;
-
 cursor:pointer;
-
 background:#07070c;
-border:1px solid rgba(255,255,255,.08);
-
-transition:.35s
+border:1px solid rgba(255,255,255,.06);
+transition:.3s
 }
 
 .card:hover{
-
-transform:translateY(-6px) scale(1.03);
-
-box-shadow:
-0 20px 60px rgba(0,0,0,.9),
-0 0 25px rgba(245,193,74,0.25),
-0 0 40px rgba(245,193,74,0.15);
-
+transform:translateY(-4px);
 border-color:#f5c14a
 }
+
+/* الفيديو واضح 👇 */
 
 .thumb{
 position:relative;
 width:100%;
-padding-top:56%
+padding-top:56%;
+background:black;
 }
 
 .thumb video{
-
 position:absolute;
 top:0;
 left:0;
-
 width:100%;
 height:100%;
-
-object-fit:cover
+object-fit:cover;
+filter:brightness(1.05); /* 👈 أهم تعديل */
 }
 
-.overlay{
+/* خففنا التعتيم 👇 */
 
+.overlay{
 position:absolute;
 inset:0;
-
-background:linear-gradient(to top,rgba(0,0,0,.85),transparent);
-
+background:linear-gradient(to top,rgba(0,0,0,.4),transparent);
 display:flex;
 align-items:flex-end;
-
-padding:12px
+padding:10px
 }
 
 .label{
-font-size:13px
+font-size:12px
 }
 
 /* MODAL */
 
 .modal{
-
 position:fixed;
 inset:0;
-
-background:rgba(0,0,0,.92);
-
+background:rgba(0,0,0,.95);
 display:none;
 align-items:center;
 justify-content:center;
-
 z-index:200
 }
 
@@ -257,43 +234,36 @@ display:flex
 }
 
 .modal-frame{
-
 width:90%;
-max-width:1100px;
+max-width:1000px;
 aspect-ratio:16/9;
-
 background:black
 }
 
 .modal video{
-
 width:100%;
 height:100%;
-
 object-fit:contain
 }
 
 .close{
-
 position:absolute;
-top:30px;
-right:40px;
-
-font-size:32px;
-
+top:20px;
+right:20px;
+font-size:30px;
 cursor:pointer
 }
 
 /* MOBILE */
 
-@media(max-width:900px){
+@media(max-width:768px){
 
 .grid{
 grid-template-columns:repeat(2,1fr)
 }
 
 .hero h1{
-font-size:40px
+font-size:32px
 }
 
 }
@@ -303,8 +273,6 @@ font-size:40px
 </head>
 
 <body>
-
-<canvas id="particles"></canvas>
 
 <div class="ai-bg"></div>
 
@@ -335,7 +303,7 @@ and cinematic visual storytelling created through emerging technologies.
 
 <section>
 
-<h2 style="margin-bottom:25px">AI Experiments & Animation</h2>
+<h2 style="margin-bottom:20px">AI Experiments & Animation</h2>
 
 <div class="grid" id="videoGrid"></div>
 
@@ -356,24 +324,8 @@ and cinematic visual storytelling created through emerging technologies.
 /* VIDEO LIST */
 
 const videos=[
-
-"img/ai01.mp4",
-"img/ai02.mp4",
-"img/ai03.mp4",
-"img/ai04.mp4",
-"img/ai05.mp4",
-"img/ai06.mp4",
-"img/ai07.mp4",
-"img/ai08.mp4",
-"img/ai09.mp4",
-"img/ai10.mp4",
-"img/ai11.mp4",
-"img/ai12.mp4",
-"img/ai13.mp4",
-"img/ai14.mp4",
-"img/ai15.mp4",
-"img/ai16.mp4"
-
+"img/ai01.mp4","img/ai02.mp4","img/ai03.mp4","img/ai04.mp4",
+"img/ai05.mp4","img/ai06.mp4","img/ai07.mp4","img/ai08.mp4"
 ]
 
 const grid=document.getElementById("videoGrid")
@@ -381,151 +333,64 @@ const grid=document.getElementById("videoGrid")
 videos.forEach((v,i)=>{
 
 let card=document.createElement("div")
-
 card.className="card"
-
 card.onclick=()=>openVideo(i)
 
 card.innerHTML=`
-
 <div class="thumb">
-
 <video muted loop playsinline preload="auto">
-
 <source src="${v}" type="video/mp4">
-
 </video>
-
 <div class="overlay">
-
 <div class="label">AI Scene ${i+1}</div>
-
 </div>
-
 </div>
-
 `
 
 grid.appendChild(card)
 
 })
 
-/* HOVER PREVIEW */
+/* hover */
 
 document.addEventListener("mouseover",(e)=>{
-
 let card=e.target.closest(".card")
-
 if(card){
-
 let v=card.querySelector("video")
-
 if(v) v.play()
-
 }
-
 })
 
 document.addEventListener("mouseout",(e)=>{
-
 let card=e.target.closest(".card")
-
 if(card){
-
 let v=card.querySelector("video")
-
 if(v){
-
 v.pause()
 v.currentTime=0
-
 }
-
 }
-
 })
 
-/* MODAL */
+/* modal */
 
 function openVideo(i){
-
 const modal=document.getElementById("modal")
 const frame=document.getElementById("frame")
 
 frame.innerHTML=`
-
 <video controls autoplay>
-
 <source src="${videos[i]}" type="video/mp4">
-
 </video>
-
 `
 
 modal.classList.add("open")
-
 }
 
 function closeVideo(){
-
 document.getElementById("modal").classList.remove("open")
 document.getElementById("frame").innerHTML=""
-
 }
-
-/* PARTICLES */
-
-const canvas=document.getElementById("particles")
-const ctx=canvas.getContext("2d")
-
-canvas.width=window.innerWidth
-canvas.height=window.innerHeight
-
-let particles=[]
-
-for(let i=0;i<80;i++){
-
-particles.push({
-
-x:Math.random()*canvas.width,
-y:Math.random()*canvas.height,
-
-size:Math.random()*2+0.5,
-
-speedX:(Math.random()-0.5)*0.3,
-speedY:(Math.random()-0.5)*0.3
-
-})
-
-}
-
-function animateParticles(){
-
-ctx.clearRect(0,0,canvas.width,canvas.height)
-
-particles.forEach(p=>{
-
-p.x+=p.speedX
-p.y+=p.speedY
-
-if(p.x>canvas.width)p.x=0
-if(p.x<0)p.x=canvas.width
-if(p.y>canvas.height)p.y=0
-if(p.y<0)p.y=canvas.height
-
-ctx.beginPath()
-ctx.arc(p.x,p.y,p.size,0,Math.PI*2)
-
-ctx.fillStyle="rgba(255,255,255,0.2)"
-ctx.fill()
-
-})
-
-requestAnimationFrame(animateParticles)
-
-}
-
-animateParticles()
 
 </script>
 
