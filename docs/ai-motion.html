@@ -20,25 +20,9 @@ font-family:'Montserrat',sans-serif
 }
 
 body{
-background:#040405;
+background:#020207;
 color:white;
 overflow-x:hidden
-}
-
-/* BACKGROUND */
-
-.ai-bg{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-z-index:-1;
-
-background:
-radial-gradient(circle at 20% 20%, rgba(245,193,74,.15), transparent 40%),
-radial-gradient(circle at 80% 60%, rgba(0,120,255,.12), transparent 40%),
-#020207;
 }
 
 /* NAV */
@@ -52,9 +36,11 @@ justify-content:center;
 gap:20px;
 padding:16px;
 z-index:100;
+
 overflow-x:auto;
 white-space:nowrap;
-background:rgba(0,0,0,.4);
+
+background:rgba(0,0,0,.6);
 backdrop-filter:blur(10px);
 }
 
@@ -65,7 +51,6 @@ text-transform:uppercase;
 color:white;
 text-decoration:none;
 opacity:.7;
-flex-shrink:0;
 }
 
 .site-nav a.active{
@@ -76,7 +61,7 @@ opacity:1;
 /* PAGE */
 
 .page{
-padding-top:110px;
+padding-top:140px;
 max-width:1200px;
 margin:auto;
 padding:0 20px;
@@ -91,17 +76,29 @@ max-width:700px;
 
 .hero h1{
 font-size:34px;
-margin-bottom:12px;
-}
-
-.hero span{
-color:#f5c14a;
+margin-bottom:10px;
 }
 
 .hero p{
-opacity:.85;
-line-height:1.7;
+opacity:.8;
+line-height:1.6;
 font-size:14px;
+}
+
+/* TYPE CURSOR */
+
+.cursor{
+display:inline-block;
+width:2px;
+height:20px;
+background:#f5c14a;
+margin-left:5px;
+animation:blink 1s infinite;
+}
+
+@keyframes blink{
+0%,100%{opacity:1}
+50%{opacity:0}
 }
 
 /* GRID */
@@ -109,23 +106,35 @@ font-size:14px;
 .grid{
 display:grid;
 grid-template-columns:repeat(4,1fr);
-gap:16px;
+gap:18px;
 }
+
+/* CARD */
 
 .card{
-border-radius:10px;
+position:relative;
+border-radius:12px;
 overflow:hidden;
 cursor:pointer;
-background:#07070c;
-border:1px solid rgba(255,255,255,.06);
+transition:.3s;
+background:black;
 }
 
-/* VIDEO THUMB */
+.card:hover{
+transform:scale(1.08);
+z-index:5;
+box-shadow:
+0 20px 60px rgba(0,0,0,.9),
+0 0 25px rgba(245,193,74,0.25);
+}
+
+/* VIDEO */
 
 .thumb{
 position:relative;
 width:100%;
 padding-top:56%;
+overflow:hidden;
 }
 
 .thumb video{
@@ -137,7 +146,23 @@ height:100%;
 object-fit:cover;
 }
 
-/* PLAY ICON */
+/* OVERLAY */
+
+.overlay{
+position:absolute;
+inset:0;
+background:linear-gradient(to top,rgba(0,0,0,.8),transparent);
+display:flex;
+align-items:flex-end;
+padding:10px;
+}
+
+.label{
+font-size:12px;
+opacity:.8;
+}
+
+/* PLAY */
 
 .play{
 position:absolute;
@@ -145,10 +170,10 @@ inset:0;
 display:flex;
 align-items:center;
 justify-content:center;
-font-size:26px;
-background:rgba(0,0,0,.3);
+font-size:28px;
 opacity:0;
 transition:.3s;
+background:rgba(0,0,0,.4);
 }
 
 .card:hover .play{
@@ -175,7 +200,6 @@ display:flex;
 width:90%;
 max-width:1000px;
 aspect-ratio:16/9;
-background:black;
 }
 
 .modal video{
@@ -214,16 +238,12 @@ font-size:28px;
 
 <body>
 
-<div class="ai-bg"></div>
-
 <nav class="site-nav">
-
 <a href="index.html">Home</a>
 <a href="my-work.html">My Work</a>
 <a href="ai-motion.html" class="active">AI & Animation</a>
 <a href="academy.html">Pro</a>
 <a href="show.html">Showreel</a>
-
 </nav>
 
 <div class="page">
@@ -266,7 +286,9 @@ function type(){
 if(i<text.length){
 document.getElementById("typeTitle").innerHTML+=text[i]
 i++
-setTimeout(type,35)
+setTimeout(type,30)
+}else{
+document.getElementById("typeTitle").innerHTML += '<span class="cursor"></span>'
 }
 }
 
@@ -275,14 +297,8 @@ type()
 /* VIDEOS */
 
 const videos=[
-"img/ai01.mp4",
-"img/ai02.mp4",
-"img/ai03.mp4",
-"img/ai04.mp4",
-"img/ai05.mp4",
-"img/ai06.mp4",
-"img/ai07.mp4",
-"img/ai08.mp4"
+"img/ai01.mp4","img/ai02.mp4","img/ai03.mp4","img/ai04.mp4",
+"img/ai05.mp4","img/ai06.mp4","img/ai07.mp4","img/ai08.mp4"
 ]
 
 const grid=document.getElementById("videoGrid")
@@ -297,50 +313,54 @@ card.innerHTML=`
 
 <div class="thumb">
 
-<video muted playsinline preload="metadata">
-
+<video muted playsinline preload="auto">
 <source src="${v}" type="video/mp4">
-
 </video>
+
+<div class="overlay">
+<div class="label">AI Scene ${i+1}</div>
+</div>
 
 <div class="play">▶</div>
 
 </div>
-
 `
 
 grid.appendChild(card)
 
+/* show first frame */
+
+setTimeout(()=>{
+let vid = card.querySelector("video")
+if(vid){
+vid.currentTime = 0.3
+}
+},200)
+
 })
 
-/* PREVIEW */
+/* HOVER PREVIEW */
 
 document.addEventListener("mouseover",(e)=>{
-
 let card=e.target.closest(".card")
-
 if(card){
 let v=card.querySelector("video")
 if(v){
-v.currentTime=1
+v.currentTime = 0.5
 v.play()
 }
 }
-
 })
 
 document.addEventListener("mouseout",(e)=>{
-
 let card=e.target.closest(".card")
-
 if(card){
 let v=card.querySelector("video")
 if(v){
 v.pause()
-v.currentTime=0
+v.currentTime = 0.3
 }
 }
-
 })
 
 /* MODAL */
