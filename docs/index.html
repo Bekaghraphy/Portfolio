@@ -61,18 +61,19 @@ color:#d8b97a;
 
 .hero{
 
+.hero{
 height:100vh;
-
 display:flex;
 align-items:center;
+
+/* 👇 ضيف هنا */
+justify-content:flex-start;
 
 padding-left:10%;
 padding-right:10%;
 
 position:relative;
-
 }
-
 .hero video{
 
 position:absolute;
@@ -219,28 +220,25 @@ transform:scale(1.1);
 
 .lang-toggle{
 
-position:fixed;
+margin-bottom:20px;
 
-top:20px;
-right:40px;
-
-display:flex;
+display:inline-flex;
 
 border:1px solid rgba(216,185,122,.6);
 
-border-radius:6px;
+border-radius:8px;
 
 overflow:hidden;
 
-background:rgba(0,0,0,.35);
-
-backdrop-filter:blur(10px);
+background:rgba(0,0,0,.25);
 
 }
 
+/* buttons */
+
 .lang-btn{
 
-padding:6px 14px;
+padding:6px 12px;
 
 border:none;
 
@@ -253,17 +251,11 @@ letter-spacing:1px;
 
 cursor:pointer;
 
-transition:.3s;
-
 }
 
-.lang-btn:hover{
-
-background:rgba(216,185,122,.15);
-
-}
-.hero{
-justify-content:flex-start;
+.lang-btn.active{
+background:#d8b97a;
+color:black;
 }
   /* ================= MOBILE ================= */
 @media (max-width:768px){
@@ -328,27 +320,13 @@ flex-wrap:wrap;
 width:20px;
 }
 
-/* TOGGLE */
-.lang-toggle.inside{
-
-position:relative;   /* أهم سطر */
-
-margin-bottom:22px;
-
-display:inline-flex;
-
-border:1px solid rgba(216,185,122,.6);
-
-border-radius:6px;
-
-overflow:hidden;
-
-background:rgba(0,0,0,.35);
-
-backdrop-filter:blur(10px);
+.lang-toggle{
+margin-bottom:15px;
+}
 
 }
-  /* ===== FOOTER ===== */
+
+/* ===== FOOTER ===== */
 
 .site-footer{
 
