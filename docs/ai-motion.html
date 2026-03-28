@@ -76,7 +76,7 @@ opacity:1;
 /* PAGE */
 
 .page{
-padding-top:140px;
+padding-top:110px;
 max-width:1200px;
 margin:auto;
 padding:0 20px;
@@ -85,12 +85,12 @@ padding:0 20px;
 /* HERO */
 
 .hero{
-margin-bottom:70px;
+margin-bottom:60px;
 max-width:700px;
 }
 
 .hero h1{
-font-size:42px;
+font-size:34px;
 margin-bottom:12px;
 }
 
@@ -104,30 +104,13 @@ line-height:1.7;
 font-size:14px;
 }
 
-/* TYPE CURSOR */
-
-.cursor{
-display:inline-block;
-width:2px;
-background:#f5c14a;
-margin-left:5px;
-animation:blink 1s infinite;
-}
-
-@keyframes blink{
-0%,100%{opacity:1}
-50%{opacity:0}
-}
-
 /* GRID */
 
 .grid{
 display:grid;
 grid-template-columns:repeat(4,1fr);
-gap:18px;
+gap:16px;
 }
-
-/* CARD */
 
 .card{
 border-radius:10px;
@@ -137,7 +120,7 @@ background:#07070c;
 border:1px solid rgba(255,255,255,.06);
 }
 
-/* THUMBNAIL IMAGE */
+/* VIDEO THUMB */
 
 .thumb{
 position:relative;
@@ -145,7 +128,7 @@ width:100%;
 padding-top:56%;
 }
 
-.thumb img{
+.thumb video{
 position:absolute;
 top:0;
 left:0;
@@ -162,8 +145,8 @@ inset:0;
 display:flex;
 align-items:center;
 justify-content:center;
-font-size:28px;
-background:rgba(0,0,0,.4);
+font-size:26px;
+background:rgba(0,0,0,.3);
 opacity:0;
 transition:.3s;
 }
@@ -203,8 +186,8 @@ height:100%;
 /* FOOTER */
 
 .footer{
-margin-top:80px;
-padding:30px;
+margin-top:70px;
+padding:25px;
 text-align:center;
 font-size:12px;
 opacity:.5;
@@ -220,7 +203,7 @@ grid-template-columns:repeat(2,1fr);
 }
 
 .hero h1{
-font-size:30px;
+font-size:28px;
 }
 
 }
@@ -283,15 +266,13 @@ function type(){
 if(i<text.length){
 document.getElementById("typeTitle").innerHTML+=text[i]
 i++
-setTimeout(type,40)
-}else{
-document.getElementById("typeTitle").innerHTML+='<span class="cursor"></span>'
+setTimeout(type,35)
 }
 }
 
 type()
 
-/* VIDEOS + THUMBNAILS */
+/* VIDEOS */
 
 const videos=[
 "img/ai01.mp4",
@@ -304,17 +285,6 @@ const videos=[
 "img/ai08.mp4"
 ]
 
-const thumbs=[
-"img/thumb1.jpg",
-"img/thumb2.jpg",
-"img/thumb3.jpg",
-"img/thumb4.jpg",
-"img/thumb5.jpg",
-"img/thumb6.jpg",
-"img/thumb7.jpg",
-"img/thumb8.jpg"
-]
-
 const grid=document.getElementById("videoGrid")
 
 videos.forEach((v,i)=>{
@@ -324,13 +294,52 @@ card.className="card"
 card.onclick=()=>openVideo(i)
 
 card.innerHTML=`
+
 <div class="thumb">
-<img src="${thumbs[i]}" alt="">
+
+<video muted playsinline preload="metadata">
+
+<source src="${v}" type="video/mp4">
+
+</video>
+
 <div class="play">▶</div>
+
 </div>
+
 `
 
 grid.appendChild(card)
+
+})
+
+/* PREVIEW */
+
+document.addEventListener("mouseover",(e)=>{
+
+let card=e.target.closest(".card")
+
+if(card){
+let v=card.querySelector("video")
+if(v){
+v.currentTime=1
+v.play()
+}
+}
+
+})
+
+document.addEventListener("mouseout",(e)=>{
+
+let card=e.target.closest(".card")
+
+if(card){
+let v=card.querySelector("video")
+if(v){
+v.pause()
+v.currentTime=0
+}
+}
 
 })
 
