@@ -28,29 +28,25 @@ overflow-x:hidden;
 /* NAV */
 
 nav{
-
 position:fixed;
 top:0;
 width:100%;
-
 display:flex;
 justify-content:center;
-gap:30px;
-
-padding:22px;
-
+gap:20px;
+padding:16px;
 z-index:10;
-
+overflow-x:auto;
+white-space:nowrap;
 }
 
 nav a{
-
 color:white;
 text-decoration:none;
-letter-spacing:2px;
-font-size:13px;
+letter-spacing:1px;
+font-size:12px;
 opacity:.8;
-
+flex-shrink:0;
 }
 
 nav a:hover{
@@ -60,300 +56,134 @@ color:#d8b97a;
 /* HERO */
 
 .hero{
-
-.hero{
-height:100vh;
+min-height:100vh;
 display:flex;
 align-items:center;
-
-/* 👇 ضيف هنا */
 justify-content:flex-start;
-
-padding-left:10%;
-padding-right:10%;
-
+padding:0 20px;
 position:relative;
 }
-.hero video{
 
+.hero video{
 position:absolute;
 top:0;
 left:0;
-
 width:100%;
 height:100%;
-
 object-fit:cover;
-
 z-index:-2;
-
 }
 
 .overlay{
-
 position:absolute;
 top:0;
 left:0;
-
 width:100%;
 height:100%;
-
 background:linear-gradient(
 90deg,
 rgba(0,0,0,.85),
-rgba(0,0,0,.25)
+rgba(0,0,0,.3)
 );
-
 z-index:-1;
-
 }
 
 /* CONTENT */
 
 .hero-content{
-max-width:650px;
+max-width:600px;
 display:flex;
 flex-direction:column;
 align-items:flex-start;
 }
 
-.hero-content{
-
-max-width:650px;
-
-}
-
-.hero h1{
-
-font-size:64px;
-color:#d8b97a;
-
-margin-bottom:15px;
-
-}
-
-.hero h2{
-
-font-size:20px;
-letter-spacing:5px;
-
-margin-bottom:20px;
-
-}
-
-.hero p{
-
-line-height:1.7;
-opacity:.9;
-
-margin-bottom:30px;
-
-}
-
-/* DOWNLOAD BUTTON */
-
-.download-btn{
-
-display:inline-flex;
-align-items:center;
-
-padding:15px 28px;
-
-border-radius:8px;
-
-text-decoration:none;
-
-background:linear-gradient(
-135deg,
-rgba(216,185,122,.95),
-rgba(216,185,122,.5)
-);
-
-color:black;
-
-font-weight:600;
-letter-spacing:1px;
-
-box-shadow:0 0 25px rgba(216,185,122,.5);
-
-transition:.25s;
-
-}
-
-.download-btn:hover{
-
-transform:translateY(-2px);
-
-box-shadow:0 0 35px rgba(216,185,122,.8);
-
-}
-
-/* SOCIAL */
-
-.social{
-
-margin-top:35px;
-
-display:flex;
-gap:16px;
-
-}
-
-.social a img{
-
-width:22px;
-
-opacity:.8;
-
-transition:.3s;
-
-}
-
-.social a img:hover{
-
-opacity:1;
-transform:scale(1.1);
-
-}
-
-/* LANGUAGE TOGGLE */
+/* TOGGLE */
 
 .lang-toggle{
-
-margin-bottom:20px;
-
+margin-bottom:15px;
 display:inline-flex;
-
 border:1px solid rgba(216,185,122,.6);
-
 border-radius:8px;
-
 overflow:hidden;
-
 background:rgba(0,0,0,.25);
-
 }
 
-/* buttons */
-
 .lang-btn{
-
-padding:6px 12px;
-
+padding:6px 10px;
 border:none;
-
 background:transparent;
-
 color:#d8b97a;
-
-font-size:12px;
-letter-spacing:1px;
-
+font-size:11px;
 cursor:pointer;
-
 }
 
 .lang-btn.active{
 background:#d8b97a;
 color:black;
 }
-  /* ================= MOBILE ================= */
-@media (max-width:768px){
 
-nav{
-gap:14px;
-padding:14px;
-flex-wrap:nowrap;
-overflow-x:auto;
-white-space:nowrap;
-}
-
-nav a{
-font-size:11px;
-letter-spacing:1px;
-flex-shrink:0;
-}
-
-/* HERO */
-
-.hero{
-padding:0 20px;
-height:100vh;
-align-items:flex-end;
-padding-bottom:80px;
-}
-
-.hero-content{
-max-width:100%;
-}
+/* TEXT */
 
 .hero h1{
 font-size:34px;
-line-height:1.2;
+color:#d8b97a;
+margin-bottom:12px;
 }
 
 .hero h2{
-font-size:13px;
+font-size:14px;
 letter-spacing:2px;
+margin-bottom:15px;
 }
 
 .hero p{
 font-size:14px;
 line-height:1.6;
+margin-bottom:25px;
 }
 
 /* BUTTON */
 
 .download-btn{
+display:inline-flex;
+align-items:center;
 padding:12px 18px;
-font-size:12px;
+border-radius:8px;
+text-decoration:none;
+background:linear-gradient(
+135deg,
+rgba(216,185,122,.95),
+rgba(216,185,122,.5)
+);
+color:black;
+font-weight:600;
+font-size:13px;
+box-shadow:0 0 20px rgba(216,185,122,.5);
 }
 
 /* SOCIAL */
 
 .social{
+margin-top:25px;
+display:flex;
 gap:12px;
 flex-wrap:wrap;
 }
 
 .social a img{
 width:20px;
+opacity:.9;
 }
 
-.lang-toggle{
-margin-bottom:15px;
-}
-
-}
-
-/* ===== FOOTER ===== */
+/* FOOTER */
 
 .site-footer{
-
 width:100%;
-
-padding:40px 20px;
-
-margin-top:80px;
-
+padding:30px 20px;
 text-align:center;
-
-font-size:12px;
-
-letter-spacing:2px;
-
-color:rgba(255,255,255,0.45);
-
+font-size:11px;
+color:rgba(255,255,255,0.5);
 border-top:1px solid rgba(255,255,255,0.08);
-
-}
-
-.footer-content{
-
-max-width:1200px;
-
-margin:auto;
-
 }
 
 </style>
@@ -362,15 +192,13 @@ margin:auto;
 
 <body>
 
-
 <nav>
-<a href="index.html" class="active">HOME</a>
+<a href="index.html">HOME</a>
 <a href="my-work.html">MY WORK</a>
 <a href="ai-motion.html">AI & ANIMATION</a>
 <a href="academy.html">PRO</a>
 <a href="show.html">SHOWREEL</a>
 </nav>
-
 
 <div class="hero">
 
@@ -382,34 +210,25 @@ margin:auto;
 
 <div class="hero-content">
 
-<div class="lang-toggle inside">
-
-<button class="lang-btn" onclick="setLang('en')">EN</button>
+<div class="lang-toggle">
+<button class="lang-btn active" onclick="setLang('en')">EN</button>
 <button class="lang-btn" onclick="setLang('ar')">AR</button>
-
 </div>
 
 <h1 id="title">Hesham Abdelhamed</h1>
+
 <h2 id="subtitle">
 Cinematic Documentary Storytelling
 </h2>
 
 <p id="desc">
-
 I am a filmmaker and video editor crafting cinematic narratives,
 mixing documentary sensitivity with strong visual composition.
-
 </p>
 
-
-<a href="img/Hesham-Abdelhamed-Portfolio.pdf"
-download
-class="download-btn">
-
+<a href="img/Hesham-Abdelhamed-Portfolio.pdf" download class="download-btn">
 ⬇ Download Portfolio
-
 </a>
-
 
 <div class="social">
 
@@ -439,15 +258,18 @@ class="download-btn">
 
 </div>
 
+<footer class="site-footer">
+© 2026 Hesham Abdelhamed — All Rights Reserved
+</footer>
 
 <script>
+
 function setLang(lang){
 
 const hero = document.querySelector(".hero")
 const title = document.getElementById("title")
 const subtitle = document.getElementById("subtitle")
 const desc = document.getElementById("desc")
-
 const buttons = document.querySelectorAll(".lang-btn")
 
 buttons.forEach(btn => btn.classList.remove("active"))
@@ -455,33 +277,23 @@ buttons.forEach(btn => btn.classList.remove("active"))
 if(lang === "ar"){
 
 document.body.dir = "rtl"
-
-/* move content right */
 hero.style.justifyContent = "flex-end"
-hero.style.textAlign = "right"
 
-/* text */
 title.innerHTML = "هشام عبد الحميد"
-
-subtitle.innerHTML = "السرد السينمائي الوثائقي"
+subtitle.innerHTML = "قصص واقعية بروح سينمائية"
 
 desc.innerHTML =
 "أنا صانع أفلام ومونتير فيديو أصنع قصصًا بصرية سينمائية تجمع بين الحس الوثائقي والتكوين البصري القوي."
 
 buttons[1].classList.add("active")
 
-}
-
-else{
+}else{
 
 document.body.dir = "ltr"
-
 hero.style.justifyContent = "flex-start"
-hero.style.textAlign = "left"
 
 title.innerHTML = "Hesham Abdelhamed"
-
-subtitle.innerHTML = "CINEMATIC VISUAL STORIES"
+subtitle.innerHTML = "Cinematic Documentary Storytelling"
 
 desc.innerHTML =
 "I am a filmmaker and video editor crafting cinematic narratives, mixing documentary sensitivity with strong visual composition."
@@ -491,16 +303,8 @@ buttons[0].classList.add("active")
 }
 
 }
+
 </script>
-<footer class="site-footer">
 
-<div class="footer-content">
-
-<span>© 2026 Hesham Abdelhamed — All Rights Reserved</span>
-
-</div>
-
-</footer>
 </body>
-
 </html>
