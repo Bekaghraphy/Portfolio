@@ -5,7 +5,6 @@
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" type="image/png" href="img/favicon.png">
 <title>AI & Animation | Hesham Abdelhamed</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -61,10 +60,11 @@ opacity:1;
 /* PAGE */
 
 .page{
-padding-top:140px;
+padding-top:160px; /* 👈 نزلنا العنوان */
 max-width:1200px;
 margin:auto;
-padding:0 20px;
+padding-left:20px;
+padding-right:20px;
 }
 
 /* HERO */
@@ -75,7 +75,7 @@ max-width:700px;
 }
 
 .hero h1{
-font-size:34px;
+font-size:32px;
 margin-bottom:10px;
 }
 
@@ -85,12 +85,12 @@ line-height:1.6;
 font-size:14px;
 }
 
-/* TYPE CURSOR */
+/* CURSOR */
 
 .cursor{
 display:inline-block;
 width:2px;
-height:20px;
+height:18px;
 background:#f5c14a;
 margin-left:5px;
 animation:blink 1s infinite;
@@ -120,12 +120,28 @@ transition:.3s;
 background:black;
 }
 
+/* GLOW BORDER */
+
+.card::before{
+content:"";
+position:absolute;
+inset:0;
+border-radius:12px;
+padding:1px;
+background:linear-gradient(120deg, transparent, #f5c14a, transparent);
+-webkit-mask:
+linear-gradient(#000 0 0) content-box,
+linear-gradient(#000 0 0);
+-webkit-mask-composite: xor;
+mask-composite: exclude;
+opacity:.3;
+}
+
+/* HOVER */
+
 .card:hover{
-transform:scale(1.08);
-z-index:5;
-box-shadow:
-0 20px 60px rgba(0,0,0,.9),
-0 0 25px rgba(245,193,74,0.25);
+transform:scale(1.05);
+box-shadow:0 0 25px rgba(245,193,74,.25);
 }
 
 /* VIDEO */
@@ -134,7 +150,6 @@ box-shadow:
 position:relative;
 width:100%;
 padding-top:56%;
-overflow:hidden;
 }
 
 .thumb video{
@@ -146,23 +161,7 @@ height:100%;
 object-fit:cover;
 }
 
-/* OVERLAY */
-
-.overlay{
-position:absolute;
-inset:0;
-background:linear-gradient(to top,rgba(0,0,0,.8),transparent);
-display:flex;
-align-items:flex-end;
-padding:10px;
-}
-
-.label{
-font-size:12px;
-opacity:.8;
-}
-
-/* PLAY */
+/* PLAY ICON */
 
 .play{
 position:absolute;
@@ -171,13 +170,19 @@ display:flex;
 align-items:center;
 justify-content:center;
 font-size:28px;
-opacity:0;
-transition:.3s;
-background:rgba(0,0,0,.4);
+color:white;
+background:rgba(0,0,0,.3);
+opacity:.9;
 }
 
-.card:hover .play{
-opacity:1;
+/* LABEL */
+
+.label{
+position:absolute;
+bottom:10px;
+left:12px;
+font-size:12px;
+opacity:.8;
 }
 
 /* MODAL */
@@ -227,7 +232,7 @@ grid-template-columns:repeat(2,1fr);
 }
 
 .hero h1{
-font-size:28px;
+font-size:26px;
 }
 
 }
@@ -259,11 +264,7 @@ exploring new forms of cinematic storytelling and visual expression.
 
 </section>
 
-<section>
-
 <div class="grid" id="videoGrid"></div>
-
-</section>
 
 </div>
 
@@ -288,7 +289,7 @@ document.getElementById("typeTitle").innerHTML+=text[i]
 i++
 setTimeout(type,30)
 }else{
-document.getElementById("typeTitle").innerHTML += '<span class="cursor"></span>'
+document.getElementById("typeTitle").innerHTML+='<span class="cursor"></span>'
 }
 }
 
@@ -297,8 +298,14 @@ type()
 /* VIDEOS */
 
 const videos=[
-"img/ai01.mp4","img/ai02.mp4","img/ai03.mp4","img/ai04.mp4",
-"img/ai05.mp4","img/ai06.mp4","img/ai07.mp4","img/ai08.mp4"
+"img/ai01.mp4",
+"img/ai02.mp4",
+"img/ai03.mp4",
+"img/ai04.mp4",
+"img/ai05.mp4",
+"img/ai06.mp4",
+"img/ai07.mp4",
+"img/ai08.mp4"
 ]
 
 const grid=document.getElementById("videoGrid")
@@ -313,54 +320,20 @@ card.innerHTML=`
 
 <div class="thumb">
 
-<video muted playsinline preload="auto">
+<video autoplay muted loop playsinline>
 <source src="${v}" type="video/mp4">
 </video>
 
-<div class="overlay">
-<div class="label">AI Scene ${i+1}</div>
-</div>
-
 <div class="play">▶</div>
 
+<div class="label">AI Scene ${i+1}</div>
+
 </div>
+
 `
 
 grid.appendChild(card)
 
-/* show first frame */
-
-setTimeout(()=>{
-let vid = card.querySelector("video")
-if(vid){
-vid.currentTime = 0.3
-}
-},200)
-
-})
-
-/* HOVER PREVIEW */
-
-document.addEventListener("mouseover",(e)=>{
-let card=e.target.closest(".card")
-if(card){
-let v=card.querySelector("video")
-if(v){
-v.currentTime = 0.5
-v.play()
-}
-}
-})
-
-document.addEventListener("mouseout",(e)=>{
-let card=e.target.closest(".card")
-if(card){
-let v=card.querySelector("video")
-if(v){
-v.pause()
-v.currentTime = 0.3
-}
-}
 })
 
 /* MODAL */
