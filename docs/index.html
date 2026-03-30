@@ -174,6 +174,7 @@ flex-wrap:wrap;
 width:20px;
 opacity:.9;
 }
+
 .phones{
 display:flex;
 flex-direction:column;
@@ -188,62 +189,46 @@ text-decoration:none;
 opacity:.7;
 }
 
-.phones a:hover{
-opacity:1;
-color:#d8b97a;
-}
-/* FOOTER */
-
-.site-footer{
-width:100%;
-padding:30px 20px;
-text-align:center;
-font-size:11px;
-color:rgba(255,255,255,0.5);
-border-top:1px solid rgba(255,255,255,0.08);
-}
 /* LIGHT OVERLAY */
 
 .light-overlay{
-
 position:fixed;
 top:0;
 left:0;
-
 width:100%;
 height:100%;
-
 background:rgba(0,0,0,0.85);
-
 z-index:5;
-
 pointer-events:none;
-
 transition:0.5s;
-
 }
 
-/* زرار */
+/* LIGHT SPOT */
+
+.light-spot{
+position:fixed;
+width:200px;
+height:200px;
+border-radius:50%;
+background:radial-gradient(circle, rgba(255,255,200,0.5), transparent 70%);
+pointer-events:none;
+z-index:6;
+display:none;
+}
+
+/* BUTTON */
 
 .light-toggle button{
-
-margin-top:15px;
-
+margin-bottom:10px;
 padding:10px 16px;
-
 border:none;
-
 border-radius:6px;
-
 background:#d8b97a;
-
 color:black;
-
 cursor:pointer;
-
 font-size:12px;
-
 }
+
 </style>
 
 </head>
@@ -267,9 +252,11 @@ font-size:12px;
 <div class="overlay"></div>
 
 <div class="hero-content">
+
 <div class="light-toggle">
 <button onclick="toggleLight()">💡 Light</button>
 </div>
+
 <div class="lang-toggle">
 <button class="lang-btn active" onclick="setLang('en')">EN</button>
 <button class="lang-btn" onclick="setLang('ar')">AR</button>
@@ -277,9 +264,7 @@ font-size:12px;
 
 <h1 id="title">Hesham Abdelhamed</h1>
 
-<h2 id="subtitle">
-Cinematic Documentary Storytelling
-</h2>
+<h2 id="subtitle">Cinematic Documentary Storytelling</h2>
 
 <p id="desc">
 I am a filmmaker and video editor crafting cinematic narratives,
@@ -292,33 +277,14 @@ mixing documentary sensitivity with strong visual composition.
 
 <div class="social">
 
-<a href="https://www.linkedin.com/in/hishamabdelhamed" target="_blank">
-<img src="img/linkedin.png">
-</a>
-
-<a href="https://www.instagram.com/hisham.abdelhamed" target="_blank">
-<img src="img/instagram.png">
-</a>
-
-<a href="https://www.tiktok.com/@hisham.abdelhamed" target="_blank">
-<img src="img/tiktok.png">
-</a>
-
-<a href="https://facebook.com/hishamabdelhamedd" target="_blank">
-<img src="img/facebook.png">
-</a>
-
-<a href="mailto:per.hisham@gmail.com">
-<img src="img/email.png">
-</a>
-
-<!-- 📞 PHONE NUMBERS -->
+<a href="#"><img src="img/linkedin.png"></a>
+<a href="#"><img src="img/instagram.png"></a>
+<a href="#"><img src="img/tiktok.png"></a>
+<a href="#"><img src="img/facebook.png"></a>
 
 <div class="phones">
-
 <a href="tel:+201010723207">🇪🇬 01010723207</a>
 <a href="tel:+966503064408">🇸🇦 +966503064408</a>
-
 </div>
 
 </div>
@@ -327,79 +293,62 @@ mixing documentary sensitivity with strong visual composition.
 
 </div>
 
-<footer class="site-footer">
-© 2026 Hesham Abdelhamed — All Rights Reserved
-</footer>
+<!-- LIGHT ELEMENTS -->
+<div class="light-overlay" id="light"></div>
+<div class="light-spot" id="spot"></div>
 
 <script>
 
 function setLang(lang){
-
 const hero = document.querySelector(".hero")
-const title = document.getElementById("title")
-const subtitle = document.getElementById("subtitle")
-const desc = document.getElementById("desc")
-const buttons = document.querySelectorAll(".lang-btn")
-
-buttons.forEach(btn => btn.classList.remove("active"))
 
 if(lang === "ar"){
-
 document.body.dir = "rtl"
 hero.style.justifyContent = "flex-end"
-
-title.innerHTML = "هشام عبد الحميد"
-subtitle.innerHTML = "قصص واقعية بروح سينمائية"
-
-desc.innerHTML =
-"أنا صانع أفلام ومونتير فيديو أصنع قصصًا بصرية سينمائية تجمع بين الحس الوثائقي والتكوين البصري القوي."
-
-buttons[1].classList.add("active")
-
 }else{
-
 document.body.dir = "ltr"
 hero.style.justifyContent = "flex-start"
-
-title.innerHTML = "Hesham Abdelhamed"
-subtitle.innerHTML = "Cinematic Documentary Storytelling"
-
-desc.innerHTML =
-"I am a filmmaker and video editor crafting cinematic narratives, mixing documentary sensitivity with strong visual composition."
-
-buttons[0].classList.add("active")
-
+}
 }
 
-}
+/* LIGHT SYSTEM */
 
-
-let isLightOn = true
+let isLightOn = false
 
 function toggleLight(){
 
 const light = document.getElementById("light")
+const spot = document.getElementById("spot")
 
-if(isLightOn){
+if(!isLightOn){
 
-light.style.opacity = "1"
-isLightOn = false
+light.style.opacity = "0.85"
+spot.style.display = "block"
+isLightOn = true
 
 }else{
 
 light.style.opacity = "0"
-isLightOn = true
+spot.style.display = "none"
+isLightOn = false
 
 }
 
 }
 
+/* FOLLOW MOUSE */
 
+document.addEventListener("mousemove", e=>{
+const spot = document.getElementById("spot")
+spot.style.left = e.clientX - 100 + "px"
+spot.style.top = e.clientY - 100 + "px"
+})
 
-</body>
 </script>
-<!-- LIGHT OVERLAY -->
-<div class="light-overlay" id="light"></div>
+
+<footer class="site-footer">
+© 2026 Hesham Abdelhamed — All Rights Reserved
+</footer>
 
 </body>
 </html>
