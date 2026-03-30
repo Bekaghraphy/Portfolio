@@ -28,11 +28,11 @@ top:0;
 width:100%;
 display:flex;
 justify-content:center;
-gap:25px;
+gap:22px;
 padding:16px;
 z-index:20;
 
-background:rgba(0,0,0,.4);
+background:rgba(0,0,0,.5);
 backdrop-filter:blur(10px);
 
 overflow-x:auto;
@@ -131,32 +131,6 @@ align-items:center;
 width:22px;
 }
 
-/* PHONE */
-
-.phone-btn{
-width:22px;
-cursor:pointer;
-filter:invert(1);
-}
-
-.phone-menu{
-position:absolute;
-bottom:80px;
-left:20px;
-background:rgba(0,0,0,.9);
-padding:12px;
-border-radius:8px;
-display:none;
-flex-direction:column;
-gap:8px;
-}
-
-.phone-menu a{
-color:white;
-text-decoration:none;
-font-size:13px;
-}
-
 /* FOOTER */
 
 .footer{
@@ -211,13 +185,11 @@ Download Portfolio
 <a href="#"><img src="img/tiktok.png"></a>
 <a href="#"><img src="img/facebook.png"></a>
 
-<img src="img/phone.png" class="phone-btn" onclick="togglePhones()">
+<!-- 📞 PHONE (SMART POPUP) -->
+<a href="tel:+201010723207">
+<img src="img/phone.png">
+</a>
 
-</div>
-
-<div class="phone-menu" id="phones">
-<a href="tel:+201010723207">🇪🇬 01010723207</a>
-<a href="tel:+966503064408">🇸🇦 +966503064408</a>
 </div>
 
 </div>
@@ -230,35 +202,29 @@ Download Portfolio
 
 <script>
 
-/* PHONE */
-
-function togglePhones(){
-let menu = document.getElementById("phones")
-menu.style.display = (menu.style.display === "flex") ? "none" : "flex"
-}
-
-/* 🎬 FREE DRONE VIDEOS */
+/* ✅ فيديوهات شغالة على iPhone */
 
 const videos = [
-"https://cdn.coverr.co/videos/coverr-aerial-view-of-city-1573/1080p.mp4",
-"https://cdn.coverr.co/videos/coverr-flying-over-mountains-1570/1080p.mp4",
-"https://cdn.coverr.co/videos/coverr-aerial-beach-1571/1080p.mp4",
-"https://cdn.coverr.co/videos/coverr-city-skyline-1572/1080p.mp4",
-"https://cdn.coverr.co/videos/coverr-road-in-mountains-1574/1080p.mp4"
+"https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
+"https://www.w3schools.com/html/mov_bbb.mp4"
 ]
 
 let i = 0
 const video = document.getElementById("bgVideo")
 
 function changeVideo(){
+
 video.src = videos[i]
 video.play()
 
 i++
 if(i >= videos.length) i = 0
+
 }
 
-setInterval(changeVideo, 6000)
+/* تغيير كل 6 ثواني */
+
+setInterval(changeVideo, 3000)
 changeVideo()
 
 </script>
