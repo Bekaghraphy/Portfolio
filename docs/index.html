@@ -31,8 +31,10 @@ justify-content:center;
 gap:22px;
 padding:16px;
 z-index:20;
+
 background:rgba(0,0,0,.5);
 backdrop-filter:blur(10px);
+
 overflow-x:auto;
 white-space:nowrap;
 }
@@ -43,10 +45,17 @@ color:white;
 text-decoration:none;
 font-size:12px;
 letter-spacing:1px;
-opacity:.8;
+opacity:.7;
 }
 
-nav a:hover{color:#d8b97a;}
+nav a.active{
+color:#d8b97a;
+opacity:1;
+}
+
+nav a:hover{
+color:#d8b97a;
+}
 
 /* HERO */
 
@@ -58,7 +67,7 @@ padding:0 8%;
 position:relative;
 }
 
-/* 🎬 DOUBLE VIDEO (FOR SMOOTH TRANSITION) */
+/* VIDEO */
 
 .bg-video{
 position:absolute;
@@ -132,7 +141,7 @@ width:22px;
 cursor:pointer;
 }
 
-/* 📞 PHONE POPUP */
+/* PHONE POPUP */
 
 .phone-popup{
 position:fixed;
@@ -172,16 +181,16 @@ background:linear-gradient(to top,rgba(0,0,0,.6),transparent);
 <body>
 
 <nav>
-<a href="#">HOME</a>
-<a href="#">MY WORK</a>
-<a href="#">AI & ANIMATION</a>
-<a href="#">PRO</a>
-<a href="#">SHOWREEL</a>
+<a href="index.html">HOME</a>
+<a href="my-work.html">MY WORK</a>
+<a href="ai-motion.html">AI & ANIMATION</a>
+<a href="academy.html">PRO</a>
+<a href="show.html">SHOWREEL</a>
 </nav>
 
 <div class="hero">
 
-<!-- 🎬 TWO VIDEOS -->
+<!-- VIDEO LAYERS -->
 <video class="bg-video active" id="video1" autoplay muted loop playsinline></video>
 <video class="bg-video" id="video2" autoplay muted loop playsinline></video>
 
@@ -209,7 +218,6 @@ Download Portfolio
 <img src="img/tiktok.png">
 <img src="img/facebook.png">
 
-<!-- 📞 PHONE -->
 <img src="img/phone.png" onclick="togglePhone()">
 
 </div>
@@ -218,7 +226,7 @@ Download Portfolio
 
 </div>
 
-<!-- 📞 POPUP -->
+<!-- PHONE -->
 <div class="phone-popup" id="phoneBox">
 <a href="tel:+201010723207">🇪🇬 01010723207</a>
 <a href="tel:+966503064408">🇸🇦 +966503064408</a>
@@ -230,18 +238,37 @@ Download Portfolio
 
 <script>
 
-/* 📞 PHONE POPUP */
+/* ACTIVE NAV AUTO */
+
+const links = document.querySelectorAll("nav a")
+
+links.forEach(link=>{
+if(link.href === window.location.href){
+link.classList.add("active")
+}
+})
+
+/* PHONE */
 
 function togglePhone(){
 const box = document.getElementById("phoneBox")
 box.style.display = box.style.display === "flex" ? "none" : "flex"
 }
 
-/* 🎬 VIDEO CROSSFADE */
+/* 🎬 VIDEOS (COUNTRIES) */
 
 const vids = [
-"https://www.w3schools.com/html/mov_bbb.mp4",
-"https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
+/* Egypt */
+"https://cdn.coverr.co/videos/coverr-cairo-from-above-1600/1080p.mp4",
+
+/* Saudi */
+"https://cdn.coverr.co/videos/coverr-desert-road-saudi-1601/1080p.mp4",
+
+/* Lebanon */
+"https://cdn.coverr.co/videos/coverr-beirut-city-1602/1080p.mp4",
+
+/* Morocco */
+"https://cdn.coverr.co/videos/coverr-morocco-city-1603/1080p.mp4"
 ]
 
 let current = 0
@@ -272,8 +299,7 @@ v2.classList.remove("active")
 
 }
 
-/* كل 6 ثواني */
-setInterval(switchVideo, 6000)
+setInterval(switchVideo, 7000)
 
 </script>
 
