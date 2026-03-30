@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Hesham Abdelhamed</title>
@@ -14,12 +15,12 @@
 
 body{
 font-family:Montserrat;
-color:white;
 background:black;
-overflow:hidden; /* 👈 no scroll */
+color:white;
+overflow:hidden;
 }
 
-/* NAVBAR */
+/* NAV */
 
 nav{
 position:fixed;
@@ -27,18 +28,23 @@ top:0;
 width:100%;
 display:flex;
 justify-content:center;
-gap:30px;
-padding:18px;
+gap:25px;
+padding:16px;
 z-index:20;
+
 background:rgba(0,0,0,.4);
 backdrop-filter:blur(10px);
+
+overflow-x:auto;
+white-space:nowrap;
 }
 
 nav a{
+flex-shrink:0;
 color:white;
 text-decoration:none;
-font-size:13px;
-letter-spacing:2px;
+font-size:12px;
+letter-spacing:1px;
 opacity:.8;
 }
 
@@ -56,7 +62,7 @@ padding:0 8%;
 position:relative;
 }
 
-/* VIDEO BG */
+/* VIDEO */
 
 .hero video{
 position:absolute;
@@ -90,8 +96,8 @@ margin-bottom:12px;
 }
 
 .hero h2{
-font-size:16px;
-letter-spacing:4px;
+font-size:15px;
+letter-spacing:3px;
 margin-bottom:18px;
 }
 
@@ -121,28 +127,23 @@ gap:14px;
 align-items:center;
 }
 
-/* ICONS */
-
 .social a img{
 width:22px;
 }
 
-/* PHONE BUTTON */
+/* PHONE */
 
 .phone-btn{
 width:22px;
-height:22px;
 cursor:pointer;
 filter:invert(1);
 }
 
-/* PHONE MENU */
-
 .phone-menu{
 position:absolute;
-bottom:70px;
+bottom:80px;
 left:20px;
-background:rgba(0,0,0,.8);
+background:rgba(0,0,0,.9);
 padding:12px;
 border-radius:8px;
 display:none;
@@ -184,7 +185,6 @@ background:linear-gradient(to top,rgba(0,0,0,.6),transparent);
 
 <div class="hero">
 
-<!-- VIDEO BG -->
 <video id="bgVideo" autoplay muted loop playsinline></video>
 
 <div class="overlay"></div>
@@ -211,12 +211,10 @@ Download Portfolio
 <a href="#"><img src="img/tiktok.png"></a>
 <a href="#"><img src="img/facebook.png"></a>
 
-<!-- PHONE ICON -->
 <img src="img/phone.png" class="phone-btn" onclick="togglePhones()">
 
 </div>
 
-<!-- PHONE MENU -->
 <div class="phone-menu" id="phones">
 <a href="tel:+201010723207">🇪🇬 01010723207</a>
 <a href="tel:+966503064408">🇸🇦 +966503064408</a>
@@ -232,43 +230,36 @@ Download Portfolio
 
 <script>
 
-/* PHONE MENU */
+/* PHONE */
 
 function togglePhones(){
 let menu = document.getElementById("phones")
 menu.style.display = (menu.style.display === "flex") ? "none" : "flex"
 }
 
-/* VIDEO PLAYLIST */
+/* 🎬 FREE DRONE VIDEOS */
 
 const videos = [
-"img/drone1.mp4",
-"img/drone2.mp4",
-"img/drone3.mp4",
-"img/drone4.mp4",
-"img/drone5.mp4",
-"img/drone6.mp4",
-"img/drone7.mp4",
-"img/drone8.mp4",
-"img/drone9.mp4",
-"img/drone10.mp4"
+"https://cdn.coverr.co/videos/coverr-aerial-view-of-city-1573/1080p.mp4",
+"https://cdn.coverr.co/videos/coverr-flying-over-mountains-1570/1080p.mp4",
+"https://cdn.coverr.co/videos/coverr-aerial-beach-1571/1080p.mp4",
+"https://cdn.coverr.co/videos/coverr-city-skyline-1572/1080p.mp4",
+"https://cdn.coverr.co/videos/coverr-road-in-mountains-1574/1080p.mp4"
 ]
 
-let index = 0
-const player = document.getElementById("bgVideo")
+let i = 0
+const video = document.getElementById("bgVideo")
 
-function playNext(){
-player.src = videos[index]
-player.play()
+function changeVideo(){
+video.src = videos[i]
+video.play()
 
-index++
-if(index >= videos.length) index = 0
+i++
+if(i >= videos.length) i = 0
 }
 
-/* change video every few seconds */
-
-setInterval(playNext, 5000)
-playNext()
+setInterval(changeVideo, 6000)
+changeVideo()
 
 </script>
 
