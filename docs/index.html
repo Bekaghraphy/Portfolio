@@ -202,7 +202,48 @@ font-size:11px;
 color:rgba(255,255,255,0.5);
 border-top:1px solid rgba(255,255,255,0.08);
 }
+/* LIGHT OVERLAY */
 
+.light-overlay{
+
+position:fixed;
+top:0;
+left:0;
+
+width:100%;
+height:100%;
+
+background:rgba(0,0,0,0.85);
+
+z-index:5;
+
+pointer-events:none;
+
+transition:0.5s;
+
+}
+
+/* زرار */
+
+.light-toggle button{
+
+margin-top:15px;
+
+padding:10px 16px;
+
+border:none;
+
+border-radius:6px;
+
+background:#d8b97a;
+
+color:black;
+
+cursor:pointer;
+
+font-size:12px;
+
+}
 </style>
 
 </head>
@@ -226,7 +267,9 @@ border-top:1px solid rgba(255,255,255,0.08);
 <div class="overlay"></div>
 
 <div class="hero-content">
-
+<div class="light-toggle">
+<button onclick="toggleLight()">💡 Light</button>
+</div>
 <div class="lang-toggle">
 <button class="lang-btn active" onclick="setLang('en')">EN</button>
 <button class="lang-btn" onclick="setLang('ar')">AR</button>
@@ -330,7 +373,33 @@ buttons[0].classList.add("active")
 
 }
 
+
+let isLightOn = true
+
+function toggleLight(){
+
+const light = document.getElementById("light")
+
+if(isLightOn){
+
+light.style.opacity = "1"
+isLightOn = false
+
+}else{
+
+light.style.opacity = "0"
+isLightOn = true
+
+}
+
+}
+
+
+
+</body>
 </script>
+<!-- LIGHT OVERLAY -->
+<div class="light-overlay" id="light"></div>
 
 </body>
 </html>
