@@ -8,488 +8,594 @@
 <link rel="icon" type="image/png" href="img/favicon.png">
 <title>Hesham Abdelhamed</title>
 
+<!-- SEO -->
+<meta name="description" content="Hesham Abdelhamed — Filmmaker, Video Editor, Motion Designer and Multimedia Producer. Cinematic documentary storytelling across the Middle East and beyond.">
+<meta name="keywords" content="Hesham Abdelhamed, Filmmaker, Video Editor, Motion Designer, Multimedia Producer, Documentary, Commercial, Cairo, Riyadh, Beirut">
+<meta name="robots" content="index, follow">
+
+<!-- Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
+/* ================================
+   RESET
+================================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-body{
-font-family:Montserrat;
-color:white;
-background:black;
-overflow-x:hidden;
+/* ================================
+   BASE
+================================ */
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: black;
+  color: white;
+  overflow-x: hidden;
 }
 
-/* NAV */
-
-nav{
-
-position:fixed;
-top:0;
-width:100%;
-
-display:flex;
-justify-content:center;
-gap:30px;
-
-padding:22px;
-
-z-index:10;
-
+/* ================================
+   NAV
+================================ */
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 22px;
+  padding: 16px;
+  z-index: 20;
+  background: rgba(0, 0, 0, .5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  overflow-x: auto;
+  white-space: nowrap;
 }
 
-nav a{
-
-color:white;
-text-decoration:none;
-letter-spacing:2px;
-font-size:13px;
-opacity:.8;
-
+nav a {
+  flex-shrink: 0;
+  color: white;
+  text-decoration: none;
+  font-size: 12px;
+  letter-spacing: 1px;
+  opacity: .7;
+  transition: color .25s, opacity .25s;
 }
 
-nav a:hover{
-color:#d8b97a;
+nav a.active {
+  color: #f5c14a;
+  opacity: 1;
 }
 
-/* HERO */
-
-.hero{
-
-height:100vh;
-
-display:flex;
-align-items:center;
-
-padding-left:10%;
-padding-right:10%;
-
-position:relative;
-
+nav a:hover {
+  color: #f5c14a;
+  opacity: 1;
 }
 
-.hero video{
-
-position:absolute;
-top:0;
-left:0;
-
-width:100%;
-height:100%;
-
-object-fit:cover;
-
-z-index:-2;
-
+/* ================================
+   HERO
+================================ */
+.hero {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 0 8%;
+  position: relative;
+  overflow: hidden;
 }
 
-.overlay{
+/* ================================
+   BACKGROUND VIDEO LAYERS
+   Two iframes that cross-fade.
+   Uses Vimeo background player:
+   ?background=1 = autoplay + loop
+   + muted + no controls
+================================ */
+.bg-frame {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  z-index: -2;
+  opacity: 0;
+  transition: opacity 1.5s ease;
 
-position:absolute;
-top:0;
-left:0;
-
-width:100%;
-height:100%;
-
-background:linear-gradient(
-90deg,
-rgba(0,0,0,.85),
-rgba(0,0,0,.25)
-);
-
-z-index:-1;
-
+  /* Make iframe fill & crop like object-fit:cover */
+  pointer-events: none;
 }
 
-/* CONTENT */
-
-.hero-content{
-
-max-width:650px;
-
+/* Vimeo iframe cover trick */
+.bg-frame-wrap {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 1.5s ease;
 }
 
-.hero h1{
-
-font-size:64px;
-color:#d8b97a;
-
-margin-bottom:15px;
-
+.bg-frame-wrap.active {
+  opacity: 1;
 }
 
-.hero h2{
-
-font-size:20px;
-letter-spacing:5px;
-
-margin-bottom:20px;
-
+.bg-frame-wrap iframe {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  /* 16:9 cover math */
+  width:  100vw;
+  height: 56.25vw;   /* 100vw × (9/16) */
+  min-width:  177.78vh; /* 100vh × (16/9) */
+  min-height: 100vh;
+  transform: translate(-50%, -50%);
+  border: none;
+  pointer-events: none;
 }
 
-.hero p{
-
-line-height:1.7;
-opacity:.9;
-
-margin-bottom:30px;
-
+/* ================================
+   OVERLAY
+================================ */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(0,0,0,.85), rgba(0,0,0,.3));
+  z-index: -1;
 }
 
-/* DOWNLOAD BUTTON */
-
-.download-btn{
-
-display:inline-flex;
-align-items:center;
-
-padding:15px 28px;
-
-border-radius:8px;
-
-text-decoration:none;
-
-background:linear-gradient(
-135deg,
-rgba(216,185,122,.95),
-rgba(216,185,122,.5)
-);
-
-color:black;
-
-font-weight:600;
-letter-spacing:1px;
-
-box-shadow:0 0 25px rgba(216,185,122,.5);
-
-transition:.25s;
-
+/* Country label */
+.country-label {
+  position: absolute;
+  bottom: 80px;
+  right: 8%;
+  font-size: 11px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: rgba(245, 193, 74, .6);
+  z-index: 2;
+  transition: opacity .5s;
 }
 
-.download-btn:hover{
-
-transform:translateY(-2px);
-
-box-shadow:0 0 35px rgba(216,185,122,.8);
-
+/* ================================
+   HERO CONTENT
+================================ */
+.hero-content {
+  max-width: 550px;
+  position: relative;
+  z-index: 2;
 }
 
-/* SOCIAL */
-
-.social{
-
-margin-top:35px;
-
-display:flex;
-gap:16px;
-
+.hero h1 {
+  font-size: 42px;
+  color: #f5c14a;
+  margin-bottom: 12px;
 }
 
-.social a img{
-
-width:22px;
-
-opacity:.8;
-
-transition:.3s;
-
+.hero h2 {
+  font-size: 15px;
+  letter-spacing: 3px;
+  margin-bottom: 18px;
+  opacity: .85;
 }
 
-.social a img:hover{
-
-opacity:1;
-transform:scale(1.1);
-
+.hero p {
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 25px;
+  opacity: .85;
 }
 
-/* LANGUAGE TOGGLE */
-
-.lang-toggle{
-
-position:fixed;
-
-top:20px;
-right:40px;
-
-display:flex;
-
-border:1px solid rgba(216,185,122,.6);
-
-border-radius:6px;
-
-overflow:hidden;
-
-background:rgba(0,0,0,.35);
-
-backdrop-filter:blur(10px);
-
+/* ================================
+   BUTTONS
+================================ */
+.hero-btns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 28px;
 }
 
-.lang-btn{
-
-padding:6px 14px;
-
-border:none;
-
-background:transparent;
-
-color:#d8b97a;
-
-font-size:12px;
-letter-spacing:1px;
-
-cursor:pointer;
-
-transition:.3s;
-
+.btn-gold {
+  padding: 12px 22px;
+  border-radius: 8px;
+  background: #f5c14a;
+  color: black;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: .5px;
+  transition: transform .25s, box-shadow .25s;
 }
 
-.lang-btn:hover{
-
-background:rgba(216,185,122,.15);
-
-}
-.hero{
-justify-content:flex-start;
-}
-  /* ================= MOBILE ================= */
-
-@media (max-width:768px){
-
-nav{
-gap:18px;
-padding:16px;
-flex-wrap:wrap;
+.btn-gold:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(245, 193, 74, .45);
 }
 
-nav a{
-font-size:11px;
-letter-spacing:1px;
+.btn-outline {
+  padding: 12px 22px;
+  border-radius: 8px;
+  border: 1px solid rgba(245, 193, 74, .5);
+  color: #f5c14a;
+  text-decoration: none;
+  font-size: 13px;
+  letter-spacing: .5px;
+  transition: border-color .25s, background .25s, transform .25s;
 }
 
-.hero{
-padding-left:24px;
-padding-right:24px;
-height:100vh;
-align-items:center;
+.btn-outline:hover {
+  border-color: #f5c14a;
+  background: rgba(245, 193, 74, .08);
+  transform: translateY(-2px);
 }
 
-.hero-content{
-max-width:100%;
+/* ================================
+   SOCIAL ICONS
+================================ */
+.social {
+  display: flex;
+  gap: 14px;
+  align-items: center;
 }
 
-.hero h1{
-font-size:36px;
-line-height:1.2;
+.social a img,
+.social span img {
+  width: 22px;
+  cursor: pointer;
+  opacity: .75;
+  transition: opacity .25s, transform .25s;
+  filter: invert(1);
 }
 
-.hero h2{
-font-size:14px;
-letter-spacing:3px;
+.social a img:hover,
+.social span img:hover {
+  opacity: 1;
+  transform: scale(1.12);
 }
 
-.hero p{
-font-size:14px;
-line-height:1.6;
+/* ================================
+   PHONE POPUP
+================================ */
+.phone-popup {
+  position: fixed;
+  bottom: 90px;
+  left: 20px;
+  background: rgba(10, 10, 10, .95);
+  border: 1px solid rgba(245, 193, 74, .3);
+  padding: 16px 20px;
+  border-radius: 10px;
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 30;
+  backdrop-filter: blur(10px);
 }
 
-.download-btn{
-padding:12px 20px;
-font-size:13px;
+.phone-popup a {
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+  opacity: .9;
+  transition: color .2s;
 }
 
-.social{
-gap:14px;
-flex-wrap:wrap;
+.phone-popup a:hover {
+  color: #f5c14a;
 }
 
-.social a img{
-width:20px;
+/* ================================
+   FOOTER
+================================ */
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  padding: 12px;
+  font-size: 11px;
+  letter-spacing: 1px;
+  opacity: .45;
+  background: linear-gradient(to top, rgba(0,0,0,.6), transparent);
+  z-index: 5;
 }
 
-/* language toggle */
+/* ================================
+   RESPONSIVE
+================================ */
+@media (max-width: 768px) {
+  .hero {
+    padding: 0 6%;
+    align-items: flex-end;
+    padding-bottom: 100px;
+  }
 
-.lang-toggle{
-top:14px;
-right:14px;
+  .hero h1 { font-size: 28px; }
+  .hero h2 { font-size: 12px; letter-spacing: 2px; }
+
+  .bg-frame-wrap iframe {
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+    min-height: 0;
+    transform: none;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+  }
+
+  .country-label { display: none; }
 }
 
-.lang-btn{
-padding:6px 10px;
-font-size:11px;
-}
-
-}
-nav{
-overflow-x:auto;
-white-space:nowrap;
-}
-  /* ===== FOOTER ===== */
-
-.site-footer{
-
-width:100%;
-
-padding:40px 20px;
-
-margin-top:80px;
-
-text-align:center;
-
-font-size:12px;
-
-letter-spacing:2px;
-
-color:rgba(255,255,255,0.45);
-
-border-top:1px solid rgba(255,255,255,0.08);
-
-}
-
-.footer-content{
-
-max-width:1200px;
-
-margin:auto;
-
-}
 </style>
 
 </head>
 
 <body>
 
-
+<!-- ================================
+     NAVIGATION
+================================ -->
 <nav>
-<a href="index.html" class="active">HOME</a>
-<a href="my-work.html">MY WORK</a>
-<a href="ai-motion.html">AI & ANIMATION</a>
-<a href="pro.html">PRO</a>
-<a href="show.html">SHOWREEL</a>
+  <a href="index.html" class="active">HOME</a>
+  <a href="my-work.html">MY WORK</a>
+  <a href="ai-motion.html">AI &amp; ANIMATION</a>
+  <a href="academy.html">PRO</a>
+  <a href="show.html">SHOWREEL</a>
 </nav>
 
 
-<div class="hero">
+<!-- ================================
+     HERO SECTION
+================================ -->
+<section class="hero" role="banner">
 
-<video autoplay muted loop playsinline>
-<source src="img/5.mp4" type="video/mp4">
-</video>
+  <!-- --------------------------------
+       BACKGROUND VIDEO LAYERS
+       Layer A and Layer B cross-fade.
+       Each wraps a Vimeo iframe with
+       ?background=1  → autoplay, loop,
+       muted, no UI controls.
+  -------------------------------- -->
+  <div class="bg-frame-wrap active" id="frameA">
+    <iframe
+      id="iframeA"
+      src=""
+      allow="autoplay; fullscreen"
+      title="Background cinematic video"
+      aria-hidden="true">
+    </iframe>
+  </div>
 
-<div class="overlay"></div>
+  <div class="bg-frame-wrap" id="frameB">
+    <iframe
+      id="iframeB"
+      src=""
+      allow="autoplay; fullscreen"
+      title="Background cinematic video"
+      aria-hidden="true">
+    </iframe>
+  </div>
+
+  <!-- Dark gradient overlay -->
+  <div class="overlay" aria-hidden="true"></div>
+
+  <!-- Country tag (bottom-right) -->
+  <div class="country-label" id="countryLabel" aria-hidden="true"></div>
 
 
-<div class="hero-content">
+  <!-- --------------------------------
+       HERO TEXT CONTENT
+  -------------------------------- -->
+  <div class="hero-content">
 
-<h1 id="title">Hesham Abdelhamed</h1>
+    <h1>Hesham Abdelhamed</h1>
 
-<h2 id="subtitle">
-CINEMATIC VISUAL STORIES
-</h2>
+    <h2>Filmmaker &nbsp;·&nbsp; Video Editor &nbsp;·&nbsp; Motion Designer</h2>
 
-<p id="desc">
+    <p>
+      I craft cinematic narratives that move people — blending documentary
+      sensitivity with bold visual composition to tell stories that stay.
+    </p>
 
-I am a filmmaker and video editor crafting cinematic narratives,
-mixing documentary sensitivity with strong visual composition.
+    <div class="hero-btns">
+      <a href="my-work.html" class="btn-gold">▶ &nbsp;View Work</a>
+      <a href="show.html"    class="btn-outline">Watch Showreel</a>
+    </div>
 
-</p>
+    <!-- Social Icons -->
+    <div class="social">
+
+      <a href="https://www.linkedin.com/in/hishamabdelhamed" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <img src="img/linkedin.png" alt="LinkedIn">
+      </a>
+
+      <a href="https://www.instagram.com/hisham.abdlhamed" target="_blank" rel="noopener" aria-label="Instagram">
+        <img src="img/instagram.png" alt="Instagram">
+      </a>
+
+      <a href="https://www.tiktok.com/@hisham.abdelhamed" target="_blank" rel="noopener" aria-label="TikTok">
+        <img src="img/tiktok.png" alt="TikTok">
+      </a>
+
+      <a href="https://facebook.com/hishamabdelhamedd" target="_blank" rel="noopener" aria-label="Facebook">
+        <img src="img/facebook.png" alt="Facebook">
+      </a>
+
+      <span onclick="togglePhone()" style="cursor:pointer" aria-label="Show phone numbers">
+        <img src="img/phone.png" alt="Phone">
+      </span>
+
+    </div>
+
+  </div><!-- /hero-content -->
+
+</section><!-- /hero -->
 
 
-<a href="img/Hesham-Abdelhamed-Portfolio.pdf"
-download
-class="download-btn">
-
-⬇ Download Portfolio
-
-</a>
-
-
-<div class="social">
-
-<a href="https://www.linkedin.com/in/hishamabdelhamed" target="_blank">
-<img src="img/linkedin.png">
-</a>
-
-<a href="https://www.instagram.com/hisham.abdelhamed" target="_blank">
-<img src="img/instagram.png">
-</a>
-
-<a href="https://www.tiktok.com/@hisham.abdelhamed" target="_blank">
-<img src="img/tiktok.png">
-</a>
-
-<a href="https://facebook.com/hishamabdelhamedd" target="_blank">
-<img src="img/facebook.png">
-</a>
-
-<a href="mailto:per.hisham@gmail.com">
-<img src="img/email.png">
-</a>
-
+<!-- ================================
+     PHONE POPUP
+================================ -->
+<div class="phone-popup" id="phoneBox" role="dialog" aria-label="Phone numbers">
+  <a href="tel:+201010723207">🇪🇬 &nbsp;01010723207</a>
+  <a href="tel:+966503064408">🇸🇦 &nbsp;+966503064408</a>
 </div>
 
-</div>
 
-</div>
-
-
-<div class="lang-toggle">
-
-<button class="lang-btn" onclick="setLang('en')">EN</button>
-<button class="lang-btn" onclick="setLang('ar')">AR</button>
-
-</div>
+<!-- ================================
+     FOOTER
+================================ -->
+<footer class="footer">
+  © 2026 Hesham Abdelhamed — All Rights Reserved
+</footer>
 
 
+<!-- ================================
+     JAVASCRIPT
+================================ -->
 <script>
 
-function setLang(lang){
+/* -----------------------------------------------
+   AUTO-ACTIVE NAV LINK
+----------------------------------------------- */
+document.querySelectorAll('nav a').forEach(function(link) {
+  if (link.href === window.location.href) {
+    link.classList.add('active');
+  }
+});
 
-const hero = document.querySelector(".hero")
 
-if(lang === "ar"){
-
-document.body.dir = "rtl"
-
-hero.style.justifyContent = "flex-end"
-
-document.getElementById("subtitle").innerHTML = "قصص بصرية سينمائية"
-
-document.getElementById("desc").innerHTML =
-"أنا صانع أفلام ومونتير فيديو أصنع قصصًا بصرية سينمائية تجمع بين الحس الوثائقي والتكوين البصري القوي."
-
+/* -----------------------------------------------
+   PHONE POPUP TOGGLE
+----------------------------------------------- */
+function togglePhone() {
+  var box = document.getElementById('phoneBox');
+  box.style.display = (box.style.display === 'flex') ? 'none' : 'flex';
 }
 
-else{
+document.addEventListener('click', function(e) {
+  var box = document.getElementById('phoneBox');
+  if (!box.contains(e.target) && !e.target.closest('.social')) {
+    box.style.display = 'none';
+  }
+});
 
-document.body.dir = "ltr"
 
-hero.style.justifyContent = "flex-start"
+/* -----------------------------------------------
+   BACKGROUND VIDEO SWITCHER
+   ─────────────────────────────────────────────
+   Uses Vimeo background player embedded in
+   two <iframe> layers that cross-fade.
 
-document.getElementById("subtitle").innerHTML =
-"CINEMATIC VISUAL STORIES"
+   HOW TO CUSTOMISE:
+   Replace each Vimeo ID below with the correct
+   video ID for each country.
+   Find the ID in the Vimeo URL:
+     vimeo.com/video/ ► 348818970 ◄
+   You can also swap in your own Vimeo videos.
 
-document.getElementById("desc").innerHTML =
-"I am a filmmaker and video editor crafting cinematic narratives, mixing documentary sensitivity with strong visual composition."
+   The ?background=1 parameter makes Vimeo:
+     ✓ Autoplay silently
+     ✓ Loop forever
+     ✓ Hide all controls & title
 
+   HOW TO FIND YOUR VIMEO IDs:
+     Go to vimeo.com → your videos →
+     copy the number from the URL.
+----------------------------------------------- */
+
+var countries = [
+
+  /* -------  Egypt  ------- */
+  {
+    id:      '1081231929',         /* ← Replace with an Egypt drone Vimeo ID */
+    label:   '🇪🇬  Egypt'
+  },
+
+  /* -------  Saudi Arabia  ------- */
+  {
+    id:      '782962222',          /* ← Replace with a Saudi Arabia drone Vimeo ID */
+    label:   '🇸🇦  Saudi Arabia'
+  },
+
+  /* -------  Lebanon  ------- */
+  {
+    id:      '1093436208',         /* ← Replace with a Lebanon drone Vimeo ID */
+    label:   '🇱🇧  Lebanon'
+  },
+
+  /* -------  Morocco  ------- */
+  {
+    id:      '1012761186',         /* ← Replace with a Morocco drone Vimeo ID */
+    label:   '🇲🇦  Morocco'
+  },
+
+  /* -------  Tunisia  ------- */
+  {
+    id:      '1081226158',         /* ← Replace with a Tunisia drone Vimeo ID */
+    label:   '🇹🇳  Tunisia'
+  }
+
+];
+
+/* Build Vimeo background URL from ID */
+function vimeoURL(id) {
+  return 'https://player.vimeo.com/video/' + id
+       + '?background=1&autoplay=1&loop=1&muted=1&byline=0&title=0&portrait=0';
 }
 
-}
+var current   = 0;
+var useA      = true;   /* which layer is currently visible */
+var frameA    = document.getElementById('frameA');
+var frameB    = document.getElementById('frameB');
+var iframeA   = document.getElementById('iframeA');
+var iframeB   = document.getElementById('iframeB');
+var label     = document.getElementById('countryLabel');
+
+/* Load first video immediately */
+iframeA.src = vimeoURL(countries[0].id);
+label.textContent = countries[0].label;
+
+
+/* Switch to next country every 8 seconds */
+setInterval(function() {
+
+  current = (current + 1) % countries.length;
+
+  var nextId    = countries[current].id;
+  var nextLabel = countries[current].label;
+
+  if (useA) {
+    /* Preload into B, then fade B in / A out */
+    iframeB.src = vimeoURL(nextId);
+    frameB.classList.add('active');
+    frameA.classList.remove('active');
+    /* Release A after transition to save memory */
+    setTimeout(function() { iframeA.src = ''; }, 2000);
+  } else {
+    /* Preload into A, then fade A in / B out */
+    iframeA.src = vimeoURL(nextId);
+    frameA.classList.add('active');
+    frameB.classList.remove('active');
+    setTimeout(function() { iframeB.src = ''; }, 2000);
+  }
+
+  /* Update country label */
+  label.style.opacity = '0';
+  setTimeout(function() {
+    label.textContent  = nextLabel;
+    label.style.opacity = '1';
+  }, 600);
+
+  useA = !useA;
+
+}, 8000);
+
 </script>
-<footer class="site-footer">
 
-<div class="footer-content">
-
-<span>© 2026 Hesham Abdelhamed — All Rights Reserved</span>
-
-</div>
-
-</footer>
 </body>
-
 </html>
