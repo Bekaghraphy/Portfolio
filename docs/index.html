@@ -1,318 +1,1137 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hesham Abdelhamed</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
-
+<title>Hesham Abdelhamed | Cinematic Video Editor</title>
+<meta name="description" content="Hesham Abdelhamed – Filmmaker & Video Editor crafting cinematic narratives across the Middle East and beyond.">
+<link rel="icon" type="image/png" href="img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Roboto+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
-
+/* ===== RESET & BASE ===== */
 *{margin:0;padding:0;box-sizing:border-box;}
-
-body{
-font-family:Montserrat;
-background:black;
-color:white;
-overflow:hidden;
+html{scroll-behavior:smooth;}
+body{font-family:'Montserrat',sans-serif;background:#0c0c0e;color:#e8e8e8;overflow-x:hidden;}
+:root{
+  --gold:#d8b97a;--gold-d:rgba(216,185,122,.35);--gold-g:rgba(216,185,122,.12);
+  --bg:#0c0c0e;--bg2:#111115;--bg3:#161620;
+  --text:#e8e8e8;--dim:#777;--nav-h:68px;
 }
 
-/* NAV */
+/* ===== PROGRESS BAR ===== */
+#progressBar{position:fixed;top:0;left:0;height:2px;background:var(--gold);z-index:9999;width:0;box-shadow:0 0 8px var(--gold);pointer-events:none;}
 
-nav{
-position:fixed;
-top:0;
-width:100%;
-display:flex;
-justify-content:center;
-gap:22px;
-padding:16px;
-z-index:20;
+/* ===== GRAIN OVERLAY ===== */
+.grain{position:fixed;inset:0;z-index:8000;pointer-events:none;opacity:.032;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:256px 256px;animation:grain .12s steps(1) infinite;}
+@keyframes grain{0%,100%{transform:translate(0,0)}10%{transform:translate(-5%,-7%)}20%{transform:translate(-12%,4%)}30%{transform:translate(6%,-22%)}40%{transform:translate(-4%,20%)}50%{transform:translate(-14%,8%)}60%{transform:translate(12%,0%)}70%{transform:translate(0%,13%)}80%{transform:translate(3%,28%)}90%{transform:translate(-9%,8%)}}
 
-background:rgba(0,0,0,.5);
-backdrop-filter:blur(10px);
+/* ===== NAVIGATION ===== */
+.nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 5%;transition:background .4s,backdrop-filter .4s;}
+.nav.scrolled{background:rgba(12,12,14,.92);backdrop-filter:blur(20px);}
+.nav-logo{font-family:'Playfair Display',serif;font-size:26px;color:var(--gold);text-decoration:none;letter-spacing:2px;}
+.nav-links{display:flex;gap:30px;}
+.nav-links a{color:#999;text-decoration:none;font-size:10.5px;letter-spacing:2.5px;text-transform:uppercase;transition:color .25s;}
+.nav-links a:hover,.nav-links a.active{color:var(--gold);}
+.nav-cta a{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);text-decoration:none;padding:7px 16px;border:1px solid var(--gold-d);border-radius:2px;transition:all .3s;}
+.nav-cta a:hover{background:var(--gold);color:#000;}
+@media(max-width:768px){.nav-links{display:none;}.nav-cta{display:none;}}
 
-overflow-x:auto;
-white-space:nowrap;
-}
+/* ===== UTILITIES ===== */
+.s-eye{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:12px;}
+.s-title{font-family:'Playfair Display',serif;font-size:clamp(30px,5vw,62px);font-weight:400;line-height:1.1;margin-bottom:22px;}
+.s-inner{width:90%;max-width:1300px;margin:0 auto;}
+.reveal{opacity:0;transform:translateY(32px);transition:opacity .8s ease,transform .8s ease;}
+.reveal.in{opacity:1;transform:translateY(0);}
 
-nav a{
-flex-shrink:0;
-color:white;
-text-decoration:none;
-font-size:12px;
-letter-spacing:1px;
-opacity:.7;
-}
+/* ===== SECTION 1: HERO ===== */
+.s-hero{position:relative;height:100vh;min-height:580px;display:flex;align-items:center;overflow:hidden;}
+#heroCanvas{position:absolute;inset:0;width:100%;height:100%;}
+.hero-body{position:relative;z-index:10;padding:0 8%;max-width:680px;}
+.hero-eye{font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);opacity:.85;margin-bottom:22px;animation:fadeUp .9s ease .2s both;}
+.hero-name{font-family:'Playfair Display',serif;font-size:clamp(50px,9vw,108px);font-weight:700;line-height:1.0;color:#fff;margin-bottom:18px;animation:fadeUp .9s ease .38s both;}
+.hero-tag{font-size:12px;letter-spacing:3.5px;text-transform:uppercase;color:#666;margin-bottom:38px;animation:fadeUp .9s ease .52s both;}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;animation:fadeUp .9s ease .68s both;}
+.hero-btns a{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;text-decoration:none;padding:13px 26px;border-radius:2px;transition:all .3s;}
+.btn-gold{background:var(--gold);color:#000;}
+.btn-gold:hover{background:#eece96;transform:translateY(-2px);box-shadow:0 8px 24px rgba(216,185,122,.4);}
+.btn-outline{color:var(--gold);border:1px solid var(--gold-d);}
+.btn-outline:hover{border-color:var(--gold);background:var(--gold-g);transform:translateY(-2px);}
+.hero-social{display:flex;gap:14px;margin-top:28px;animation:fadeUp .9s ease .84s both;}
+.hero-social a img{width:26px;height:26px;opacity:.55;filter:brightness(2);transition:opacity .25s;}
+.hero-social a:hover img{opacity:1;}
+.hero-scroll{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:9px;animation:fadeIn 1s ease 1.4s both;}
+.scroll-line{width:1px;height:48px;background:linear-gradient(to bottom,var(--gold),transparent);animation:scrl 2s ease infinite;}
+@keyframes scrl{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+.scroll-txt{font-size:9px;letter-spacing:3px;color:#444;text-transform:uppercase;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
 
-nav a.active{
-color:#d8b97a;
-opacity:1;
-}
+/* ===== SECTION 2: SHOWREEL ===== */
+.s-showreel{padding:110px 0 70px;overflow:hidden;}
+.s-showreel .s-inner{margin-bottom:44px;}
+.film-outer{position:relative;}
+.perf-row{display:flex;gap:22px;padding:0 8%;pointer-events:none;}
+.perf-row span{flex:0 0 22px;height:13px;border:1px solid rgba(255,255,255,.07);border-radius:2px;}
+.perf-top{margin-bottom:6px;}
+.perf-bot{margin-top:6px;}
+.film-strip{display:flex;gap:14px;overflow-x:scroll;scroll-behavior:smooth;padding:0 8%;scrollbar-width:none;-webkit-overflow-scrolling:touch;}
+.film-strip::-webkit-scrollbar{display:none;}
+.film-card{flex:0 0 330px;height:186px;position:relative;border-radius:6px;overflow:hidden;cursor:pointer;border:1px solid rgba(255,255,255,.07);background:#080810;transition:border-color .3s;}
+.film-card:hover{border-color:var(--gold);}
+.film-card img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease;}
+.film-card:hover img{transform:scale(1.06);}
+/* light-leak sweep */
+.film-card::before{content:'';position:absolute;inset:0;z-index:2;background:linear-gradient(110deg,transparent 30%,rgba(216,185,122,.18) 50%,transparent 70%);transform:translateX(-100%);transition:transform 0s;pointer-events:none;}
+.film-card:hover::before{transform:translateX(100%);transition:transform .55s ease;}
+/* chromatic glitch */
+.film-card .glitch{position:absolute;inset:0;z-index:3;pointer-events:none;opacity:0;}
+.film-card:hover .glitch{animation:glitch .35s steps(1) forwards;}
+@keyframes glitch{0%{opacity:0}20%{opacity:.7;filter:hue-rotate(80deg) saturate(4);transform:translate(-3px,1px)}40%{opacity:0;transform:translate(0,0)}70%{opacity:.5;filter:hue-rotate(-80deg) saturate(3);transform:translate(3px,-1px)}100%{opacity:0}}
+.film-info{position:absolute;inset:0;z-index:4;background:linear-gradient(to top,rgba(0,0,0,.85) 0,rgba(0,0,0,.05) 55%);display:flex;flex-direction:column;justify-content:flex-end;padding:12px 14px;}
+.film-num{font-size:9px;letter-spacing:3px;color:var(--gold);margin-bottom:3px;font-family:'Roboto Mono',monospace;}
+.film-ttl{font-size:12px;font-weight:600;color:#fff;}
+.film-typ{font-size:10px;color:#888;margin-top:2px;}
+.film-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(.75);width:46px;height:46px;border-radius:50%;background:rgba(0,0,0,.65);border:1.5px solid rgba(255,255,255,.65);display:flex;align-items:center;justify-content:center;font-size:15px;color:#fff;opacity:0;transition:all .3s;z-index:5;}
+.film-card:hover .film-play{opacity:1;transform:translate(-50%,-50%) scale(1);background:var(--gold);border-color:var(--gold);color:#000;}
+.strip-nav{display:flex;justify-content:center;gap:12px;margin-top:30px;}
+.strip-btn{width:42px;height:42px;border:1px solid rgba(255,255,255,.14);background:transparent;color:#fff;font-size:17px;border-radius:50%;cursor:pointer;transition:all .3s;display:flex;align-items:center;justify-content:center;}
+.strip-btn:hover{border-color:var(--gold);color:var(--gold);}
 
-nav a:hover{
-color:#d8b97a;
-}
+/* ===== SECTION 3: EDITING STYLES ===== */
+.s-styles{padding:110px 0;background:var(--bg2);}
+.split-wrap{position:relative;width:100%;height:clamp(260px,42vw,530px);overflow:hidden;border-radius:10px;cursor:ew-resize;user-select:none;border:1px solid rgba(255,255,255,.06);}
+.split-pan{position:absolute;inset:0;overflow:hidden;}
+.split-pan img{width:100%;height:100%;object-fit:cover;display:block;}
+.split-pan.before img{filter:saturate(.25) brightness(.8);}
+.split-pan.after{clip-path:inset(0 50% 0 0);}
+.split-lbl{position:absolute;top:14px;font-size:9px;letter-spacing:4px;font-weight:700;padding:4px 10px;border-radius:2px;}
+.split-pan.before .split-lbl{right:16px;background:rgba(0,0,0,.7);color:#666;}
+.split-pan.after .split-lbl{left:16px;background:var(--gold);color:#000;}
+.split-div{position:absolute;top:0;bottom:0;left:50%;width:2px;background:var(--gold);z-index:10;cursor:ew-resize;box-shadow:0 0 14px var(--gold),0 0 4px var(--gold);}
+.split-handle{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:34px;height:34px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;color:#000;font-size:13px;font-weight:700;box-shadow:0 0 20px rgba(216,185,122,.6);}
+.wave-wrap{margin-top:40px;}
+.wave-lbl{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--dim);margin-bottom:12px;font-family:'Roboto Mono',monospace;}
+#waveCanvas{width:100%;height:72px;display:block;border-radius:4px;}
 
-/* HERO */
+/* ===== SECTION 4: PROJECTS ===== */
+.s-projects{padding:110px 0;}
+.proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;perspective:1200px;}
+@media(max-width:900px){.proj-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:540px){.proj-grid{grid-template-columns:1fr;}}
+.proj-card{position:relative;border-radius:10px;overflow:hidden;background:#080810;border:1px solid rgba(255,255,255,.06);cursor:pointer;transition:box-shadow .4s,border-color .4s;transform-style:preserve-3d;}
+.proj-card:hover{box-shadow:0 28px 55px rgba(0,0,0,.8),0 0 28px var(--gold-g);border-color:var(--gold-d);}
+.proj-thumb{width:100%;padding-top:56.25%;position:relative;overflow:hidden;}
+.proj-thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .45s ease;}
+.proj-card:hover .proj-thumb img{transform:scale(1.08);}
+.proj-over{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.88) 0,rgba(0,0,0,.08) 60%);display:flex;align-items:flex-end;justify-content:space-between;padding:14px;}
+.proj-num{position:absolute;top:11px;left:13px;font-size:9px;letter-spacing:3px;color:var(--gold);font-family:'Roboto Mono',monospace;}
+.proj-typ{font-size:9px;letter-spacing:1px;padding:3px 8px;border-radius:2px;border:1px solid rgba(255,255,255,.18);color:#999;}
+.proj-play{width:38px;height:38px;border-radius:50%;background:rgba(0,0,0,.7);border:1.5px solid rgba(255,255,255,.6);display:flex;align-items:center;justify-content:center;font-size:13px;color:#fff;transition:all .3s;}
+.proj-card:hover .proj-play{background:var(--gold);border-color:var(--gold);color:#000;box-shadow:0 0 18px rgba(216,185,122,.5);}
+/* category top edge */
+.proj-card[data-cat="documentary"]::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:#4a7fb5;z-index:2;}
+.proj-card[data-cat="commercial"]::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:#e07a30;z-index:2;}
+.proj-card[data-cat="human"]::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:#8a5ba1;z-index:2;}
+.proj-card[data-cat="healthcare"]::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:#3ab07a;z-index:2;}
+/* gold flare */
+.proj-flare{position:absolute;inset:0;z-index:6;pointer-events:none;background:radial-gradient(circle at center,rgba(216,185,122,.85) 0,transparent 65%);}
+.proj-card.flaring .proj-flare{animation:flare .45s ease forwards;}
+@keyframes flare{0%{opacity:0}25%{opacity:.9}100%{opacity:0}}
+.proj-cta{text-align:center;margin-top:46px;}
+.proj-cta a{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);text-decoration:none;padding:12px 24px;border:1px solid var(--gold-d);border-radius:2px;transition:all .3s;}
+.proj-cta a:hover{background:var(--gold-g);border-color:var(--gold);}
 
-.hero{
-height:100vh;
-display:flex;
-align-items:center;
-padding:0 8%;
-position:relative;
-}
+/* ===== SECTION 5: PROCESS ===== */
+.s-process{padding:110px 0;background:var(--bg2);}
+.proc-desc{font-size:14px;color:#888;line-height:1.85;max-width:600px;margin-bottom:56px;}
+.proc-layers{position:relative;}
+.proc-layer{display:flex;align-items:center;gap:18px;margin-bottom:14px;opacity:0;transform:translateX(-38px);transition:opacity .6s ease,transform .6s ease;}
+.proc-layer.in{opacity:1;transform:translateX(0);}
+.proc-layer:nth-child(1){transition-delay:.0s}
+.proc-layer:nth-child(2){transition-delay:.14s}
+.proc-layer:nth-child(3){transition-delay:.28s}
+.proc-layer:nth-child(4){transition-delay:.42s}
+.proc-layer:nth-child(5){transition-delay:.56s}
+.proc-layer:nth-child(6){transition-delay:.7s}
+.proc-ico{width:36px;height:36px;border-radius:50%;border:1px solid rgba(216,185,122,.28);display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;color:var(--gold);}
+.proc-lbl{width:170px;flex-shrink:0;text-align:right;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--dim);}
+.proc-bar-wrap{flex:1;height:38px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.055);border-radius:4px;overflow:hidden;position:relative;}
+.proc-bar-fill{height:100%;width:0;background:linear-gradient(90deg,var(--gold-g),rgba(216,185,122,.28));border-radius:4px;transition:width 1.2s ease;position:relative;}
+.proc-layer.in .proc-bar-fill{width:var(--fw,80%);}
+.proc-bar-fill::after{content:'';position:absolute;right:0;top:0;bottom:0;width:2px;background:var(--gold);box-shadow:0 0 7px var(--gold);}
+.proc-clips{position:absolute;inset:5px;display:flex;gap:3px;}
+.proc-clip{flex:1;border-radius:2px;background:rgba(216,185,122,.1);border:1px solid rgba(216,185,122,.14);}
+.proc-clip.lit{background:rgba(216,185,122,.26);border-color:var(--gold-d);}
+.proc-layer.final .proc-lbl{color:var(--gold);}
+.proc-layer.final .proc-bar-wrap{border-color:var(--gold-d);background:rgba(216,185,122,.04);}
+.proc-layer.final .proc-bar-fill{background:linear-gradient(90deg,rgba(216,185,122,.2),rgba(216,185,122,.6));}
 
-/* VIDEO */
+/* ===== SECTION 6: ABOUT ===== */
+.s-about{padding:110px 0;position:relative;overflow:hidden;}
+#particlesCanvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;}
+.about-grid{display:grid;grid-template-columns:1fr 1.25fr;gap:80px;align-items:center;position:relative;z-index:2;}
+@media(max-width:900px){.about-grid{grid-template-columns:1fr;gap:48px;}}
+.portrait-wrap{position:relative;max-width:370px;}
+.portrait-wrap img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:top;display:block;border-radius:4px;filter:contrast(1.1) brightness(.88);}
+/* rim light */
+.portrait-wrap::before{content:'';position:absolute;inset:0;border-radius:4px;box-shadow:inset 5px 0 38px rgba(216,185,122,.35),inset -1px 0 8px rgba(216,185,122,.05);z-index:2;pointer-events:none;}
+/* bottom fade */
+.portrait-wrap::after{content:'';position:absolute;inset:0;border-radius:4px;background:linear-gradient(to top,rgba(12,12,14,.65) 0,transparent 40%);z-index:1;pointer-events:none;}
+.about-bio{font-size:15px;line-height:2;color:#999;min-height:72px;margin-bottom:30px;}
+.cursor-blink{display:inline-block;width:2px;height:1.1em;background:var(--gold);vertical-align:middle;animation:blink .8s step-end infinite;}
+@keyframes blink{50%{opacity:0}}
+.about-stats{display:flex;gap:38px;flex-wrap:wrap;margin-bottom:28px;}
+.stat-num{font-family:'Playfair Display',serif;font-size:42px;color:var(--gold);line-height:1;}
+.stat-lbl{font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--dim);margin-top:5px;}
+.about-soc{display:flex;gap:14px;margin-top:6px;}
+.about-soc a img{width:26px;height:26px;opacity:.5;filter:brightness(2);transition:opacity .25s;}
+.about-soc a:hover img{opacity:1;}
 
-.bg-video{
-position:absolute;
-width:100%;
-height:100%;
-object-fit:cover;
-top:0;
-left:0;
-z-index:-2;
-opacity:0;
-transition:opacity 1.5s ease;
-}
+/* ===== SECTION 7: CONTACT ===== */
+.s-contact{padding:110px 0 80px;background:var(--bg2);}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
+@media(max-width:900px){.contact-grid{grid-template-columns:1fr;gap:48px;}}
+.contact-tagline{font-family:'Playfair Display',serif;font-size:clamp(26px,4vw,50px);line-height:1.2;margin-bottom:22px;}
+.contact-tagline em{color:var(--gold);font-style:normal;}
+.contact-sub{font-size:13px;line-height:1.9;color:#888;margin-bottom:30px;}
+.contact-links{display:flex;flex-direction:column;gap:12px;}
+.contact-links a{color:#888;text-decoration:none;font-size:13px;display:flex;align-items:center;gap:10px;transition:color .25s;}
+.contact-links a:hover{color:var(--gold);}
+.ci-dot{width:5px;height:5px;border-radius:50%;background:var(--gold);flex-shrink:0;}
+/* form */
+.cform{display:flex;flex-direction:column;gap:26px;}
+.cf{position:relative;}
+.cf input,.cf textarea,.cf select{width:100%;background:transparent;border:none;border-bottom:1px solid rgba(255,255,255,.1);color:#fff;font-family:'Montserrat',sans-serif;font-size:13.5px;padding:14px 0 10px;outline:none;transition:border-color .3s;resize:none;-webkit-appearance:none;}
+.cf select option{background:#111;}
+.cf textarea{height:100px;}
+.cf input::placeholder,.cf textarea::placeholder{color:#3a3a3a;}
+.cf input:focus,.cf textarea:focus,.cf select:focus{border-color:var(--gold);}
+.cf::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--gold);box-shadow:0 0 6px var(--gold);transition:width .4s ease;}
+.cf:focus-within::after{width:100%;}
+.cf label{position:absolute;top:14px;left:0;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#444;pointer-events:none;transition:all .3s;}
+.cf input:focus~label,.cf input:not(:placeholder-shown)~label,.cf textarea:focus~label,.cf textarea:not(:placeholder-shown)~label,.cf select:focus~label{top:-12px;font-size:8px;color:var(--gold);}
+.cf-submit{padding:14px 30px;background:transparent;border:1px solid var(--gold);color:var(--gold);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;cursor:pointer;border-radius:2px;transition:all .3s;position:relative;overflow:hidden;align-self:flex-start;}
+.cf-submit::before{content:'';position:absolute;inset:0;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .3s ease;z-index:-1;}
+.cf-submit:hover::before{transform:scaleX(1);}
+.cf-submit:hover{color:#000;}
+.form-success{display:none;color:var(--gold);font-size:13px;letter-spacing:1px;margin-top:8px;}
 
-.bg-video.active{
-opacity:1;
-}
+/* ===== VIDEO MODAL ===== */
+.modal{position:fixed;inset:0;z-index:9500;background:rgba(0,0,0,.96);display:none;align-items:center;justify-content:center;padding:20px;}
+.modal.open{display:flex;}
+.modal-inner{width:min(92vw,1180px);aspect-ratio:16/9;background:#000;border-radius:10px;overflow:hidden;position:relative;box-shadow:0 0 60px rgba(0,0,0,.95);}
+.modal-inner iframe{width:100%;height:100%;border:none;display:block;}
+.modal-x{position:absolute;top:-46px;right:0;background:transparent;border:none;color:#bbb;font-size:26px;cursor:pointer;transition:color .2s;line-height:1;}
+.modal-x:hover{color:var(--gold);}
 
-/* OVERLAY */
+/* ===== FOOTER ===== */
+.footer{text-align:center;padding:26px;font-size:10px;letter-spacing:2px;color:#333;background:var(--bg);}
+.footer a{color:#444;text-decoration:none;margin:0 8px;}
+.footer a:hover{color:var(--gold);}
 
-.overlay{
-position:absolute;
-inset:0;
-background:linear-gradient(90deg,rgba(0,0,0,.85),rgba(0,0,0,.3));
-z-index:-1;
-}
-
-/* CONTENT */
-
-.hero-content{max-width:550px;}
-
-.hero h1{
-font-size:42px;
-color:#d8b97a;
-margin-bottom:12px;
-}
-
-.hero h2{
-font-size:15px;
-letter-spacing:3px;
-margin-bottom:18px;
-}
-
-.hero p{
-font-size:14px;
-line-height:1.6;
-margin-bottom:25px;
-}
-
-/* BUTTON */
-
-.download-btn{
-padding:12px 18px;
-border-radius:8px;
-background:#d8b97a;
-color:black;
-text-decoration:none;
-font-weight:600;
-}
-
-/* SOCIAL */
-
-.social{
-margin-top:25px;
-display:flex;
-gap:14px;
-align-items:center;
-}
-
-.social img{
-width:22px;
-cursor:pointer;
-}
-
-/* PHONE POPUP */
-
-.phone-popup{
-position:fixed;
-bottom:120px;
-left:20px;
-background:rgba(0,0,0,.9);
-padding:15px;
-border-radius:10px;
-display:none;
-flex-direction:column;
-gap:10px;
-z-index:30;
-}
-
-.phone-popup a{
-color:white;
-text-decoration:none;
-font-size:14px;
-}
-
-/* FOOTER */
-
-.footer{
-position:absolute;
-bottom:0;
-width:100%;
-text-align:center;
-padding:12px;
-font-size:12px;
-background:linear-gradient(to top,rgba(0,0,0,.6),transparent);
-}
-
+/* ===== PHONE POPUP ===== */
+.phone-popup{position:fixed;bottom:100px;left:20px;background:rgba(14,14,20,.95);border:1px solid rgba(216,185,122,.25);padding:14px 18px;border-radius:8px;display:none;flex-direction:column;gap:10px;z-index:5000;backdrop-filter:blur(12px);}
+.phone-popup a{color:#ddd;text-decoration:none;font-size:13px;}
+.phone-popup a:hover{color:var(--gold);}
 </style>
-
 </head>
-
 <body>
+<!-- PROGRESS BAR -->
+<div id="progressBar"></div>
 
-<nav>
-<a href="index.html">HOME</a>
-<a href="my-work.html">MY WORK</a>
-<a href="ai-motion.html">AI & ANIMATION</a>
-<a href="academy.html">PRO</a>
-<a href="show.html">SHOWREEL</a>
+<!-- GRAIN -->
+<div class="grain"></div>
+
+<!-- NAV -->
+<nav class="nav" id="mainNav">
+  <a class="nav-logo" href="#hero">HA</a>
+  <div class="nav-links">
+    <a href="#hero">Home</a>
+    <a href="#showreel">Showreel</a>
+    <a href="#projects">Work</a>
+    <a href="#process">Process</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="nav-cta"><a href="my-work.html">All Films &rarr;</a></div>
 </nav>
 
-<div class="hero">
+<!-- ============================================================ -->
+<!-- S1: HERO - The Assembly                                       -->
+<!-- ============================================================ -->
+<section class="s-hero" id="hero">
+  <canvas id="heroCanvas"></canvas>
+  <div class="hero-body">
+    <div class="hero-eye">Filmmaker &amp; Video Editor</div>
+    <h1 class="hero-name">Hesham<br>Abdelhamed</h1>
+    <p class="hero-tag">Cinematic Documentary Storytelling</p>
+    <div class="hero-btns">
+      <a href="#showreel" class="btn-gold">&#9654; Watch Showreel</a>
+      <a href="img/Hesham-Abdelhamed-Portfolio.pdf" class="btn-outline" target="_blank">Download Portfolio</a>
+    </div>
+    <div class="hero-social">
+      <a href="https://www.linkedin.com/in/hishamabdelhamed" target="_blank"><img src="img/linkedin.png" alt="LinkedIn"></a>
+      <a href="https://www.instagram.com/hisham.abdlhamed" target="_blank"><img src="img/instagram.png" alt="Instagram"></a>
+      <a href="https://www.tiktok.com/@hisham.abdelhamed" target="_blank"><img src="img/tiktok.png" alt="TikTok"></a>
+      <a href="https://facebook.com/hishamabdelhamedd" target="_blank"><img src="img/facebook.png" alt="Facebook"></a>
+      <a href="javascript:void(0)" onclick="togglePhone()"><img src="img/phone.png" alt="Phone"></a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span class="scroll-txt">Scroll</span>
+  </div>
+</section>
 
-<!-- VIDEO LAYERS -->
-<video class="bg-video active" id="video1" autoplay muted loop playsinline></video>
-<video class="bg-video" id="video2" autoplay muted loop playsinline></video>
+<!-- ============================================================ -->
+<!-- S2: SHOWREEL - The Flow                                       -->
+<!-- ============================================================ -->
+<section class="s-showreel reveal" id="showreel">
+  <div class="s-inner">
+    <div class="s-eye">02 / Showreel</div>
+    <h2 class="s-title">The Flow</h2>
+  </div>
+  <div class="film-outer">
+    <!-- perforations top -->
+    <div class="perf-row perf-top" id="perfTop"></div>
+    <div class="film-strip" id="filmStrip"></div>
+    <!-- perforations bottom -->
+    <div class="perf-row perf-bot" id="perfBot"></div>
+  </div>
+  <div class="strip-nav">
+    <button class="strip-btn" id="stripPrev">&#8592;</button>
+    <button class="strip-btn" id="stripNext">&#8594;</button>
+  </div>
+</section>
 
-<div class="overlay"></div>
+<!-- ============================================================ -->
+<!-- S3: EDITING STYLES - The Transformation                       -->
+<!-- ============================================================ -->
+<section class="s-styles reveal" id="styles">
+  <div class="s-inner">
+    <div class="s-eye">03 / Craft</div>
+    <h2 class="s-title">The Transformation</h2>
+    <!-- Before/After Split -->
+    <div class="split-wrap" id="splitWrap">
+      <div class="split-pan before">
+        <img src="img/work1.jpg" alt="Before color grade">
+        <span class="split-lbl">RAW</span>
+      </div>
+      <div class="split-pan after" id="splitAfter">
+        <img src="img/work2.jpg" alt="After color grade">
+        <span class="split-lbl">GRADED</span>
+      </div>
+      <div class="split-div" id="splitDiv">
+        <div class="split-handle">&#10094;&#10095;</div>
+      </div>
+    </div>
+    <!-- Waveform -->
+    <div class="wave-wrap">
+      <div class="wave-lbl">Audio Waveform</div>
+      <canvas id="waveCanvas"></canvas>
+    </div>
+  </div>
+</section>
 
-<div class="hero-content">
+<!-- ============================================================ -->
+<!-- S4: PROJECTS - The Depth                                      -->
+<!-- ============================================================ -->
+<section class="s-projects reveal" id="projects">
+  <div class="s-inner">
+    <div class="s-eye">04 / Selected Work</div>
+    <h2 class="s-title">The Depth</h2>
+    <div class="proj-grid" id="projGrid"></div>
+    <div class="proj-cta">
+      <a href="my-work.html">View All 28 Films &#8594;</a>
+    </div>
+  </div>
+</section>
 
-<h1>Hesham Abdelhamed</h1>
+<!-- ============================================================ -->
+<!-- S5: PROCESS - The Blueprint                                    -->
+<!-- ============================================================ -->
+<section class="s-process reveal" id="process">
+  <div class="s-inner">
+    <div class="s-eye">05 / Process</div>
+    <h2 class="s-title">The Blueprint</h2>
+    <p class="proc-desc">Every frame is a decision. Here is how raw footage becomes a cinematic story — from first assembly to final master.</p>
+    <div class="proc-layers" id="procLayers">
+      <div class="proc-layer" style="--fw:95%">
+        <div class="proc-ico">&#9986;</div>
+        <div class="proc-lbl">Assembly Cut</div>
+        <div class="proc-bar-wrap">
+          <div class="proc-bar-fill"></div>
+          <div class="proc-clips" id="pc1"></div>
+        </div>
+      </div>
+      <div class="proc-layer" style="--fw:88%">
+        <div class="proc-ico">&#127912;</div>
+        <div class="proc-lbl">Color Grade</div>
+        <div class="proc-bar-wrap">
+          <div class="proc-bar-fill"></div>
+          <div class="proc-clips" id="pc2"></div>
+        </div>
+      </div>
+      <div class="proc-layer" style="--fw:92%">
+        <div class="proc-ico">&#127925;</div>
+        <div class="proc-lbl">Sound Design</div>
+        <div class="proc-bar-wrap">
+          <div class="proc-bar-fill"></div>
+          <div class="proc-clips" id="pc3"></div>
+        </div>
+      </div>
+      <div class="proc-layer" style="--fw:76%">
+        <div class="proc-ico">&#10024;</div>
+        <div class="proc-lbl">Motion Graphics</div>
+        <div class="proc-bar-wrap">
+          <div class="proc-bar-fill"></div>
+          <div class="proc-clips" id="pc4"></div>
+        </div>
+      </div>
+      <div class="proc-layer" style="--fw:68%">
+        <div class="proc-ico">&#127909;</div>
+        <div class="proc-lbl">VFX &amp; Composite</div>
+        <div class="proc-bar-wrap">
+          <div class="proc-bar-fill"></div>
+          <div class="proc-clips" id="pc5"></div>
+        </div>
+      </div>
+      <div class="proc-layer final" style="--fw:100%">
+        <div class="proc-ico">&#9654;</div>
+        <div class="proc-lbl">Final Master</div>
+        <div class="proc-bar-wrap">
+          <div class="proc-bar-fill"></div>
+          <div class="proc-clips" id="pc6"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-<h2>Cinematic Documentary Storytelling</h2>
+<!-- ============================================================ -->
+<!-- S6: ABOUT - The Persona                                       -->
+<!-- ============================================================ -->
+<section class="s-about reveal" id="about">
+  <canvas id="particlesCanvas"></canvas>
+  <div class="s-inner">
+    <div class="about-grid">
+      <div class="portrait-wrap reveal">
+        <img src="img/heshampersonal.jpg" alt="Hesham Abdelhamed">
+      </div>
+      <div class="about-text reveal">
+        <div class="s-eye">06 / About</div>
+        <h2 class="s-title">The Persona</h2>
+        <p class="about-bio" id="bioPara"><span class="cursor-blink"></span></p>
+        <div class="about-stats">
+          <div><div class="stat-num">10+</div><div class="stat-lbl">Years</div></div>
+          <div><div class="stat-num">28+</div><div class="stat-lbl">Films</div></div>
+          <div><div class="stat-num">10</div><div class="stat-lbl">Countries</div></div>
+        </div>
+        <div class="about-soc">
+          <a href="https://www.linkedin.com/in/hishamabdelhamed" target="_blank"><img src="img/linkedin.png" alt="LinkedIn"></a>
+          <a href="https://www.instagram.com/hisham.abdlhamed" target="_blank"><img src="img/instagram.png" alt="Instagram"></a>
+          <a href="https://www.tiktok.com/@hisham.abdelhamed" target="_blank"><img src="img/tiktok.png" alt="TikTok"></a>
+          <a href="https://facebook.com/hishamabdelhamedd" target="_blank"><img src="img/facebook.png" alt="Facebook"></a>
+        </div>
+        <div style="margin-top:22px">
+          <a href="img/Hesham-Abdelhamed-Portfolio.pdf" class="btn-outline" target="_blank" style="display:inline-flex;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;text-decoration:none;padding:12px 24px;border-radius:2px;color:var(--gold);border:1px solid rgba(216,185,122,.35);transition:all .3s;">Download Portfolio</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-<p>
-I am a filmmaker and video editor crafting cinematic narratives,
-mixing documentary sensitivity with strong visual composition.
-</p>
+<!-- ============================================================ -->
+<!-- S7: CONTACT - The Connection                                   -->
+<!-- ============================================================ -->
+<section class="s-contact reveal" id="contact">
+  <div class="s-inner">
+    <div class="contact-grid">
+      <div>
+        <div class="s-eye">07 / Contact</div>
+        <h2 class="contact-tagline">Let&#8217;s create something <em>cinematic</em>.</h2>
+        <p class="contact-sub">Available for documentary films, brand campaigns, and creative collaborations across the Middle East and beyond.</p>
+        <div class="contact-links">
+          <a href="tel:+201010723207"><span class="ci-dot"></span>&#127466;&#127468; +20 101 072 3207</a>
+          <a href="tel:+966503064408"><span class="ci-dot"></span>&#127462;&#127470; +966 503 064 408</a>
+          <a href="mailto:hello@hisham.digital"><span class="ci-dot"></span>hello@hisham.digital</a>
+        </div>
+      </div>
+      <div>
+        <form class="cform" id="contactForm">
+          <div class="cf">
+            <input type="text" id="fname" name="name" placeholder=" " required>
+            <label for="fname">Name</label>
+          </div>
+          <div class="cf">
+            <input type="email" id="femail" name="email" placeholder=" " required>
+            <label for="femail">Email</label>
+          </div>
+          <div class="cf">
+            <select id="ftype" name="project_type">
+              <option value="" disabled selected>Project Type</option>
+              <option>Documentary Film</option>
+              <option>Commercial / Brand</option>
+              <option>Human Story</option>
+              <option>Healthcare Content</option>
+              <option>Other</option>
+            </select>
+            <label for="ftype" style="top:-12px;font-size:8px;color:var(--gold);">Project Type</label>
+          </div>
+          <div class="cf">
+            <textarea id="fmsg" name="message" placeholder=" " required></textarea>
+            <label for="fmsg">Message</label>
+          </div>
+          <button type="submit" class="cf-submit">Send Message</button>
+          <p class="form-success" id="formSuccess">&#10003; Message sent! I&#8217;ll be in touch soon.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
 
-<a href="img/Hesham-Abdelhamed-Portfolio.pdf" class="download-btn">
-Download Portfolio
-</a>
+<!-- FOOTER -->
+<footer class="footer">
+  <p>&copy; 2026 Hesham Abdelhamed &mdash; All Rights Reserved</p>
+  <p style="margin-top:8px;">
+    <a href="my-work.html">My Work</a>
+    <a href="ai-motion.html">AI &amp; Animation</a>
+    <a href="academy.html">Pro Academy</a>
+    <a href="show.html">Showreel</a>
+  </p>
+</footer>
 
-<div class="social">
-
-<a href="https://www.linkedin.com/in/hishamabdelhamed" target="_blank">
-<img src="img/linkedin.png">
-</a>
-
-<a href="https://www.instagram.com/hisham.abdlhamed?igsh=MTZwM3VsZWd1d2hxOA%3D%3D&utm_source=qrtarget=" target="_blank">
-<img src="img/instagram.png">
-</a>
-
-<a href="https://www.tiktok.com/@hisham.abdelhamed" target="_blank">
-<img src="img/tiktok.png">
-</a>
-
-<a href="https://facebook.com/hishamabdelhamedd" target="_blank">
-<img src="img/facebook.png">
-</a>
-
-<img src="img/phone.png" onclick="togglePhone()">
-
+<!-- VIDEO MODAL -->
+<div class="modal" id="videoModal">
+  <div style="position:relative;width:min(92vw,1180px);">
+    <button class="modal-x" id="modalX" aria-label="Close">&#10005;</button>
+    <div class="modal-inner">
+      <div id="modalFrame"></div>
+    </div>
+  </div>
 </div>
 
-</div>
-
-</div>
-
-<!-- PHONE -->
+<!-- PHONE POPUP -->
 <div class="phone-popup" id="phoneBox">
-<a href="tel:+201010723207">🇪🇬 01010723207</a>
-<a href="tel:+966503064408">🇸🇦 +966503064408</a>
+  <a href="tel:+201010723207">&#127466;&#127468; 01010723207</a>
+  <a href="tel:+966503064408">&#127462;&#127470; +966503064408</a>
 </div>
-
-<div class="footer">
-© 2026 Hesham Abdelhamed - All Rights Reserved
-</div>
-
 <script>
+/* ============================================================
+   HERO CANVAS — NLE Timeline Assembly Animation
+   ============================================================ */
+(function(){
+  const canvas = document.getElementById('heroCanvas');
+  const ctx = canvas.getContext('2d');
+  const GOLD = [216,185,122];
 
-/* ACTIVE NAV AUTO */
+  function resize(){
+    canvas.width = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
 
-const links = document.querySelectorAll("nav a")
+  /* Background gradient */
+  function drawBg(){
+    const g = ctx.createRadialGradient(canvas.width*.3,canvas.height*.4,0,canvas.width*.5,canvas.height*.5,canvas.width*.9);
+    g.addColorStop(0,'#181420');
+    g.addColorStop(.5,'#0e0e14');
+    g.addColorStop(1,'#070709');
+    ctx.fillStyle=g;
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+  }
 
-links.forEach(link=>{
-if(link.href === window.location.href){
-link.classList.add("active")
+  /* Background star particles */
+  const stars = Array.from({length:70},()=>({
+    x:Math.random(),y:Math.random(),
+    r:.4+Math.random()*1.2,
+    a:.05+Math.random()*.25,
+    vx:(Math.random()-.5)*.00015,
+    vy:(Math.random()-.5)*.00015
+  }));
+  function drawStars(){
+    stars.forEach(s=>{
+      s.x+=s.vx; s.y+=s.vy;
+      if(s.x<0)s.x=1; if(s.x>1)s.x=0;
+      if(s.y<0)s.y=1; if(s.y>1)s.y=0;
+      ctx.beginPath();
+      ctx.arc(s.x*canvas.width,s.y*canvas.height,s.r,0,Math.PI*2);
+      ctx.fillStyle=`rgba(${GOLD},${s.a})`;
+      ctx.fill();
+    });
+  }
+
+  /* Timeline constants */
+  const TL_Y_RATIO = .64;  // timeline vertical position
+  const TL_L = .12;        // left edge ratio
+  const TL_R = .88;        // right edge ratio
+  const CLIP_H = 52;
+  const N = 10;            // number of clips
+
+  /* Clip class */
+  class Clip {
+    constructor(id){
+      this.id=id;
+      this.placed=false;
+      this.snapping=false;
+      this.snapT=0;
+      this.glowT=0;
+      this.startDelay=800+id*900+Math.random()*400;
+      this.born=Date.now();
+      this.phase=Math.random()*Math.PI*2;
+      this.floatSpd={x:(Math.random()-.5)*.35,y:(Math.random()-.5)*.28};
+      this._reset();
+    }
+    _reset(){
+      const W=canvas.width, H=canvas.height;
+      const tY=H*TL_Y_RATIO;
+      if(Math.random()<.5){
+        this.x=Math.random()*W; this.y=Math.random()*(tY-120);
+      } else {
+        this.x=Math.random()*W; this.y=tY+120+Math.random()*(H-tY-160);
+      }
+      this.alpha=.15+Math.random()*.3;
+      this.label=String(Math.floor(Math.random()*999)+1).padStart(3,'0');
+      this.colorR=Math.random()<.2?[60,90,160]:[28,28,46];
+    }
+    get targetX(){
+      const W=canvas.width;
+      const tW=(TL_R-TL_L)*W;
+      const cW=(tW/N)-5;
+      return W*TL_L+(this.id/N)*tW+2;
+    }
+    get targetY(){return canvas.height*TL_Y_RATIO-CLIP_H*.5;}
+    get clipW(){const W=canvas.width;return ((TL_R-TL_L)*W/N)-5;}
+
+    update(){
+      const now=Date.now()-this.born;
+      if(this.placed){
+        this.glowT=(Math.sin(now*.0018+this.phase)+1)*.5;
+        return;
+      }
+      if(!this.snapping && now<this.startDelay){
+        // float
+        const t=now*.001;
+        this.x+=this.floatSpd.x+Math.sin(t*.6+this.phase)*.22;
+        this.y+=this.floatSpd.y+Math.cos(t*.45+this.phase)*.16;
+        // keep on screen
+        const W=canvas.width,H=canvas.height;
+        if(this.x<-80)this.x=W+80; if(this.x>W+80)this.x=-80;
+        if(this.y<-60)this.y=H+60; if(this.y>H+60)this.y=-60;
+      } else if(!this.snapping){
+        // target
+        const dx=this.targetX-this.x, dy=this.targetY-this.y;
+        const dist=Math.sqrt(dx*dx+dy*dy);
+        const spd=Math.max(.025,Math.min(.08,50/dist));
+        this.x+=dx*spd; this.y+=dy*spd;
+        this.alpha=Math.min(this.alpha+.012,.88);
+        if(dist<2.5){this.x=this.targetX;this.y=this.targetY;this.snapping=true;this.snapT=0;}
+      } else {
+        // snap flash
+        this.snapT+=.04;
+        if(this.snapT>=1){this.snapping=false;this.placed=true;this.glowT=.5;}
+      }
+    }
+
+    draw(){
+      const x=this.x, y=this.y, w=this.clipW, h=CLIP_H;
+      if(this.placed){
+        const g=this.glowT;
+        ctx.save();
+        ctx.shadowColor=`rgb(${GOLD})`;
+        ctx.shadowBlur=6+g*12;
+        ctx.fillStyle=`rgba(${GOLD},${.07+g*.1})`;
+        ctx.fillRect(x,y,w,h);
+        ctx.strokeStyle=`rgba(${GOLD},${.45+g*.4})`;
+        ctx.lineWidth=1.5;
+        ctx.strokeRect(x+.75,y+.75,w-1.5,h-1.5);
+        // perforations
+        ctx.shadowBlur=0;
+        ctx.fillStyle='rgba(0,0,0,.8)';
+        [x+5,x+w-12].forEach(hx=>{ctx.fillRect(hx,y+h/2-4,8,8);});
+        // timecode
+        ctx.fillStyle=`rgba(${GOLD},.5)`;
+        ctx.font=`8px 'Roboto Mono',monospace`;
+        ctx.fillText(`C${this.label}`,x+5,y+h-7);
+        ctx.restore();
+      } else if(this.snapping){
+        const fl=Math.sin(this.snapT*Math.PI);
+        ctx.save();
+        ctx.shadowColor=`rgb(${GOLD})`;
+        ctx.shadowBlur=30*fl;
+        ctx.fillStyle=`rgba(${GOLD},${fl*.5})`;
+        ctx.fillRect(x-15*fl,y-8*fl,w+30*fl,h+16*fl);
+        ctx.strokeStyle=`rgb(${GOLD})`;
+        ctx.lineWidth=2;
+        ctx.strokeRect(x,y,w,h);
+        ctx.restore();
+      } else {
+        ctx.save();
+        ctx.globalAlpha=this.alpha;
+        ctx.fillStyle=`rgb(${this.colorR})`;
+        ctx.fillRect(x,y,w,h);
+        // scanlines
+        ctx.fillStyle='rgba(0,0,0,.45)';
+        for(let i=1;i<4;i++)ctx.fillRect(x,y+i/4*h,w,1);
+        ctx.strokeStyle='rgba(255,255,255,.12)';
+        ctx.lineWidth=1;
+        ctx.strokeRect(x,y,w,h);
+        ctx.restore();
+      }
+    }
+  }
+
+  let clips=[]; let resetTimer=null;
+  function initClips(){
+    clips=Array.from({length:N},(_, i)=>new Clip(i));
+    if(resetTimer)clearTimeout(resetTimer);
+    resetTimer=null;
+  }
+  initClips();
+
+  /* Playhead */
+  let phX=0, phDir=1;
+  function drawTimeline(){
+    const W=canvas.width,H=canvas.height;
+    const tY=H*TL_Y_RATIO;
+    const tL=W*TL_L,tR=W*TL_R,tW=tR-tL;
+    const rulerY=tY+CLIP_H*.5+8;
+
+    ctx.save();
+    // main ruler line
+    ctx.beginPath();ctx.moveTo(tL,rulerY);ctx.lineTo(tR,rulerY);
+    ctx.strokeStyle='rgba(216,185,122,.3)';ctx.lineWidth=1;ctx.stroke();
+
+    // tick marks
+    const ticks=40;
+    for(let i=0;i<=ticks;i++){
+      const mx=tL+(i/ticks)*tW;
+      const th=i%10===0?12:i%5===0?7:4;
+      ctx.beginPath();ctx.moveTo(mx,rulerY);ctx.lineTo(mx,rulerY+th);
+      ctx.strokeStyle=`rgba(216,185,122,${i%10===0?.3:.12})`;ctx.lineWidth=1;ctx.stroke();
+      if(i%10===0){
+        ctx.fillStyle='rgba(216,185,122,.28)';
+        ctx.font="7px 'Roboto Mono',monospace";
+        ctx.fillText(`0${i/10}:00`,mx-9,rulerY+22);
+      }
+    }
+    // labels
+    ctx.fillStyle='rgba(216,185,122,.25)';
+    ctx.font="8px 'Roboto Mono',monospace";
+    ctx.fillText('SEQUENCE 01',tL,rulerY+32);
+    ctx.textAlign='right';
+    ctx.fillText('00:03:47:12',tR,rulerY+32);
+    ctx.textAlign='left';
+
+    // playhead
+    const px=tL+((phX/W)*.85)*tW;
+    ctx.beginPath();ctx.moveTo(px,tY-CLIP_H*.5-12);ctx.lineTo(px,rulerY+2);
+    ctx.strokeStyle='rgba(255,255,255,.85)';ctx.lineWidth=1;
+    ctx.shadowColor='#fff';ctx.shadowBlur=4;ctx.stroke();
+    ctx.shadowBlur=0;
+    // arrow
+    ctx.beginPath();ctx.moveTo(px-5,tY-CLIP_H*.5-12);
+    ctx.lineTo(px+5,tY-CLIP_H*.5-12);ctx.lineTo(px,tY-CLIP_H*.5-5);
+    ctx.closePath();ctx.fillStyle='rgba(255,255,255,.85)';ctx.fill();
+    ctx.restore();
+  }
+
+  /* Main loop */
+  let lastCheck=0;
+  function loop(){
+    requestAnimationFrame(loop);
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    drawBg();
+    drawStars();
+    drawTimeline();
+    clips.forEach(c=>{
+      c.update();
+      // keep target updated on resize
+      c.clipW;
+      c.draw();
+    });
+    phX+=1.4*phDir;
+    if(phX>canvas.width*.9)phDir=-1;
+    if(phX<0)phDir=1;
+    // check all placed → schedule reset
+    const now=Date.now();
+    if(!resetTimer && now-lastCheck>2500){
+      lastCheck=now;
+      if(clips.every(c=>c.placed)){
+        resetTimer=setTimeout(initClips,2200);
+      }
+    }
+  }
+  loop();
+})();
+
+/* ============================================================
+   NAV — scroll effects & active section
+   ============================================================ */
+(function(){
+  const nav=document.getElementById('mainNav');
+  const bar=document.getElementById('progressBar');
+  const sections=document.querySelectorAll('section[id]');
+  const links=document.querySelectorAll('.nav-links a');
+
+  window.addEventListener('scroll',()=>{
+    // progress bar
+    const max=document.documentElement.scrollHeight-window.innerHeight;
+    bar.style.width=(window.scrollY/max*100)+'%';
+    // nav bg
+    nav.classList.toggle('scrolled',window.scrollY>50);
+  },{passive:true});
+
+  // Active nav link via IntersectionObserver
+  const io=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        links.forEach(a=>a.classList.remove('active'));
+        const link=document.querySelector(`.nav-links a[href="#${e.target.id}"]`);
+        if(link)link.classList.add('active');
+      }
+    });
+  },{threshold:.35});
+  sections.forEach(s=>io.observe(s));
+})();
+
+/* ============================================================
+   REVEAL — sections fade-up on scroll
+   ============================================================ */
+(function(){
+  const io=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in');});
+  },{threshold:.1});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+})();
+
+/* ============================================================
+   SHOWREEL STRIP — dynamic thumbnails
+   ============================================================ */
+(function(){
+  const items=[
+    {vimeoId:'1081231929',title:'Documentary – Egypt',type:'Documentary'},
+    {vimeoId:'1093436208',title:'Brand Film',type:'Commercial'},
+    {vimeoId:'1012761186',title:'Human Story',type:'Documentary'},
+    {vimeoId:'782962222',title:'Regional Campaign',type:'Commercial'},
+    {vimeoId:'1081226158',title:'Cultural Portrait',type:'Documentary'},
+    {youtubeId:'n4gmpMHBUK4',title:'News Feature',type:'Journalism'},
+    {vimeoId:'1137725566',title:'Healthcare Content',type:'Healthcare'},
+    {vimeoId:'1088303838',title:'Corporate Film',type:'Commercial'},
+    {youtubeId:'DqZM6chIz8c',title:'Social Documentary',type:'Documentary'},
+    {youtubeId:'8o3vHHhsed4',title:'Human Interest',type:'Human Stories'},
+  ];
+
+  async function getThumb(item){
+    if(item.youtubeId)return `https://img.youtube.com/vi/${item.youtubeId}/hqdefault.jpg`;
+    try{
+      const r=await fetch(`https://vimeo.com/api/v2/video/${item.vimeoId}.json`);
+      const d=await r.json();
+      return d[0].thumbnail_large||d[0].thumbnail_medium;
+    }catch{return '';}
+  }
+  function embedUrl(item){
+    if(item.youtubeId)return `https://www.youtube.com/embed/${item.youtubeId}?autoplay=1`;
+    return `https://player.vimeo.com/video/${item.vimeoId}?autoplay=1`;
+  }
+
+  const strip=document.getElementById('filmStrip');
+  const perfT=document.getElementById('perfTop');
+  const perfB=document.getElementById('perfBot');
+
+  // Build perforations
+  for(let i=0;i<18;i++){
+    perfT.insertAdjacentHTML('beforeend','<span></span>');
+    perfB.insertAdjacentHTML('beforeend','<span></span>');
+  }
+
+  items.forEach((item,i)=>{
+    const card=document.createElement('div');
+    card.className='film-card';
+    card.innerHTML=`
+      <img src="" alt="${item.title}" loading="lazy">
+      <div class="glitch"></div>
+      <div class="film-info">
+        <div class="film-num">FILM ${String(i+1).padStart(2,'0')}</div>
+        <div class="film-ttl">${item.title}</div>
+        <div class="film-typ">${item.type}</div>
+      </div>
+      <div class="film-play">&#9654;</div>`;
+    strip.appendChild(card);
+    getThumb(item).then(src=>{if(src)card.querySelector('img').src=src;});
+    card.addEventListener('click',()=>openModal(embedUrl(item)));
+  });
+
+  // Scroll buttons
+  document.getElementById('stripPrev').onclick=()=>strip.scrollBy({left:-360,behavior:'smooth'});
+  document.getElementById('stripNext').onclick=()=>strip.scrollBy({left:360,behavior:'smooth'});
+})();
+
+/* ============================================================
+   SPLIT-SCREEN — before/after draggable
+   ============================================================ */
+(function(){
+  const wrap=document.getElementById('splitWrap');
+  const after=document.getElementById('splitAfter');
+  const div=document.getElementById('splitDiv');
+  let dragging=false, pct=50;
+
+  function setPos(clientX){
+    const r=wrap.getBoundingClientRect();
+    pct=Math.max(5,Math.min(95,(clientX-r.left)/r.width*100));
+    after.style.clipPath=`inset(0 ${100-pct}% 0 0)`;
+    div.style.left=pct+'%';
+  }
+  wrap.addEventListener('mousedown',e=>{dragging=true;setPos(e.clientX);});
+  window.addEventListener('mousemove',e=>{if(dragging)setPos(e.clientX);});
+  window.addEventListener('mouseup',()=>dragging=false);
+  wrap.addEventListener('touchstart',e=>{dragging=true;setPos(e.touches[0].clientX);},{passive:true});
+  window.addEventListener('touchmove',e=>{if(dragging)setPos(e.touches[0].clientX);},{passive:true});
+  window.addEventListener('touchend',()=>dragging=false);
+})();
+
+/* ============================================================
+   WAVEFORM CANVAS — animated audio waveform
+   ============================================================ */
+(function(){
+  const canvas=document.getElementById('waveCanvas');
+  const ctx=canvas.getContext('2d');
+  let t=0;
+  function resize(){
+    canvas.width=canvas.offsetWidth*devicePixelRatio||canvas.offsetWidth;
+    canvas.height=canvas.offsetHeight*devicePixelRatio||canvas.offsetHeight;
+    ctx.scale(devicePixelRatio,devicePixelRatio);
+  }
+  resize();
+  window.addEventListener('resize',resize);
+
+  function draw(){
+    requestAnimationFrame(draw);
+    const W=canvas.offsetWidth, H=canvas.offsetHeight, mid=H/2;
+    ctx.clearRect(0,0,W,H);
+    t+=.012;
+    // main wave
+    ctx.beginPath();ctx.moveTo(0,mid);
+    for(let i=0;i<=W;i++){
+      const x=i/W;
+      const y=mid+Math.sin(x*18+t*2.2)*Math.cos(x*7+t)*Math.sin(x*3.5)*22
+               +Math.sin(x*35+t*3.5)*(Math.sin(x*9+t*.7))*7;
+      i===0?ctx.moveTo(i,y):ctx.lineTo(i,y);
+    }
+    ctx.strokeStyle='rgba(216,185,122,.85)';ctx.lineWidth=1.8;
+    ctx.shadowColor='#d8b97a';ctx.shadowBlur=6;ctx.stroke();
+    ctx.shadowBlur=0;
+    // secondary softer wave
+    ctx.beginPath();ctx.moveTo(0,mid);
+    for(let i=0;i<=W;i++){
+      const x=i/W;
+      const y=mid+Math.sin(x*12+t*1.4)*Math.cos(x*5.5+t*.8)*16;
+      i===0?ctx.moveTo(i,y):ctx.lineTo(i,y);
+    }
+    ctx.strokeStyle='rgba(216,185,122,.22)';ctx.lineWidth=1;ctx.stroke();
+  }
+  draw();
+})();
+
+/* ============================================================
+   PROJECTS GRID — 3D tilt + thumbnails
+   ============================================================ */
+(function(){
+  const projects=[
+    {vimeoId:'1081231929',title:'Documentary – Egypt',cat:'documentary',type:'Documentary'},
+    {vimeoId:'1093436208',title:'Brand Campaign',cat:'commercial',type:'Commercial'},
+    {vimeoId:'1012761186',title:'Human Story',cat:'human',type:'Human Stories'},
+    {vimeoId:'782962222',title:'Regional Campaign',cat:'commercial',type:'Commercial'},
+    {vimeoId:'1137725566',title:'Healthcare Content',cat:'healthcare',type:'Healthcare'},
+    {youtubeId:'n4gmpMHBUK4',title:'News Feature',cat:'documentary',type:'Documentary'},
+  ];
+
+  async function getThumb(p){
+    if(p.youtubeId)return `https://img.youtube.com/vi/${p.youtubeId}/hqdefault.jpg`;
+    try{
+      const r=await fetch(`https://vimeo.com/api/v2/video/${p.vimeoId}.json`);
+      const d=await r.json();
+      return d[0].thumbnail_large;
+    }catch{return '';}
+  }
+  function embedUrl(p){
+    if(p.youtubeId)return `https://www.youtube.com/embed/${p.youtubeId}?autoplay=1`;
+    return `https://player.vimeo.com/video/${p.vimeoId}?autoplay=1`;
+  }
+
+  const grid=document.getElementById('projGrid');
+  projects.forEach((p,i)=>{
+    const card=document.createElement('div');
+    card.className='proj-card';
+    card.dataset.cat=p.cat;
+    card.innerHTML=`
+      <div class="proj-thumb">
+        <img src="" alt="${p.title}" loading="lazy">
+        <div class="proj-over">
+          <div class="proj-num">FILM ${String(i+1).padStart(2,'0')}</div>
+          <span class="proj-typ">${p.type}</span>
+          <div class="proj-play">&#9654;</div>
+        </div>
+      </div>
+      <div class="proj-flare"></div>`;
+    grid.appendChild(card);
+    getThumb(p).then(src=>{if(src)card.querySelector('img').src=src;});
+
+    // 3D tilt
+    card.addEventListener('mousemove',e=>{
+      const r=card.getBoundingClientRect();
+      const x=(e.clientX-r.left)/r.width-.5;
+      const y=(e.clientY-r.top)/r.height-.5;
+      card.style.transform=`perspective(800px) rotateY(${x*10}deg) rotateX(${-y*10}deg) translateY(-4px)`;
+    });
+    card.addEventListener('mouseleave',()=>{card.style.transform='';});
+
+    // Click: flare then open modal
+    card.addEventListener('click',()=>{
+      card.classList.add('flaring');
+      setTimeout(()=>card.classList.remove('flaring'),500);
+      setTimeout(()=>openModal(embedUrl(p)),120);
+    });
+  });
+})();
+
+/* ============================================================
+   PROCESS LAYERS — fill clips
+   ============================================================ */
+(function(){
+  const counts=[12,10,11,8,6,14];
+  const litCounts=[11,9,10,6,4,14];
+  ['pc1','pc2','pc3','pc4','pc5','pc6'].forEach((id,i)=>{
+    const wrap=document.getElementById(id);
+    for(let j=0;j<counts[i];j++){
+      const d=document.createElement('div');
+      d.className='proc-clip'+(j<litCounts[i]?' lit':'');
+      wrap.appendChild(d);
+    }
+  });
+
+  // Observe layers
+  const io=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.querySelectorAll('.proc-layer').forEach(l=>l.classList.add('in'));
+      }
+    });
+  },{threshold:.15});
+  const pl=document.getElementById('procLayers');
+  if(pl)io.observe(pl);
+})();
+
+/* ============================================================
+   ABOUT — typewriter + particles
+   ============================================================ */
+(function(){
+  // Typewriter
+  const text='I am a filmmaker and video editor crafting cinematic narratives — blending documentary sensitivity with strong visual composition. My work spans Egypt, Saudi Arabia, Lebanon, Morocco, Jordan, Tunisia, Syria, Sudan, Libya, and France.';
+  const para=document.getElementById('bioPara');
+  let charIdx=0, typing=false;
+
+  function startTyping(){
+    if(typing)return; typing=true;
+    para.innerHTML='<span class="cursor-blink"></span>';
+    charIdx=0;
+    function tick(){
+      if(charIdx<text.length){
+        const span=document.createElement('span');
+        span.textContent=text[charIdx];
+        span.style.cssText='color:#d8b97a;transition:color .4s';
+        para.insertBefore(span,para.lastChild);
+        setTimeout(()=>{span.style.color='#999';},500);
+        charIdx++; setTimeout(tick,28);
+      }
+    }
+    tick();
+  }
+
+  const io=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting)startTyping();});
+  },{threshold:.25});
+  const abt=document.getElementById('about');
+  if(abt)io.observe(abt);
+
+  // Particles canvas
+  const canvas=document.getElementById('particlesCanvas');
+  const ctx=canvas.getContext('2d');
+  const particles=Array.from({length:90},()=>({
+    x:Math.random(),y:Math.random(),
+    r:.5+Math.random()*2,
+    a:.04+Math.random()*.18,
+    vx:(Math.random()-.5)*.00012,
+    vy:(Math.random()-.5)*.00012
+  }));
+
+  function resize(){
+    canvas.width=canvas.offsetWidth;
+    canvas.height=canvas.offsetHeight;
+  }
+  resize();
+  window.addEventListener('resize',resize);
+
+  function drawParticles(){
+    requestAnimationFrame(drawParticles);
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    particles.forEach(p=>{
+      p.x+=p.vx; p.y+=p.vy;
+      if(p.x<0)p.x=1; if(p.x>1)p.x=0;
+      if(p.y<0)p.y=1; if(p.y>1)p.y=0;
+      ctx.beginPath();
+      ctx.arc(p.x*canvas.width,p.y*canvas.height,p.r,0,Math.PI*2);
+      ctx.fillStyle=`rgba(216,185,122,${p.a})`;
+      ctx.fill();
+    });
+  }
+  drawParticles();
+})();
+
+/* ============================================================
+   CONTACT FORM — submit handler
+   ============================================================ */
+document.getElementById('contactForm').addEventListener('submit',function(e){
+  e.preventDefault();
+  const btn=this.querySelector('.cf-submit');
+  const success=document.getElementById('formSuccess');
+  btn.disabled=true; btn.textContent='Sending…';
+  setTimeout(()=>{
+    success.style.display='block';
+    btn.style.display='none';
+  },1000);
+});
+
+/* ============================================================
+   VIDEO MODAL
+   ============================================================ */
+function openModal(url){
+  const modal=document.getElementById('videoModal');
+  const frame=document.getElementById('modalFrame');
+  frame.innerHTML=`<iframe src="${url}" allow="autoplay;fullscreen" allowfullscreen></iframe>`;
+  modal.classList.add('open');
+  document.body.style.overflow='hidden';
 }
-})
+function closeModal(){
+  const modal=document.getElementById('videoModal');
+  document.getElementById('modalFrame').innerHTML='';
+  modal.classList.remove('open');
+  document.body.style.overflow='';
+}
+document.getElementById('modalX').onclick=closeModal;
+document.getElementById('videoModal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
 
-/* PHONE */
-
+/* ============================================================
+   PHONE POPUP
+   ============================================================ */
 function togglePhone(){
-const box = document.getElementById("phoneBox")
-box.style.display = box.style.display === "flex" ? "none" : "flex"
+  const box=document.getElementById('phoneBox');
+  box.style.display=box.style.display==='flex'?'none':'flex';
 }
-
-/* 🎬 VIDEOS (COUNTRIES) */
-
-const vids = [
-/* Egypt */
-"https://cdn.coverr.co/videos/coverr-cairo-from-above-1600/1080p.mp4",
-
-/* Saudi */
-"https://cdn.coverr.co/videos/coverr-desert-road-saudi-1601/1080p.mp4",
-
-/* Lebanon */
-"https://cdn.coverr.co/videos/coverr-beirut-city-1602/1080p.mp4",
-
-/* Morocco */
-"https://cdn.coverr.co/videos/coverr-morocco-city-1603/1080p.mp4"
-]
-
-let current = 0
-let v1 = document.getElementById("video1")
-let v2 = document.getElementById("video2")
-
-v1.src = vids[0]
-v1.play()
-
-function switchVideo(){
-
-current = (current + 1) % vids.length
-
-if(v1.classList.contains("active")){
-v2.src = vids[current]
-v2.play()
-
-v2.classList.add("active")
-v1.classList.remove("active")
-
-}else{
-v1.src = vids[current]
-v1.play()
-
-v1.classList.add("active")
-v2.classList.remove("active")
-}
-
-}
-
-setInterval(switchVideo, 7000)
-
 </script>
-
 </body>
 </html>
