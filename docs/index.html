@@ -50,10 +50,7 @@ body.light .hero p{color:#333;}
 body.light .phone-popup a{color:var(--popup-text);}
 
 /* ── ARABIC FONT ── */
-[lang="ar"] body,[lang="ar"] .hero h1,[lang="ar"] .hero h2,[lang="ar"] .hero p,
-[lang="ar"] nav a,[lang="ar"] .download-btn,[lang="ar"] .footer{
-  font-family:'Cairo',sans-serif;
-}
+html[lang="ar"] *{font-family:'Cairo',sans-serif !important;}
 
 /* ── NAV ── */
 nav{
@@ -119,8 +116,8 @@ body.light .ctrl-btn{background:rgba(0,0,0,.06);border-color:rgba(0,0,0,.15);}
 .hero{
   height:100vh;
   display:flex;
-  align-items:center;
-  padding:0 8%;
+  align-items:flex-end;
+  padding:0 8% 70px;
   position:relative;
 }
 
@@ -178,6 +175,7 @@ body.light .ctrl-btn{background:rgba(0,0,0,.06);border-color:rgba(0,0,0,.15);}
   display:flex;
   gap:14px;
   align-items:center;
+  direction:ltr;
 }
 .social img{width:24px;cursor:pointer;transition:transform .2s;}
 .social img:hover{transform:scale(1.15);}
@@ -329,7 +327,7 @@ const T={
   },
   ar:{
     home:'الرئيسية',work:'أعمالي',ai:'ذكاء اصطناعي',pro:'برو',
-    h1:'هشام عبدالحامد',
+    h1:'هشام عبد الحميد',
     h2:'سرد وثائقي سينمائي',
     p:'مخرج ومحرر فيديو يصنع روايات سينمائية، يمزج بين الحساسية الوثائقية والتكوين البصري القوي.',
     btn:'تحميل البورتفوليو',
@@ -404,7 +402,7 @@ langBtn.addEventListener('click',()=>{lang=lang==='en'?'ar':'en';localStorage.se
   }
 
   /* timeline settings */
-  const TL_Y = .35, TL_L = .12, TL_R = .88, CLIP_H = 50, N = 10
+  const TL_Y = .27, TL_L = .12, TL_R = .88, CLIP_H = 50, N = 10
 
   class Clip {
     constructor(id){
