@@ -7,7 +7,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AI & Animation | Hesham Abdelhamed</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 
 <style>
 
@@ -243,25 +244,27 @@ font-size:26px;
 
 <body>
 
-<nav class="site-nav">
-<a href="index.html">Home</a>
-<a href="my-work.html">My Work</a>
-<a href="ai-motion.html" class="active">AI & Animation</a>
-<a href="academy.html">Pro</a>
-<a href="show.html">Showreel</a>
+<nav class="main-nav" id="mainNav">
+  <div class="nav-links">
+    <a href="index.html" id="nav-home">HOME</a>
+    <a href="my-work.html" id="nav-work">MY WORK</a>
+    <a href="ai-motion.html" id="nav-ai" class="active">AI &amp; ANIMATION</a>
+    <a href="academy.html" id="nav-pro">PRO</a>
+  </div>
+  <div class="nav-controls">
+    <button class="ctrl-btn" id="themeBtn">🌙</button>
+    <button class="ctrl-btn" id="langBtn">AR</button>
+  </div>
 </nav>
 
 <div class="page">
 
 <section class="hero">
-
 <h1 id="typeTitle"></h1>
-
-<p>
+<p id="ai-desc">
 A curated collection of AI-driven motion pieces and experimental animation,
 exploring new forms of cinematic storytelling and visual expression.
 </p>
-
 </section>
 
 <div class="grid" id="videoGrid"></div>
@@ -354,5 +357,15 @@ modal.classList.add("open")
 
 </script>
 
+<script>
+function applyPageLang(lang){
+  const ar = lang==='ar';
+  const d = document.getElementById('ai-desc');
+  if(d) d.textContent = ar
+    ? 'مجموعة مختارة من مقاطع الحركة المدفوعة بالذكاء الاصطناعي والرسوم المتحركة التجريبية، تستكشف أشكالاً جديدة من السرد السينمائي.'
+    : 'A curated collection of AI-driven motion pieces and experimental animation, exploring new forms of cinematic storytelling and visual expression.';
+}
+</script>
+<script src="nav.js"></script>
 </body>
 </html>

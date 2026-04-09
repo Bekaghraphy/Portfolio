@@ -7,7 +7,7 @@
 
   <link rel="icon" type="image/png" href="img/favicon.png" />
   <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet" />
 
   <style>
 
@@ -192,23 +192,20 @@
 <body>
 
   <!-- NAV -->
-  <header class="nav">
-<nav class="site-nav">
-  <a href="index.html">Home</a>
-  <a href="my-work.html">My Work</a>
-  <a href="ai-motion.html">Ai & Animation</a>
-  <a href="academy.html"class="active">Pro</a>
-  <a href="show.html">Showreel</a>
-</nav>
-  </header>
+  <nav class="main-nav" id="mainNav">
+    <div class="nav-links">
+      <a href="index.html" id="nav-home">HOME</a>
+      <a href="my-work.html" id="nav-work">MY WORK</a>
+      <a href="ai-motion.html" id="nav-ai">AI &amp; ANIMATION</a>
+      <a href="academy.html" id="nav-pro" class="active">PRO</a>
+    </div>
+    <div class="nav-controls">
+      <button class="ctrl-btn" id="themeBtn">🌙</button>
+      <button class="ctrl-btn" id="langBtn">AR</button>
+    </div>
+  </nav>
 
   <main class="academy-page">
-
-    <!-- LANGUAGE SWITCH -->
-    <div class="lang-switch">
-      <button class="lang-btn active" onclick="showEnglish()">English</button>
-      <button class="lang-btn" onclick="showArabic()">عربي</button>
-    </div>
 
 
 
@@ -399,5 +396,16 @@
 
   </script>
 
+  <script>
+  /* Hook academy AR/EN content to shared lang toggle */
+  function applyPageLang(lang){
+    const ar = lang === 'ar';
+    const eng = document.querySelector('.english');
+    const arb = document.querySelector('.arabic');
+    if(eng) eng.style.display = ar ? 'none' : 'block';
+    if(arb) arb.style.display = ar ? 'block' : 'none';
+  }
+  </script>
+  <script src="nav.js"></script>
 </body>
 </html>

@@ -8,7 +8,7 @@
   <link rel="icon" type="image/png" href="img/favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet" />
 
   <!-- ستايل الموقع الأساسي -->
   <link rel="stylesheet" href="style.css" />
@@ -494,17 +494,18 @@
 </head>
 
 <body>
-  <!-- نفس النافبار الأساسي -->
-  <header class="nav">
-    <nav class="site-nav">
-  <a href="index.html" >Home</a>
-  <a href="my-work.html"class="active">My Work</a>
-  <a href="ai-motion.html">Ai & Animation</a>
-  <a href="academy.html">Pro</a>
-  <a href="show.html">Showreel</a>
-</nav>
-
-  </header>
+  <nav class="main-nav" id="mainNav">
+    <div class="nav-links">
+      <a href="index.html" id="nav-home">HOME</a>
+      <a href="my-work.html" id="nav-work" class="active">MY WORK</a>
+      <a href="ai-motion.html" id="nav-ai">AI &amp; ANIMATION</a>
+      <a href="academy.html" id="nav-pro">PRO</a>
+    </div>
+    <div class="nav-controls">
+      <button class="ctrl-btn" id="themeBtn">🌙</button>
+      <button class="ctrl-btn" id="langBtn">AR</button>
+    </div>
+  </nav>
 
   <!-- SIDE TITLE من ستايل الموقع -->
   <div class="side-title">MY WORK</div>
@@ -512,24 +513,19 @@
   <!-- CONTENT -->
   <main class="page page-work">
     <div class="page-inner">
-      <div class="showreel-cta">
-  <a href="show.html" class="showreel-btn">
-    ▶ View Showreel
-  </a>
-</div>
       <section class="work-hero">
         <div class="work-hero-text">
-          <h1 class="work-hero-title">
+          <h1 class="work-hero-title" id="wk-title">
             A curated reel of <span>cinematic stories</span>.
           </h1>
-          <p>
-            Documentary, commercial, News & stories filmed across Egypt, Saudi Arabia, Lebanon, Morocco, Jordan, Tunisia, Syria, Sudan, Libya & France.
+          <p id="wk-desc">
+            Documentary, commercial, News &amp; stories filmed across Egypt, Saudi Arabia, Lebanon, Morocco, Jordan, Tunisia, Syria, Sudan, Libya &amp; France.
           </p>
-            <div class="work-tags">
-            <span class="work-tag">Documentary</span>
-            <span class="work-tag">Commercial</span>
-            <span class="work-tag">Human Stories</span>
-            <span class="work-tag">Healthcare Content</span>
+          <div class="work-tags">
+            <span class="work-tag" id="wk-t1">Documentary</span>
+            <span class="work-tag" id="wk-t2">Commercial</span>
+            <span class="work-tag" id="wk-t3">Human Stories</span>
+            <span class="work-tag" id="wk-t4">Healthcare Content</span>
           </div>
         </div>
 
@@ -755,5 +751,24 @@
 
     buildGrid();
   </script>
+
+  <!-- page-specific AR translations -->
+  <script>
+  function applyPageLang(lang){
+    const ar = lang==='ar';
+    const el = id => document.getElementById(id);
+    if(el('wk-title')) el('wk-title').innerHTML = ar
+      ? 'مجموعة مختارة من <span>القصص السينمائية</span>.'
+      : 'A curated reel of <span>cinematic stories</span>.';
+    if(el('wk-desc')) el('wk-desc').textContent = ar
+      ? 'أفلام وثائقية وتجارية وقصص إنسانية من مصر والسعودية ولبنان والمغرب والأردن وتونس وسوريا والسودان وليبيا وفرنسا.'
+      : 'Documentary, commercial, News & stories filmed across Egypt, Saudi Arabia, Lebanon, Morocco, Jordan, Tunisia, Syria, Sudan, Libya & France.';
+    if(el('wk-t1')) el('wk-t1').textContent = ar?'وثائقي':'Documentary';
+    if(el('wk-t2')) el('wk-t2').textContent = ar?'تجاري':'Commercial';
+    if(el('wk-t3')) el('wk-t3').textContent = ar?'قصص إنسانية':'Human Stories';
+    if(el('wk-t4')) el('wk-t4').textContent = ar?'محتوى صحي':'Healthcare Content';
+  }
+  </script>
+  <script src="nav.js"></script>
 </body>
 </html>
