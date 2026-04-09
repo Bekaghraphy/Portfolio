@@ -117,7 +117,7 @@ body.light .ctrl-btn{background:rgba(0,0,0,.06);border-color:rgba(0,0,0,.15);}
   height:100vh;
   display:flex;
   align-items:flex-end;
-  padding:0 8% 70px;
+  padding:0 8% 110px;
   position:relative;
 }
 
@@ -179,6 +179,16 @@ body.light .ctrl-btn{background:rgba(0,0,0,.06);border-color:rgba(0,0,0,.15);}
 }
 .social img{width:24px;cursor:pointer;transition:transform .2s;}
 .social img:hover{transform:scale(1.15);}
+
+/* ── MOBILE ── */
+@media(max-width:500px){
+  .hero{padding:0 6% 100px;}
+  .hero h1{font-size:34px;}
+  .hero h2{font-size:13px;letter-spacing:2px;}
+  .hero p{font-size:13px;}
+  .nav-links a{font-size:10px;letter-spacing:.8px;}
+  .nav-links{gap:14px;}
+}
 
 /* ── PHONE POPUP ── */
 .phone-popup{
