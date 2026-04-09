@@ -1,358 +1,493 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI & Animation | Hesham Abdelhamed</title>
+  <link rel="icon" type="image/png" href="img/favicon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI & Animation | Hesham Abdelhamed</title>
+  <style>
+    /* ── PAGE BASE ── */
+    body { background: #030208; }
 
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    /* ── AMBIENT BACKGROUND ── */
+    .bg-fx {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .bg-fx::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba(139,92,246,.1) 1px, transparent 1px);
+      background-size: 28px 28px;
+    }
+    .bg-fx::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 65% 55% at 8% 35%,  rgba(109,40,217,.2)  0%, transparent 55%),
+        radial-gradient(ellipse 50% 40% at 92% 72%, rgba(216,185,122,.06) 0%, transparent 50%),
+        radial-gradient(ellipse 40% 50% at 50% 0%,  rgba(76,29,149,.15)  0%, transparent 55%);
+    }
 
-<style>
+    /* ── LAYOUT ── */
+    .ai-page {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 110px 22px 60px;
+    }
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Montserrat',sans-serif
-}
+    /* ── HERO ── */
+    .ai-hero { margin-bottom: 46px; }
 
-body{
-background:#020207;
-color:white;
-overflow-x:hidden
-}
+    .ai-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 14px;
+      border: 1px solid rgba(139,92,246,.42);
+      border-radius: 999px;
+      font-size: 10px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: #a78bfa;
+      margin-bottom: 18px;
+      background: rgba(139,92,246,.07);
+    }
+    .ai-badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #8b5cf6;
+      box-shadow: 0 0 8px #8b5cf6;
+      animation: ai-pulse 2s infinite;
+      flex-shrink: 0;
+    }
+    @keyframes ai-pulse {
+      0%,100% { opacity:1; transform:scale(1); }
+      50%      { opacity:.35; transform:scale(.65); }
+    }
 
-/* NAV */
+    .ai-title {
+      font-size: 38px;
+      font-weight: 700;
+      line-height: 1.15;
+      color: #f0ecff;
+      margin-bottom: 14px;
+      min-height: 48px;
+    }
+    .ai-title .cursor {
+      display: inline-block;
+      width: 3px;
+      height: 32px;
+      background: #d8b97a;
+      margin-left: 6px;
+      vertical-align: middle;
+      animation: blink-c 1s steps(2,start) infinite;
+    }
+    @keyframes blink-c { 0%,49%{opacity:1} 50%,100%{opacity:0} }
 
-.site-nav{
-position:fixed;
-top:0;
-width:100%;
-display:flex;
-justify-content:center;
-gap:20px;
-padding:16px;
-z-index:100;
+    .ai-desc {
+      font-size: 14px;
+      line-height: 1.85;
+      color: rgba(220,215,240,.58);
+      max-width: 600px;
+    }
 
-overflow-x:auto;
-white-space:nowrap;
+    /* ── BENTO GRID ── */
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-auto-rows: 210px;
+      gap: 12px;
+      grid-auto-flow: dense;
+    }
 
-background:rgba(0,0,0,.6);
-backdrop-filter:blur(10px);
-}
+    .bento-large { grid-column: span 2; grid-row: span 2; }
+    .bento-wide  { grid-column: span 2; }
+    .bento-tall  { grid-row: span 2; }
 
-.site-nav a{
-font-size:12px;
-letter-spacing:.15em;
-text-transform:uppercase;
-color:white;
-text-decoration:none;
-opacity:.7;
-}
+    /* ── CARD ── */
+    .bento-card {
+      position: relative;
+      border-radius: 14px;
+      overflow: hidden;
+      cursor: pointer;
+      background: linear-gradient(140deg, #0f0122 0%, #0b0018 55%, #070010 100%);
+      border: 1px solid rgba(139,92,246,.18);
+      opacity: 0;
+      transform: translateY(22px);
+      transition:
+        opacity .6s ease,
+        transform .6s ease,
+        border-color .28s,
+        box-shadow .28s;
+    }
+    .bento-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .bento-card:hover {
+      border-color: rgba(139,92,246,.62);
+      box-shadow:
+        0 0 0 1px rgba(216,185,122,.1),
+        0 14px 52px rgba(109,40,217,.42),
+        0 0 100px rgba(139,92,246,.1);
+    }
 
-.site-nav a.active{
-color:#f5c14a;
-opacity:1;
-}
+    /* ── VIDEO ── */
+    .card-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: .55;
+      transition: opacity .4s;
+    }
+    .bento-card:hover .card-video { opacity: 1; }
 
-/* PAGE */
+    /* ── GRADIENT OVERLAY ── */
+    .card-grad {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(5,2,14,.92) 0%,
+        rgba(5,2,14,.32) 46%,
+        rgba(5,2,14,.04) 100%
+      );
+    }
 
-.page{
-padding-top:160px; /* 👈 نزلنا العنوان */
-max-width:1200px;
-margin:auto;
-padding-left:20px;
-padding-right:20px;
-}
+    /* ── PLAY BUTTON ── */
+    .card-play {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(.8);
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: rgba(0,0,0,.48);
+      border: 1px solid rgba(255,255,255,.22);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-left: 3px;
+      font-size: 14px;
+      color: #fff;
+      opacity: 0;
+      transition: opacity .28s, transform .28s;
+      backdrop-filter: blur(6px);
+    }
+    .bento-card:hover .card-play {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
 
-/* HERO */
+    /* ── CARD LABEL ── */
+    .card-info {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 14px 15px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+    }
+    .card-num {
+      font-size: 13px;
+      font-weight: 700;
+      color: rgba(167,139,250,.5);
+      letter-spacing: .06em;
+      line-height: 1;
+    }
+    .bento-large .card-num { font-size: 18px; }
+    .card-tag {
+      font-size: 10px;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.36);
+      font-weight: 500;
+    }
 
-.hero{
-margin-bottom:60px;
-max-width:700px;
-}
+    /* ── CORNER ACCENTS ── */
+    .card-tr, .card-bl {
+      position: absolute;
+      width: 11px;
+      height: 11px;
+      opacity: 0;
+      transition: opacity .28s;
+    }
+    .card-tr {
+      top: 10px; right: 10px;
+      border-top: 1.5px solid rgba(216,185,122,.55);
+      border-right: 1.5px solid rgba(216,185,122,.55);
+    }
+    .card-bl {
+      bottom: 10px; left: 10px;
+      border-bottom: 1.5px solid rgba(139,92,246,.55);
+      border-left: 1.5px solid rgba(139,92,246,.55);
+    }
+    .bento-card:hover .card-tr,
+    .bento-card:hover .card-bl { opacity: 1; }
 
-.hero h1{
-font-size:32px;
-margin-bottom:10px;
-}
+    /* ── MODAL ── */
+    .ai-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(2,1,8,.96);
+      backdrop-filter: blur(12px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+    .ai-modal.open { display: flex; }
+    .ai-modal-wrap {
+      position: relative;
+      width: 92vw;
+      max-width: 1060px;
+    }
+    .ai-modal-wrap video {
+      width: 100%;
+      aspect-ratio: 16/9;
+      border-radius: 14px;
+      display: block;
+      outline: none;
+      border: 1px solid rgba(139,92,246,.28);
+      box-shadow: 0 0 90px rgba(109,40,217,.28);
+    }
+    .ai-modal-close {
+      position: absolute;
+      top: -38px;
+      right: 0;
+      background: none;
+      border: none;
+      color: rgba(255,255,255,.5);
+      font-size: 11px;
+      font-family: inherit;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      cursor: pointer;
+      padding: 4px 8px;
+      transition: color .2s;
+    }
+    .ai-modal-close:hover { color: #d8b97a; }
 
-.hero p{
-opacity:.8;
-line-height:1.6;
-font-size:14px;
-}
+    /* ── FOOTER ── */
+    .ai-footer {
+      text-align: center;
+      margin-top: 60px;
+      padding: 26px;
+      font-size: 11.5px;
+      color: rgba(255,255,255,.22);
+      border-top: 1px solid rgba(139,92,246,.1);
+      letter-spacing: .05em;
+    }
 
-/* CURSOR */
-
-.cursor{
-display:inline-block;
-width:2px;
-height:18px;
-background:#f5c14a;
-margin-left:5px;
-animation:blink 1s infinite;
-}
-
-@keyframes blink{
-0%,100%{opacity:1}
-50%{opacity:0}
-}
-
-/* GRID */
-
-.grid{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:18px;
-}
-
-/* CARD */
-
-.card{
-position:relative;
-border-radius:12px;
-overflow:hidden;
-cursor:pointer;
-transition:.3s;
-background:black;
-}
-
-/* GLOW BORDER */
-
-.card::before{
-content:"";
-position:absolute;
-inset:0;
-border-radius:12px;
-padding:1px;
-background:linear-gradient(120deg, transparent, #f5c14a, transparent);
--webkit-mask:
-linear-gradient(#000 0 0) content-box,
-linear-gradient(#000 0 0);
--webkit-mask-composite: xor;
-mask-composite: exclude;
-opacity:.3;
-}
-
-/* HOVER */
-
-.card:hover{
-transform:scale(1.05);
-box-shadow:0 0 25px rgba(245,193,74,.25);
-}
-
-/* VIDEO */
-
-.thumb{
-position:relative;
-width:100%;
-padding-top:56%;
-}
-
-.thumb video{
-position:absolute;
-top:0;
-left:0;
-width:100%;
-height:100%;
-object-fit:cover;
-}
-
-/* PLAY ICON */
-
-.play{
-position:absolute;
-inset:0;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:28px;
-color:white;
-background:rgba(0,0,0,.3);
-opacity:.9;
-}
-
-/* LABEL */
-
-.label{
-position:absolute;
-bottom:10px;
-left:12px;
-font-size:12px;
-opacity:.8;
-}
-
-/* MODAL */
-
-.modal{
-position:fixed;
-inset:0;
-background:rgba(0,0,0,.95);
-display:none;
-align-items:center;
-justify-content:center;
-z-index:200;
-}
-
-.modal.open{
-display:flex;
-}
-
-.modal-frame{
-width:90%;
-max-width:1000px;
-aspect-ratio:16/9;
-}
-
-.modal video{
-width:100%;
-height:100%;
-}
-
-/* FOOTER */
-
-.footer{
-margin-top:70px;
-padding:25px;
-text-align:center;
-font-size:12px;
-opacity:.5;
-border-top:1px solid rgba(255,255,255,.1);
-}
-
-/* MOBILE */
-
-@media(max-width:768px){
-
-.grid{
-grid-template-columns:repeat(2,1fr);
-}
-
-.hero h1{
-font-size:26px;
-}
-
-}
-
-</style>
-
+    /* ── RESPONSIVE ── */
+    @media(max-width:900px){
+      .bento-grid {
+        grid-template-columns: repeat(2,1fr);
+        grid-auto-rows: 175px;
+      }
+      .bento-large { grid-column: span 2; grid-row: span 2; }
+      .bento-wide  { grid-column: span 2; }
+      .ai-title { font-size: 30px; }
+    }
+    @media(max-width:520px){
+      .bento-grid {
+        grid-template-columns: repeat(2,1fr);
+        grid-auto-rows: 130px;
+        gap: 8px;
+      }
+      .bento-large { grid-column: span 2; grid-row: span 1; }
+      .bento-wide  { grid-column: span 2; }
+      .bento-tall  { grid-row: span 1; }
+      .ai-title    { font-size: 24px; }
+      .ai-page     { padding-top: 88px; }
+    }
+  </style>
 </head>
 
 <body>
 
-<nav class="site-nav">
-<a href="index.html">Home</a>
-<a href="my-work.html">My Work</a>
-<a href="ai-motion.html" class="active">AI & Animation</a>
-<a href="academy.html">Pro</a>
-<a href="show.html">Showreel</a>
+<nav class="main-nav" id="mainNav">
+  <div class="nav-links">
+    <a href="index.html" id="nav-home">HOME</a>
+    <a href="my-work.html" id="nav-work">MY WORK</a>
+    <a href="ai-motion.html" id="nav-ai" class="active">AI &amp; ANIMATION</a>
+    <a href="academy.html" id="nav-pro">PRO</a>
+  </div>
+  <div class="nav-controls">
+    <button class="ctrl-btn" id="themeBtn">🌙</button>
+    <button class="ctrl-btn" id="langBtn">AR</button>
+  </div>
 </nav>
 
-<div class="page">
+<div class="bg-fx" aria-hidden="true"></div>
 
-<section class="hero">
+<div class="ai-page">
 
-<h1 id="typeTitle"></h1>
+  <section class="ai-hero">
+    <div class="ai-badge">
+      <span class="ai-badge-dot"></span>
+      <span id="ai-badge-text">AI &amp; Motion Lab</span>
+    </div>
+    <h1 class="ai-title" id="typeTitle"></h1>
+    <p class="ai-desc" id="ai-desc">A curated collection of AI-driven motion pieces and experimental animation, exploring new forms of cinematic storytelling and visual expression.</p>
+  </section>
 
-<p>
-A curated collection of AI-driven motion pieces and experimental animation,
-exploring new forms of cinematic storytelling and visual expression.
-</p>
+  <div class="bento-grid" id="bentoGrid"></div>
 
-</section>
-
-<div class="grid" id="videoGrid"></div>
+  <footer class="ai-footer">
+    © 2026 Hesham Abdelhamed — All Rights Reserved
+  </footer>
 
 </div>
 
-<div class="modal" id="modal">
-<div class="modal-frame" id="frame"></div>
+<!-- MODAL -->
+<div class="ai-modal" id="aiModal">
+  <div class="ai-modal-wrap" id="aiModalWrap">
+    <button class="ai-modal-close" id="aiModalClose">✕ Close</button>
+  </div>
 </div>
-
-<footer class="footer">
-© 2026 Hesham Abdelhamed — All Rights Reserved
-</footer>
 
 <script>
+/* ── TYPEWRITER ── */
+const titleEl = document.getElementById('typeTitle');
+const EN_TITLE = 'AI Motion & Animated Worlds';
+const AR_TITLE = 'الذكاء الاصطناعي والعوالم المتحركة';
 
-/* TYPEWRITER */
-
-const text="AI Motion & Animated Worlds"
-let i=0
-
-function type(){
-if(i<text.length){
-document.getElementById("typeTitle").innerHTML+=text[i]
-i++
-setTimeout(type,30)
-}else{
-document.getElementById("typeTitle").innerHTML+='<span class="cursor"></span>'
+function runTypewriter(text){
+  titleEl.innerHTML = '';
+  let i = 0;
+  function step(){
+    if(i < text.length){
+      titleEl.textContent = text.slice(0, i + 1);
+      i++;
+      setTimeout(step, 38);
+    } else {
+      const cur = document.createElement('span');
+      cur.className = 'cursor';
+      titleEl.appendChild(cur);
+    }
+  }
+  step();
 }
+runTypewriter(EN_TITLE);
+
+/* ── BENTO LAYOUT ── */
+const SIZES = [
+  'large', 'small', 'small',
+  'small', 'small', 'wide',
+  'small', 'small', 'small',
+  'tall',  'small', 'small',
+  'large', 'small', 'small', 'small'
+];
+
+const bentoGrid = document.getElementById('bentoGrid');
+const allCards = [];
+
+SIZES.forEach((size, i) => {
+  const src = `img/ai${String(i + 1).padStart(2, '0')}.mp4`;
+  const num = String(i + 1).padStart(2, '0');
+
+  const card = document.createElement('div');
+  card.className = `bento-card bento-${size}`;
+
+  card.innerHTML = `
+    <video class="card-video" src="${src}" muted loop playsinline preload="metadata"></video>
+    <div class="card-grad"></div>
+    <div class="card-play">&#9654;</div>
+    <div class="card-info">
+      <div class="card-num">${num}</div>
+      <div class="card-tag">AI Scene</div>
+    </div>
+    <div class="card-tr"></div>
+    <div class="card-bl"></div>
+  `;
+
+  const vid = card.querySelector('.card-video');
+  card.addEventListener('mouseenter', () => vid.play());
+  card.addEventListener('mouseleave', () => { vid.pause(); vid.currentTime = 0; });
+  card.addEventListener('click', () => openModal(src));
+
+  bentoGrid.appendChild(card);
+  allCards.push(card);
+});
+
+/* ── ENTRANCE ANIMATION ── */
+const revealObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      e.target.classList.add('visible');
+      revealObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.05 });
+
+allCards.forEach((card, i) => {
+  card.style.transitionDelay = `${Math.min(i * 0.045, 0.55)}s`;
+  revealObs.observe(card);
+});
+
+/* ── MODAL ── */
+const aiModal    = document.getElementById('aiModal');
+const modalWrap  = document.getElementById('aiModalWrap');
+const modalClose = document.getElementById('aiModalClose');
+
+function openModal(src){
+  const old = modalWrap.querySelector('video');
+  if(old) old.remove();
+  const v = document.createElement('video');
+  v.src = src;
+  v.controls = true;
+  v.autoplay = true;
+  modalWrap.appendChild(v);
+  aiModal.classList.add('open');
 }
 
-type()
-
-/* VIDEOS */
-
-const videos=[
-"img/ai01.mp4",
-"img/ai02.mp4",
-"img/ai03.mp4",
-"img/ai04.mp4",
-"img/ai05.mp4",
-"img/ai06.mp4",
-"img/ai07.mp4",
-"img/ai08.mp4"
-]
-
-const grid=document.getElementById("videoGrid")
-
-videos.forEach((v,i)=>{
-
-let card=document.createElement("div")
-card.className="card"
-card.onclick=()=>openVideo(i)
-
-card.innerHTML=`
-
-<div class="thumb">
-
-<video autoplay muted loop playsinline>
-<source src="${v}" type="video/mp4">
-</video>
-
-<div class="play">▶</div>
-
-<div class="label">AI Scene ${i+1}</div>
-
-</div>
-
-`
-
-grid.appendChild(card)
-
-})
-
-/* MODAL */
-
-function openVideo(i){
-
-const modal=document.getElementById("modal")
-const frame=document.getElementById("frame")
-
-frame.innerHTML=`
-<video controls autoplay>
-<source src="${videos[i]}" type="video/mp4">
-</video>
-`
-
-modal.classList.add("open")
+function closeModal(){
+  aiModal.classList.remove('open');
+  const v = modalWrap.querySelector('video');
+  if(v){ v.pause(); v.remove(); }
 }
 
+modalClose.addEventListener('click', closeModal);
+aiModal.addEventListener('click', e => { if(e.target === aiModal) closeModal(); });
+document.addEventListener('keydown', e => { if(e.key === 'Escape') closeModal(); });
+
+/* ── LANG HOOK ── */
+function applyPageLang(lang){
+  const ar = lang === 'ar';
+
+  const desc = document.getElementById('ai-desc');
+  if(desc) desc.textContent = ar
+    ? 'مجموعة مختارة من أعمال الحركة بالذكاء الاصطناعي والرسوم التجريبية — استكشاف أشكال جديدة من السرد البصري السينمائي.'
+    : 'A curated collection of AI-driven motion pieces and experimental animation, exploring new forms of cinematic storytelling and visual expression.';
+
+  const badge = document.getElementById('ai-badge-text');
+  if(badge) badge.textContent = ar ? 'مختبر الذكاء الاصطناعي' : 'AI & Motion Lab';
+
+  document.querySelectorAll('.card-tag').forEach(el => {
+    el.textContent = ar ? 'مشهد' : 'AI Scene';
+  });
+
+  runTypewriter(ar ? AR_TITLE : EN_TITLE);
+}
 </script>
 
+<script src="nav.js"></script>
 </body>
 </html>
