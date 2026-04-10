@@ -1,0 +1,22 @@
+# Secrets — NEVER commit these
+.env
+animation_pipeline/client_secrets.json
+animation_pipeline/youtube_token.json
+
+# Pipeline outputs (large files)
+animation_pipeline/output/
+animation_pipeline/assets/*.mp3
+animation_pipeline/assets/*.mp4
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+dist/
+build/
+
+# OS
+.DS_Store
+Thumbs.db
