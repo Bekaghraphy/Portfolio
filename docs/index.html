@@ -734,10 +734,10 @@ body {
 
 <script>
 const lenis = new Lenis({
-  duration: 1.4,
-  easing: (t) => 1 - Math.pow(1 - t, 4),
+  duration: 2.2,
+  easing: (t) => 1 - Math.pow(1 - t, 6),
   smoothWheel: true,
-  smoothTouch: false
+  smoothTouch: true
 })
 
 function raf(time) {
