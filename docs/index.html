@@ -119,7 +119,7 @@
             display: flex;
             gap: 15px;
             width: max-content;
-            animation: film-scroll 15s linear infinite;
+            animation: film-scroll 70s linear infinite;
         }
         @keyframes film-scroll {
             0% { transform: translateX(0); }
@@ -315,7 +315,7 @@
           { 
             id: 1, 
             year: "Jan 2014 — Jan 2018", 
-            role_en: "Multimedia Producer", 
+            role_en: "Director Of Documentary", 
             company: "Gamma Rapho Francias Agency", 
             details_en: "Produced content documenting pivotal moments across the Arab world during conflict and social transformation. Supplied footage to Al Arabiya, BBC, DW, Reuters, AP, and Al Jazeera.",
             location: "France · Lebanon · Egypt · Syria · Sudan · Libya",
@@ -328,7 +328,7 @@
           { 
             id: 2, 
             year: "Jan 2018 — Jan 2022", 
-            role_en: "Multimedia Producer", 
+            role_en: "Director Of Documentary", 
             company: "Media Vision (Al Ghad TV)", 
             details_en: "Produced 40+ documentary films across 5 Arab countries. Series include Habr Ala Al-Raseef (21 films) and Muna' Min Al-Tadawol (19 films).",
             location: "Egypt · Lebanon · Tunisia · Morocco · Jordan",
@@ -362,12 +362,12 @@
             color: "#8a2b53", 
             start: 50, 
             end: 66, 
-            video: "https://player.vimeo.com/video/1081226158" 
+            video: "https://player.vimeo.com/video/782962222" 
           },
           { 
             id: 5, 
             year: "Jan 2023 — Jan 2024", 
-            role_en: "Multimedia Producer", 
+            role_en: "Video Editor", 
             company: "Freelance — International Media", 
             details_en: "Delivered report, sports, and documentary projects for BBC, Deutsche Welle, France Télévisions, and PureMinds. Produced content for Al Arabiya and Now.",
             location: "Egypt · Saudi Arabia",
@@ -375,7 +375,7 @@
             color: "#4a4a4a", 
             start: 66, 
             end: 83, 
-            video: "https://player.vimeo.com/video/1088303838" 
+            video: "https://player.vimeo.com/video/1093436208" 
           },
           { 
             id: 6, 
@@ -456,7 +456,7 @@
                     <span className="text-transparent italic" style={{ WebkitTextStroke: "1.5px #d8b97a" }}>TELLER</span>
                   </motion.h1>
                   <p className="text-[#d8b97a] text-[10px] md:text-sm font-black tracking-[0.7em] uppercase mb-12 opacity-80">
-                    Visual Producer • Creative Brand Director
+                    Visual Producer • Filmmaker • Video Editor
                   </p>
                   <div className="flex gap-4 justify-center">
                     <a href="Hesham-Abdelhamed-Portfolio.pdf" target="_blank" className="flex items-center gap-3 px-10 py-4 bg-[#d8b97a] text-black font-black uppercase tracking-widest text-[10px] rounded-full hover:bg-white transition-all shadow-[0_0_20px_rgba(216,185,122,0.3)]">
@@ -478,14 +478,14 @@
                           <div className="scanline" />
                           <div className="absolute top-4 left-6 z-20 flex items-center gap-2">
                              <div className="w-2 h-2 bg-red-600 rounded-full animate-pulse" />
-                             <span className="text-[10px] font-mono font-bold text-red-600">SCRUBBING TIMELINE...</span>
+                             <span className="text-[10px] font-mono font-bold text-red-600">Show Work</span>
                           </div>
                           <iframe key={activeEvent.id} src={`${activeEvent.video}?background=1&autoplay=1&loop=1&muted=1`} className="w-full h-full object-cover scale-110 grayscale-[0.2]" frameBorder="0" />
                         </div>
                       </div>
                     </div>
                     <div className="lg:col-span-4 premiere-panel p-8 rounded-xl shadow-2xl flex flex-col justify-center">
-                      <div className="text-[10px] text-blue-400 font-bold mb-4 tracking-widest uppercase">Project MetaData</div>
+                      <div className="text-[10px] text-blue-400 font-bold mb-4 tracking-widest uppercase">EXPERIENCE</div>
                       <div className="space-y-4">
                         <h3 className="text-3xl font-black uppercase leading-tight">{activeEvent.role_en}</h3>
                         <div className="flex flex-col gap-1">
@@ -496,9 +496,9 @@
                         <div className="pt-6 border-t border-white/10 grid grid-cols-1 gap-2 text-[10px] font-mono text-zinc-500 uppercase">
                           <div>Date: {activeEvent.year}</div>
                           <div className="flex gap-2">
-                            <span className="px-2 py-0.5 bg-zinc-800 rounded">4K</span>
-                            <span className="px-2 py-0.5 bg-zinc-800 rounded">HDR</span>
-                            <span className="px-2 py-0.5 bg-[#d8b97a]/20 text-[#d8b97a] rounded">MASTER</span>
+                            <span className="px-2 py-0.5 bg-zinc-800 rounded">Video Editor</span>
+                            <span className="px-2 py-0.5 bg-zinc-800 rounded">Videoghraphy</span>
+                            <span className="px-2 py-0.5 bg-[#d8b97a]/20 text-[#d8b97a] rounded">Archive</span>
                           </div>
                         </div>
                       </div>
@@ -660,11 +660,11 @@
                              
                              <div className="mt-8 pt-6 border-t-2 border-white/5 flex flex-col md:flex-row gap-6">
                                 <div>
-                                   <p className="text-[10px] font-black text-zinc-500 uppercase tracking-widest mb-1">KSA Office</p>
+                                   <p className="text-[10px] font-black text-zinc-500 uppercase tracking-widest mb-1">KSA</p>
                                    <p className="font-black text-xl">+966 50 306 4408</p>
                                 </div>
                                 <div>
-                                   <p className="text-[10px] font-black text-zinc-500 uppercase tracking-widest mb-1">EGY Office</p>
+                                   <p className="text-[10px] font-black text-zinc-500 uppercase tracking-widest mb-1">EGY</p>
                                    <p className="font-black text-xl">+20 10 10 72 3207</p>
                                 </div>
                              </div>
