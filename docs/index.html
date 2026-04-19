@@ -17,7 +17,7 @@
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js"></script>
-    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/bundled/lenis.min.js"></script>  
+    
 
     <style>
         body { font-family: 'Montserrat', sans-serif; background-color: #050505; color: white; overflow-x: hidden; }
@@ -296,21 +296,7 @@
     <div id="root"></div>
 
     <script type="text/babel">
-     const lenis = new Lenis({
-  duration: 1.2,
-  easing: (t) => 1 - Math.pow(1 - t, 3),
-  smoothWheel: true,
-  smoothTouch: true
-})
-
-function raf(time) {
-  lenis.raf(time)
-  requestAnimationFrame(raf)
-}
-
-requestAnimationFrame(raf)
-
-        const { useState, useEffect, useRef } = React;
+          const { useState, useEffect, useRef } = React;
         const { motion, AnimatePresence } = window.Motion;
 
         const Icons = {
