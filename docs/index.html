@@ -279,6 +279,13 @@
     letter-spacing: 0.2em !important;
   }
 }
+            html {
+  scroll-behavior: auto;
+}
+
+body {
+  overscroll-behavior: none;
+}
     </style>
 </head>
 <body class="ltr">
@@ -723,6 +730,7 @@
         const root = ReactDOM.createRoot(document.getElementById('root'));
         root.render(<App />);
     </script>
+        
         <!-- ===== MOBILE APP VERSION (ADD ONLY) ===== -->
 <div class="mobile-app">
 
@@ -759,7 +767,23 @@
     <a href="https://www.linkedin.com/in/hishamabdelhamed">LinkedIn</a>
     <a href="https://vimeo.com/hishamabdelhamed">Vimeo</a>
   </section>
+<script src="https://unpkg.com/@studio-freight/lenis@1.0.42/bundled/lenis.min.js"></script>
 
+<script>
+const lenis = new Lenis({
+  duration: 1.4,
+  easing: (t) => 1 - Math.pow(1 - t, 4),
+  smoothWheel: true,
+  smoothTouch: false
+})
+
+function raf(time) {
+  lenis.raf(time)
+  requestAnimationFrame(raf)
+}
+
+requestAnimationFrame(raf)
+</script>
 </div>
 </body>
 </html>
