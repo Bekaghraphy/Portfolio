@@ -559,6 +559,161 @@
             color: #111827 !important;
             box-shadow: 0 24px 70px rgba(17,24,39,.08);
         }
+        .capabilities-section {
+            position: relative;
+            overflow: hidden;
+            background:
+                radial-gradient(circle at var(--mx, 50%) var(--my, 40%), rgba(216,185,122,.12), transparent 28%),
+                linear-gradient(135deg, #121212 0%, #080808 52%, #14110b 100%);
+        }
+        .capabilities-section::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(216,185,122,.055) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(216,185,122,.045) 1px, transparent 1px);
+            background-size: 54px 54px;
+            transform: translate3d(calc((var(--mx, 50%) - 50vw) * .012), calc((var(--my, 40%) - 40vh) * .012), 0);
+            opacity: .55;
+            pointer-events: none;
+            animation: capability-grid-drift 18s linear infinite;
+        }
+        .capabilities-section::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(115deg, transparent 0%, transparent 44%, rgba(255,255,255,.045) 50%, transparent 56%, transparent 100%);
+            transform: translateX(-100%);
+            animation: capability-scan 7s ease-in-out infinite;
+            pointer-events: none;
+        }
+        @keyframes capability-grid-drift {
+            from { background-position: 0 0, 0 0; }
+            to { background-position: 54px 54px, 54px 54px; }
+        }
+        @keyframes capability-scan {
+            0%, 35% { transform: translateX(-100%); }
+            65%, 100% { transform: translateX(100%); }
+        }
+        .capability-module {
+            position: relative;
+            min-height: 230px;
+            transform-style: preserve-3d;
+            transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(0) scale(1);
+            border: 1px solid rgba(255,255,255,.1);
+            background:
+                linear-gradient(145deg, rgba(255,255,255,.07), rgba(255,255,255,.025)),
+                #121212;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,.06), 0 20px 60px rgba(0,0,0,.28);
+            transition: transform .18s ease, border-color .35s ease, box-shadow .35s ease, background .35s ease;
+            isolation: isolate;
+            will-change: transform;
+        }
+        .capability-module::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at var(--glow-x, 50%) var(--glow-y, 50%), rgba(216,185,122,.24), transparent 38%);
+            opacity: 0;
+            transition: opacity .35s ease;
+            pointer-events: none;
+            z-index: -1;
+        }
+        .capability-module::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(125deg, transparent 0%, rgba(255,255,255,.08) 42%, rgba(216,185,122,.18) 50%, rgba(255,255,255,.05) 58%, transparent 100%);
+            opacity: 0;
+            transform: translateZ(34px) translateX(-18%);
+            transition: opacity .35s ease, transform .35s ease;
+            pointer-events: none;
+            border-radius: inherit;
+        }
+        .capability-module:hover {
+            transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(-9px) scale(1.025);
+            border-color: rgba(216,185,122,.62);
+            box-shadow: 0 28px 80px rgba(216,185,122,.13), 0 20px 70px rgba(0,0,0,.35);
+        }
+        .capability-module:hover::before {
+            opacity: 1;
+        }
+        .capability-module:hover::after {
+            opacity: 1;
+            transform: translateZ(34px) translateX(0);
+        }
+        .capability-depth {
+            transform: translateZ(42px);
+        }
+        .capability-depth-soft {
+            transform: translateZ(22px);
+        }
+        .capability-rail {
+            position: absolute;
+            inset-inline: 18px;
+            bottom: 18px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(216,185,122,.8), transparent);
+            transform: translateZ(30px) scaleX(.35);
+            transform-origin: center;
+            opacity: .55;
+            transition: transform .35s ease, opacity .35s ease;
+        }
+        .capability-module:hover .capability-rail {
+            transform: translateZ(30px) scaleX(1);
+            opacity: 1;
+        }
+        .capability-corner {
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            border-color: rgba(216,185,122,.55);
+            opacity: .8;
+            transform: translateZ(48px);
+        }
+        .capability-corner.tl { top: 14px; left: 14px; border-top: 1px solid; border-left: 1px solid; }
+        .capability-corner.br { right: 14px; bottom: 14px; border-right: 1px solid; border-bottom: 1px solid; }
+        .capability-number {
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(216,185,122,.42);
+        }
+        .capability-proof {
+            border-top: 1px solid rgba(255,255,255,.1);
+            border-bottom: 1px solid rgba(255,255,255,.1);
+            background: rgba(216,185,122,.055);
+        }
+        .capability-loop {
+            overflow: hidden;
+            max-width: min(860px, 100%);
+        }
+        .capability-loop-track {
+            display: flex;
+            width: max-content;
+            animation: capability-loop 18s linear infinite;
+        }
+        .capability-loop-track span {
+            white-space: nowrap;
+            padding-right: 34px;
+        }
+        @keyframes capability-loop {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+        .lang-ar .capability-loop-track {
+            animation-direction: reverse;
+        }
+        .theme-light .capabilities-section {
+            background:
+                radial-gradient(circle at var(--mx, 50%) var(--my, 40%), rgba(216,185,122,.18), transparent 28%),
+                linear-gradient(135deg, #f8f4eb 0%, #fff 52%, #f0e7d7 100%);
+        }
+        .theme-light .capability-module,
+        .theme-light .capability-proof {
+            background: rgba(255,255,255,.76) !important;
+            border-color: rgba(17,24,39,.12) !important;
+            color: #111827 !important;
+        }
         /* ===== GLOBAL MOBILE RESPONSIVE (ADD ONLY) ===== */
 
 @media (max-width: 1024px) {
@@ -715,6 +870,14 @@
     left: -190px !important;
     right: auto !important;
   }
+  .capabilities-section {
+    padding-top: 78px !important;
+    padding-bottom: 78px !important;
+  }
+  .capability-module {
+    min-height: 190px !important;
+    transform: none !important;
+  }
 }
             html {
   scroll-behavior: auto;
@@ -766,6 +929,7 @@ body {
           AiSpark: () => <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2l1.6 5.1L19 9l-5.4 1.9L12 16l-1.6-5.1L5 9l5.4-1.9L12 2z"/><path d="M19 14l.8 2.6L22 17.5l-2.2.9L19 21l-.8-2.6-2.2-.9 2.2-.9L19 14z"/><path d="M5 14l.7 2.1L8 17l-2.3.9L5 20l-.7-2.1L2 17l2.3-.9L5 14z"/></svg>,
           Arrow: () => <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>,
           Phone: () => <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.7.6 2.5a2 2 0 0 1-.5 2.1L8 9.5a16 16 0 0 0 6.5 6.5l1.2-1.2a2 2 0 0 1 2.1-.5c.8.3 1.6.5 2.5.6a2 2 0 0 1 1.7 2z"/></svg>,
+          Whatsapp: () => <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19.1 4.9A9.9 9.9 0 0 0 3.5 16.8L2 22l5.3-1.4A9.9 9.9 0 0 0 12 21a10 10 0 0 0 7.1-16.1ZM12 19.3a8.1 8.1 0 0 1-4.1-1.1l-.3-.2-3.1.8.8-3-.2-.3A8.2 8.2 0 1 1 12 19.3Zm4.5-6.1c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.6.1-.2.3-.7.8-.8 1-.2.2-.3.2-.6.1a6.7 6.7 0 0 1-2-1.2 7.4 7.4 0 0 1-1.4-1.7c-.1-.2 0-.4.1-.5l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.1 0 1.3.9 2.5 1 2.7.1.2 1.8 2.8 4.4 3.9.6.3 1.1.4 1.5.5.6.2 1.2.1 1.6.1.5-.1 1.4-.6 1.6-1.1.2-.6.2-1 .2-1.1-.1-.2-.3-.3-.5-.4Z"/></svg>,
           Globe: () => <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 0 20"/><path d="M12 2a15.3 15.3 0 0 0 0 20"/></svg>,
           Sun: () => <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>,
           Moon: () => <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 3a6 6 0 0 0 9 7.3A9 9 0 1 1 12 3z"/></svg>
@@ -891,7 +1055,7 @@ body {
 
         const COPY = {
           en: {
-            nav: ["Home", "Experience", "My Work", "Contact"],
+            nav: ["Home", "Experience", "Capabilities", "My Work", "Contact"],
             hero: ["STORY", "TELLER"],
             tagline: "Visual Producer • Filmmaker • Video Editor",
             portfolio: "Portfolio PDF",
@@ -903,12 +1067,12 @@ body {
             chips: ["Video Editor", "Videoghraphy", "Archive"],
             workSection: "My Work",
             aiSection: "AI ANIMATION",
-            aiTitle: "LAB",
-            aiLead: "I craft cinematic motion experiences that turn ideas into powerful visual stories.",
+            aiTitle: "AI ANIMATION LAB",
+            aiLead: "Experimental AI-driven animation, cinematic motion systems, and generative visual worlds built for future-facing stories.",
             aiCards: [
-              { title: "World Safety Day", meta: "Animation • Frame By Frame", detail: "World Safety Day: Protect Lives, Prevent Harm", video: "/1.mp4" },
-              { title: "Foundation Day", meta: "Animation • Frame By Frame", detail: "Saudi Foundation Day: Honoring Our Roots", video: "/2.mp4" },
-              { title: "Ancient Egypt Tomb", meta: "Product Film • AI Animation", detail: "Ancient Egypt Tomb: Secrets Beneath Sands", video: "/3.mp4" }
+              { title: "Synthetic Characters", meta: "AI Motion • Character Loop", detail: "Expressive animated portraits shaped with generative direction and editorial pacing.", video: "/1.mp4" },
+              { title: "Dream Worlds", meta: "Worldbuilding • Visual AI", detail: "Surreal environments, atmospheric scenes, and cinematic transitions for concept films.", video: "/2.mp4" },
+              { title: "Brand Motion", meta: "Product Film • AI Animation", detail: "High-energy branded sequences designed for social campaigns and launch films.", video: "/3.mp4" }
             ],
             contactSection: "CONTACT",
             contactTitle: "CONTACT",
@@ -922,7 +1086,7 @@ body {
             footer: "Hesham Abdelhamed • Copyright • 2026",
           },
           ar: {
-            nav: ["الرئيسية", "الخبرات", "الأعمال", "تواصل"],
+            nav: ["الرئيسية", "الخبرات", "القدرات", "الأعمال", "تواصل"],
             hero: ["راوي", "القصص"],
             tagline: "منتج بصري • صانع أفلام • محرر فيديو",
             portfolio: "ملف الأعمال PDF",
@@ -1015,8 +1179,9 @@ body {
                    <div className="hidden md:flex gap-8 text-[10px] font-bold tracking-widest text-zinc-400">
                       <a href="#" className="nav-link hover:text-[#d8b97a] transition-colors">{copy.nav[0]}</a>
                       <a href="#experience" className="nav-link hover:text-[#d8b97a] transition-colors">{copy.nav[1]}</a>
-                      <a href="#work" className="nav-link hover:text-[#d8b97a] transition-colors">{copy.nav[2]}</a>
-                      <a href="#contact" className="nav-link hover:text-[#d8b97a] transition-colors">{copy.nav[3]}</a>
+                      <a href="#capabilities" className="nav-link hover:text-[#d8b97a] transition-colors">{copy.nav[2]}</a>
+                      <a href="#work" className="nav-link hover:text-[#d8b97a] transition-colors">{copy.nav[3]}</a>
+                      <a href="#contact" className="nav-link hover:text-[#d8b97a] transition-colors">{copy.nav[4]}</a>
                    </div>
                 </div>
                 <div className="flex-1 flex justify-end top-controls">
@@ -1182,6 +1347,110 @@ body {
                       </div>
                     </div>
                   </div>
+                </div>
+              </section>
+
+              {/* CAPABILITIES */}
+              <section id="capabilities" className="capabilities-section py-28 px-6 border-y border-white/5">
+                <div className="max-w-7xl mx-auto relative z-10">
+                  <motion.div
+                    initial={{ opacity: 0, y: 34 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: .25 }}
+                    transition={{ duration: .7 }}
+                    className="grid lg:grid-cols-12 gap-10 items-end mb-14"
+                  >
+                    <div className="lg:col-span-7">
+                      <div className="text-[10px] font-black uppercase tracking-[0.45em] text-[#d8b97a] mb-5">
+                        Creative Control Panel
+                      </div>
+                      <h2 className="text-5xl md:text-8xl font-black uppercase leading-none text-white">
+                        Capabilities
+                      </h2>
+                    </div>
+                    <p className="lg:col-span-5 text-sm md:text-base text-zinc-400 font-bold leading-relaxed">
+                      Cinematic video production and motion design for brands that need real impact.
+                    </p>
+                  </motion.div>
+
+                  <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
+                    {[
+                      { title: "Cinematic Production", desc: "Visual storytelling crafted for brands" },
+                      { title: "Motion Design", desc: "Dynamic visuals that simplify complexity" },
+                      { title: "Healthcare & Industrial", desc: "Specialized content for real-world sectors" },
+                      { title: "Content Systems", desc: "Short-form content built for engagement" },
+                    ].map((module, i) => (
+                      <motion.div
+                        key={module.title}
+                        initial={{ opacity: 0, y: 35 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, amount: .22 }}
+                        transition={{ duration: .62, delay: i * .07 }}
+                        onMouseMove={(e) => {
+                          const rect = e.currentTarget.getBoundingClientRect();
+                          const x = e.clientX - rect.left;
+                          const y = e.clientY - rect.top;
+                          const px = x / rect.width;
+                          const py = y / rect.height;
+                          e.currentTarget.style.setProperty("--rx", `${(0.5 - py) * 12}deg`);
+                          e.currentTarget.style.setProperty("--ry", `${(px - 0.5) * 14}deg`);
+                          e.currentTarget.style.setProperty("--glow-x", `${px * 100}%`);
+                          e.currentTarget.style.setProperty("--glow-y", `${py * 100}%`);
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.setProperty("--rx", "0deg");
+                          e.currentTarget.style.setProperty("--ry", "0deg");
+                          e.currentTarget.style.setProperty("--glow-x", "50%");
+                          e.currentTarget.style.setProperty("--glow-y", "50%");
+                        }}
+                        className="capability-module rounded-lg p-6 flex flex-col justify-between"
+                      >
+                        <span className="capability-corner tl"></span>
+                        <span className="capability-corner br"></span>
+                        <div className="capability-depth flex items-start justify-between gap-5">
+                          <div className="text-[10px] font-black uppercase tracking-widest text-[#d8b97a]">
+                            Module
+                          </div>
+                          <div className="capability-number text-5xl font-black leading-none">
+                            0{i + 1}
+                          </div>
+                        </div>
+                        <div className="capability-depth-soft">
+                          <h3 className="text-xl font-black uppercase leading-tight mb-4">{module.title}</h3>
+                          <p className="text-sm text-zinc-400 font-bold leading-relaxed">{module.desc}</p>
+                        </div>
+                        <span className="capability-rail"></span>
+                      </motion.div>
+                    ))}
+                  </div>
+
+                  <motion.div
+                    initial={{ opacity: 0, y: 25 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: .25 }}
+                    transition={{ duration: .7 }}
+                    className="capability-proof rounded-lg p-6 md:p-8 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6"
+                  >
+                    <div>
+                      <div className="capability-loop text-lg md:text-2xl font-black leading-snug">
+                        <div className="capability-loop-track">
+                          <span>Documentary • Healthcare • Industrial • Modern Businesses • Cinematic Visuals •</span>
+                          <span>Documentary • Healthcare • Industrial • Modern Businesses • Cinematic Visuals •</span>
+                        </div>
+                      </div>
+                      <p className="mt-4 text-[10px] font-black uppercase tracking-[0.35em] text-[#d8b97a]">
+                        Trusted by leading healthcare brands in Saudi Arabia
+                      </p>
+                    </div>
+                    <div className="flex flex-wrap gap-3 shrink-0">
+                      <a href="#contact" className="magnetic-icon px-7 py-4 bg-[#d8b97a] text-black font-black uppercase tracking-widest text-[10px] rounded-full hover:bg-white transition-all">
+                        Start a Project
+                      </a>
+                      <a href="#work" className="magnetic-icon px-7 py-4 border border-white/15 text-white font-black uppercase tracking-widest text-[10px] rounded-full hover:border-[#d8b97a] hover:text-[#d8b97a] transition-all">
+                        View My Work
+                      </a>
+                    </div>
+                  </motion.div>
                 </div>
               </section>
 
@@ -1370,6 +1639,10 @@ body {
                                    <p className="text-[10px] font-black text-zinc-500 uppercase tracking-widest mb-1 flex items-center gap-2"><Icons.Phone /> EGY</p>
                                    <p className="font-black text-xl">+20 10 10 72 3207</p>
                                 </div>
+                                <div>
+                                   <p className="text-[10px] font-black text-zinc-500 uppercase tracking-widest mb-1 flex items-center gap-2"><Icons.Whatsapp /> WHATSAPP</p>
+                                   <a href="https://wa.me/966503064408" target="_blank" className="font-black text-xl hover:text-[#d8b97a] transition-colors">+966 50 306 4408</a>
+                                </div>
                              </div>
                           </div>
 
@@ -1381,6 +1654,7 @@ body {
                                { icon: <Icons.Facebook />, label: 'Facebook', url: 'https://facebook.com/hishamabdelhamedd', color: 'hover:bg-[#1877f2]' },
                                { icon: <Icons.Tiktok />, label: 'TikTok', url: 'https://www.tiktok.com/@hisham.abdelhamed', color: 'hover:bg-zinc-700' },
                                { icon: <Icons.Vimeo />, label: 'Vimeo', url: 'https://vimeo.com/hishamabdelhamed', color: 'hover:bg-[#17D5FF]' },
+                               { icon: <Icons.Whatsapp />, label: 'WhatsApp', url: 'https://wa.me/966503064408', color: 'hover:bg-[#25D366]' },
                                
                              ].map((social, i) => (
                                <a key={i} href={social.url} target="_blank" className={`social-card relative overflow-hidden flex items-center justify-between p-6 bg-zinc-900/80 backdrop-blur-md border border-white/10 shadow-[4px_4px_0px_#111] rounded-xl group transition-all ${social.color} hover:shadow-none hover:translate-x-1 hover:translate-y-1`}>
