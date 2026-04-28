@@ -51,6 +51,7 @@ const server = http.createServer((req, res) => {
     icons: document.querySelectorAll('.hero-icon-orbit').length,
     socialCards: document.querySelectorAll('.social-card').length,
     aiCards: document.querySelectorAll('.ai-card').length,
+    capabilityModules: document.querySelectorAll('.capability-module').length,
     filmFrames: document.querySelectorAll('.film-frame').length,
     bodyW: document.documentElement.scrollWidth,
     innerW: innerWidth,
