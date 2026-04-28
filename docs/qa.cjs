@@ -39,7 +39,7 @@ const server = http.createServer((req, res) => {
   page.on('console', (msg) => logs.push(`${msg.type()}: ${msg.text()}`));
   page.on('pageerror', (err) => logs.push(`pageerror: ${err.message}`));
 
-  await page.goto('http://127.0.0.1:4174/index1.html', {
+  await page.goto('http://127.0.0.1:4174/index%20.html', {
     waitUntil: 'domcontentloaded',
     timeout: 30000,
   });
@@ -50,6 +50,7 @@ const server = http.createServer((req, res) => {
     navLinks: [...document.querySelectorAll('nav a')].map((a) => a.textContent.trim()),
     icons: document.querySelectorAll('.hero-icon-orbit').length,
     socialCards: document.querySelectorAll('.social-card').length,
+    aiCards: document.querySelectorAll('.ai-card').length,
     filmFrames: document.querySelectorAll('.film-frame').length,
     bodyW: document.documentElement.scrollWidth,
     innerW: innerWidth,
@@ -77,7 +78,7 @@ const server = http.createServer((req, res) => {
   const mobile = await page.evaluate(() => {
     const nav = document.querySelector('nav');
     const heroIcons = [...document.querySelectorAll('.hero-icon-orbit')].map((el) => el.getBoundingClientRect());
-    const social = [...document.querySelectorAll('.social-card')].slice(0, 2).map((el) => el.getBoundingClientRect());
+    const social = [...document.querySelectorAll('.contact-social-row')].slice(0, 2).map((el) => el.getBoundingClientRect());
     const timeline = document.querySelector('.timeline-panel')?.getBoundingClientRect();
 
     return {
