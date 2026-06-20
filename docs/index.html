@@ -1699,24 +1699,5 @@ body {
         const root = ReactDOM.createRoot(document.getElementById('root'));
         root.render(<App />);
     </script>
-        <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/bundled/lenis.min.js"></script>
-
-<script>
-if (window.Lenis) {
-  const lenis = new Lenis({
-    duration: 2.2,
-    easing: (t) => 1 - Math.pow(1 - t, 6),
-    smoothWheel: true,
-    smoothTouch: true
-  })
-
-  function raf(time) {
-    lenis.raf(time)
-    requestAnimationFrame(raf)
-  }
-
-  requestAnimationFrame(raf)
-}
-</script>
 </body>
 </html>
