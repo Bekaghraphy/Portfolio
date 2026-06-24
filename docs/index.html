@@ -1639,15 +1639,15 @@ const AnimatePresence =
                              <div className="mt-8 pt-6 border-t-2 border-white/5 flex flex-col md:flex-row gap-6">
                                 <div>
                                    <p className="text-[10px] font-black text-zinc-500 uppercase tracking-widest mb-1 flex items-center gap-2"><Icons.Phone /> KSA</p>
-                                   <p className="font-black text-xl">+966 50 306 4408</p>
+                                   <p className="font-black text-xl"></p>
                                 </div>
                                 <div>
                                    <p className="text-[10px] font-black text-zinc-500 uppercase tracking-widest mb-1 flex items-center gap-2"><Icons.Phone /> EGY</p>
-                                   <p className="font-black text-xl">+20 10 10 72 3207</p>
+                                   <p className="font-black text-xl"></p>
                                 </div>
                                 <div>
                                    <p className="text-[10px] font-black text-zinc-500 uppercase tracking-widest mb-1 flex items-center gap-2"><Icons.Whatsapp /> WHATSAPP</p>
-                                   <a href="https://wa.me/966503064408" target="_blank" className="font-black text-xl hover:text-[#d8b97a] transition-colors">+966 50 306 4408</a>
+                                   <a href="https://wa.me/" target="_blank" className="font-black text-xl hover:text-[#d8b97a] transition-colors"></a>
                                 </div>
                              </div>
                           </div>
@@ -1660,7 +1660,7 @@ const AnimatePresence =
                                { icon: <Icons.Facebook />, label: 'Facebook', url: 'https://facebook.com/hishamabdelhamedd', color: 'hover:bg-[#1877f2]' },
                                { icon: <Icons.Tiktok />, label: 'TikTok', url: 'https://www.tiktok.com/@hisham.abdelhamed', color: 'hover:bg-zinc-700' },
                                { icon: <Icons.Vimeo />, label: 'Vimeo', url: 'https://vimeo.com/hishamabdelhamed', color: 'hover:bg-[#17D5FF]' },
-                               { icon: <Icons.Whatsapp />, label: 'WhatsApp', url: 'https://wa.me/966503064408', color: 'hover:bg-[#25D366]' },
+                               { icon: <Icons.Whatsapp />, label: 'WhatsApp', url: 'https://wa.me/', color: 'hover:bg-[#25D366]' },
                                
                              ].map((social, i) => (
                                <a key={i} href={social.url} target="_blank" className={`social-card relative overflow-hidden flex items-center justify-between p-6 bg-zinc-900/80 backdrop-blur-md border border-white/10 shadow-[4px_4px_0px_#111] rounded-xl group transition-all ${social.color} hover:shadow-none hover:translate-x-1 hover:translate-y-1`}>
